@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Custo de Vida Brasil · quanto custa viver no Brasil hoje</title>
+<meta name="description" content="Preço da cesta básica, gasolina, gás de cozinha, churrasco e o que o salário mínimo compra, atualizado toda semana desde 2023, por estado.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Custo de Vida Brasil">
+<meta property="og:description" content="Quanto custa viver no Brasil hoje: cesta básica, combustível, gás, churrasco e salário mínimo, por estado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+
+  <section class="bloco">
+    <div class="filtros">
+      <label class="visually-hidden" for="local">Onde você mora</label>
+      <select id="local"></select>
+      <span class="small" id="atualizado"></span>
+    </div>
+    <div class="heroi">
+      <div class="stack">
+        <span class="eyebrow" id="cesta-rotulo">Cesta básica</span>
+        <h1>Quanto custa viver no Brasil hoje</h1>
+        <span class="tag grande" id="cesta-tag" hidden><span class="lbl" id="cesta-lbl"></span><span class="val" id="cesta-val"></span></span>
+        <div class="fatos" id="fatos"></div>
+        <a class="como" href="como-calculamos.html#cesta">Como calculamos →</a>
+      </div>
+      <div class="grafico" id="g-cesta-box">
+        <div class="cab"><b id="g-cesta-titulo">Cesta básica desde jan/2023</b><span class="small">R$</span></div>
+        <div id="g-cesta"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco" aria-labelledby="t-semana">
+    <h2 id="t-semana">Esta semana nas bombas e no gás</h2>
+    <div class="cards" id="cards-combustivel"></div>
+    <a class="como" href="combustiveis.html">Ver por estado, gráfico e quanto é imposto →</a>
+  </section>
+
+  <section class="bloco" aria-labelledby="t-churras">
+    <h2 id="t-churras" class="visually-hidden">Churrasco pra 6</h2>
+    <a class="churras" href="churrasco.html" id="churras-box">
+      <div class="stack" style="gap:8px">
+        <span class="eyebrow">Churrasco pra 6 <span id="churras-mes"></span></span>
+        <b id="churras-frase">Quanto custa um churrasco para 6 pessoas</b>
+        <ul class="chips"><li>1,2 kg alcatra</li><li>0,8 kg linguiça</li><li>0,8 kg asa</li><li>2 pães de alho</li><li>4 kg carvão</li><li>24 cervejas</li><li>2 refris 2 L</li></ul>
+      </div>
+      <span class="tag"><span class="lbl">6 pessoas · estimado</span><span class="val" id="churras-val">—</span></span>
+    </a>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+
+  <section class="bloco" aria-labelledby="t-salario">
+    <h2 id="t-salario">O que o salário mínimo compra</h2>
+    <div class="cards" id="cards-salario"></div>
+    <a class="como" href="trabalho.html">Ver salário e trabalho →</a>
+  </section>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  Promise.all(["combustiveis", "cesta", "salario", "churrasco", "estado"].map(C.carregar)).then(function (r) {
+    var comb = r[0], cesta = r[1], sal = r[2], ch = r[3], estado = r[4];
+    var sel = document.getElementById("local");
+    var locais = comb ? Object.keys(comb.series) : ["BR"];
+    C.seletorLocal(sel, locais, C.lembrar("local") || "BR");
+    sel.addEventListener("change", function () { C.lembrar("local", sel.value); desenhar(); });
+
+    function cestaDo(local) {
+      if (!cesta || !cesta.capitais) return null;
+      if (cesta.capitais[local]) return { nome: "Cesta básica em " + cesta.capitais[local].nome, total: cesta.capitais[local].total, horas: cesta.capitais[local].horas };
+      var agg = cesta.agregados && cesta.agregados[local];
+      if (agg) return { nome: "Cesta básica · média das capitais " + (local === "BR" ? "do Brasil" : "do " + C.nomeLocal(local)), total: agg.total, horas: agg.horas };
+      return null;
+    }
+
+    function desenhar() {
+      var local = sel.value;
+      // Cesta
+      var cb = cestaDo(local) || cestaDo("BR");
+      var minimo = sal && C.ultimo(sal.serie) ? C.ultimo(sal.serie)[1] : null;
+      var necessario = sal && C.ultimo(sal.serie) ? C.ultimo(sal.serie)[2] : null;
+      var fatos = document.getElementById("fatos");
+      if (cb && C.ultimo(cb.total)) {
+        var u = C.ultimo(cb.total);
+        document.getElementById("cesta-rotulo").textContent = cb.nome + " · " + C.data(u[0]);
+        document.getElementById("cesta-lbl").textContent = "Cesta básica · DIEESE";
+        document.getElementById("cesta-val").textContent = C.brl(u[1], 2);
+        document.getElementById("cesta-tag").hidden = false;
+        var h = C.ultimo(cb.horas);
+        fatos.innerHTML =
+          (minimo ? '<div class="fato"><span class="num">' + C.numero(minimo / u[1], 1) + '</span><span>cestas é o que o salário mínimo de ' + C.brl(minimo, 0) + ' compra</span></div>' : "") +
+          (h ? '<div class="fato"><span class="num">' + C.horas(h[1]).replace(" min", "") + '</span><span>de trabalho com salário mínimo para pagar a cesta</span></div>' : "") +
+          (necessario ? '<div class="fato"><span class="num">' + C.brl(necessario, 0) + '</span><span>seria o salário mínimo necessário para uma família de 4 (DIEESE)</span></div>' : "");
+        C.grafico(document.getElementById("g-cesta"), [{ nome: "Cesta", pontos: cb.total }], { fmtY: function (v) { return C.numero(v, 0); }, titulo: "Valor da cesta básica", marcos: [["2027-01", "novo mandato"]] });
+      } else {
+        document.getElementById("cesta-tag").hidden = true;
+        fatos.innerHTML = (minimo ? '<div class="fato"><span class="num">' + C.brl(minimo, 0) + '</span><span>é o salário mínimo hoje</span></div>' : "") +
+          (necessario ? '<div class="fato"><span class="num">' + C.brl(necessario, 0) + '</span><span>seria o salário mínimo necessário para uma família de 4 (DIEESE, ' + C.data(C.ultimo(sal.serie)[0]) + ')</span></div>' : "") +
+          '<p class="aviso">Os preços da cesta básica por capital entram na próxima coleta mensal.</p>';
+        if (sal) C.grafico(document.getElementById("g-cesta"), [{ nome: "Salário mínimo necessário", pontos: sal.serie.map(function (p) { return [p[0], p[2]]; }) }, { nome: "Salário mínimo", pontos: sal.serie.map(function (p) { return [p[0], p[1]]; }) }], { fmtY: function (v) { return C.numero(v, 0); }, titulo: "Salário mínimo e salário mínimo necessário" });
+        document.getElementById("g-cesta-titulo").textContent = "Salário mínimo × necessário, desde jan/2023";
+      }
+
+      // Combustíveis
+      var cards = document.getElementById("cards-combustivel");
+      if (comb) {
+        var s = comb.series[local] || comb.series.BR;
+        cards.innerHTML = Object.keys(comb.produtos).map(function (p) {
+          var serie = s[p]; var u = C.ultimo(serie), a = C.anterior(serie);
+          return '<a class="card" href="combustiveis.html#' + p + '"><span class="t">' + comb.produtos[p].nome + ' <span class="muted">(' + comb.produtos[p].unidade + ')</span></span><span class="v">' + (u ? C.brl(u[1], 2) : "—") + "</span>" +
+            C.seta(u && u[1], a && a[1], function (v) { return C.brl(v, 2); }, " na semana") + "</a>";
+        }).join("");
+        var ult = C.ultimo(s.gasolina || s.diesel);
+        document.getElementById("atualizado").textContent = ult ? "Combustíveis: semana até " + C.data(ult[0]) + " · " + C.nomeLocal(comb.series[local] ? local : "BR") : "";
+      } else {
+        cards.innerHTML = '<p class="aviso" style="grid-column:1/-1">Os preços de combustível e gás aparecem depois da primeira coleta semanal.</p>';
+      }
+
+      // Churrasco
+      if (ch && ch.total) {
+        var t = ch.total[local] || ch.total.BR; var uc = C.ultimo(t);
+        if (uc) {
+          document.getElementById("churras-val").textContent = C.brl(uc[1], 0);
+          document.getElementById("churras-mes").textContent = "· " + C.data(uc[0]);
+          document.getElementById("churras-frase").textContent = "Custou " + C.brl(uc[1], 0) + ", " + C.brl(uc[1] / 6, 0) + " por pessoa" + (minimo ? ", ou " + C.numero(uc[1] / minimo * 100, 0) + "% do salário mínimo" : "");
+        }
+      }
+
+      // Salário
+      var cs = document.getElementById("cards-salario");
+      var itens = [];
+      if (minimo) itens.push(["Salário mínimo", C.brl(minimo, 0), "valor nacional"]);
+      if (cb && C.ultimo(cb.total) && minimo) itens.push(["Cestas por salário", C.numero(minimo / C.ultimo(cb.total)[1], 1), "cestas básicas"]);
+      if (comb && minimo) {
+        var sl = comb.series[local] || comb.series.BR;
+        var g = C.ultimo(sl.gasolina), b = C.ultimo(sl.glp);
+        if (g) itens.push(["Gasolina por salário", C.numero(minimo / g[1], 0) + " L", "litros de gasolina comum"]);
+        if (b) itens.push(["Botijões por salário", C.numero(minimo / b[1], 1), "botijões de 13 kg"]);
+      }
+      if (necessario && minimo) itens.push(["Salário mínimo necessário", C.brl(necessario, 0), C.numero(necessario / minimo, 1) + "× o mínimo atual"]);
+      cs.innerHTML = itens.map(function (i) { return '<div class="card"><span class="t">' + i[0] + '</span><span class="v">' + i[1] + '</span><span class="d muted">' + i[2] + "</span></div>"; }).join("") ||
+        '<p class="aviso" style="grid-column:1/-1">Os indicadores do salário aparecem depois da primeira coleta.</p>';
+    }
+    desenhar();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Preço da cesta básica por capital, item por item · Custo de Vida Brasil</title>
+<meta name="description" content="Valor da cesta básica em cada capital, preço de cada item (carne, arroz, feijão, café...) e de itens do dia a dia como picanha e ovos, desde 2023.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco">
+    <span class="eyebrow">Cesta básica · atualizada todo mês</span>
+    <h1 id="titulo">Cesta básica</h1>
+    <div class="filtros"><label class="visually-hidden" for="local">Capital</label><select id="local"></select></div>
+  </section>
+
+  <section class="bloco heroi" id="bloco-cesta">
+    <div class="stack">
+      <span class="tag grande"><span class="lbl" id="lbl">cesta inteira</span><span class="val" id="val">—</span></span>
+      <div class="fatos" id="fatos"></div>
+      <a class="como" href="como-calculamos.html#cesta">Como calculamos →</a>
+    </div>
+    <div class="grafico"><div class="cab"><b>Valor da cesta desde jan/2023</b><span class="small">R$</span></div><div id="g"></div></div>
+  </section>
+
+  <section class="bloco" id="bloco-itens">
+    <h2>Item por item</h2>
+    <p class="small read">Quanto cada produto pesa na cesta do mês, o preço por unidade e quanto mudou em 12 meses. Toque num item para ver o gráfico.</p>
+    <div class="itens" id="itens"></div>
+    <div class="grafico" id="g-item-box" hidden><div class="cab"><b id="g-item-titulo"></b><span class="small">R$</span></div><div id="g-item"></div></div>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+
+  <section class="bloco">
+    <h2>Itens do dia a dia <span class="selo">estimado</span></h2>
+    <p class="small read">Produtos que as pessoas compram sempre, mas que não estão na cesta oficial. O preço parte de um valor de referência e acompanha, mês a mês, a variação oficial do IBGE para aquele produto.</p>
+    <div class="tabela"><table><thead><tr><th>Produto</th><th>Unidade</th><th class="r">Preço estimado</th><th class="r">Em 12 meses</th></tr></thead><tbody id="avulsos"></tbody></table></div>
+    <p class="small" id="avulsos-nota"></p>
+  </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  Promise.all([C.carregar("cesta"), C.carregar("salario"), C.carregar("avulsos")]).then(function (r) {
+    var cesta = r[0], sal = r[1], av = r[2];
+    var sel = document.getElementById("local");
+    var minimo = sal && C.ultimo(sal.serie) ? C.ultimo(sal.serie)[1] : null;
+    var disp = ["BR"];
+    if (cesta) disp = Object.keys(cesta.capitais).concat(Object.keys(cesta.agregados || {}));
+    else if (av) Object.keys(av.series).forEach(function (k) { Object.keys(av.series[k]).forEach(function (l) { if (disp.indexOf(l) < 0) disp.push(l); }); });
+    C.seletorLocal(sel, disp, C.lembrar("local") || "BR");
+    sel.addEventListener("change", function () { C.lembrar("local", sel.value); desenhar(); });
+
+    function desenhar() {
+      var local = sel.value;
+      // Cesta
+      if (!cesta) {
+        document.getElementById("bloco-cesta").innerHTML = '<p class="aviso">Os preços da cesta básica por capital (DIEESE) entram na próxima coleta mensal. Enquanto isso, veja abaixo os itens do dia a dia.</p>';
+        document.getElementById("bloco-itens").hidden = true;
+      } else {
+        var dado = cesta.capitais[local] || (cesta.agregados || {})[local] || cesta.agregados.BR;
+        var nome = cesta.capitais[local] ? cesta.capitais[local].nome : "média das capitais " + (local === "BR" ? "do Brasil" : "do " + C.nomeLocal(local));
+        document.getElementById("titulo").textContent = "Cesta básica · " + nome;
+        var u = C.ultimo(dado.total), a = C.anterior(dado.total), h = C.ultimo(dado.horas);
+        document.getElementById("lbl").textContent = "cesta inteira · " + (u ? C.data(u[0]) : "");
+        document.getElementById("val").textContent = u ? C.brl(u[1], 2) : "—";
+        document.getElementById("fatos").innerHTML =
+          '<div class="fato"><span class="num">' + C.pct(C.variacao12(dado.total)) + "</span><span>em 12 meses · no mês: " + (a ? C.pct((u[1] / a[1] - 1) * 100) : "—") + "</span></div>" +
+          (minimo && u ? '<div class="fato"><span class="num">' + C.numero(minimo / u[1], 2) + "</span><span>cestas com um salário mínimo</span></div>" : "") +
+          (h ? '<div class="fato"><span class="num">' + C.horas(h[1]).replace(" min", "") + "</span><span>de trabalho com salário mínimo para pagar a cesta</span></div>" : "");
+        C.grafico(document.getElementById("g"), [{ nome: "Cesta", pontos: dado.total }], { fmtY: function (v) { return C.numero(v, 0); }, marcos: [["2027-01", "novo mandato"]] });
+
+        var itens = Object.keys(cesta.itens).map(function (k) {
+          var s = (dado.itens || {})[k]; if (!s) return null;
+          var g = C.ultimo(s.gasto), p = C.ultimo(s.preco);
+          return g ? { k: k, gasto: g[1], preco: p ? p[1] : null, v12: C.variacao12(s.preco || s.gasto) } : null;
+        }).filter(Boolean).sort(function (x, y) { return y.gasto - x.gasto; });
+        var maior = itens.length ? itens[0].gasto : 1;
+        var box = document.getElementById("itens");
+        box.innerHTML = itens.map(function (i) {
+          var it = cesta.itens[i.k];
+          return '<button type="button" class="item" data-k="' + i.k + '" style="background:none;border:0;color:inherit;font:inherit;padding:0;text-align:left;cursor:pointer"><span>' + it.nome + (i.preco ? ' <span class="muted">' + C.brl(i.preco, 2) + "/" + it.unidade + "</span>" : "") +
+            '</span><span class="barra" style="width:' + (i.gasto / maior * 100) + '%"></span><span class="r">' + C.brl(i.gasto, 2) + '</span><span class="r var ' + (i.v12 > 0 ? "sobe" : "desce") + '">' + C.pct(i.v12, 0) + "</span></button>";
+        }).join("");
+        box.onclick = function (e) {
+          var b = e.target.closest(".item"); if (!b) return;
+          var s = dado.itens[b.dataset.k], it = cesta.itens[b.dataset.k];
+          document.getElementById("g-item-box").hidden = false;
+          document.getElementById("g-item-titulo").textContent = it.nome + ": preço por " + it.unidade;
+          C.grafico(document.getElementById("g-item"), [{ nome: it.nome, pontos: s.preco || s.gasto }], { fmtY: function (v) { return C.numero(v, 2); } });
+        };
+      }
+
+      // Avulsos
+      var tb = document.getElementById("avulsos");
+      if (!av) { tb.innerHTML = '<tr><td colspan="4">Aparecem depois da primeira coleta do IPCA.</td></tr>'; return; }
+      tb.innerHTML = Object.keys(av.itens).map(function (k) {
+        var s = av.series[k]; if (!s) return "";
+        var loc = s[local] ? local : "BR"; var u = C.ultimo(s[loc]);
+        return "<tr><td>" + av.itens[k].nome + (loc !== local ? ' <span class="muted">(Brasil)</span>' : "") + '</td><td class="muted">' + av.itens[k].unidade + '</td><td class="r">' + (u ? C.brl(u[1], 2) : "—") + '</td><td class="r">' + C.pct(C.variacao12(s[loc])) + "</td></tr>";
+      }).join("");
+      document.getElementById("avulsos-nota").textContent = "Mês de referência: " + C.data(av.atualizado) + ". " + (av.ancora_provisoria ? "Os preços de referência ainda são provisórios e serão substituídos por preços conferidos em supermercados." : "");
+    }
+    desenhar();
+  });
+});
+</script>
+</body>
+</html>

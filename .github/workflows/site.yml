@@ -1,0 +1,81 @@
+name: Coletar dados e publicar o site
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"   # toda segunda-feira, 9h de Brasília
+    - cron: "0 12 15 * *"  # dia 15 de cada mês (pega a cesta e o IPCA do mês)
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: site
+  cancel-in-progress: false
+
+jobs:
+  coletar:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      falhou: ${{ steps.coleta.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: coletores/requirements.txt
+      - run: pip install -r coletores/requirements.txt
+      - name: Diagnóstico das fontes
+        working-directory: coletores
+        continue-on-error: true
+        run: python descobrir.py
+      - name: Coletar
+        id: coleta
+        working-directory: coletores
+        continue-on-error: true
+        run: python rodar.py
+      - name: Salvar dados no repositório
+        run: |
+          git config user.name "robo-coleta"
+          git config user.email "robo-coleta@users.noreply.github.com"
+          git add dados descobertas
+          git diff --cached --quiet || git commit -m "Coleta automática $(date -u +%Y-%m-%d)"
+          git push
+
+  publicar:
+    needs: coletar
+    if: always() && needs.coletar.result != 'cancelled'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Montar a pasta do site
+        run: |
+          mkdir _site
+          cp -r *.html assets dados config _site/
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  avisar:
+    needs: [coletar, publicar]
+    if: always() && needs.coletar.outputs.falhou == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Alguma fonte falhou na coleta. O site continua com o último dado bom. Veja o passo 'Coletar' do job 'coletar'."
+          exit 1

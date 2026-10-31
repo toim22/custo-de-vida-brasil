@@ -1,0 +1,36 @@
+{
+  "_leia": "Preços de partida (âncora) PROVISÓRIOS, média nacional aproximada de set/2026. Troque pelos preços conferidos em supermercados; o mês de referência vale para todos. 'ipca' lista nomes de subitens do IPCA, em ordem de preferência; o primeiro que existir é usado para a variação mensal.",
+  "mes_ancora": "2026-09",
+  "ancora_provisoria": true,
+  "avulsos": {
+    "picanha":      {"nome": "Picanha",            "unidade": "kg",           "preco": 79.90, "ipca": ["Picanha", "Carnes"]},
+    "alcatra":      {"nome": "Alcatra",            "unidade": "kg",           "preco": 50.00, "ipca": ["Alcatra", "Carnes"]},
+    "frango":       {"nome": "Frango inteiro",     "unidade": "kg",           "preco": 13.00, "ipca": ["Frango inteiro", "Aves e ovos"]},
+    "ovos":         {"nome": "Ovos",               "unidade": "dúzia",        "preco": 12.00, "ipca": ["Ovo de galinha", "Aves e ovos"]},
+    "linguica":     {"nome": "Linguiça toscana",   "unidade": "kg",           "preco": 25.00, "ipca": ["Linguiça", "Carnes e peixes industrializados"]},
+    "mucarela":     {"nome": "Queijo muçarela",    "unidade": "kg",           "preco": 45.00, "ipca": ["Queijo", "Leites e derivados"]},
+    "macarrao":     {"nome": "Macarrão",           "unidade": "500 g",        "preco": 5.50,  "ipca": ["Macarrão", "Farinhas, féculas e massas"]},
+    "cerveja":      {"nome": "Cerveja",            "unidade": "lata 350 ml",  "preco": 4.00,  "ipca": ["Cerveja", "Bebidas e infusões"]},
+    "refrigerante": {"nome": "Refrigerante",       "unidade": "garrafa 2 L",  "preco": 9.00,  "ipca": ["Refrigerante e água mineral", "Bebidas e infusões"]},
+    "papel":        {"nome": "Papel higiênico",    "unidade": "12 rolos",     "preco": 20.00, "ipca": ["Papel higiênico", "Artigos de limpeza"]},
+    "sabao":        {"nome": "Sabão em pó",        "unidade": "1 kg",         "preco": 15.00, "ipca": ["Sabão em pó", "Artigos de limpeza"]},
+    "pasta":        {"nome": "Pasta de dente",     "unidade": "90 g",         "preco": 5.00,  "ipca": ["Artigos de higiene bucal", "Higiene bucal", "Higiene pessoal"]}
+  },
+  "churrasco": {
+    "pessoas": 6,
+    "itens": [
+      {"chave": "alcatra",      "nome": "Alcatra",          "qtd": 1.2, "texto": "1,2 kg"},
+      {"chave": "linguica",     "nome": "Linguiça toscana", "qtd": 0.8, "texto": "0,8 kg"},
+      {"chave": "asa",          "nome": "Asa de frango",    "qtd": 0.8, "texto": "0,8 kg"},
+      {"chave": "pao_alho",     "nome": "Pão de alho",      "qtd": 2,   "texto": "2 pacotes (12 un.)"},
+      {"chave": "carvao",       "nome": "Carvão",           "qtd": 1,   "texto": "1 saco de 4 kg"},
+      {"chave": "cerveja",      "nome": "Cerveja",          "qtd": 24,  "texto": "24 latas de 350 ml"},
+      {"chave": "refrigerante", "nome": "Refrigerante",     "qtd": 2,   "texto": "2 garrafas de 2 L"}
+    ],
+    "extras": {
+      "asa":      {"nome": "Asa de frango",  "unidade": "kg",         "preco": 22.00, "ipca": ["Frango em pedaços", "Aves e ovos"]},
+      "pao_alho": {"nome": "Pão de alho",    "unidade": "pacote",     "preco": 15.00, "ipca": ["Pão francês", "Panificados"]},
+      "carvao":   {"nome": "Carvão",         "unidade": "saco 4 kg",  "preco": 25.00, "ipca": ["Carvão vegetal", "Combustíveis (domésticos)"]}
+    }
+  }
+}

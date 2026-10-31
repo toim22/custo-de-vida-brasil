@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Churrasco pra 6: quanto custa um churrasco hoje · Custo de Vida Brasil</title>
+<meta name="description" content="Quanto custa um churrasco para 6 pessoas, sempre com a mesma lista: alcatra, linguiça, asa, pão de alho, carvão, cerveja e refrigerante. Atualizado todo mês.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco">
+    <span class="eyebrow">Atualizado todo mês · mesma lista sempre</span>
+    <h1>Churrasco pra 6</h1>
+    <p class="read muted">Quanto custa um churrasco para 6 adultos, sempre com os mesmos itens e as mesmas quantidades, para dar para comparar mês a mês.</p>
+    <div class="filtros"><label class="visually-hidden" for="local">Local</label><select id="local"></select></div>
+  </section>
+
+  <section class="bloco heroi">
+    <div class="stack">
+      <span class="tag grande"><span class="lbl" id="lbl">6 pessoas · estimado</span><span class="val" id="val">—</span></span>
+      <div class="fatos" id="fatos"></div>
+      <a class="como" href="como-calculamos.html#churrasco">Como calculamos →</a>
+    </div>
+    <div class="grafico"><div class="cab"><b>Churrasco pra 6 desde jan/2023</b><span class="small">R$</span></div><div id="g"></div></div>
+  </section>
+
+  <section class="bloco">
+    <h2>A lista</h2>
+    <div class="tabela"><table><thead><tr><th>Item</th><th class="r">Quantidade</th><th class="r">Custo no mês</th></tr></thead><tbody id="lista"></tbody></table></div>
+    <p class="small" id="nota"></p>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  Promise.all([C.carregar("churrasco"), C.carregar("salario")]).then(function (r) {
+    var ch = r[0], sal = r[1];
+    var sel = document.getElementById("local");
+    if (!ch) { document.querySelector(".heroi").innerHTML = '<p class="aviso">O valor do churrasco aparece depois da primeira coleta mensal.</p>'; C.seletorLocal(sel, ["BR"], "BR"); return; }
+    C.seletorLocal(sel, Object.keys(ch.total), C.lembrar("local") || "BR");
+    sel.addEventListener("change", function () { C.lembrar("local", sel.value); desenhar(); });
+    var minimo = sal && C.ultimo(sal.serie) ? C.ultimo(sal.serie)[1] : null;
+
+    function desenhar() {
+      var local = ch.total[sel.value] ? sel.value : "BR";
+      var t = ch.total[local], u = C.ultimo(t), a = C.anterior(t);
+      document.getElementById("lbl").textContent = "6 pessoas · " + C.nomeLocal(local) + " · " + (u ? C.data(u[0]) : "");
+      document.getElementById("val").textContent = u ? C.brl(u[1], 2) : "—";
+      document.getElementById("fatos").innerHTML = u ?
+        '<div class="fato"><span class="num">' + C.brl(u[1] / ch.pessoas, 2) + "</span><span>por pessoa</span></div>" +
+        (minimo ? '<div class="fato"><span class="num">' + C.numero(u[1] / minimo * 100, 0) + "%</span><span>de um salário mínimo · dá para fazer " + C.numero(minimo / u[1], 1) + " churrascos com um salário</span></div>" : "") +
+        '<div class="fato"><span class="num">' + C.pct(C.variacao12(t)) + "</span><span>em 12 meses · no mês: " + (a ? C.pct((u[1] / a[1] - 1) * 100) : "—") + "</span></div>" : "";
+      C.grafico(document.getElementById("g"), [{ nome: "Churrasco pra 6", pontos: t }], { fmtY: function (v) { return C.numero(v, 0); }, marcos: [["2027-01", "novo mandato"]] });
+      var det = ch.ultimo_detalhe[local] || {};
+      document.getElementById("lista").innerHTML = ch.itens.map(function (i) {
+        return "<tr><td>" + i.nome + '</td><td class="r">' + i.texto + '</td><td class="r">' + C.brl(det[i.chave], 2) + "</td></tr>";
+      }).join("") + '<tr><td><b>Total</b></td><td class="r">' + ch.pessoas + ' pessoas</td><td class="r"><b>' + (u ? C.brl(u[1], 2) : "—") + "</b></td></tr>";
+      document.getElementById("nota").textContent = "Preço estimado: valor de referência de cada item corrigido todo mês pela variação oficial do IBGE." + (ch.ancora_provisoria ? " Os valores de referência ainda são provisórios." : "");
+    }
+    desenhar();
+  });
+});
+</script>
+</body>
+</html>

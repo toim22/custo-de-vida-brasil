@@ -1,0 +1,32 @@
+{
+  "_leia": "Regras usadas para ESTIMAR quanto do preço é imposto. Cada produto tem períodos com valores em R$ por unidade. Copiado para dados/impostos.json pelo robô. Revise sempre que a lei mudar e registre a fonte.",
+  "atualizado": "2026-10-30",
+  "produtos": {
+    "gasolina": {
+      "unidade": "litro",
+      "periodos": [
+        {"de": "2025-02-01", "ate": "2025-12-31", "icms": 1.47, "federal": 0.62, "fonte": "ICMS ad rem (LC 192/2022, Convênio ICMS 15/2023 e atualizações); PIS/Cofins + Cide de R$ 0,89 por litro de gasolina A, proporcional à mistura com etanol anidro"},
+        {"de": "2026-01-01", "ate": "2026-10-08", "icms": 1.57, "federal": 0.62, "fonte": "ICMS ad rem 2026 (Convênios ICMS 112 e 113/2025)"},
+        {"de": "2026-10-09", "ate": "2026-11-08", "icms": 1.57, "federal": 0.0, "fonte": "MP 1.395/2026 zerou PIS/Cofins e Cide da gasolina por 30 dias (prorrogação a confirmar)"},
+        {"de": "2026-11-09", "ate": null, "icms": 1.57, "federal": 0.62, "fonte": "Volta dos tributos federais, se não houver prorrogação (a confirmar)"}
+      ]
+    },
+    "diesel": {
+      "unidade": "litro",
+      "periodos": [
+        {"de": "2025-02-01", "ate": "2025-12-31", "icms": 1.12, "federal": 0.35, "fonte": "ICMS ad rem 2025; PIS/Cofins do diesel (Cide zerada)"},
+        {"de": "2026-01-01", "ate": null, "icms": 1.17, "federal": 0.35, "fonte": "ICMS ad rem 2026 (Convênios ICMS 112 e 113/2025)"}
+      ]
+    },
+    "glp": {
+      "unidade": "botijão",
+      "kg_por_unidade": 13,
+      "periodos": [
+        {"de": "2025-02-01", "ate": "2025-12-31", "icms_kg": 1.39, "federal": 0.0, "fonte": "ICMS ad rem 2025 por kg; PIS/Cofins zerados para o GLP de uso residencial"},
+        {"de": "2026-01-01", "ate": null, "icms_kg": 1.47, "federal": 0.0, "fonte": "ICMS ad rem 2026 por kg"}
+      ]
+    },
+    "etanol": {"sem_estimativa": "O ICMS do etanol é um percentual diferente em cada estado. A estimativa entra numa próxima versão."},
+    "gnv": {"sem_estimativa": "O ICMS do GNV é um percentual diferente em cada estado. A estimativa entra numa próxima versão."}
+  }
+}

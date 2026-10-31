@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Como calculamos · Custo de Vida Brasil</title>
+<meta name="description" content="De onde vem cada número do site, como fazemos as contas e o que é medido ou estimado.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco texto read">
+    <span class="eyebrow">Metodologia</span>
+    <h1>Como calculamos</h1>
+    <p>Todo número do site vem de uma fonte oficial ou é calculado por nós a partir delas. Quando é calculado, aparece o selo <span class="selo">estimado</span>. Os dados começam em janeiro de 2023 e são coletados por um robô toda segunda-feira e no dia 15 de cada mês. Todos os arquivos ficam públicos para quem quiser conferir.</p>
+    <nav class="indice" aria-label="Nesta página">
+      <a href="#coleta">Coleta</a><a href="#cesta">Cesta básica</a><a href="#avulsos">Itens do dia a dia</a><a href="#churrasco">Churrasco pra 6</a><a href="#combustiveis">Combustível e gás</a><a href="#impostos">Impostos</a><a href="#salario">Salário mínimo</a><a href="#desemprego">Desemprego real</a><a href="#local">Brasil, regiões e estados</a><a href="#fontes">Fontes</a><a href="#mudancas">Mudanças</a><a href="#erro">Erros</a>
+    </nav>
+
+    <h2 id="coleta">Como os dados chegam</h2>
+    <p>Um robô roda no GitHub Actions toda segunda às 9h (Brasília) e no dia 15 de cada mês. Ele baixa os arquivos das fontes, confere e grava os números em arquivos abertos (JSON). O site só lê esses arquivos; não há servidor. Se uma fonte falhar, o site continua mostrando o último dado bom e a data dele.</p>
+    <div id="estado"></div>
+
+    <h2 id="cesta">Cesta básica</h2>
+    <p>Fonte: Pesquisa Nacional da Cesta Básica de Alimentos, do DIEESE com a Conab. É mensal e cobre as 27 capitais. A cesta tem 13 itens com quantidades definidas por lei (Decreto-Lei 399/1938) para sustentar um adulto por um mês; as quantidades mudam por região.</p>
+    <ul>
+      <li><b>Valor da cesta:</b> soma do gasto mensal com os 13 itens, como publicado pelo DIEESE.</li>
+      <li><b>Horas de trabalho:</b> tempo que quem ganha um salário mínimo trabalha para pagar a cesta, como publicado pelo DIEESE.</li>
+      <li><b>Cestas por salário:</b> salário mínimo ÷ valor da cesta.</li>
+      <li><b>Média do Brasil e das regiões:</b> média simples das capitais daquela área. A pesquisa não cobre o interior.</li>
+    </ul>
+
+    <h2 id="avulsos">Itens do dia a dia <span class="selo">estimado</span></h2>
+    <p>Picanha, ovos, cerveja e outros produtos não têm preço em reais publicado por nenhum órgão oficial. O IBGE publica, todo mês, quanto cada um subiu ou caiu (IPCA). Fazemos assim:</p>
+    <ul>
+      <li>Partimos de um preço de referência num mês fixo (hoje, setembro de 2026).</li>
+      <li>Para cada mês seguinte, aplicamos a variação oficial do IPCA daquele produto: <code>preço do mês = preço do mês anterior × (1 + variação)</code>. Para os meses anteriores, a conta é feita ao contrário.</li>
+      <li>Onde o IBGE pesquisa (16 regiões metropolitanas e capitais), usamos a variação local. Nos outros lugares, a do Brasil.</li>
+      <li>Os preços de referência atuais são provisórios e serão substituídos por preços conferidos em supermercados de cada capital, a cada 6 meses.</li>
+    </ul>
+    <div id="lista-ipca"></div>
+
+    <h2 id="churrasco">Churrasco pra 6 <span class="selo">estimado</span></h2>
+    <p>Lista fixa para 6 adultos: 1,2 kg de alcatra, 0,8 kg de linguiça toscana, 0,8 kg de asa de frango, 2 pacotes de pão de alho, 1 saco de carvão de 4 kg, 24 latas de cerveja de 350 ml e 2 refrigerantes de 2 L. As quantidades seguem regras práticas comuns (cerca de 470 g de carne por pessoa e 1 kg de carvão por kg de carne) e não mudam, para a comparação valer. O preço de cada item é estimado como nos itens do dia a dia. Carvão e pão de alho usam a variação do item do IPCA mais próximo.</p>
+
+    <h2 id="combustiveis">Combustível e gás de cozinha</h2>
+    <p>Fonte: Levantamento de Preços de Combustíveis da ANP, semanal. É o preço médio de revenda (o da bomba ou da revenda de gás), com impostos. Produtos: gasolina comum, etanol hidratado, diesel S10, GNV (por m³) e GLP em botijão de 13 kg. O número de cada semana é o publicado pela ANP para o Brasil, cada região e cada estado. Se a ANP não publicar a média de uma região numa semana, usamos a média simples dos estados.</p>
+    <ul>
+      <li><b>Litros por salário mínimo:</b> salário mínimo ÷ preço do litro.</li>
+      <li><b>Tanques:</b> consideramos um tanque de 47 litros, comum em carros populares.</li>
+    </ul>
+
+    <h2 id="impostos">Impostos <span class="selo">estimado</span></h2>
+    <p>Nenhuma fonte mede o imposto de cada compra. Estimamos com as regras oficiais de cada período:</p>
+    <ul>
+      <li><b>Gasolina, diesel e gás de cozinha:</b> o ICMS é um valor fixo em reais por litro ou por kg, igual em todos os estados (Lei Complementar 192/2022). Somamos os tributos federais (PIS/Cofins e Cide) por litro.</li>
+      <li><b>Sem impostos</b> = preço da bomba − ICMS − tributos federais. O resto é produto, frete e margem de distribuição e revenda.</li>
+      <li><b>Etanol e GNV:</b> o ICMS é um percentual diferente em cada estado. A estimativa entra numa próxima versão.</li>
+      <li><b>Alimentos:</b> a estimativa por estado entra numa próxima versão. A partir de 2027 a reforma tributária zera CBS e IBS dos itens da Cesta Básica Nacional, e o site vai mostrar se essa redução chegou ao preço.</li>
+    </ul>
+    <div id="regras"></div>
+
+    <h2 id="salario">Salário mínimo</h2>
+    <p>Fonte: DIEESE (salário mínimo nominal e necessário, mensal). O <b>salário mínimo necessário</b> é o cálculo do DIEESE de quanto deveria ser o mínimo para sustentar uma família de 4 pessoas com o que a Constituição garante (moradia, alimentação, educação, saúde, lazer, vestuário, higiene, transporte e previdência), usando a cesta mais cara do país.</p>
+    <p><b>Carro zero mais barato:</b> conferido à mão uma vez por mês nos sites das montadoras e na tabela FIPE. Mostramos o preço sugerido nacional, mesmo que o modelo mude.</p>
+
+    <h2 id="desemprego">Desemprego real</h2>
+    <p>Fonte: IBGE, PNAD Contínua. Mostramos um único número: pessoas que procuram emprego (desocupadas) mais pessoas que querem trabalhar mas desistiram de procurar (desalentadas), sem contar aposentados.</p>
+    <ul>
+      <li>Conta como <b>trabalhando</b> quem trabalhou e recebeu por isso, com ou sem carteira, incluindo MEI e autônomos. É a regra do IBGE.</li>
+      <li>Quem recebe Bolsa Família ou outro benefício e não trabalha <b>não</b> conta como trabalhando.</li>
+      <li>Aposentados são retirados usando os microdados da pesquisa.</li>
+    </ul>
+    <p>Este indicador entra no site assim que o robô estiver lendo as tabelas do IBGE.</p>
+
+    <h2 id="local">Brasil, regiões e estados</h2>
+    <p>Combustíveis e gás têm dado oficial por estado e região. A cesta básica cobre as capitais; o número “do estado” é o da capital. Brasil e regiões da cesta são médias das capitais. Itens estimados usam a variação da região metropolitana do IPCA daquele estado, quando existe.</p>
+
+    <h2 id="fontes">Fontes</h2>
+    <ul>
+      <li><a href="https://www.dieese.org.br/cesta/">DIEESE — Pesquisa Nacional da Cesta Básica</a></li>
+      <li><a href="https://www.dieese.org.br/analisecestabasica/salarioMinimo.html">DIEESE — Salário mínimo nominal e necessário</a></li>
+      <li><a href="https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas">ANP — Levantamento de Preços de Combustíveis</a></li>
+      <li><a href="https://sidra.ibge.gov.br/tabela/7060">IBGE — IPCA (tabela 7060)</a></li>
+      <li><a href="https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html">IBGE — PNAD Contínua</a></li>
+    </ul>
+
+    <h2 id="mudancas">Histórico de mudanças</h2>
+    <ul>
+      <li><b>out/2026:</b> primeira versão do site, com dados desde janeiro de 2023.</li>
+    </ul>
+
+    <h2 id="erro">Encontrou um erro?</h2>
+    <p>Abra um aviso no repositório público do site (botão “Issues”, depois “New issue”), dizendo a página, o número e a fonte que você conferiu. Corrigimos e registramos a correção nesta página.</p>
+  </section>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  C.carregar("estado").then(function (e) {
+    if (!e) return;
+    document.getElementById("estado").innerHTML = '<div class="tabela"><table><thead><tr><th>Fonte</th><th>Situação</th><th>Dado mais recente</th></tr></thead><tbody>' +
+      Object.keys(e).map(function (k) { var x = e[k]; return "<tr><td>" + x.nome + "</td><td>" + (x.ok ? '<span class="desce">ok</span> · ' + x.coletado_em : '<span class="sobe">falhou</span> · ' + x.tentado_em) + "</td><td>" + C.data(x.dado_mais_recente) + "</td></tr>"; }).join("") + "</tbody></table></div>";
+  });
+  C.carregar("ipca").then(function (i) {
+    if (!i) return;
+    document.getElementById("lista-ipca").innerHTML = '<p class="small">Item do IPCA usado para cada produto: ' + Object.keys(i.categorias).filter(function (k) { return ["geral", "comida_em_casa"].indexOf(k) < 0; }).map(function (k) { return k + " → " + i.categorias[k].nome_ibge; }).join("; ") + ".</p>";
+  });
+  fetch("config/impostos.json").then(function (r) { return r.ok ? r.json() : null; }).then(function (imp) {
+    if (!imp) return;
+    var linhas = [];
+    Object.keys(imp.produtos).forEach(function (p) {
+      (imp.produtos[p].periodos || []).forEach(function (q) {
+        linhas.push("<tr><td>" + p + "</td><td>" + C.data(q.de) + " a " + (q.ate ? C.data(q.ate) : "hoje") + '</td><td class="r">' + (q.icms !== undefined ? C.brl(q.icms, 2) + "/L" : C.brl(q.icms_kg, 2) + "/kg") + '</td><td class="r">' + C.brl(q.federal, 2) + "</td><td>" + q.fonte + "</td></tr>");
+      });
+    });
+    document.getElementById("regras").innerHTML = '<div class="tabela"><table><thead><tr><th>Produto</th><th>Período</th><th class="r">ICMS</th><th class="r">Federais</th><th>Base</th></tr></thead><tbody>' + linhas.join("") + "</tbody></table></div>";
+  }).catch(function () {});
+});
+</script>
+</body>
+</html>

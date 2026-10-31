@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Salário mínimo, poder de compra e desemprego real · Custo de Vida Brasil</title>
+<meta name="description" content="O que o salário mínimo compra hoje: cestas, litros de gasolina, botijões, quanto tempo para um carro zero, salário mínimo necessário e desemprego real.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco heroi">
+    <div class="stack">
+      <span class="eyebrow">Salário e trabalho</span>
+      <h1>O que o salário mínimo compra</h1>
+      <span class="tag grande"><span class="lbl" id="lbl">salário mínimo</span><span class="val" id="val">—</span></span>
+      <div class="fatos" id="fatos"></div>
+      <a class="como" href="como-calculamos.html#salario">Como calculamos →</a>
+    </div>
+    <div class="grafico"><div class="cab"><b>Salário mínimo × salário mínimo necessário</b><span class="small">R$</span></div><div id="g"></div></div>
+  </section>
+
+  <section class="bloco">
+    <h2>Poder de compra de um salário mínimo</h2>
+    <div class="cards" id="poder"></div>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+
+  <section class="bloco">
+    <h2>Trabalho e renda</h2>
+    <div class="cards" id="trabalho"></div>
+    <p class="small read">Desemprego real: quem procura emprego mais quem desistiu de procurar, sem contar aposentados. Quem só recebe benefício, como o Bolsa Família, não conta como empregado. <a class="como" href="como-calculamos.html#desemprego">Como calculamos →</a></p>
+  </section>
+
+  <section class="bloco">
+    <h2>Inflação da comida em casa</h2>
+    <div class="grafico"><div class="cab"><b>Quanto a comida comprada para casa subiu em 12 meses</b><span class="small">%</span></div><div id="g-comida"></div></div>
+  </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  Promise.all([C.carregar("salario"), C.carregar("cesta"), C.carregar("combustiveis"), C.carregar("trabalho"), C.carregar("ipca"),
+    fetch("config/carro.json").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })]).then(function (r) {
+    var sal = r[0], cesta = r[1], comb = r[2], trab = r[3], ipca = r[4], carro = r[5];
+    var u = sal && C.ultimo(sal.serie);
+    var minimo = u ? u[1] : null, necessario = u ? u[2] : null;
+    if (u) {
+      document.getElementById("lbl").textContent = "salário mínimo · " + C.data(u[0]);
+      document.getElementById("val").textContent = C.brl(minimo, 2);
+      document.getElementById("fatos").innerHTML =
+        '<div class="fato"><span class="num">' + C.brl(necessario, 0) + "</span><span>seria o necessário para uma família de 4, segundo o DIEESE</span></div>" +
+        '<div class="fato"><span class="num">' + C.numero(necessario / minimo, 1) + "×</span><span>o salário mínimo atual</span></div>";
+      C.grafico(document.getElementById("g"), [
+        { nome: "Necessário (DIEESE)", pontos: sal.serie.map(function (p) { return [p[0], p[2]]; }), cor: "#FFD23F" },
+        { nome: "Salário mínimo", pontos: sal.serie.map(function (p) { return [p[0], p[1]]; }), cor: "#3FD08D" }
+      ], { fmtY: function (v) { return C.numero(v, 0); }, marcos: [["2027-01", "novo mandato"]] });
+    }
+
+    var cards = [];
+    if (minimo && cesta && cesta.agregados && C.ultimo(cesta.agregados.BR.total)) {
+      var cb = C.ultimo(cesta.agregados.BR.total)[1];
+      cards.push(["Cestas básicas", C.numero(minimo / cb, 2), "média das capitais"]);
+      var h = C.ultimo(cesta.agregados.BR.horas); if (h) cards.push(["Horas para pagar a cesta", C.horas(h[1]), "média das capitais"]);
+    }
+    if (minimo && comb) {
+      var g = C.ultimo(comb.series.BR.gasolina), b = C.ultimo(comb.series.BR.glp);
+      if (g) cards.push(["Gasolina", C.numero(minimo / g[1], 0) + " litros", "média Brasil, semana até " + C.data(g[0])]);
+      if (b) cards.push(["Gás de cozinha", C.numero(minimo / b[1], 1) + " botijões", "média Brasil"]);
+    }
+    if (minimo && carro && carro.serie.length) {
+      var c = carro.serie[carro.serie.length - 1];
+      cards.push(["Carro zero mais barato", C.numero(c[2] / minimo, 0) + " salários", c[1] + " · " + C.brl(c[2], 0) + " (" + C.data(c[0]) + ")"]);
+    }
+    document.getElementById("poder").innerHTML = cards.map(function (i) { return '<div class="card"><span class="t">' + i[0] + '</span><span class="v">' + i[1] + '</span><span class="d muted">' + i[2] + "</span></div>"; }).join("") ||
+      '<p class="aviso" style="grid-column:1/-1">Aparece depois da primeira coleta.</p>';
+
+    var t = [];
+    if (trab && trab.desemprego_real && C.ultimo(trab.desemprego_real)) { var d = C.ultimo(trab.desemprego_real); t.push(["Desemprego real", C.milhoes(d[1]), C.data(d[0])]); }
+    else t.push(["Desemprego real", "em breve", "dados do IBGE (PNAD Contínua)"]);
+    if (trab && trab.renda_media && C.ultimo(trab.renda_media)) { var m = C.ultimo(trab.renda_media); t.push(["Quanto ganha, em média, quem trabalha", C.brl(m[1], 0), C.data(m[0])]); }
+    else t.push(["Quanto ganha, em média, quem trabalha", "em breve", "dados do IBGE (PNAD Contínua)"]);
+    document.getElementById("trabalho").innerHTML = t.map(function (i) { return '<div class="card"><span class="t">' + i[0] + '</span><span class="v">' + i[1] + '</span><span class="d muted">' + i[2] + "</span></div>"; }).join("");
+
+    // inflação da comida em casa: soma composta dos últimos 12 meses
+    var box = document.getElementById("g-comida");
+    var s = ipca && ipca.series.comida_em_casa && ipca.series.comida_em_casa.BR;
+    if (s && s.length >= 12) {
+      var acum = [];
+      for (var i = 11; i < s.length; i++) {
+        var f = 1; for (var j = i - 11; j <= i; j++) f *= 1 + s[j][1] / 100;
+        acum.push([s[i][0], (f - 1) * 100]);
+      }
+      C.grafico(box, [{ nome: "Comida em casa, 12 meses", pontos: acum }], { fmtY: function (v) { return C.numero(v, 1); } });
+    } else box.innerHTML = '<p class="aviso">Aparece depois da primeira coleta do IPCA.</p>';
+  });
+});
+</script>
+</body>
+</html>

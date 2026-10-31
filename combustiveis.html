@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Preço da gasolina, etanol, diesel, GNV e gás de cozinha por estado · Custo de Vida Brasil</title>
+<meta name="description" content="Preço médio semanal da gasolina, etanol, diesel S10, GNV e botijão de gás em cada estado, com gráfico desde 2023 e estimativa de impostos.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco">
+    <span class="eyebrow">Combustível e gás de cozinha · atualizado toda semana</span>
+    <h1 id="titulo">Preço da gasolina</h1>
+    <div class="filtros">
+      <div class="seg" id="produtos" role="group" aria-label="Produto"></div>
+      <label class="visually-hidden" for="local">Local</label>
+      <select id="local"></select>
+    </div>
+  </section>
+
+  <section class="bloco heroi">
+    <div class="stack">
+      <span class="tag grande"><span class="lbl" id="lbl">média da semana</span><span class="val" id="val">—</span></span>
+      <p class="small" id="sub"></p>
+      <div class="stack" id="impostos-box" style="gap:8px">
+        <b>Quanto disso é imposto <span class="selo">estimado</span></b>
+        <div class="impostos" id="barra"></div>
+        <p class="small" id="impostos-txt"></p>
+      </div>
+      <div class="explica" id="bolso"></div>
+      <a class="como" href="como-calculamos.html#combustiveis">Como calculamos →</a>
+    </div>
+    <div class="grafico">
+      <div class="cab"><b id="g-titulo">Desde jan/2023</b><span class="small">R$</span></div>
+      <div id="g"></div>
+    </div>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+
+  <section class="bloco">
+    <h2 id="t-rank">Estados, do mais caro ao mais barato</h2>
+    <div class="tabela"><table><thead><tr><th>#</th><th>Estado</th><th class="r">Preço</th><th class="r">Na semana</th><th class="r">Em 12 meses</th></tr></thead><tbody id="rank"></tbody></table></div>
+    <p class="small" id="fonte"></p>
+  </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  Promise.all([C.carregar("combustiveis"), C.carregar("salario"),
+    fetch("config/impostos.json").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })]).then(function (r) {
+    var comb = r[0], sal = r[1], imp = r[2];
+    if (!comb) { document.querySelector("main").insertAdjacentHTML("afterbegin", '<p class="aviso">Os preços aparecem depois da primeira coleta semanal da ANP.</p>'); return; }
+    var produtos = Object.keys(comb.produtos);
+    var prod = (location.hash || "").slice(1);
+    if (produtos.indexOf(prod) < 0) prod = "gasolina";
+    var segs = document.getElementById("produtos");
+    segs.innerHTML = produtos.map(function (p) { return '<button type="button" data-p="' + p + '">' + comb.produtos[p].nome.replace("Botijão de gás 13 kg", "Gás 13 kg") + "</button>"; }).join("");
+    segs.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; prod = b.dataset.p; history.replaceState(null, "", "#" + prod); desenhar(); });
+    var sel = document.getElementById("local");
+    C.seletorLocal(sel, Object.keys(comb.series), C.lembrar("local") || "BR");
+    sel.addEventListener("change", function () { C.lembrar("local", sel.value); desenhar(); });
+    var minimo = sal && C.ultimo(sal.serie) ? C.ultimo(sal.serie)[1] : null;
+
+    function regraImposto(p, dia) {
+      var cfg = imp && imp.produtos[p];
+      if (!cfg || !cfg.periodos) return null;
+      return cfg.periodos.filter(function (q) { return q.de <= dia && (!q.ate || q.ate >= dia); })[0] || null;
+    }
+
+    function desenhar() {
+      [].forEach.call(segs.children, function (b) { b.setAttribute("aria-pressed", b.dataset.p === prod ? "true" : "false"); });
+      var local = comb.series[sel.value] ? sel.value : "BR";
+      var info = comb.produtos[prod];
+      var serie = (comb.series[local] || {})[prod] || [];
+      var u = C.ultimo(serie), a = C.anterior(serie);
+      var DO = { gasolina: "da gasolina comum", etanol: "do etanol", diesel: "do diesel S10", gnv: "do GNV", glp: "do botijão de gás" };
+      document.getElementById("titulo").textContent = "Preço " + (DO[prod] || info.nome) + (local === "BR" ? " no Brasil" : " em " + C.nomeLocal(local));
+      document.getElementById("lbl").textContent = "média da semana · " + info.unidade;
+      document.getElementById("val").textContent = u ? C.brl(u[1], 2) : "—";
+      var v12 = C.variacao12(serie);
+      document.getElementById("sub").innerHTML = u ? "Semana até " + C.data(u[0]) + " · " + C.seta(u[1], a && a[1], function (v) { return C.brl(v, 2); }, " na semana") +
+        (v12 !== null ? " · " + C.pct(v12) + " em 12 meses" : "") + (local !== "BR" && comb.series.BR[prod] ? " · Brasil: " + C.brl(C.ultimo(comb.series.BR[prod])[1], 2) : "") : "";
+
+      // Impostos
+      var box = document.getElementById("impostos-box"), regra = u ? regraImposto(prod, u[0]) : null;
+      var cfg = imp && imp.produtos[prod];
+      if (u && regra) {
+        var icms = regra.icms !== undefined ? regra.icms : regra.icms_kg * (cfg.kg_por_unidade || 1);
+        var trib = icms + (regra.federal || 0);
+        var semImp = u[1] - trib, pImp = Math.max(0, Math.min(100, trib / u[1] * 100));
+        document.getElementById("barra").innerHTML = '<div class="p1" style="width:' + (100 - pImp) + '%">Produto e distribuição ' + C.brl(semImp, 2) + '</div><div class="p2" style="width:' + pImp + '%">Impostos ' + C.numero(pImp, 0) + "%</div>";
+        document.getElementById("impostos-txt").textContent = "Sem impostos, sairia por cerca de " + C.brl(semImp, 2) + ". ICMS " + C.brl(icms, 2) + " (valor fixo, igual em todos os estados) e tributos federais " + C.brl(regra.federal || 0, 2) + ".";
+        box.hidden = false;
+      } else {
+        box.hidden = false;
+        document.getElementById("barra").innerHTML = "";
+        document.getElementById("impostos-txt").textContent = (cfg && cfg.sem_estimativa) || "Ainda sem estimativa de impostos para esta data.";
+      }
+
+      // No seu bolso
+      var bolso = document.getElementById("bolso");
+      if (u && minimo) {
+        if (prod === "glp") bolso.innerHTML = "<b>No seu bolso:</b> um salário mínimo compra <b>" + C.numero(minimo / u[1], 1) + " botijões</b>.";
+        else if (prod === "gnv") bolso.innerHTML = "<b>No seu bolso:</b> um salário mínimo compra <b>" + C.numero(minimo / u[1], 0) + " m³</b> de GNV.";
+        else bolso.innerHTML = "<b>No seu bolso:</b> um salário mínimo compra <b>" + C.numero(minimo / u[1], 0) + " litros</b>, ou " + C.numero(minimo / (u[1] * 47), 1) + " tanques de 47 litros.";
+        bolso.hidden = false;
+      } else bolso.hidden = true;
+
+      // Gráfico
+      var series = [{ nome: C.nomeLocal(local), pontos: serie }];
+      if (local !== "BR" && comb.series.BR[prod]) series.push({ nome: "Brasil", pontos: comb.series.BR[prod], cor: "#929C97" });
+      C.grafico(document.getElementById("g"), series, { fmtY: function (v) { return C.numero(v, 2); }, titulo: "Preço semanal de " + info.nome, marcos: [["2027-01-01", "novo mandato"]] });
+
+      // Ranking dos estados
+      var linhas = Object.keys(C.UFS).map(function (uf) {
+        var s = (comb.series[uf] || {})[prod]; var x = C.ultimo(s), y = C.anterior(s);
+        return x ? { uf: uf, v: x[1], sem: y ? x[1] - y[1] : null, a12: C.variacao12(s) } : null;
+      }).filter(Boolean).sort(function (p, q) { return q.v - p.v; });
+      document.getElementById("rank").innerHTML = linhas.map(function (l, i) {
+        return "<tr" + (l.uf === local ? ' style="background:var(--accent-soft)"' : "") + "><td>" + (i + 1) + "</td><td>" + C.UFS[l.uf][0] + '</td><td class="r">' + C.brl(l.v, 2) + '</td><td class="r ' + (l.sem > 0 ? "sobe" : l.sem < 0 ? "desce" : "") + '">' + (l.sem === null ? "—" : (l.sem > 0 ? "+" : "") + C.numero(l.sem, 2)) + '</td><td class="r">' + C.pct(l.a12) + "</td></tr>";
+      }).join("") || '<tr><td colspan="5">Sem dados por estado ainda.</td></tr>';
+      document.getElementById("fonte").innerHTML = 'Fonte: <a href="' + comb.fonte_url + '">' + comb.fonte + "</a>. Preço médio de revenda (bomba), com impostos.";
+    }
+    desenhar();
+  });
+});
+</script>
+</body>
+</html>
