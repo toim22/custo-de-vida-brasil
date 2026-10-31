@@ -39,7 +39,10 @@ def main():
         except Exception as e:  # noqa: BLE001
             resumo.append(f"ERRO {nome}: {e}")
 
+    ibge_fora = False
     for t in SIDRA_TABELAS:
+        if ibge_fora:
+            break
         try:
             meta = baixar(f"https://servicodados.ibge.gov.br/api/v3/agregados/{t}/metadados").json()
             linhas = [f"TABELA {t}: {meta.get('nome')}", f"periodicidade: {meta.get('periodicidade')}",
@@ -51,7 +54,8 @@ def main():
             guardar(f"sidra_{t}.txt", "\n".join(linhas))
             resumo.append(f"OK   sidra {t}: {meta.get('nome')}")
         except Exception as e:  # noqa: BLE001
-            resumo.append(f"ERRO sidra {t}: {e}")
+            resumo.append(f"ERRO sidra {t}: {str(e)[:150]}")
+            ibge_fora = "timed out" in str(e) or "Connect" in str(e)
 
     try:
         pesquisas = baixar("https://servicodados.ibge.gov.br/api/v3/agregados").json()
@@ -64,6 +68,23 @@ def main():
         resumo.append(f"OK   lista de tabelas SIDRA: {len(linhas)}")
     except Exception as e:  # noqa: BLE001
         resumo.append(f"ERRO lista SIDRA: {e}")
+
+    # Quais servidores do IBGE e espelhos respondem a partir do GitHub
+    testes = {
+        "apisidra": "https://apisidra.ibge.gov.br/values/t/7060/n1/all/v/63/p/last/c315/7169",
+        "sidra_site": "https://sidra.ibge.gov.br/tabela/7060",
+        "ftp_ibge": "https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/IPCA/Series_Historicas/",
+        "ibge_www": "https://www.ibge.gov.br/",
+        "bcb_sgs": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados/ultimos/3?formato=json",
+        "ipeadata": "http://www.ipeadata.gov.br/api/odata4/Metadados('PRECOS12_IPCAG12')",
+    }
+    for nome, url in testes.items():
+        try:
+            r = baixar(url, tentativas=1)
+            guardar(f"teste_{nome}.txt", r.text[:20000])
+            resumo.append(f"OK   teste {nome}: {len(r.content)} bytes")
+        except Exception as e:  # noqa: BLE001
+            resumo.append(f"ERRO teste {nome}: {str(e)[:150]}")
 
     guardar("RESUMO.txt", "\n".join(resumo))
     print("\n".join(resumo))
