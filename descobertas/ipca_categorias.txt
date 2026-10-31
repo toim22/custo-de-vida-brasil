@@ -1,0 +1,441 @@
+7169	indice geral
+7170	alimentacao e bebidas
+7171	alimentacao no domicilio
+7172	cereais, leguminosas e oleaginosas
+7173	arroz
+7175	feijao - mulatinho
+7176	feijao - preto
+7184	farinhas, feculas e massas
+7185	farinha de arroz
+7187	macarrao
+7188	fuba de milho
+7190	flocos de milho
+7191	farinha de trigo
+7195	farinha de mandioca
+7200	tuberculos, raizes e legumes
+7201	batata-doce
+7202	batata-inglesa
+7203	inhame
+7204	mandioca (aipim)
+7206	abobrinha
+7209	pepino
+7210	pimentao
+7212	tomate
+7215	cebola
+7216	cenoura
+7219	acucares e derivados
+7220	acucar refinado
+7221	acucar cristal
+7230	sorvete
+7233	doce de frutas em pasta
+7241	hortalicas e verduras
+7242	alface
+7244	coentro
+7245	couve
+7246	couve-flor
+7248	repolho
+7249	cheiro-verde
+7253	brocolis
+7254	frutas
+7255	banana-da-terra
+7256	abacaxi
+7257	abacate
+7258	banana - d'agua
+7259	banana - maca
+7260	banana - prata
+7262	laranja - baia
+7263	laranja - lima
+7265	limao
+7266	maca
+7267	mamao
+7268	manga
+7269	maracuja
+7270	melancia
+7271	melao
+7272	pera
+7275	tangerina
+7276	uva
+7279	laranja - pera
+7280	morango
+7281	goiaba
+7283	carnes
+7285	figado
+7287	carne de porco
+7288	carne de carneiro
+7290	cupim
+7291	contrafile
+7292	file-mignon
+7293	cha de dentro
+7294	alcatra
+7295	patinho
+7296	lagarto redondo
+7298	musculo
+7299	pa
+7300	acem
+7301	peito
+7302	costela
+7303	pescados
+7305	peixe - anchova
+7306	peixe - corvina
+7309	peixe - tainha
+7310	peixe - sardinha
+7311	camarao
+7313	peixe - cavala
+7317	peixe - serra
+7320	peixe - pescada
+7323	caranguejo
+7333	peixe - dourada
+7335	carnes e peixes industrializados
+7336	presunto
+7339	linguica
+7341	mortadela
+7343	bacalhau
+7347	carne de porco salgada e defumada
+7349	aves e ovos
+7355	ovo de galinha
+7356	leites e derivados
+7358	leite condensado
+7359	leite em po
+7367	manteiga
+7368	leite fermentado
+7372	panificados
+7373	biscoito
+7375	pao frances
+7376	pao doce
+7377	pao de forma
+7378	bolo
+7380	pao de queijo
+7384	oleos e gorduras
+7385	oleo de soja
+7386	azeite de oliva
+7389	bebidas e infusoes
+7390	suco de frutas
+7392	cafe moido
+7393	cafe soluvel
+7396	cerveja
+7397	outras bebidas alcoolicas
+7399	vinho
+7401	enlatados e conservas
+7406	palmito em conserva
+7407	pepino em conserva
+7411	sopa desidratada
+7412	azeitona
+7415	sal e condimentos
+7416	leite de coco
+7418	alho
+7420	colorau
+7421	caldo de tucupi
+7422	fermento
+7423	maionese
+7424	vinagre
+7425	caldo concentrado
+7428	tempero misto
+7432	alimentacao fora do domicilio
+7434	refeicao
+7435	lanche
+7438	cafezinho
+7444	doces
+7445	habitacao
+7446	encargos e manutencao
+7447	aluguel e taxas
+7448	aluguel residencial
+7449	condominio
+7451	taxa de agua e esgoto
+7453	mudanca
+7454	reparos
+7455	ferragens
+7456	material de eletricidade
+7459	tinta
+7461	artigos de limpeza
+7463	saco para lixo
+7464	agua sanitaria
+7465	detergente
+7466	sabao em po
+7467	desinfetante
+7470	sabao em barra
+7471	esponja de limpeza
+7477	papel toalha
+7479	combustiveis e energia
+7480	combustiveis (domesticos)
+7481	carvao vegetal
+7482	gas de botijao
+7483	gas encanado
+7484	energia eletrica residencial
+7486	artigos de residencia
+7487	moveis e utensilios
+7488	mobiliario
+7489	movel para sala
+7490	movel para quarto
+7492	movel para copa e cozinha
+7493	colchao
+7495	utensilios e enfeites
+7497	tapete
+7498	cortina
+7508	flores naturais
+7517	cama, mesa e banho
+7518	roupa de cama
+7520	roupa de banho
+7521	aparelhos eletroeletronicos
+7522	eletrodomesticos e equipamentos
+7523	refrigerador
+7526	maquina de lavar roupa
+7530	ventilador
+7531	fogao
+7539	chuveiro eletrico
+7541	tv, som e informatica
+7542	televisor
+7543	aparelho de som
+7548	consertos e manutencao
+7555	reforma de estofado
+7558	vestuario
+7559	roupas
+7560	roupa masculina
+7561	calca comprida masculina
+7563	agasalho masculino
+7565	cueca
+7572	roupa feminina
+7573	calca comprida feminina
+7574	agasalho feminino
+7575	saia
+7576	vestido
+7577	blusa
+7579	lingerie
+7587	roupa infantil
+7589	calca comprida infantil
+7590	agasalho infantil
+7591	vestido infantil
+7604	calcados e acessorios
+7606	sapato masculino
+7607	sapato feminino
+7608	sapato infantil
+7614	tenis
+7615	joias e bijuterias
+7617	bijuteria
+7618	joia
+7619	relogio de pulso
+7620	tecidos e armarinho
+7622	tecido
+7623	artigos de armarinho
+7625	transportes
+7627	transporte publico
+7628	onibus urbano
+7629	taxi
+7630	trem
+7631	onibus intermunicipal
+7632	onibus interestadual
+7634	passagem aerea
+7635	metro
+7639	transporte escolar
+7640	veiculo proprio
+7641	automovel novo
+7642	emplacamento e licenca
+7643	seguro voluntario de veiculo
+7644	oleo lubrificante
+7645	acessorios e pecas
+7647	conserto de automovel
+7648	estacionamento
+7649	pedagio
+7653	pintura de veiculo
+7654	motocicleta
+7656	combustiveis (veiculos)
+7657	gasolina
+7658	etanol
+7659	oleo diesel
+7660	saude e cuidados pessoais
+7661	produtos farmaceuticos e oticos
+7662	produtos farmaceuticos
+7663	anti-infeccioso e antibiotico
+7664	analgesico e antitermico
+7665	anti-inflamatorio e antirreumatico
+7666	antigripal e antitussigeno
+7669	antialergico e broncodilatador
+7670	gastroprotetor
+7671	vitamina e fortificante
+7673	psicotropico e anorexigeno
+7674	hipotensor e hipocolesterolemico
+7677	antidiabetico
+7683	servicos de saude
+7684	servicos medicos e dentarios
+7685	medico
+7686	dentista
+7690	servicos laboratoriais e hospitalares
+7691	exame de laboratorio
+7692	hospitalizacao e cirurgia
+7695	plano de saude
+7697	cuidados pessoais
+7698	higiene pessoal
+7699	produto para cabelo
+7703	produto para unha
+7704	perfume
+7707	desodorante
+7708	absorvente higienico
+7709	sabonete
+7710	papel higienico
+7711	artigos de maquiagem
+7712	despesas pessoais
+7713	servicos pessoais
+7715	costureira
+7720	empregado domestico
+7721	depilacao
+7723	cartorio
+7724	despachante
+7727	servico bancario
+7728	conselho de classe
+7730	recreacao
+7733	clube
+7735	instrumento musical
+7736	bicicleta
+7738	brinquedo
+7746	material de caca e pesca
+7758	fumo
+7759	cigarro
+7766	educacao
+7767	cursos, leitura e papelaria
+7769	creche
+7777	leitura
+7778	jornal diario
+7782	papelaria
+7783	caderno
+7785	artigos de papelaria
+7786	comunicacao
+7789	correio
+7794	aparelho telefonico
+8874	peixe - peroa
+12222	feijao - carioca (rajado)
+12224	balas
+12294	lagarto comum
+12300	peixe - castanha
+12301	peixe - palombeta
+12302	peixe - tilapia
+12304	salsicha
+12305	salame
+12379	carne-seca e de sol
+12393	leite longa vida
+12394	iogurte e bebidas lacteas
+12395	margarina
+12396	acai (emulsao)
+12397	sal
+12398	revestimento de piso e parede
+12399	telha
+12401	movel infantil
+12402	utensilios de metal
+12403	utensilios de vidro e louca
+12405	conserto de refrigerador
+12406	conserto de maquina de lavar roupa
+12408	uniforme escolar
+12409	conjunto infantil
+12411	pneu
+12412	dermatologico
+12414	aparelho ortodontico
+12416	exame de imagem
+12420	fralda descartavel
+12421	manicure
+12427	cursos regulares
+12428	atividades fisicas
+12431	peixe - salmao
+12433	vidro
+12434	ar-condicionado
+12435	fisioterapeuta
+12436	psicologo
+31694	peixe - pintado
+41129	peixe - tambaqui
+47617	feijao - macacar (fradinho)
+47618	milho (em grao)
+47619	macarrao instantaneo
+47620	acucar demerara
+47621	picanha
+47623	peixe - filhote
+47624	peixe - aruana
+47627	requeijao
+47628	polpa de fruta (congelada)
+47630	suco em po
+47631	cha mate (erva mate)
+47634	madeira e taco
+47635	sabao liquido
+47636	limpador multiuso
+47637	amaciante e alvejante
+47638	artigos de iluminacao
+47639	utensilios para bebe
+47640	videogame (console)
+47641	computador pessoal
+47642	conserto de aparelho celular
+47643	conserto de bicicleta
+47644	bermuda/short masculino
+47645	bermuda/short feminino
+47646	bermuda/short infantil
+47647	mochila
+47648	sandalia/chinelo
+47649	transporte por aplicativo
+47650	integracao transporte publico
+47651	hormonal
+47652	neurologico
+47653	oculos de grau
+47654	cabeleireiro e barbeiro
+47655	sobrancelha
+47656	recreacao e fumo
+47657	tratamento de animais (clinica)
+47658	casa noturna
+47659	hospedagem
+47660	pacote turistico
+47661	servico de higiene para animais
+47662	cinema, teatro e concertos
+47663	pre-escola
+47664	educacao de jovens e adultos
+47665	curso tecnico
+47666	livro didatico
+47667	livro nao didatico
+47668	plano de telefonia fixa
+47669	plano de telefonia movel
+47670	tv por assinatura
+47671	servicos de streaming
+47672	combo de telefonia, internet e tv por assinatura
+101448	capa de file
+101466	peixe - curimata
+101642	produto para barba
+101644	produto para pele
+107608	massa semipreparada
+107609	chocolate em barra e bombom
+107611	chocolate e achocolatado em po
+107615	peixe - cacao
+107616	peixe - merluza
+107617	frango inteiro
+107618	frango em pedacos
+107619	queijo
+107621	refrigerante e agua mineral
+107624	sardinha em conserva
+107625	salsicha em conserva
+107628	milho-verde em conserva
+107630	atum em conserva
+107638	cimento
+107639	tijolo
+107640	material hidraulico
+107641	mao de obra
+107642	areia
+107643	pedras
+107645	utensilios de plastico
+107648	conserto de televisor
+107649	camisa/camiseta masculina
+107650	camisa/camiseta infantil
+107652	bolsa
+107653	multa
+107654	automovel usado
+107656	aluguel de veiculo
+107657	gas veicular
+107659	oftalmologico
+107661	produto para higiene bucal
+107666	alimento para animais
+107668	jogos de azar
+107671	ensino fundamental
+107672	ensino medio
+107673	ensino superior
+107674	pos-graduacao
+107676	revista
+107678	cursos diversos
+107679	curso preparatorio
+107681	curso de idioma
+107682	curso de informatica
+107683	autoescola
+107688	acesso a internet
+107702	alimento infantil
+109463	atomatado
+109464	produtos oticos
