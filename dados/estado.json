@@ -2,33 +2,33 @@
  "combustiveis": {
   "nome": "ANP — combustíveis e gás",
   "ok": true,
-  "coletado_em": "2026-10-31 01:38 UTC",
+  "coletado_em": "2026-10-31 01:47 UTC",
   "dado_mais_recente": "2026-10-24"
  },
  "salario": {
   "nome": "DIEESE — salário mínimo",
   "ok": true,
-  "coletado_em": "2026-10-31 01:38 UTC",
+  "coletado_em": "2026-10-31 01:47 UTC",
   "dado_mais_recente": "2026-09"
  },
  "cesta": {
   "nome": "DIEESE — cesta básica",
   "ok": false,
-  "tentado_em": "2026-10-31 01:38 UTC",
-  "erro": "coleta da cesta ainda não configurada (aguardando descoberta do formulário)",
+  "tentado_em": "2026-10-31 01:47 UTC",
+  "erro": "Missing optional dependency 'html5lib'.  Use pip or conda to install html5lib.",
   "dado_mais_recente": null
  },
  "ipca": {
   "nome": "IBGE — IPCA",
   "ok": false,
-  "tentado_em": "2026-10-31 01:38 UTC",
+  "tentado_em": "2026-10-31 01:47 UTC",
   "erro": "falha ao baixar https://servicodados.ibge.gov.br/api/v3/agregados/7060/metadados: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max retries exceeded with url: /api/v3/agregados/7060/metadados (Caused by ConnectTimeoutError(<HTTPSConnection(host='servicodados.ibge.gov.br', port=443)",
   "dado_mais_recente": null
  },
  "churrasco": {
   "nome": "Cálculo — itens avulsos e Churrasco pra 6",
   "ok": false,
-  "tentado_em": "2026-10-31 01:38 UTC",
+  "tentado_em": "2026-10-31 01:47 UTC",
   "erro": "ipca.json ainda não existe",
   "dado_mais_recente": null
  }

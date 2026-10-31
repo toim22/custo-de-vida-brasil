@@ -1,0 +1,32 @@
+[
+  {
+    "NC": "Nível Territorial (Código)",
+    "NN": "Nível Territorial",
+    "MC": "Unidade de Medida (Código)",
+    "MN": "Unidade de Medida",
+    "V": "Valor",
+    "D1C": "Brasil (Código)",
+    "D1N": "Brasil",
+    "D2C": "Variável (Código)",
+    "D2N": "Variável",
+    "D3C": "Mês (Código)",
+    "D3N": "Mês",
+    "D4C": "Geral, grupo, subgrupo, item e subitem (Código)",
+    "D4N": "Geral, grupo, subgrupo, item e subitem"
+  },
+  {
+    "NC": "1",
+    "NN": "Brasil",
+    "MC": "2",
+    "MN": "%",
+    "V": "0.82",
+    "D1C": "1",
+    "D1N": "Brasil",
+    "D2C": "63",
+    "D2N": "IPCA - Variação mensal",
+    "D3C": "202609",
+    "D3N": "setembro 2026",
+    "D4C": "7169",
+    "D4N": "Índice geral"
+  }
+]
