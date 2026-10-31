@@ -166,6 +166,8 @@ tr:last-child td { border-bottom: 0; }
   .churras { grid-template-columns: 1fr; }
   .item { grid-template-columns: minmax(0, 8rem) minmax(0, 1fr) 5.5rem; }
   .item .var { display: none; }
-  .fato { grid-template-columns: 6rem 1fr; }
+  .fato { grid-template-columns: 7.5rem 1fr; }
+  th, td { padding: 8px; }
+  td.r, th.r { white-space: normal; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }

@@ -14,7 +14,7 @@
     "refrigerante": {"nome": "Refrigerante",       "unidade": "garrafa 2 L",  "preco": 9.00,  "ipca": ["Refrigerante e água mineral", "Bebidas e infusões"]},
     "papel":        {"nome": "Papel higiênico",    "unidade": "12 rolos",     "preco": 20.00, "ipca": ["Papel higiênico", "Artigos de limpeza"]},
     "sabao":        {"nome": "Sabão em pó",        "unidade": "1 kg",         "preco": 15.00, "ipca": ["Sabão em pó", "Artigos de limpeza"]},
-    "pasta":        {"nome": "Pasta de dente",     "unidade": "90 g",         "preco": 5.00,  "ipca": ["Artigos de higiene bucal", "Higiene bucal", "Higiene pessoal"]}
+    "pasta":        {"nome": "Pasta de dente",     "unidade": "90 g",         "preco": 5.00,  "ipca": ["Produto para higiene bucal", "Artigos de higiene bucal", "Higiene bucal", "Higiene pessoal"]}
   },
   "churrasco": {
     "pessoas": 6,
