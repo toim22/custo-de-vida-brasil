@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>DIEESE - Cesta BÃ¡sica Nacional - Sistema de Consulta</title>
+   <meta name="description" content="Sistema de consulta dos resultados da pesquisa da Cesta BÃ¡sica Nacional" />
+   <link href="css/bootstrap.css" rel="stylesheet" media="screen" />
+   <link href="css/bootstrap-responsive.css" rel="stylesheet" />
+   <style>
+   	 @IMPORT url("https://www.dieese.org.br/css/geral.css");   
+   </style>
+   <link href="css/cesta.css" rel="stylesheet" />
+   <script src="https://www.dieese.org.br/scripts/geral.js"></script>
+   <script src="js/jquery.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	function tooltip(campo, msg) {
+			campo.attr('title',msg);
+			campo.tooltip({
+ 					trigger: 'manual' 	 					
+			});
+			campo.tooltip('show');
+    	}
+    
+ 	 	 $('document').ready(function() {
+ 	 		 $('#cabecalho').load('carrega?local=cabecalho');
+ 	 		 $('#rodape').load('carrega?local=rodape');
+ 	 		 $('input[type="submit"]').css('width', '100px');
+ 	 		 $('input[type="reset"]').css('width', '100px');
+ 	 		 $('#metodologia').css('display', 'none');
+ 	 		 //alert($('#cabecalho').html());
+ 	 		 
+ 	 		 $('.coluna3 input, #dataData').change(function(){ 	 			 
+ 	 			 if ($(this).val() != "")
+ 	 				 $(this).tooltip('destroy');
+ 	 		 });
+
+ 	 		 $('#dataData').change(function() {
+ 	 	 		 if (this.value.trim() == '122015')
+ 	 				$('#metodologia').css('display', 'inline'); 	 	 		 
+ 	 	 	 }); 	 		 
+
+ 	 		 
+ 	 		 $('#cidadeForm').submit(function(){
+ 	 			 return true;
+ 	 			campo = $('#cidadeDataInicial');
+ 	 			resp = true;
+ 	 			regexp = /^(0[1-9]|1[0-2])(19[5-9]|20[0-9])\d$/;
+ 	 			if (campo.val() == "") {
+ 	 				tooltip(campo, 'campo obrigatÃ³rio');
+ 	 				resp = false;
+ 	 			}
+ 	 			else if (!regexp.test(campo.val())) {
+				    tooltip(campo, 'campo fora do formato');
+ 	 				resp = false;
+ 	 			}
+
+ 	 			campo = $('#cidadeDataFinal');
+ 	 			if (campo.val() == "") {
+ 	 				tooltip(campo, 'campo obrigatÃ³rio');
+ 	 				resp = false;
+ 	 			}
+ 	 			else if (!regexp.test(campo.val())) {
+ 	 				tooltip(campo, 'campo fora do formato');
+ 	 				resp = false;
+ 	 			}
+ 	 			return resp;
+ 	 		 })
+
+ 	 		 $('#produtoForm').submit(function(){
+ 	 			 return true;
+  	 			campo = $('#produtoDataInicial');
+  	 			resp = true;
+  	 			regexp = /^(0[1-9]|1[0-2])(19[5-9]|20[0-9])\d$/;
+  	 			if (campo.val() == "") {
+  	 				tooltip(campo, 'campo obrigatÃ³rio');
+  	 				resp = false;
+  	 			}
+  	 			else if (!regexp.test(campo.val())) {
+ 				    tooltip(campo, 'campo fora do formato');
+  	 				resp = false;
+  	 			}
+
+  	 			campo = $('#produtoDataFinal');
+  	 			if (campo.val() == "") {
+  	 				tooltip(campo, 'campo obrigatÃ³rio');
+  	 				resp = false;
+  	 			}
+  	 			else if (!regexp.test(campo.val())) {
+  	 				tooltip(campo, 'campo fora do formato');
+  	 				resp = false;
+  	 			}
+  	 			return resp;
+  	 		 })
+
+ 	 		 $('#dataForm').submit(function(){
+ 	 			 return true;
+   	 			campo = $('#dataData');
+   	 			resp = true;
+   	 			regexp = /^(0[1-9]|1[0-2])(19[5-9]|20[0-9])\d$/;
+   	 			if (campo.val() == "") {
+   	 				tooltip(campo, 'campo obrigatÃ³rio');
+   	 				resp = false;
+   	 			}
+   	 			else if (!regexp.test(campo.val())) {
+  				    tooltip(campo, 'campo fora do formato');
+   	 				resp = false;
+   	 			}
+				return resp;
+ 	 		 })
+
+ 	 	 });
+ 	</script>
+</head>
+<body>
+<div id="cabecalho">
+</div>
+<div id="conteudo">
+ <ul id="icones"> 
+	<li class="metodologia">
+	  <a href="https://www.dieese.org.br/metodologia/metodologiaCestaBasica2016.pdf" title="Metodologia" target="_blank"><img src="https://www.dieese.org.br/imagens/icone-metodologia.gif" alt="Metodologia" height="39" width="55" /><br />
+ 	  <span>Metodologia</span></a>
+	</li>
+	<li class="banco">
+	  <a href="https://www.dieese.org.br/analisecestabasica/notaBancoDados.html" title="Banco de Dados"><img src="https://www.dieese.org.br/imagens/icone-banco.gif" alt="banco de dados" height="30" width="27" /><br />
+	  <span>Banco de Dados</span></a>
+    </li>	
+	<li class="analises">
+	  <a href="https://www.dieese.org.br/analisecestabasica/analiseCestaBasicaAnteriores.html" title="AnÃ¡lises anteriores"><img src="https://www.dieese.org.br/imagens/icone-boletins.gif" alt="AnÃ¡lises anteriores" height="40" width="35" /><br />
+	  <span>AnÃ¡lises<br />anteriores</span></a>
+    </li>
+ </ul>
+   <h3>Pesquisa Nacional da Cesta BÃ¡sica de Alimentos</h3>
+   <h2>Banco de Dados </h2>
+ </div>
+ <div id="interface">  
+	<ul class="nav nav-tabs">
+	    <li class="active"><a href="#cidade" data-toggle="tab">cidade</a></li>
+	    <li><a href="#produto" data-toggle="tab">produto</a></li>
+	    <li><a href="#data" data-toggle="tab">data</a></li>
+	</ul>
+    <div class="tab-content">
+	   <div class="tab-pane active" id="cidade">
+	 	 <form action="cidade" method="post" id="cidadeForm">
+	 	    <input type="hidden" name="farinha" value="true" />
+			<div class="coluna1">
+			   <p>
+			    <label>cidade</label>
+			    <select name="cidades">
+					<option value="16">(09/1995) Aracaju</option>
+					<option value="13">(08/1987) BelÃ©m</option>
+					<option value="2">(09/1979) Belo Horizonte</option>
+					<option value="22">(01/2016) Boa Vista</option>
+					<option value="9">(01/1986) BrasÃ­lia</option>
+					<option value="19">(11/2012) Campo Grande</option>
+					<option value="25">(01/2016) CuiabÃ¡</option>
+					<option value="4">(06/1983) Curitiba</option>
+					<option value="1">(05/1985) FlorianÃ³polis</option>
+					<option value="11">(09/1986) Fortaleza</option>
+					<option value="10">(12/1994) GoiÃ¢nia</option>
+					<option value="3">(07/1988) JoÃ£o Pessoa</option>
+					<option value="18">(10/2012) MacaÃ©</option>
+					<option value="21">(01/2016) MacapÃ¡</option>
+					<option value="28">(01/2016) MaceiÃ³</option>
+					<option value="17">(09/2008) Manaus</option>
+					<option value="15">(02/1991) Natal</option>
+					<option value="26">(01/2016) Palmas</option>
+					<option value="5">(01/1977) Porto Alegre</option>
+					<option value="23">(01/2016) Porto Velho</option>
+					<option value="12">(02/1987) Recife</option>
+					<option value="20">(01/2016) Rio Branco</option>
+					<option value="6">(01/1983) Rio de Janeiro</option>
+					<option value="7">(04/1983) Salvador</option>
+					<option value="27">(01/2016) SÃ£o LuÃ­s</option>
+					<option value="8" selected="selected">(01/1959) SÃ£o Paulo</option>
+					<option value="24">(01/2016) Teresina</option>
+					<option value="14">(10/1988) VitÃ³ria</option>
+				</select>
+			  </p>	
+			  <p>
+			    <label>tipo de dado</label>
+				<label><input type="radio" value="5" name="tipoDado" checked="checked"/> Gasto mensal</label>
+				<label><input type="radio" value="3" name="tipoDado" /> Tempo de trabalho</label>
+				<label><input type="radio" value="4" name="tipoDado" /> PreÃ§o mÃ©dio</label>
+			  </p>	
+			</div>
+			<div class="coluna2">
+				<p><label>produtos</label> 
+				<select name="produtos" multiple="multiple" size="10">
+					<option value="0" selected="selected">Todos</option>
+					<option value="1">Total da Cesta</option>
+					<option value="2">Carne</option>
+					<option value="3">Leite</option>
+					<option value="4">FeijÃ£o</option>
+					<option value="5">Arroz</option>
+					<option value="6">Farinha de Trigo/Mandioca</option>
+					<option value="7">Batata</option>
+					<option value="8">Tomate</option>
+					<option value="9">PÃ£o</option>
+					<option value="10">CafÃ©</option>
+					<option value="11">Banana</option>
+					<option value="12">AÃ§Ãºcar</option>
+					<option value="13">Ãleo</option>
+					<option value="14">Manteiga</option>
+				</select>
+				</p>
+			</div>
+			<div class="coluna3">
+			  <p>
+				<label>data inicial (mmaaaa)</label><input id="cidadeDataInicial" data-placement="bottom" type="text" name="dataInicial" maxlength="6" title="mmaaaa"/>
+			  </p>
+			  <p>	
+				<label>data final (mmaaaa)</label><input id="cidadeDataFinal" data-placement="bottom" type="text" name="dataFinal" maxlength="6" title="mmaaaa"/>
+			  </p>
+			  <p>	
+			    <label></label>
+				<input type="submit" class="btn btn-primary" value="Consulta" />
+				<label></label>
+    			<input type="reset" class="btn btn-primary" value="Limpa" />
+    		 </p>	
+			</div>
+		</form>	
+	</div>
+
+    <div class="tab-pane" id="produto">
+  	 	<form action="produto" method="post" id="produtoForm">
+  	 	    <input type="hidden" name="farinha" value="true" />
+			<div class="coluna1">
+			  <p>
+				<label>produto</label> 
+				<select name="produtos">
+					<option value="1">Total da Cesta</option>
+					<option value="2">Carne</option>
+					<option value="3">Leite</option>
+					<option value="4">FeijÃ£o</option>
+					<option value="5">Arroz</option>
+					<option value="6">Farinha de Trigo/Mandioca</option>
+					<option value="7">Batata</option>
+					<option value="8">Tomate</option>
+					<option value="9">PÃ£o</option>
+					<option value="10">CafÃ©</option>
+					<option value="11">Banana</option>
+					<option value="12">AÃ§Ãºcar</option>
+					<option value="13">Ãleo</option>
+					<option value="14">Manteiga</option>
+				</select>
+			</p>
+			<p>
+				<label>tipo de dado</label> 
+				<label><input type="radio" value="5" name="tipoDado" checked="checked"/> Gasto mensal</label>
+			    <label><input type="radio" value="3" name="tipoDado" /> Tempo de trabalho</label>
+				<label><input type="radio" value="4" name="tipoDado" /> PreÃ§o mÃ©dio</label>
+			</p>	
+			</div>
+			<div class="coluna2">
+			    <p><label>cidades</label> 
+				<select name="cidades" multiple="multiple" size="10">
+					<option value="0" selected="selected">Todas cidades</option>
+					<option value="16">(09/1995) Aracaju</option>
+					<option value="13">(08/1987) BelÃ©m</option>
+					<option value="2">(09/1979) Belo Horizonte</option>
+					<option value="22">(01/2016) Boa Vista</option>
+					<option value="9">(01/1986) BrasÃ­lia</option>
+					<option value="19">(11/2012) Campo Grande</option>
+					<option value="25">(01/2016) CuiabÃ¡</option>
+					<option value="4">(06/1983) Curitiba</option>
+					<option value="1">(05/1985) FlorianÃ³polis</option>
+					<option value="11">(09/1986) Fortaleza</option>
+					<option value="10">(12/1994) GoiÃ¢nia</option>
+					<option value="3">(07/1988) JoÃ£o Pessoa</option>
+					<option value="18">(10/2012) MacaÃ©</option>
+					<option value="21">(01/2016) MacapÃ¡</option>
+					<option value="28">(01/2016) MaceiÃ³</option>
+					<option value="17">(09/2008) Manaus</option>
+					<option value="15">(02/1991) Natal</option>
+					<option value="26">(01/2016) Palmas</option>
+					<option value="5">(01/1977) Porto Alegre</option>
+					<option value="23">(01/2016) Porto Velho</option>
+					<option value="12">(02/1987) Recife</option>
+					<option value="20">(01/2016) Rio Branco</option>
+					<option value="6">(01/1983) Rio de Janeiro</option>
+					<option value="7">(04/1983) Salvador</option>
+					<option value="27">(01/2016) SÃ£o LuÃ­s</option>
+					<option value="8">(01/1959) SÃ£o Paulo</option>
+					<option value="24">(01/2016) Teresina</option>
+					<option value="14">(10/1988) VitÃ³ria</option>
+				</select>
+				</p>
+			</div>
+			<div class="coluna3">
+			  <p>
+				<label>data inicial (mmaaaa)</label><input id="produtoDataInicial" data-placement="bottom" type="text" name="dataInicial" maxlength="6" title="mmaaaa"/>
+			  </p>
+			  <p>	
+				<label>data final (mmaaaa)</label><input id="produtoDataFinal" data-placement="bottom" type="text" name="dataFinal" maxlength="6" title="mmaaaa"/>
+			  </p>
+			  <p>	
+			    <label></label>
+				<input type="submit" class="btn btn-primary" value="Consulta" />
+				<label></label>
+    			<input type="reset" class="btn btn-primary" value="Limpa" />
+    		 </p>	
+			</div>
+		</form>
+	</div>
+
+   <div class="tab-pane" id="data">
+	 	 <form action="data" method="post" id="dataForm">
+	 	    <input type="hidden" name="farinha" value="true" />
+			<div class="coluna1">
+              <p>
+				<label>data (mmaaaa)</label><input id="dataData" data-placement="bottom" type="text" name="data" maxlength="6" title="mmaaaa"/>
+			  </p>
+			  <p id="metodologia">
+  			    <label></label>	 
+				<label><input type="checkbox" value="dez2015" name="novaMetodologia"/> metodologia 2016</label>
+			  </p>
+			  <p>
+			    <label></label>	
+				<label>tipo de dado</label> 
+				<label><input type="radio" value="5" name="tipoDado" > Gasto mensal</label>
+				<label><input type="radio" value="3" name="tipoDado" /> Tempo de trabalho</label>
+				<label><input type="radio" value="4" name="tipoDado" /> PreÃ§o mÃ©dio</label>
+			  </p>	
+			</div>
+			<div class="coluna2">
+				<p><label>cidades</label> 
+				<select name="cidades" multiple="multiple" size="10">
+					<option value="0" selected="selected">Todas cidades</option>
+					<option value="16">(09/1995) Aracaju</option>
+					<option value="13">(08/1987) BelÃ©m</option>
+					<option value="2">(09/1979) Belo Horizonte</option>
+					<option value="22">(01/2016) Boa Vista</option>
+					<option value="9">(01/1986) BrasÃ­lia</option>
+					<option value="19">(11/2012) Campo Grande</option>
+					<option value="25">(01/2016) CuiabÃ¡</option>
+					<option value="4">(06/1983) Curitiba</option>
+					<option value="1">(05/1985) FlorianÃ³polis</option>
+					<option value="11">(09/1986) Fortaleza</option>
+					<option value="10">(12/1994) GoiÃ¢nia</option>
+					<option value="3">(07/1988) JoÃ£o Pessoa</option>
+					<option value="18">(10/2012) MacaÃ©</option>
+					<option value="21">(01/2016) MacapÃ¡</option>
+					<option value="28">(01/2016) MaceiÃ³</option>
+					<option value="17">(09/2008) Manaus</option>
+					<option value="15">(02/1991) Natal</option>
+					<option value="26">(01/2016) Palmas</option>
+					<option value="5">(01/1977) Porto Alegre</option>
+					<option value="23">(01/2016) Porto Velho</option>
+					<option value="12">(02/1987) Recife</option>
+					<option value="20">(01/2016) Rio Branco</option>
+					<option value="6">(01/1983) Rio de Janeiro</option>
+					<option value="7">(04/1983) Salvador</option>
+					<option value="27">(01/2016) SÃ£o LuÃ­s</option>
+					<option value="8">(01/1959) SÃ£o Paulo</option>
+					<option value="24">(01/2016) Teresina</option>
+					<option value="14">(10/1988) VitÃ³ria</option>
+				</select>
+				</p>
+			    <div>
+    				<input type="submit" class="btn btn-primary" value="Consulta" />
+    				<input type="reset" class="btn btn-primary" value="Limpa" />
+    			</div>
+			</div>
+			<div class="coluna3">
+				<p><label>produtos</label> 
+				<select name="produtos" multiple="multiple" size="10">
+					<option value="0" selected="selected">Todos</option>
+					<option value="1">Total da Cesta</option>
+					<option value="2">Carne</option>
+					<option value="3">Leite</option>
+					<option value="4">FeijÃ£o</option>
+					<option value="5">Arroz</option>
+					<option value="6">Farinha de Trigo/Mandioca</option>
+					<option value="7">Batata</option>
+					<option value="8">Tomate</option>
+					<option value="9">PÃ£o</option>
+					<option value="10">CafÃ©</option>
+					<option value="11">Banana</option>
+					<option value="12">AÃ§Ãºcar</option>
+					<option value="13">Ãleo</option>
+					<option value="14">Manteiga</option>
+				</select>
+				</p>
+			</div>	
+		</form>
+	</div>
+</div>
+<p>
+  <img src="https://www.dieese.org.br/imagens/logosgovernofederal.gif">
+</p>
+</div>	
+<div id="rodape"></div>
+</body>
+</html>

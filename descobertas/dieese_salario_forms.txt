@@ -1,0 +1,484 @@
+<form name="loginForm" method="post" action="https://www.dieese.org.br/canal/autenticaUsuario.do">
+<fieldset>
+<legend align="left">acesso restrito</legend>
+<p align="center">
+<img src="https://www.dieese.org.br/imagens/logoLogin.gif"></p>
+<p>
+<input maxlength="50" size="20" type="text" name="login" placeholder="usu&aacute;rio">
+</p>
+<p>
+<input maxlength="25" size="20" type="password" name="senha" placeholder="senha">
+</p>
+<p>
+<a onMouseOut="MM_nbGroup('out');" onMouseOver="MM_nbGroup('over','b_ok_r2_c2','https://www.dieese.org.br/imagens/b_ok_r2_c2_f2.gif','https://www.dieese.org.br/imagens/b_ok_r2_c2_f4.gif',1)" onClick="MM_nbGroup('down','navbar1','b_ok_r2_c2','https://www.dieese.org.br/imagens/b_ok_r2_c2_f3.gif',1)" target="_top" href="javascript:enviaForm();"><img border="0" src="https://www.dieese.org.br/imagens/b_ok_r2_c2.gif" name="b_ok_r2_c2"></a><a onMouseOut="MM_nbGroup('out');" onMouseOver="MM_nbGroup('over','b_limpa_r2_c1','https://www.dieese.org.br/imagens/b_limpa_r2_c2_f2.gif','https://www.dieese.org.br/imagens/b_limpa_r2_c2_f4.gif',1);" onClick="MM_nbGroup('down','navbar1','b_limpa_r2_c1','https://www.dieese.org.br/imagens/b_limpa_r2_c2_f3.gif',1)" target="_top" href="javascript:document.loginForm.reset();"><img border="0" src="https://www.dieese.org.br/imagens/b_limpa_r2_c2.gif" name="b_limpa_r2_c1"></a>
+</p>
+<p class="login">
+<a href="https://www.dieese.org.br/canal/redefineSenha.xhtml">esqueceu sua senha?</a>
+</p>
+</fieldset>
+</form>
+
+----
+
+<form name="formBusca">
+<input placeholder="Digite aqui o que procura" maxlength="500" minlength="3" name="query" type="text"><input id="botaoBusca" alt="Busca" src="/imagens/lupa.png" style="padding-left:5px; padding-top:1px;" type="image">
+<br>
+<div class="textoDica">Dica: use aspas para express&otilde;es exatas. Ex: "g&aacute;s de cozinha"</div>
+</form>
+
+----
+
+<form style="height:10px" target="_blank" action="https://www.dieese.org.br/sitio/buscaDirigida" name="formBuscaDirigida" id="escondeBusca">
+<input name="comboBuscaDirigida" type="hidden">
+<div id="menu" class="navMenu">
+<nav class="cbp-hrmenu" id="cbp-hrmenu">
+<ul>
+<li>
+<a href="#">O DIEESE</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul>
+<li>
+<a href="/materialinstitucional/quemSomos.html">Quem somos</a>
+</li>
+<li>
+<a href="/materialinstitucional/oQueFazemos.html">O que fazemos</a>
+</li>
+<li>
+<a target="blank" href="http://escola.dieese.org.br/escola">Escola DIEESE</a>
+</li>
+<li>
+<a target="blank" href="http://memoria.dieese.org.br/museu">Mem&oacute;ria</a>
+</li>
+<li>
+<a href="/materialinstitucional/relatorioAtividades.html">Relat&oacute;rio de atividades</a>
+</li>
+<li>
+<a href="/materialinstitucional/socios.html">Nossos s&oacute;cios</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Publica&ccedil;&otilde;es</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul id="comboTipo1"></ul>
+</div>
+<div>
+<ul id="comboTipo2"></ul>
+</div>
+<div>
+<ul id="comboTipo3"></ul>
+</div>
+<div>
+<ul id="comboTipo4"></ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Principais temas</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul id="comboTema1"></ul>
+</div>
+<div>
+<ul id="comboTema2"></ul>
+</div>
+<div>
+<ul id="comboTema3"></ul>
+</div>
+<div>
+<ul id="comboTema4"></ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Pesquisas mensais</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div class="pesquisas">
+<ul>
+<li>
+<a href="/analiseped/ped.html">Emprego e Desemprego</a>
+</li>
+<li>
+<a href="/analisecestabasica/analiseCestaBasica_conabDieese.html">Cesta B&aacute;sica</a>
+</li>
+<li>
+<a href="/analisecestabasica/salarioMinimo.html">Sal&aacute;rio m&iacute;nimo nominal e necess&aacute;rio</a>
+</li>
+<li>
+<a href="/analiseicv/icvNovo.html">Custo de Vida na Cidade de SP</a>
+</li>
+<li>
+<a href="/analiseicv/tarifasPublicas.html">Tarifas P&uacute;blicas </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Produtos e Servi&ccedil;os</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul>
+<li>
+<a href="/materialinstitucional/appNegociando.html">App Negociando</a>
+</li>
+<li>
+<a href="https://www.dieese.org.br/outraspublicacoes/calculadoraIR.html">Calculadora do IR</a>
+</li>
+<li>
+<a href="/materialinstitucional/estudos.html">Estudos</a>
+</li>
+<li>
+<a href="/materialinstitucional/palestrasCursos.html">Palestras e cursos</a>
+</li>
+<li>
+<a href="/materialinstitucional/pesquisasSindicais.html">Pesquisas sindicais</a>
+</li>
+<li>
+<a href="/projetos/financiadores.html">Projetos</a>
+</li>
+<li>
+<a href="/materialinstitucional/produtoSub.html">Subse&ccedil;&atilde;o</a>
+</li>
+<li>
+<a href="/materialinstitucional/obsApresentacao.html">Observat&oacute;rios do trabalho</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Participe</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul>
+<li>
+<a href="/materialinstitucional/filiacao.html">Filie sua entidade</a>
+</li>
+<li>
+<a href="/materialinstitucional/campanha.html">Apoie</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Em movimento</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul>
+<li>
+<a href="https://www.dieese.org.br/sitio/buscaDirigida?comboBuscaDirigida=TIPO%7C1276804004223">Eventos</a>
+</li>
+<li>
+<a href="https://www.dieese.org.br/evento/jornadaNacionalDebatesGeral.html">Jornada Nacional de Debates</a>
+</li>
+<li>
+<a target="blank" href="https://news.google.com/search?q=dieese&hl=pt-BR&gl=BR">Na imprensa</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Transpar&ecirc;ncia</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul>
+<li>
+<a href="https://www.dieese.org.br/projetos/govFederal.html">Parcerias com Governo Federal</a>
+</li>
+<li>
+<a href="/materialinstitucional/salvaguardas.html">Pol&iacute;tica de Salvaguarda</a>
+</li>
+<li>
+<a href="#">Relat&oacute;rios Igualdade Salarial:</a>
+<ul>
+<li>
+<a href="/materialinstitucional/2026/relatorioTransparencia2trimestre2026.html">- 2&ordm; sem 2026</a>
+</li>
+<li>
+<a href="/materialinstitucional/2026/relatorioTransparencia1trimestre2026.html">- 1&ordm; sem 2026</a>
+</li>
+<li>
+<a href="/materialinstitucional/2025/relatorioTransparencia2Semestre2025.html">- 2&ordm; sem 2025</a>
+</li>
+<li>
+<a href="/materialinstitucional/2025/relatorioTransparencia1Semestre2025.html">- 1&ordm; sem 2025</a>
+</li>
+<li>
+<a href="/materialinstitucional/2024/relatorioTransparencia2Semestre2024.html">- 2&ordm; sem 2024</a>
+</li>
+<li>
+<a href="/materialinstitucional/2024/relatorioTransparencia1Semestre2024.html">- 1&ordm; sem 2024</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<a href="#">Fale conosco</a>
+<div class="cbp-hrsub">
+<div class="cbp-hrsub-inner">
+<div>
+<ul>
+<li>
+<a href="/materialinstitucional/en.html">Contatos</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</nav>
+</div>
+</form>
+
+==== SCRIPTS ====
+
+
+
+----
+
+
+
+----
+
+
+
+----
+
+
+
+----
+
+
+
+				$(document).ready(function() {
+
+					$('a[name=modal]').click(function(e) {
+					/*Cancel the link behavior*/
+					e.preventDefault();
+					
+					/*Get the A tag*/
+					var id = $(this).attr('href');
+					
+					var maskHeight = $(document).height();
+
+					var maskWidth = $(window).width();
+					
+					$('#mask').css({'width':maskWidth,'height':maskHeight});
+
+					$('#mask').fadeIn(1000);
+
+					$('#mask').fadeTo("slow",0.8);
+					
+					var winH = $(window).height();
+
+					var winW = $(window).width();
+
+					/*$(id).css('top',  winH/2-$(id).height()/2);*/
+					$(id).css('top', 100);
+					$(id).css('left', winW/2-$(id).width()/2);
+					
+					$(id).fadeIn(2000); 
+				    
+					});
+					
+					$('.window .close').click(function (e) {
+						e.preventDefault();
+						$('#mask').hide();
+						$('.window').hide();
+					});
+
+					$('#mask').click(function () {
+						$(this).hide();
+						$('.window').hide();
+					});
+				});
+				
+				  function enviaForm() {
+					document.loginForm.submit();
+				};
+				
+			
+
+----
+
+
+			function abreMenuMobile() {
+				var x = document.getElementById("menu");
+				if (x.style.display === "none") {
+					x.style.display = "block";
+				} else {
+					x.style.display = "none";
+				}
+			}
+
+			$(document).ready(function() {
+
+				$('.input').keypress(function(e) {
+					if (e.which == 13) {
+						jQuery(this).blur();
+						jQuery('#botaoBusca').focus().click();
+					}
+					return false;
+				});
+
+				$('#botaoBusca').click(function() {
+					$.ajax({
+						url: 'https://www.dieese.org.br/sitio/buscaGeral',
+						type: "POST",
+						data: {
+							query: document.formBusca.query.value
+						},
+						success: function(data) {
+							$('#destaquesHome').hide();
+							$('#conteudo').html(data);
+							inicia(); // aplica os efeitos JS
+						},
+						error: function() {
+							alert("Ocorreu um erro! Por favor tente novamente mais tarde.");
+						}
+					});
+					return false;
+				});
+			});
+		
+
+----
+
+
+
+----
+
+
+				
+				$(document).ready(function() {
+				
+					selecionaCombo('tema');
+					
+					selecionaCombo('tipoPublicacao');
+					
+					$('#bot_ok_busca').click(function() {
+						var combo = document.formBuscaDirigida.comboBuscaDirigida;
+						if (combo[combo.selectedIndex].value == "") {
+							alert("Selecione um item para a busca!");
+							document.formBuscaDirigida.comboBuscaDirigida.focus();
+						}
+						else {
+							document.formBuscaDirigida.submit();
+						}
+					});
+				});			
+				
+				function selecionaCombo(tipo) {
+				
+					 if (tipo == "tipoPublicacao") {
+				
+						$.getJSON('/sitio/carregaDadosBusca', {combo: 'tipoPublicacao', tipo: 'buscaDirigida'}, function(data) {
+						
+							var options = '';
+						
+							for (i=0; i <  data.length; i++) {
+							
+								options = '<li>'+'<a href="JavaScript:busca(\''+'TIPO|' + data[i].id + '\');">' + data[i].valor + '</a>'+'</li>';
+								
+								if (i>=0 & i<=9){
+								   	$('ul#comboTipo1').append(options);
+								}
+								
+								if (i>9 & i<=19){
+								   	$('ul#comboTipo2').append(options);
+								}
+								
+								if (i>19 & i<=29){
+								   	$('ul#comboTipo3').append(options);
+								}
+								
+								if (i>29){
+								   	$('ul#comboTipo4').append(options);
+								}
+							}
+						});
+					}
+					else if (tipo == "tema") {
+						
+						$.getJSON('/sitio/carregaDadosBusca', {combo: 'palavra-chave', tipo: 'buscaDirigida'}, function(data) {
+
+							var options = '';
+							
+							for (i=0; i < data.length; i++) {
+
+								if (data[i].valor == 'diálogo social' || data[i].valor == 'contas nacionais' || data[i].valor == 'economia solidária'|| data[i].valor == 'educação profissional'
+								|| data[i].valor == 'educação sindical' || data[i].valor == 'indicadores econômicos' || data[i].valor == 'indicadores sociais' || data[i].valor == 'juros'
+								   || data[i].valor == 'microempreendedores' || data[i].valor == 'movimento sindicals' || data[i].valor == 'PED' || data[i].valor == 'PLR'
+								   || data[i].valor == 'qualificação profissional' || data[i].valor == 'trabalho e tecnologia' || data[i].valor == 'setor econômico' || data[i].valor == 'outros') {
+    								delete data[i];
+  								}else{
+
+										options = '<li>'+'<a href="JavaScript:busca(\''+'TEMA|' + data[i].id + '\');">' + data[i].valor + '</a>'+'</li>';
+							
+										if (i>=0 & i<=21){
+										   	$('ul#comboTema1').append(options);
+										}
+								
+										if (i>21 & i<=41){
+										   	$('ul#comboTema2').append(options);
+										}
+								
+										if (i>41 & i<=58){
+										   	$('ul#comboTema3').append(options);
+										}
+								
+										if (i>58){
+										   	$('ul#comboTema4').append(options);
+										}
+								}
+
+							}
+						});
+					}
+				}
+				
+				function busca(item) {
+					document.formBuscaDirigida.comboBuscaDirigida.value = item;
+					document.formBuscaDirigida.submit();
+				}	
+				
+			
+
+----
+
+
+
+----
+
+
+			$(function() {
+				cbpHorizontalMenu.init();
+			});
+		
