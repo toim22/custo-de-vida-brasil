@@ -21,6 +21,7 @@ jobs:
   coletar:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     outputs:
       falhou: ${{ steps.coleta.outcome == 'failure' }}
     steps:
@@ -34,12 +35,14 @@ jobs:
       - name: Diagnóstico das fontes
         working-directory: coletores
         continue-on-error: true
-        run: python descobrir.py
+        timeout-minutes: 15
+        run: python -u descobrir.py
       - name: Coletar
         id: coleta
         working-directory: coletores
         continue-on-error: true
-        run: python rodar.py
+        timeout-minutes: 30
+        run: python -u rodar.py
       - name: Salvar dados no repositório
         run: |
           git config user.name "robo-coleta"

@@ -61,17 +61,21 @@ def uf_por_nome(nome):
     return None
 
 
-def baixar(url, tentativas=4, **kw):
+def baixar(url, tentativas=3, timeout=(15, 60), **kw):
     """GET com novas tentativas. Devolve o objeto Response ou levanta erro."""
     erro = None
     for i in range(tentativas):
+        inicio = time.time()
         try:
-            r = SESSAO.get(url, timeout=kw.pop("timeout", 90), **kw)
+            r = SESSAO.get(url, timeout=timeout, **kw)
             r.raise_for_status()
+            print(f"    GET {r.status_code} {len(r.content):>9} bytes {time.time() - inicio:5.1f}s {url[:110]}", flush=True)
             return r
         except Exception as e:  # noqa: BLE001
             erro = e
-            time.sleep(2 ** (i + 1))
+            print(f"    GET falhou ({type(e).__name__}) {time.time() - inicio:5.1f}s {url[:110]}", flush=True)
+            if i < tentativas - 1:
+                time.sleep(3 * (i + 1))
     raise RuntimeError(f"falha ao baixar {url}: {erro}")
 
 
