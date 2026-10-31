@@ -124,36 +124,34 @@ def numero_br(v):
 
 
 def ler_tabela_cidade(html):
-    """Devolve {produto: {mes: valor}} lendo a tabela em qualquer orientação (meses nas linhas ou nas colunas)."""
-    tabelas = pd.read_html(io.StringIO(html), thousands=None, decimal=".")
+    """Devolve {produto: {mes: valor}} da tabela id="dados" (meses nas linhas, produtos nas colunas;
+    também aceita a orientação inversa)."""
+    import lxml.html
+    doc = lxml.html.fromstring(html.encode("utf-8") if isinstance(html, str) else html)
     saida = {}
-    for t in tabelas:
-        t = t.astype(str)
-        cols = [str(c) if not isinstance(c, tuple) else str(c[-1]) for c in t.columns]
-        if all(c.isdigit() for c in cols) and len(t) > 1:
-            # tabela sem <th>: a primeira linha é o cabeçalho
-            cols = [str(v) for v in t.iloc[0].tolist()]
-            t = t.iloc[1:].reset_index(drop=True)
-        # meses nas linhas, produtos nas colunas
-        if sum(1 for v in t.iloc[:, 0] if chave_mes(v)) >= 1 and any(chave_produto(c) for c in cols[1:]):
-            for _, linha in t.iterrows():
-                mes = chave_mes(linha.iloc[0])
+    for tab in doc.xpath("//table"):
+        cab = [" ".join(th.text_content().split()) for th in tab.xpath(".//thead//th")]
+        linhas = [[" ".join(td.text_content().split()) for td in tr.xpath("./td")] for tr in tab.xpath(".//tbody/tr")]
+        if not cab and linhas:
+            cab, linhas = linhas[0], linhas[1:]
+        if len(cab) < 2:
+            continue
+        if any(chave_produto(c) for c in cab[1:]):
+            for l in linhas:
+                mes = chave_mes(l[0]) if l else None
                 if not mes:
                     continue
-                for c, v in zip(cols[1:], linha.iloc[1:]):
-                    k = chave_produto(c)
-                    x = numero_br(v)
+                for c, v in zip(cab[1:], l[1:]):
+                    k, x = chave_produto(c), numero_br(v)
                     if k and x is not None:
                         saida.setdefault(k, {})[mes] = x
-        # produtos nas linhas, meses nas colunas
-        elif any(chave_mes(c) for c in cols[1:]):
-            for _, linha in t.iterrows():
-                k = chave_produto(linha.iloc[0])
+        elif any(chave_mes(c) for c in cab[1:]):
+            for l in linhas:
+                k = chave_produto(l[0]) if l else None
                 if not k:
                     continue
-                for c, v in zip(cols[1:], linha.iloc[1:]):
-                    mes = chave_mes(c)
-                    x = numero_br(v)
+                for c, v in zip(cab[1:], l[1:]):
+                    mes, x = chave_mes(c), numero_br(v)
                     if mes and x is not None:
                         saida.setdefault(k, {})[mes] = x
     return saida

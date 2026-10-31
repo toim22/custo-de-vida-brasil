@@ -3,9 +3,8 @@
 A variação oficial de cada item é usada para atualizar, mês a mês, o preço de partida
 dos itens avulsos e do Churrasco pra 6 (ver calculos.py), e para a "inflação da comida em casa".
 """
-from comum import INICIO, baixar, config, norm, salvar_json
+from comum import DESCOBERTAS, INICIO, baixar, config, norm, salvar_json
 
-META_IPCA = "https://servicodados.ibge.gov.br/api/v3/agregados/7060/metadados"
 API = "https://apisidra.ibge.gov.br/values"
 UF_IBGE = {
     "11": "RO", "12": "AC", "13": "AM", "14": "RR", "15": "PA", "16": "AP", "17": "TO",
@@ -17,14 +16,23 @@ FIXOS = {"geral": ["Índice geral"], "comida_em_casa": ["Alimentação no domic�
 
 
 def categorias_ipca():
-    meta = baixar(META_IPCA).json()
-    classe = next(c for c in meta["classificacoes"] if "subitem" in norm(c["nome"]))
+    # A API de metadados (servicodados) não responde a partir do GitHub; a apisidra sim.
+    # Pedimos o último mês do Brasil com todas as categorias e lemos código e nome de cada uma.
+    linhas = baixar(f"{API}/t/7060/n1/all/v/63/p/last/c315/all").json()[1:]
     por_nome = {}
-    for cat in classe["categorias"]:
-        nome = norm(cat["nome"])
+    for l in linhas:
+        nome = norm(l.get("D4N", ""))
         nome = nome.split(".", 1)[1].strip() if nome[:1].isdigit() and "." in nome else nome
-        por_nome.setdefault(nome, cat["id"])
-    return classe["id"], por_nome
+        if l.get("D4C", "").isdigit():
+            por_nome.setdefault(nome, int(l["D4C"]))
+    print(f"  {len(por_nome)} categorias do IPCA lidas")
+    try:
+        DESCOBERTAS.mkdir(exist_ok=True)
+        (DESCOBERTAS / "ipca_categorias.txt").write_text(
+            "\n".join(f"{i}\t{n}" for n, i in sorted(por_nome.items(), key=lambda x: x[1])), encoding="utf-8")
+    except OSError:
+        pass
+    return 315, por_nome
 
 
 def escolher(por_nome, candidatos):
