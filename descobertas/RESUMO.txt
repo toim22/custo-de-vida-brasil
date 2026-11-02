@@ -4,7 +4,7 @@ OK   anp_dados_abertos: 350580 bytes, 812 links
 OK   dieese_cesta: 15432 bytes, 19 links
 OK   dieese_salario: 53195 bytes, 91 links
 ERRO sidra 7060: falha ao baixar https://servicodados.ibge.gov.br/api/v3/agregados/7060/metadados: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max 
-ERRO lista SIDRA: falha ao baixar https://servicodados.ibge.gov.br/api/v3/agregados: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max retries exceeded with url: /api/v3/agregados (Caused by ConnectTimeoutError(<HTTPSConnection(host='servicodados.ibge.gov.br', port=443) at 0x7d18ae9d5f70>, 'Connection to servicodados.ibge.gov.br timed out. (connect timeout=15)'))
+ERRO lista SIDRA: falha ao baixar https://servicodados.ibge.gov.br/api/v3/agregados: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max retries exceeded with url: /api/v3/agregados (Caused by ConnectTimeoutError(<HTTPSConnection(host='servicodados.ibge.gov.br', port=443) at 0x7db74a921cd0>, 'Connection to servicodados.ibge.gov.br timed out. (connect timeout=15)'))
 OK   teste apisidra: 758 bytes
 OK   teste sidra_site: 91307 bytes
 ERRO teste ftp_ibge: falha ao baixar https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/IPCA/Series_Historicas/: 404 Client Error: Not Found for url: https://f

@@ -2,31 +2,31 @@
  "combustiveis": {
   "nome": "ANP — combustíveis e gás",
   "ok": true,
-  "coletado_em": "2026-10-31 02:06 UTC",
+  "coletado_em": "2026-11-02 21:30 UTC",
   "dado_mais_recente": "2026-10-24"
  },
  "salario": {
   "nome": "DIEESE — salário mínimo",
   "ok": true,
-  "coletado_em": "2026-10-31 02:06 UTC",
+  "coletado_em": "2026-11-02 21:30 UTC",
   "dado_mais_recente": "2026-09"
  },
  "cesta": {
   "nome": "DIEESE — cesta básica",
   "ok": true,
-  "coletado_em": "2026-10-31 02:06 UTC",
+  "coletado_em": "2026-11-02 21:30 UTC",
   "dado_mais_recente": "2026-09"
  },
  "ipca": {
   "nome": "IBGE — IPCA",
   "ok": true,
-  "coletado_em": "2026-10-31 02:06 UTC",
+  "coletado_em": "2026-11-02 21:30 UTC",
   "dado_mais_recente": "2026-09"
  },
  "churrasco": {
   "nome": "Cálculo — itens avulsos e Churrasco pra 6",
   "ok": true,
-  "coletado_em": "2026-10-31 02:06 UTC",
+  "coletado_em": "2026-11-02 21:30 UTC",
   "dado_mais_recente": "2026-09"
  }
 }

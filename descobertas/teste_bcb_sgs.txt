@@ -102,7 +102,7 @@
 	<td></td>
 	<td colspan="4" style="border-top-color:#003d79;border-top-width:1;border-top-style:solid;">
 		<font size="2" color="red" face="Verdana, Arial, Helvetica, sans-serif">
-			A sua requisição foi rejeitada. <br>O código de erro é: 14273271138244761697<br><br>Caso necessite de ajuda entre em contato com a Central de Atendimento do Banco Central: +55 61 3414-2156.<br><br><a href='javascript:history.back();'>[Go Back]
+			A sua requisição foi rejeitada. <br>O código de erro é: 14273271138552552549<br><br>Caso necessite de ajuda entre em contato com a Central de Atendimento do Banco Central: +55 61 3414-2156.<br><br><a href='javascript:history.back();'>[Go Back]
          <address>
          
          <span><!--#config timefmt="%c" --><!--# echo var="date_local" default="-" --><br />
