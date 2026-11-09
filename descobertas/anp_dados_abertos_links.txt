@@ -25,6 +25,7 @@ http://www.facebook.com/sharer.php?u=https://www.gov.br/anp/pt-br/centrais-de-co
 http://www.planalto.gov.br/ccivil_03/leis/l9478.htm
 http://www4.planalto.gov.br/legislacao
 https://api.whatsapp.com/send?text=https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/serie-historica-de-precos-de-combustiveis
+https://app.powerbi.com/view?r=eyJrIjoiNDg2OGQ1NmMtNGIzYi00MWNlLWFhMmMtYWU5NmNjNzMwNDE4IiwidCI6IjQ0OTlmNGZmLTI0YTYtNGI0Mi1iN2VmLTEyNGFmY2FkYzkxMyJ9
 https://atosoficiais.com.br/lei/regimento-interno-anp-anp?origin=instituicao
 https://barra.sistema.gov.br/v1/barra-govbr-wc.iife.js
 https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css
@@ -44,6 +45,7 @@ https://www.gov.br/anp/++resource++brasil.gov.agenda/brasilgovagenda-720c34e.js
 https://www.gov.br/anp/++resource++brasil.gov.portal/brasilgovportal-ee510e4.css
 https://www.gov.br/anp/++resource++brasil.gov.portal/brasilgovportal-ee510e4.js
 https://www.gov.br/anp/++resource++govbr.policy/lgpd_cookie_handling_1_3_91.js
+https://www.gov.br/anp/@@search
 https://www.gov.br/anp/en/access-information/what-is-anp/what-is-anp
 https://www.gov.br/anp/portal_css/Sunburst%20Theme/IEFixes-cachekey-22764146d32f3747b07b822d1c38c650.css
 https://www.gov.br/anp/portal_css/Sunburst%20Theme/base-cachekey-03db70ced360272a719a337edbe4f474.css
@@ -67,7 +69,6 @@ https://www.gov.br/anp/portal_javascripts/Sunburst%20Theme/resourcelgpd.pluginch
 https://www.gov.br/anp/portal_javascripts/Sunburst%20Theme/resourceplone.app.jquery-cachekey-92cea5c78933bb584256c2be6cc7a084.js
 https://www.gov.br/anp/portal_javascripts/Sunburst%20Theme/resourceplone.formwidget.recurrencejquery.tmpl-beta1-cachekey-ed516a93a469a2ecd61e79cdce0d85e2.js
 https://www.gov.br/anp/pt-br
-https://www.gov.br/anp/pt-br/@@search
 https://www.gov.br/anp/pt-br/acesso-a-informacao
 https://www.gov.br/anp/pt-br/acesso-a-informacao/acoes-e-programas
 https://www.gov.br/anp/pt-br/acesso-a-informacao/acoes-e-programas/governanca-privacidade.pdf
@@ -223,6 +224,7 @@ https://www.gov.br/anp/pt-br/assuntos/investments-opportunities-in-brazil
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/acompanhamento-do-mercado-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/acondicionamento-de-gas-natural
+https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/autorizacao-de-instalacoes-de-abastecimento-veicular-com-gnv-e-gnlv-1
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/comunicacao-e-investigacao-de-incidentes
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/estocagem-subterranea-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/estudos-e-notas-tecnicas
@@ -234,8 +236,8 @@ https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/estudos-ec
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/historico-da-liberacao-dos-precos-de-combustiveis-no-mercado-brasileiro
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/instrucoes-para-envio-de-dados-de-comercializacao
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos
+https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/subvencao-2026
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/subvencao-a-comercializacao-de-oleo-diesel-2018
-https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/subvencao-a-comercializacao-de-oleo-diesel-rodoviario-2026
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/transparencia-na-distribuicao
 https://www.gov.br/anp/pt-br/assuntos/producao-de-derivados-de-petroleo-e-processamento-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/producao-de-derivados-de-petroleo-e-processamento-de-gas-natural/contratante-de-prestacao-de-servico
@@ -256,6 +258,7 @@ https://www.gov.br/anp/pt-br/assuntos/producao-e-fornecimento-de-biocombustiveis
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/agente-certificador-de-origem-aco
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/arquivos-programa-de-incentivo-ao-biometano
+https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/certificacao-do-produtor-ou-importador-de-biometano-com-vistas-a-emissao-do-cgob
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/comunicados-noticias-e-eventos
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/consultas-e-audiencias-publicas
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/credenciamento-de-agente-certificador-de-origem-aco
@@ -316,12 +319,11 @@ https://www.gov.br/anp/pt-br/canais_atendimento/consumidor
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/como-funciona-a-fiscalizacao-da-anp
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/dicas-para-o-consumidor-2013-combustiveis
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/dicas-para-o-consumidor-2013-glp-gas-de-cozinha
-https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/dicas-para-o-consumidor-2013-outras
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/mes-do-consumidor-2026
 https://www.gov.br/anp/pt-br/canais_atendimento/fale-conosco
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa
-https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/4o-ciclo-da-oferta-permanente-de-partilha-e-6o-ciclo-da-oferta-permanente-de-concessao
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/anp-esclarece
+https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/anp-na-midia
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/cadastro-de-jornalistas
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/kits-de-imprensa-1
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/newsletter
@@ -486,6 +488,9 @@ https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/ds
 https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsan/2026/09-dados-abertos-precos-2026-09-diesel-gnv.csv
 https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsan/2026/09-dados-abertos-precos-2026-09-gasolina-etanol.csv
 https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsan/2026/09-dados-abertos-precos-2026-09-glp.csv
+https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsan/2026/10-diesel-gnv.csv
+https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsan/2026/10-gasolina-etanol.csv
+https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsan/2026/10-glp.csv
 https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2004-01.csv
 https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2004-02.csv
 https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2005-01.csv

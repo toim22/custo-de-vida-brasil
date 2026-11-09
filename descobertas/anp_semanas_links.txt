@@ -25,6 +25,7 @@ http://www.facebook.com/sharer.php?u=https://www.gov.br/anp/pt-br/assuntos/preco
 http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/d8777.htm
 http://www4.planalto.gov.br/legislacao
 https://api.whatsapp.com/send?text=https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas
+https://app.powerbi.com/view?r=eyJrIjoiNDg2OGQ1NmMtNGIzYi00MWNlLWFhMmMtYWU5NmNjNzMwNDE4IiwidCI6IjQ0OTlmNGZmLTI0YTYtNGI0Mi1iN2VmLTEyNGFmY2FkYzkxMyJ9
 https://atosoficiais.com.br/lei/regimento-interno-anp-anp?origin=instituicao
 https://barra.sistema.gov.br/v1/barra-govbr-wc.iife.js
 https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css
@@ -223,6 +224,7 @@ https://www.gov.br/anp/pt-br/assuntos/investments-opportunities-in-brazil
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/acompanhamento-do-mercado-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/acondicionamento-de-gas-natural
+https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/autorizacao-de-instalacoes-de-abastecimento-veicular-com-gnv-e-gnlv-1
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/comunicacao-e-investigacao-de-incidentes
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/estocagem-subterranea-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/movimentacao-estocagem-e-comercializacao-de-gas-natural/estudos-e-notas-tecnicas
@@ -632,6 +634,8 @@ https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/resumo_semanal_lpc_2026-10-04_2026-10-10.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/resumo_semanal_lpc_2026_10_11-2026_10_17.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/resumo_semanal_lpc_2026_10_18-2026_10_24.xlsx
+https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/resumo_semanal_lpc_2026_10_25-2026_10_31.xlsx
+https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/resumo_semanal_lpc_2026_11_01-2026_11_07.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2025-12-28_2026-01-03.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2026-01-04_2026-01-10.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2026-01-11_2026-01-17.xlsx
@@ -675,11 +679,13 @@ https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arq
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2026-10-04_2026-10-10.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2026_10_11-2026_10_17.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2026_10_18-2026_10_24.xlsx
+https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2026_10_25-2026_10_31.xlsx
+https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/arquivos-lpc/2026/revendas_lpc_2026_11_01-2026_11_07.xlsx
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/precos-revenda-e-de-distribuicao-combustiveis/informacoes-levantamento-de-precos-de-combustiveis
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/precos-revenda-e-de-distribuicao-combustiveis/serie-historica-do-levantamento-de-precos
+https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/subvencao-2026
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/subvencao-a-comercializacao-de-oleo-diesel-2018
-https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/subvencao-a-comercializacao-de-oleo-diesel-rodoviario-2026
 https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/transparencia-na-distribuicao
 https://www.gov.br/anp/pt-br/assuntos/producao-de-derivados-de-petroleo-e-processamento-de-gas-natural
 https://www.gov.br/anp/pt-br/assuntos/producao-de-derivados-de-petroleo-e-processamento-de-gas-natural/contratante-de-prestacao-de-servico
@@ -700,6 +706,7 @@ https://www.gov.br/anp/pt-br/assuntos/producao-e-fornecimento-de-biocombustiveis
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/agente-certificador-de-origem-aco
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/arquivos-programa-de-incentivo-ao-biometano
+https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/certificacao-do-produtor-ou-importador-de-biometano-com-vistas-a-emissao-do-cgob
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/comunicados-noticias-e-eventos
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/consultas-e-audiencias-publicas
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/credenciamento-de-agente-certificador-de-origem-aco
@@ -760,12 +767,11 @@ https://www.gov.br/anp/pt-br/canais_atendimento/consumidor
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/como-funciona-a-fiscalizacao-da-anp
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/dicas-para-o-consumidor-2013-combustiveis
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/dicas-para-o-consumidor-2013-glp-gas-de-cozinha
-https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/dicas-para-o-consumidor-2013-outras
 https://www.gov.br/anp/pt-br/canais_atendimento/consumidor/mes-do-consumidor-2026
 https://www.gov.br/anp/pt-br/canais_atendimento/fale-conosco
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa
-https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/4o-ciclo-da-oferta-permanente-de-partilha-e-6o-ciclo-da-oferta-permanente-de-concessao
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/anp-esclarece
+https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/anp-na-midia
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/cadastro-de-jornalistas
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/kits-de-imprensa-1
 https://www.gov.br/anp/pt-br/canais_atendimento/imprensa/newsletter
