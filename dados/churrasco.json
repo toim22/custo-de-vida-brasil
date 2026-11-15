@@ -228,6 +228,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.42
    ]
   ],
   "BA": [
@@ -410,6 +414,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.54
    ]
   ],
   "BR": [
@@ -592,6 +600,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.18
    ]
   ],
   "CE": [
@@ -774,6 +786,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    267.75
    ]
   ],
   "DF": [
@@ -956,6 +972,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    267.3
    ]
   ],
   "ES": [
@@ -1138,6 +1158,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    267.91
    ]
   ],
   "GO": [
@@ -1320,6 +1344,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    271.62
    ]
   ],
   "MA": [
@@ -1502,6 +1530,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.28
    ]
   ],
   "MG": [
@@ -1684,6 +1716,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.38
    ]
   ],
   "MS": [
@@ -1866,6 +1902,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    269.07
    ]
   ],
   "PA": [
@@ -2048,6 +2088,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    262.44
    ]
   ],
   "PE": [
@@ -2230,6 +2274,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.77
    ]
   ],
   "PR": [
@@ -2412,6 +2460,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    267.78
    ]
   ],
   "RJ": [
@@ -2594,6 +2646,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.38
    ]
   ],
   "RS": [
@@ -2776,6 +2832,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    266.09
    ]
   ],
   "SE": [
@@ -2958,6 +3018,10 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.86
    ]
   ],
   "SP": [
@@ -3140,163 +3204,167 @@
    [
     "2026-09",
     266.6
+   ],
+   [
+    "2026-10",
+    268.53
    ]
   ]
  },
  "ultimo_detalhe": {
   "AC": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 61.46,
+   "linguica": 20.24,
+   "asa": 17.68,
+   "pao_alho": 30.28,
+   "carvao": 25.11,
+   "cerveja": 95.77,
+   "refrigerante": 17.88
   },
   "BA": {
-   "alcatra": 60.0,
+   "alcatra": 61.78,
    "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "asa": 18.02,
+   "pao_alho": 30.13,
+   "carvao": 25.11,
+   "cerveja": 95.52,
+   "refrigerante": 17.98
   },
   "BR": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 61.54,
+   "linguica": 19.91,
+   "asa": 17.65,
+   "pao_alho": 30.17,
+   "carvao": 25.11,
+   "cerveja": 95.77,
+   "refrigerante": 18.04
   },
   "CE": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 60.73,
+   "linguica": 19.72,
+   "asa": 17.68,
+   "pao_alho": 29.84,
+   "carvao": 25.11,
+   "cerveja": 96.58,
+   "refrigerante": 18.1
   },
   "DF": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 59.62,
+   "linguica": 19.74,
+   "asa": 17.58,
+   "pao_alho": 29.85,
+   "carvao": 25.11,
+   "cerveja": 97.26,
+   "refrigerante": 18.14
   },
   "ES": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 61.82,
+   "linguica": 19.88,
+   "asa": 17.59,
+   "pao_alho": 30.42,
+   "carvao": 25.11,
+   "cerveja": 95.42,
+   "refrigerante": 17.67
   },
   "GO": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 62.96,
+   "linguica": 19.7,
+   "asa": 18.42,
+   "pao_alho": 30.19,
+   "carvao": 25.11,
+   "cerveja": 96.89,
+   "refrigerante": 18.35
   },
   "MA": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 62.65,
+   "linguica": 19.56,
+   "asa": 17.74,
+   "pao_alho": 29.8,
+   "carvao": 25.25,
+   "cerveja": 95.41,
+   "refrigerante": 17.88
   },
   "MG": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 62.27,
+   "linguica": 19.9,
+   "asa": 17.69,
+   "pao_alho": 30.37,
+   "carvao": 25.11,
+   "cerveja": 95.16,
+   "refrigerante": 17.89
   },
   "MS": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 61.55,
+   "linguica": 19.77,
+   "asa": 18.22,
+   "pao_alho": 29.87,
+   "carvao": 25.11,
+   "cerveja": 96.24,
+   "refrigerante": 18.3
   },
   "PA": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 57.85,
+   "linguica": 19.65,
+   "asa": 17.46,
+   "pao_alho": 30.55,
+   "carvao": 24.97,
+   "cerveja": 94.51,
+   "refrigerante": 17.45
   },
   "PE": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 61.07,
+   "linguica": 20.04,
+   "asa": 17.32,
+   "pao_alho": 30.45,
+   "carvao": 25.11,
+   "cerveja": 96.73,
+   "refrigerante": 18.05
   },
   "PR": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 61.32,
+   "linguica": 19.52,
+   "asa": 17.65,
+   "pao_alho": 30.03,
+   "carvao": 25.11,
+   "cerveja": 96.05,
+   "refrigerante": 18.1
   },
   "RJ": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 64.09,
+   "linguica": 19.95,
+   "asa": 17.34,
+   "pao_alho": 30.3,
+   "carvao": 25.11,
+   "cerveja": 93.55,
+   "refrigerante": 18.04
   },
   "RS": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 58.99,
+   "linguica": 19.67,
+   "asa": 18.06,
+   "pao_alho": 29.3,
+   "carvao": 25.11,
+   "cerveja": 96.83,
+   "refrigerante": 18.14
   },
   "SE": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 62.18,
+   "linguica": 19.51,
+   "asa": 17.34,
+   "pao_alho": 30.59,
+   "carvao": 25.11,
+   "cerveja": 96.1,
+   "refrigerante": 18.03
   },
   "SP": {
-   "alcatra": 60.0,
-   "linguica": 20.0,
-   "asa": 17.6,
-   "pao_alho": 30.0,
-   "carvao": 25.0,
-   "cerveja": 96.0,
-   "refrigerante": 18.0
+   "alcatra": 61.52,
+   "linguica": 20.12,
+   "asa": 17.53,
+   "pao_alho": 30.31,
+   "carvao": 25.11,
+   "cerveja": 95.88,
+   "refrigerante": 18.06
   }
  },
- "atualizado": "2026-09"
+ "atualizado": "2026-10"
 }

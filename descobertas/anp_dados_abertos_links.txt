@@ -45,7 +45,6 @@ https://www.gov.br/anp/++resource++brasil.gov.agenda/brasilgovagenda-720c34e.js
 https://www.gov.br/anp/++resource++brasil.gov.portal/brasilgovportal-ee510e4.css
 https://www.gov.br/anp/++resource++brasil.gov.portal/brasilgovportal-ee510e4.js
 https://www.gov.br/anp/++resource++govbr.policy/lgpd_cookie_handling_1_3_91.js
-https://www.gov.br/anp/@@search
 https://www.gov.br/anp/en/access-information/what-is-anp/what-is-anp
 https://www.gov.br/anp/portal_css/Sunburst%20Theme/IEFixes-cachekey-22764146d32f3747b07b822d1c38c650.css
 https://www.gov.br/anp/portal_css/Sunburst%20Theme/base-cachekey-03db70ced360272a719a337edbe4f474.css
@@ -69,6 +68,7 @@ https://www.gov.br/anp/portal_javascripts/Sunburst%20Theme/resourcelgpd.pluginch
 https://www.gov.br/anp/portal_javascripts/Sunburst%20Theme/resourceplone.app.jquery-cachekey-92cea5c78933bb584256c2be6cc7a084.js
 https://www.gov.br/anp/portal_javascripts/Sunburst%20Theme/resourceplone.formwidget.recurrencejquery.tmpl-beta1-cachekey-ed516a93a469a2ecd61e79cdce0d85e2.js
 https://www.gov.br/anp/pt-br
+https://www.gov.br/anp/pt-br/@@search
 https://www.gov.br/anp/pt-br/acesso-a-informacao
 https://www.gov.br/anp/pt-br/acesso-a-informacao/acoes-e-programas
 https://www.gov.br/anp/pt-br/acesso-a-informacao/acoes-e-programas/governanca-privacidade.pdf
@@ -264,6 +264,7 @@ https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/consultas-e-a
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/credenciamento-de-agente-certificador-de-origem-aco
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/estudos-relatorios-e-seminarios
 https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/legislacao
+https://www.gov.br/anp/pt-br/assuntos/programa-incentivo-biometano/plataforma-cgob
 https://www.gov.br/anp/pt-br/assuntos/qualidade-de-produtos
 https://www.gov.br/anp/pt-br/assuntos/qualidade-de-produtos/autorizacao-para-uso-especifico-de-biodiesel-e-de-suas-misturas-com-oleo-diesel
 https://www.gov.br/anp/pt-br/assuntos/qualidade-de-produtos/biocombustiveis

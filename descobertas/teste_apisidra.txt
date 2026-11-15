@@ -19,13 +19,13 @@
     "NN": "Brasil",
     "MC": "2",
     "MN": "%",
-    "V": "0.82",
+    "V": "0.14",
     "D1C": "1",
     "D1N": "Brasil",
     "D2C": "63",
     "D2N": "IPCA - Variação mensal",
-    "D3C": "202609",
-    "D3N": "setembro 2026",
+    "D3C": "202610",
+    "D3N": "outubro 2026",
     "D4C": "7169",
     "D4N": "Índice geral"
   }
