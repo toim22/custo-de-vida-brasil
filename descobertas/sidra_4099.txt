@@ -1,0 +1,12 @@
+TABELA 4099: Taxas de desocupação e de subutilização da força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+niveis: {'Administrativo': ['N1', 'N2', 'N6', 'N14', 'N7', 'N3'], 'Especial': [], 'IBGE': []}
+VARIAVEIS:
+  4099: Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4103: Coeficiente de variação - Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4114: Taxa combinada de desocupação e de subocupação por insuficiência de horas trabalhadas, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4115: Coeficiente de variação - Taxa combinada de desocupação e de subocupação por insuficiência de horas trabalhadas, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4116: Taxa combinada de desocupação e força de trabalho potencial, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4117: Coeficiente de variação - Taxa combinada de desocupação e força de trabalho potencial, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4118: Taxa composta de subutilização da força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4119: Coeficiente de variação - Taxa composta de subutilização da força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade (%)

@@ -7,8 +7,6 @@ css/bootstrap.css
 css/cesta.css
 data
 https://www.dieese.org.br/analisecestabasica/analiseCestaBasicaAnteriores.html
-https://www.dieese.org.br/analisecestabasica/notaBancoDados.html
-https://www.dieese.org.br/imagens/icone-banco.gif
 https://www.dieese.org.br/imagens/icone-boletins.gif
 https://www.dieese.org.br/imagens/icone-metodologia.gif
 https://www.dieese.org.br/imagens/logosgovernofederal.gif

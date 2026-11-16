@@ -1,10 +1,23 @@
 OK   anp_serie: 300647 bytes, 616 links
 OK   anp_semanas: 471888 bytes, 1037 links
 OK   anp_dados_abertos: 353251 bytes, 818 links
-OK   dieese_cesta: 15432 bytes, 19 links
+OK   dieese_cesta: 15152 bytes, 17 links
 OK   dieese_salario: 53263 bytes, 91 links
-ERRO sidra 7060: falha ao baixar https://servicodados.ibge.gov.br/api/v3/agregados/7060/metadados: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max 
-ERRO lista SIDRA: falha ao baixar https://servicodados.ibge.gov.br/api/v3/agregados: HTTPSConnectionPool(host='servicodados.ibge.gov.br', port=443): Max retries exceeded with url: /api/v3/agregados (Caused by ConnectTimeoutError(<HTTPSConnection(host='servicodados.ibge.gov.br', port=443) at 0x7b7143b12090>, 'Connection to servicodados.ibge.gov.br timed out. (connect timeout=15)'))
+OK   sidra 7060: IPCA - Variação mensal, acumulada no ano, acumulada em 12 meses e peso mensal, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (a partir de janeiro/2020)
+OK   sidra 6318: Pessoas de 14 anos ou mais de idade - Total, coeficiente de variação, variações percentuais e absolutas em relação aos três trimestres móveis anteriores e ao mesmo trimestre móvel do ano anterior, por condição em relação à força de trabalho e condição de ocupação
+OK   sidra 6807: Percentual de pessoas desalentadas na população na força de trabalho ou desalentada - Total, coeficiente de variação, variações em relação aos três trimestres móveis anteriores e ao mesmo trimestre móvel do ano anterior
+OK   sidra 4093: Pessoas de 14 anos ou mais de idade, total, na força de trabalho, ocupadas, desocupadas, fora da força de trabalho, em situação de informalidade e respectivas taxas e níveis, por sexo
+OK   sidra 4099: Taxas de desocupação e de subutilização da força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade
+OK   sidra 4092: Pessoas de 14 anos ou mais de idade, por condição em relação à força de trabalho e condição de ocupação
+OK   sidra 5436: Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente e efetivamente recebidos no trabalho principal e em todos os trabalhos, por sexo
+OK   sidra 6390: Rendimento médio mensal real e nominal das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente recebido em todos os trabalhos - Total, coeficiente de variação, variações em relação aos três trimestres móveis anteriores e ao mesmo trimestre móvel do ano anterior
+OK   sidra 6387: Rendimento médio mensal real e nominal das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, efetivamente recebido em todos os trabalhos - Total, coeficiente de variação, variações em relação aos três trimestres móveis anteriores e ao mesmo trimestre móvel do ano anterior
+OK   sidra 6785: Taxa de subocupação por insuficiência de horas trabalhadas - Total, coeficiente de variação, variações em relação aos três trimestres móveis anteriores e ao mesmo trimestre móvel do ano anterior
+ERRO sidra 6800: falha ao baixar https://servicodados.ibge.gov.br/api/v3/agregados/6800/metadados: 500 Server Error: Internal Server Error for url: https://servicodado
+OK   sidra 6461: Taxa de participação na força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade - Total, coeficiente de variação, variações em relação ao trimestre anterior e ao mesmo trimestre do ano anterior
+OK   sidra 4097: Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, por posição na ocupação e categoria do emprego no trabalho principal
+OK   sidra 4094: Pessoas de 14 anos ou mais de idade, total, na força de trabalho, ocupadas, desocupadas, fora da força de trabalho, em situação de informalidade e respectivas taxas e níveis, por grupo de idade
+OK   lista de tabelas SIDRA: 52
 OK   teste apisidra: 757 bytes
 OK   teste sidra_site: 91307 bytes
 ERRO teste ftp_ibge: falha ao baixar https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/IPCA/Series_Historicas/: 404 Client Error: Not Found for url: https://f

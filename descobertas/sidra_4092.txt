@@ -1,0 +1,14 @@
+TABELA 4092: Pessoas de 14 anos ou mais de idade, por condição em relação à força de trabalho e condição de ocupação
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+niveis: {'Administrativo': ['N1', 'N2', 'N6', 'N14', 'N7', 'N3'], 'Especial': [], 'IBGE': []}
+VARIAVEIS:
+  1641: Pessoas de 14 anos ou mais de idade (Mil pessoas)
+  4087: Coeficiente de variação - Pessoas de 14 anos ou mais de idade (%)
+  4104: Distribuição percentual das pessoas de 14 anos ou mais de idade (%)
+  4105: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade (%)
+CLASSIFICACAO 629: Condição em relação à força de trabalho e condição de ocupação
+  32385: Total
+  32386: Força de trabalho
+  32387: Força de trabalho - ocupada
+  32446: Força de trabalho - desocupada
+  32447: Fora da força de trabalho

@@ -1,0 +1,45 @@
+TABELA 4094: Pessoas de 14 anos ou mais de idade, total, na força de trabalho, ocupadas, desocupadas, fora da força de trabalho, em situação de informalidade e respectivas taxas e níveis, por grupo de idade
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+niveis: {'Administrativo': ['N1', 'N2', 'N6', 'N14', 'N7', 'N3'], 'Especial': [], 'IBGE': []}
+VARIAVEIS:
+  1641: Pessoas de 14 anos ou mais de idade (Mil pessoas)
+  4087: Coeficiente de variação - Pessoas de 14 anos ou mais de idade (%)
+  4104: Distribuição percentual das pessoas de 14 anos ou mais de idade (%)
+  4105: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade (%)
+  4088: Pessoas de 14 anos ou mais de idade, na força de trabalho, na semana de referência (Mil pessoas)
+  4089: Coeficiente de variação - Pessoas de 14 anos ou mais de idade, na força de trabalho, na semana de referência (%)
+  4106: Distribuição percentual das pessoas de 14 anos ou mais de idade, na força de trabalho, na semana de referência (%)
+  4107: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade, na força de trabalho, na semana de referência (%)
+  4090: Pessoas de 14 anos ou mais de idade ocupadas na semana de referência (Mil pessoas)
+  4091: Coeficiente de variação - Pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+  4108: Distribuição percentual das pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+  4109: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+  4092: Pessoas de 14 anos ou mais de idade, desocupadas na semana de referência (Mil pessoas)
+  4093: Coeficiente de variação - Pessoas de 14 anos ou mais de idade, desocupadas na semana de referência (%)
+  4110: Distribuição percentual das pessoas de 14 anos ou mais de idade, desocupadas na semana de referência (%)
+  4111: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade, desocupadas na semana de referência (%)
+  4094: Pessoas de 14 anos ou mais de idade, fora da força de trabalho, na semana de referência (Mil pessoas)
+  4095: Coeficiente de variação - Pessoas de 14 anos ou mais de idade, fora da força de trabalho, na semana de referência (%)
+  4112: Distribuição percentual das pessoas de 14 anos ou mais de idade, fora da força de trabalho, na semana de referência (%)
+  4113: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade, fora da força de trabalho, na semana de referência (%)
+  4096: Taxa de participação na força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4100: Coeficiente de variação - Taxa de participação na força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4097: Nível da ocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4101: Coeficiente de variação - Nível da ocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4098: Nível da desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4102: Coeficiente de variação - Nível de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4099: Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  4103: Coeficiente de variação - Taxa de desocupação, na semana de referência, das pessoas de 14 anos ou mais de idade (%)
+  12466: Taxa de informalidade das pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+  12467: Coeficiente de variação - Taxa de informalidade das pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+  4723: Pessoas de 14 anos ou mais de idade ocupadas, em situação de informalidade, na semana de referência (Mil pessoas)
+  4724: Coeficiente de variação - Pessoas de 14 anos ou mais de idade ocupadas, em situação de informalidade, na semana de referência (%)
+  4726: Distribuição percentual das pessoas de 14 anos ou mais de idade ocupadas, em situação de informalidade, na semana de referência (%)
+  4774: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade ocupadas, em situação de informalidade, na semana de referência (%)
+CLASSIFICACAO 58: Grupo de idade
+  95253: Total
+  114535: 14 a 17 anos
+  100052: 18 a 24 anos
+  108875: 25 a 39 anos
+  99127: 40 a 59 anos
+  3302: 60 anos ou mais

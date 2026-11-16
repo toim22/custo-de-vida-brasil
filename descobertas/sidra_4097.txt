@@ -1,0 +1,23 @@
+TABELA 4097: Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, por posição na ocupação e categoria do emprego no trabalho principal
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+niveis: {'Administrativo': ['N1', 'N2', 'N3'], 'Especial': [], 'IBGE': []}
+VARIAVEIS:
+  4090: Pessoas de 14 anos ou mais de idade ocupadas na semana de referência (Mil pessoas)
+  4091: Coeficiente de variação - Pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+  4108: Distribuição percentual das pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+  4109: Coeficiente de variação - Distribuição percentual das pessoas de 14 anos ou mais de idade ocupadas na semana de referência (%)
+CLASSIFICACAO 11913: Posição na ocupação e categoria do emprego no trabalho principal
+  96165: Total
+  31721: Empregado no setor privado, exclusive trabalhador doméstico
+  31722: Empregado no setor privado, exclusive trabalhador doméstico - com carteira de trabalho assinada
+  31723: Empregado no setor privado, exclusive trabalhador doméstico - sem carteira de trabalho assinada
+  31724: Trabalhador doméstico
+  31725: Trabalhador doméstico - com carteira de trabalho assinada
+  31726: Trabalhador doméstico - sem carteira de trabalho assinada
+  31727: Empregado no setor público
+  31728: Empregado no setor público, exclusive militar e funcionário público estatutário - com carteira de trabalho assinada
+  31729: Empregado no setor público, exclusive militar e funcionário público estatutário - sem carteira de trabalho assinada
+  31730: Empregado no setor público - militar e funcionário público estatutário
+  96170: Empregador
+  96171: Conta própria
+  31731: Trabalhador familiar auxiliar

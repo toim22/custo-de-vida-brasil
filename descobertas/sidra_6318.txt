@@ -1,0 +1,18 @@
+TABELA 6318: Pessoas de 14 anos ou mais de idade - Total, coeficiente de variação, variações percentuais e absolutas em relação aos três trimestres móveis anteriores e ao mesmo trimestre móvel do ano anterior, por condição em relação à força de trabalho e condição de ocupação
+periodicidade: {'frequencia': 'trimestral móvel', 'inicio': 201203, 'fim': 202609}
+niveis: {'Administrativo': ['N1'], 'Especial': [], 'IBGE': []}
+VARIAVEIS:
+  1641: Pessoas de 14 anos ou mais de idade (Mil pessoas)
+  4087: Coeficiente de variação - Pessoas de 14 anos ou mais de idade (%)
+  8399: Variação percentual em relação a três trimestres móveis anteriores - Pessoas de 14 anos ou mais de idade (%)
+  8400: Variação absoluta em relação a três trimestres móveis anteriores - Pessoas de 14 anos ou mais de idade (Mil pessoas)
+  8403: Situação da Variação em relação a três trimestres móveis anteriores - Pessoas de 14 anos ou mais de idade (Nenhuma)
+  8404: Variação percentual em relação ao mesmo trimestre móvel do ano anterior - Pessoas de 14 anos ou mais de idade (%)
+  8405: Variação absoluta em relação ao mesmo trimestre móvel do ano anterior - Pessoas de 14 anos ou mais de idade (Mil pessoas)
+  8408: Situação da Variação em relação ao mesmo trimestre móvel do ano anterior - Pessoas de 14 anos ou mais de idade (Nenhuma)
+CLASSIFICACAO 629: Condição em relação à força de trabalho e condição de ocupação
+  32385: Total
+  32386: Força de trabalho
+  32387: Força de trabalho - ocupada
+  32446: Força de trabalho - desocupada
+  32447: Fora da força de trabalho
