@@ -311,7 +311,8 @@
     var fmtY = opts.fmtY || function (v) { return numero(v, 2); };
     // desenha no tamanho real do espaço, para o texto não encolher no celular
     var W = Math.max(300, Math.round(alvo.clientWidth || 640)), H = opts.altura || Math.max(200, Math.min(300, Math.round(W * 0.45))), mE = 58, mD = 14, mT = 14, mB = 28;
-    var rotX = function (k) { var m = /^(\d{4})-(\d{2})-\d{2}$/.exec(k); return m ? MESES[+m[2] - 1] + "/" + m[1] : data(k); };
+    var rotK = opts.rotK || data;  // texto da data na dica e na tabela
+    var rotX = opts.rotX || function (k) { var m = /^(\d{4})-(\d{2})-\d{2}$/.exec(k); return m ? MESES[+m[2] - 1] + "/" + m[1] : data(k); };
     var nX = Math.max(2, Math.min(6, Math.floor(W / 110)));
     series = series.filter(function (s) { return s.pontos && s.pontos.length; });
     if (!series.length) { alvo.innerHTML = '<p class="aviso">Ainda não há dados para este gráfico. Eles aparecem depois da próxima coleta.</p>'; return; }
@@ -371,7 +372,7 @@
 
     // tabela equivalente, para leitores de tela e para quem prefere números
     var linhas = chaves.slice().reverse().map(function (k) {
-      return "<tr><td>" + data(k) + "</td>" + series.map(function (se) {
+      return "<tr><td>" + rotK(k) + "</td>" + series.map(function (se) {
         var p = se.pontos.filter(function (q) { return q[0] === k; })[0];
         return '<td class="r">' + (p ? fmtY(p[1]) : "—") + "</td>";
       }).join("") + "</tr>";
@@ -393,7 +394,7 @@
       i = Math.max(0, Math.min(chaves.length - 1, i));
       var k = chaves[i];
       guia.setAttribute("x1", px(i)); guia.setAttribute("x2", px(i)); guia.setAttribute("visibility", "visible");
-      var txt = data(k) + ": " + series.map(function (se) {
+      var txt = rotK(k) + ": " + series.map(function (se) {
         var p = se.pontos.filter(function (q) { return q[0] === k; })[0];
         return (series.length > 1 ? se.nome + " " : "") + (p ? fmtY(p[1]) : "—");
       }).join(" · ");
@@ -425,6 +426,7 @@
     topo.innerHTML = '<div class="wrap"><a class="logo" href="index.html"><i aria-hidden="true"></i>' + SITE.nome + '</a><nav class="menu" aria-label="Seções do site">' +
       MENU.map(function (m) { return '<a href="' + m[0] + '"' + (m[0] === aqui ? ' aria-current="page"' : "") + ">" + m[1] + "</a>"; }).join("") + "</nav></div>";
     document.body.insertBefore(topo, document.body.firstChild);
+    cotacoesTopo(topo.querySelector(".logo"), aqui === "mercado.html");
 
     var rod = document.createElement("footer");
     rod.className = "rodape-site";
@@ -444,6 +446,40 @@
         var el = document.getElementById("visitas"); el.textContent = j.count; el.hidden = false;
       }).catch(function () {});
     }
+  }
+
+  /* ---------- Dólar e Ibovespa no canto do topo (levam à página mercado.html) ----------
+     O arquivo dados/mercado-agora.json é atualizado de hora em hora no pregão (B3 com ~15 min de atraso).
+     O dólar ainda tenta o valor do momento na AwesomeAPI (gratuita); se ela falhar, fica o do arquivo.
+     Cores: dólar subindo é vermelho (encarece o que compramos); Bolsa subindo é verde. */
+  function dolarAoVivo() {
+    try { var c = JSON.parse(sessionStorage.getItem("cvb-usd") || "null"); if (c && Date.now() - c.t < 120000) return Promise.resolve(c.v); } catch (e) {}
+    return fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      var q = j && j.USDBRL; if (!q || !(+q.bid > 0)) return null;
+      var v = { preco: +q.bid, pct: +q.pctChange, hora: new Date(+q.timestamp * 1000).toISOString() };
+      try { sessionStorage.setItem("cvb-usd", JSON.stringify({ t: Date.now(), v: v })); } catch (e) {}
+      return v;
+    }).catch(function () { return null; });
+  }
+  function cotacoesTopo(depoisDe, aqui) {
+    var a = document.createElement("a");
+    a.className = "cotas"; a.href = "mercado.html"; a.hidden = true;
+    if (aqui) a.setAttribute("aria-current", "page");
+    a.setAttribute("aria-label", "Dólar e Ibovespa: ver gráficos e ações das estatais");
+    depoisDe.insertAdjacentElement("afterend", a);
+    function item(rot, curto, valor, pct, bomSubir) {
+      return '<span class="cota"><span class="cn"><span class="cn-l">' + rot + '</span><span class="cn-c">' + curto + "</span></span><b>" + valor + "</b>" +
+        (pct === null || isNaN(pct) ? "" : variacao(pct, { casas: 2, bomSubir: bomSubir })) + "</span>";
+    }
+    Promise.all([carregar("mercado-agora"), dolarAoVivo()]).then(function (r) {
+      var m = (r[0] && r[0].ativos) || {}, vivo = r[1], h = "";
+      var usd = m.USD, ib = m.IBOV;
+      if (vivo) h += item("Dólar", "USD", brl(vivo.preco, 2), vivo.pct, false);
+      else if (usd && usd.preco) h += item("Dólar", "USD", brl(usd.preco, 2), usd.anterior ? (usd.preco / usd.anterior - 1) * 100 : null, false);
+      if (ib && ib.preco) h += item("Ibovespa", "Ibov", numero(ib.preco, 0), ib.anterior ? (ib.preco / ib.anterior - 1) * 100 : null, true);
+      if (!h) return;
+      a.innerHTML = h; a.hidden = false;
+    });
   }
 
   /* ---------- Animações (sutis; desligadas para quem pede menos movimento) ----------
@@ -550,6 +586,6 @@
     brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, classe: classe,
     mini: mini, bandeira: bandeira, config: config, barraImpostos: barraImpostos,
     ultimo: ultimo, anterior: anterior, valorEm: valorEm, variacao12: variacao12,
-    carregar: carregar, grafico: grafico
+    carregar: carregar, grafico: grafico, dolarAoVivo: dolarAoVivo, MESES: MESES
   };
 })();

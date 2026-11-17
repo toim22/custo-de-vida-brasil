@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dólar, Ibovespa e ações das estatais hoje · Custo de Vida Brasil</title>
+<meta name="description" content="Cotação do dólar, do Ibovespa e das ações das estatais (Petrobras, Banco do Brasil, Cemig e outras), com gráficos de 24 horas, semana, mês, ano e desde 2023.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco">
+    <span class="eyebrow" id="atualizado">Dólar, Bolsa e estatais</span>
+    <h1>Dólar, Ibovespa e as ações das estatais</h1>
+    <div class="filtros">
+      <div class="seg" id="periodos" role="group" aria-label="Período"></div>
+    </div>
+  </section>
+
+  <section class="bloco heroi" id="detalhe">
+    <div class="stack">
+      <h2 id="d-titulo">—</h2>
+      <p class="small" id="d-sub"></p>
+      <div class="fatos" id="d-fatos"></div>
+      <div class="explica" id="d-bolso" hidden></div>
+      <a class="como" href="como-calculamos.html#mercado">Como calculamos →</a>
+    </div>
+    <div class="grafico">
+      <div class="cab"><b id="g-titulo">—</b><span class="small" id="g-unid"></span></div>
+      <div id="g"></div>
+    </div>
+  </section>
+
+  <section class="bloco" id="lista" aria-label="Cotações"></section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+
+  <section class="bloco">
+    <p class="small" id="fora"></p>
+    <p class="small" id="fonte"></p>
+  </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  var PERIODOS = [
+    // código, botão, variação, ponto de partida, título do gráfico
+    ["24h", "24h", "em 24 horas", "há 24 horas", "últimas 24 horas"],
+    ["semana", "Semana", "em 7 dias", "há 7 dias", "últimos 7 dias"],
+    ["mes", "Mês", "em 1 mês", "há 1 mês", "último mês"],
+    ["ano", "Ano", "em 1 ano", "há 1 ano", "último ano"],
+    ["tudo", "Desde 2023", "desde jan/2023", "no começo de 2023", "desde jan/2023"]
+  ];
+  var GRUPOS = [
+    ["", "Dólar e Bolsa", function (a) { return a.tipo !== "acao"; }],
+    ["federal", "Estatais federais · controladas pela União", function (a) { return a.esfera === "federal"; }],
+    ["estadual", "Estatais estaduais · controladas pelo governo do estado", function (a) { return a.esfera === "estadual"; }]
+  ];
+
+  Promise.all([C.carregar("mercado"), C.carregar("salario"), C.dolarAoVivo()]).then(function (r) {
+    var m = r[0], sal = r[1], vivo = r[2];
+    if (!m || !m.ativos) {
+      document.querySelector("main").insertAdjacentHTML("afterbegin", '<p class="aviso">As cotações aparecem depois da primeira coleta.</p>');
+      return;
+    }
+    var ids = (m.ordem || Object.keys(m.ativos)).filter(function (k) { return m.ativos[k]; });
+
+    // Dólar do momento (o mesmo do topo da página): entra como último ponto, para tudo bater
+    if (vivo && m.ativos.USD) {
+      var usd = m.ativos.USD, agora = chaveBRT(new Date(vivo.hora)), hojeUTC = vivo.hora.slice(0, 10);
+      var ui = C.ultimo(usd.intradia);
+      if (!ui || ui[0] < agora) usd.intradia.push([agora, vivo.preco]);
+      var ud = C.ultimo(usd.diario);
+      if (ud && ud[0] === hojeUTC) ud[1] = vivo.preco; else if (!ud || ud[0] < hojeUTC) usd.diario.push([hojeUTC, vivo.preco]);
+      usd.preco = vivo.preco; usd.hora = agora; usd.aoVivo = true;
+    }
+
+    // estado: ativo e período, guardados no endereço (#PETR4/ano)
+    var h = (location.hash || "").slice(1).split("/");
+    var ativo = ids.indexOf(h[0]) > -1 ? h[0] : "IBOV";
+    var per = PERIODOS.some(function (p) { return p[0] === h[1]; }) ? h[1] : (C.lembrar("periodo-mercado") || "mes");
+    if (!PERIODOS.some(function (p) { return p[0] === per; })) per = "mes";
+
+    var segs = document.getElementById("periodos");
+    segs.innerHTML = PERIODOS.map(function (p) { return '<button type="button" data-p="' + p[0] + '">' + p[1] + "</button>"; }).join("");
+    segs.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      per = b.dataset.p; C.lembrar("periodo-mercado", per); desenhar();
+    });
+
+    var lista = document.getElementById("lista");
+    lista.addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-a]"); if (!b) return;
+      ativo = b.dataset.a; desenhar();
+      var d = document.getElementById("detalhe");
+      if (d.getBoundingClientRect().top < 0 || d.getBoundingClientRect().top > innerHeight * 0.6) d.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    function chaveBRT(d) { return new Date(d.getTime() - 3 * 3600e3).toISOString().slice(0, 16); }
+    function quando(k) { // chave intradia → Date
+      return new Date(k + ":00-03:00");
+    }
+    function hora(k) { return k.slice(11, 13) + "h" + k.slice(14, 16); }
+    function diaMes(k) { return k.slice(8, 10) + "/" + k.slice(5, 7); }
+    function menosMeses(dia, n) {
+      var d = new Date(dia + "T12:00:00Z"); d.setUTCMonth(d.getUTCMonth() - n); return d.toISOString().slice(0, 10);
+    }
+
+    /* Pontos do período escolhido e o valor de partida (para a variação). */
+    function recorte(a, p) {
+      var pts, base;
+      if ((p === "24h" || p === "semana") && a.intradia && a.intradia.length > 1) {
+        var fim = quando(C.ultimo(a.intradia)[0]).getTime();
+        var corte = chaveBRT(new Date(fim - (p === "24h" ? 24 : 24 * 7) * 3600e3));
+        pts = a.intradia.filter(function (x) { return x[0] >= corte; });
+        var antes = a.intradia.filter(function (x) { return x[0] < corte; });
+        // valor de partida: o último preço antes do corte; sem ele, o fechamento do dia anterior
+        if (antes.length) { base = C.ultimo(antes)[1]; pts.unshift(C.ultimo(antes)); }
+        else { var dAnt = C.valorEm(a.diario, chaveDia(pts[0][0], -1)); base = dAnt || pts[0][1]; }
+        return { pts: pts, base: base, intradia: true };
+      }
+      var dias = a.diario || [];
+      if (!dias.length) return { pts: [], base: null };
+      var ult = C.ultimo(dias)[0];
+      // 24h e semana sem dados de 15 em 15 minutos: usa os fechamentos diários
+      var inicio = { tudo: "0000", ano: menosMeses(ult, 12), mes: menosMeses(ult, 1), semana: chaveDia(ult, -7), "24h": chaveDia(ult, -1) }[p];
+      pts = dias.filter(function (x) { return x[0] >= inicio; });
+      var ant = dias.filter(function (x) { return x[0] < inicio; });
+      if (ant.length) pts.unshift(C.ultimo(ant));
+      base = pts.length ? pts[0][1] : null;
+      return { pts: pts, base: base, intradia: false };
+    }
+    function chaveDia(k, n) { var d = new Date(k.slice(0, 10) + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+
+    function bomSubir(a) { return a.tipo !== "moeda"; } // dólar subindo encarece as coisas: vermelho
+    function casas(a) { return a.tipo === "indice" ? 0 : 2; }
+    function valor(a, v) { return a.tipo === "indice" ? C.numero(v, 0) + " pts" : C.brl(v, 2); }
+    function codigo(id, a) { return a.tipo === "moeda" ? "USD" : a.tipo === "indice" ? "IBOV" : id; }
+    function pctDe(rc, a) { var u = C.ultimo(rc.pts); return u && rc.base ? (u[1] / rc.base - 1) * 100 : null; }
+
+    function spark(pts) {
+      if (!pts || pts.length < 2) return "";
+      var ys = pts.map(function (p) { return p[1]; }), lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys);
+      if (hi === lo) { hi += 1; lo -= 1; }
+      var d = pts.map(function (p, i) { return (i ? "L" : "M") + (i / (pts.length - 1) * 100).toFixed(2) + " " + (36 - (p[1] - lo) / (hi - lo) * 32).toFixed(2); }).join(" ");
+      return '<svg class="spark" viewBox="0 0 100 38" preserveAspectRatio="none" aria-hidden="true"><path d="' + d + ' L100 38 L0 38 Z" fill="currentColor" opacity=".10"/><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.8" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>';
+    }
+
+    function desenhar() {
+      history.replaceState(null, "", "#" + ativo + "/" + per);
+      var P = PERIODOS.filter(function (p) { return p[0] === per; })[0];
+      [].forEach.call(segs.children, function (b) { b.setAttribute("aria-pressed", b.dataset.p === per ? "true" : "false"); });
+
+      // Cartões de todos os ativos, com a variação no período
+      lista.innerHTML = GRUPOS.map(function (g) {
+        var doGrupo = ids.filter(function (id) { return g[2](m.ativos[id]); });
+        if (!doGrupo.length) return "";
+        return '<div class="m-grupo"><h3>' + g[1] + '</h3><div class="m-cards">' + doGrupo.map(function (id) {
+          var a = m.ativos[id], rc = recorte(a, per), pc = pctDe(rc, a);
+          return '<button type="button" class="card m-card" data-a="' + id + '" aria-pressed="' + (id === ativo) + '">' +
+            '<span class="topo-c"><span class="t">' + a.nome + '</span><span class="cod">' + codigo(id, a) + "</span></span>" +
+            '<span class="v mono">' + valor(a, a.preco) + "</span>" +
+            C.variacao(pc, { casas: 2, bomSubir: bomSubir(a), sufixo: " " + P[2] }) +
+            spark(rc.pts) +
+            (a.controle ? '<span class="sub">Controle: ' + a.controle + "</span>" : '<span class="sub">' + (a.descricao || "") + "</span>") +
+            "</button>";
+        }).join("") + "</div></div>";
+      }).join("");
+
+      // Detalhe do ativo escolhido
+      var a = m.ativos[ativo], rc = recorte(a, per), u = C.ultimo(rc.pts), pc = pctDe(rc, a);
+      document.getElementById("d-titulo").textContent = a.nome + (a.tipo === "acao" ? " (" + ativo + ")" : "");
+      document.getElementById("d-sub").innerHTML = (a.tipo === "acao" ? (a.descricao ? a.descricao + ". " : "") + "Estatal controlada " + (a.esfera === "federal" ? "pela União" : "pelo governo de " + a.controle) + ". " : a.descricao + ". ") +
+        "Variação " + P[2] + ": " + C.variacao(pc, { casas: 2, bomSubir: bomSubir(a) }) + ".";
+
+        var mx = rc.pts.reduce(function (b, p) { return !b || p[1] > b[1] ? p : b; }, null), mn = rc.pts.reduce(function (b, p) { return !b || p[1] < b[1] ? p : b; }, null);
+      var qd = function (k) { return k.length > 10 ? diaMes(k) + " às " + hora(k) : C.data(k); };
+      var fatos = [];
+      if (mx) fatos.push(['<span class="num mono">' + valor(a, mx[1]) + "</span>", "Máxima no período · " + qd(mx[0])]);
+      if (mn) fatos.push(['<span class="num mono">' + valor(a, mn[1]) + "</span>", "Mínima no período · " + qd(mn[0])]);
+      document.getElementById("d-fatos").innerHTML = fatos.map(function (f) { return '<div class="fato">' + f[0] + "<span>" + f[1] + "</span></div>"; }).join("");
+
+      // No seu bolso: coisas concretas
+      var bolso = document.getElementById("d-bolso"), txt = "";
+      if (a.tipo === "moeda" && sal && sal.serie && u) {
+        var smHoje = C.ultimo(sal.serie)[1], ini = rc.pts[0];
+        var smIni = C.valorEm(sal.serie, ini[0].slice(0, 10)) || C.valorEm(sal.serie, ini[0].slice(0, 7));
+        txt = "<b>No seu bolso:</b> um salário mínimo (" + C.brl(smHoje, 0) + ") vale <b>US$ " + C.numero(smHoje / u[1], 0) + "</b> hoje";
+        if (smIni && per !== "24h" && per !== "semana") txt += "; " + P[3] + " valia US$ " + C.numero(smIni / ini[1], 0);
+        txt += ". Dólar mais caro encarece combustível, trigo, eletrônicos e remédios.";
+      } else if (a.tipo !== "moeda" && rc.base && u) {
+        txt = "<b>No seu bolso:</b> R$ 1.000 " + (a.tipo === "indice" ? "num fundo que copia o Ibovespa" : "em ações da " + a.nome) + " " + P[3] +
+          " virariam <b>" + C.brl(1000 * u[1] / rc.base, 0) + "</b> hoje (sem contar dividendos e taxas).";
+      }
+      bolso.innerHTML = txt; bolso.hidden = !txt;
+
+      // Gráfico grande
+      document.getElementById("g-titulo").textContent = a.nome + " · " + P[4];
+      document.getElementById("g-unid").textContent = a.tipo === "indice" ? "pontos" : "R$";
+      var opts = {
+        titulo: "Gráfico de " + a.nome + " " + P[2],
+        fmtY: function (v) { return C.numero(v, a.tipo === "indice" ? 0 : a.tipo === "moeda" ? 3 : 2); }
+      };
+      if (rc.intradia) {
+        opts.rotK = function (k) { return diaMes(k) + " " + hora(k); };
+        opts.rotX = per === "24h" ? opts.rotK : diaMes;
+      } else if (per === "mes" || per === "24h" || per === "semana") opts.rotX = diaMes;
+      C.grafico(document.getElementById("g"), [{ nome: a.nome, pontos: rc.pts }], opts);
+    }
+    desenhar();
+
+    // Linha de atualização e fonte (uma vez só)
+    var ib = m.ativos.IBOV;
+    document.getElementById("atualizado").textContent = "Bolsa: cotação de " + (ib && ib.hora ? diaMes(ib.hora) + " às " + hora(ib.hora) : "—") +
+      " (cerca de 15 min de atraso) · atualizado de hora em hora no pregão" + (vivo ? " · dólar ao vivo" : "");
+    document.getElementById("fora").textContent = (m.ex_estatais && m.ex_estatais.length) ? "Fora da lista porque já não são controladas pelo governo: " + m.ex_estatais.map(function (x) { return x[0] + ", " + x[1]; }).join("; ") + "." : "";
+    document.getElementById("fonte").innerHTML = 'Fontes: <a href="' + m.fonte_url + '">Yahoo Finance</a> (Bolsa e histórico do dólar) e <a href="https://docs.awesomeapi.com.br/api-de-moedas">AwesomeAPI</a> (dólar do momento). Na Bolsa, subir é verde; no dólar, subir é vermelho, porque encarece o que compramos.';
+  });
+});
+</script>
+</body>
+</html>
