@@ -434,7 +434,7 @@
     var aqui = location.pathname.split("/").pop() || "index.html";
     var topo = document.createElement("header");
     topo.className = "topo";
-    topo.innerHTML = '<div class="wrap"><a class="logo" href="index.html" aria-label="' + SITE.nome + ' · início"><img src="assets/logo.png" alt="' + SITE.nome + '" width="149" height="32"></a><nav class="menu" aria-label="Seções do site">' +
+    topo.innerHTML = '<div class="wrap"><a class="logo" href="index.html" aria-label="' + SITE.nome + ' · início"><img src="assets/logo.png" alt="' + SITE.nome + '" width="261" height="56"></a><nav class="menu" aria-label="Seções do site">' +
       MENU.map(function (m) { return '<a href="' + m[0] + '"' + (m[0] === aqui ? ' aria-current="page"' : "") + ">" + m[1] + "</a>"; }).join("") + "</nav></div>";
     document.body.insertBefore(topo, document.body.firstChild);
     cotacoesTopo(topo.querySelector(".logo"), aqui === "mercado.html");
