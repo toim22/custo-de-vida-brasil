@@ -352,7 +352,69 @@
     }
   }
 
+  /* ---------- Animações (sutis; desligadas para quem pede menos movimento) ----------
+     - cartões, gráficos e tabelas aparecem com um leve deslize ao entrar na tela
+     - gráficos se desenham da esquerda para a direita
+     - barras crescem
+     - números da etiqueta amarela contam até o valor
+     Tudo é aplicado a elementos novos automaticamente, mesmo os que as páginas desenham depois. */
+  var semMovimento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ALVOS = ".card, .fato, .grafico, .tabela, .itens, .explica, .churras, .impostos, .tag";
+
+  function contar(el) {
+    if (el._contado) return; el._contado = true;
+    var txt = el.textContent, m = /\d[\d.]*(,\d+)?/.exec(txt);
+    if (!m) return;
+    var bruto = m[0], casas = m[1] ? m[1].length - 1 : 0, milhar = bruto.indexOf(".") > -1;
+    var alvo = parseFloat(bruto.replace(/\./g, "").replace(",", "."));
+    if (!isFinite(alvo) || alvo === 0) return;
+    var antes = txt.slice(0, m.index), depois = txt.slice(m.index + bruto.length);
+    var ini = alvo * 0.8, t0 = null, dur = 700, ultimo = txt;
+    function passo(t) {
+      // se a página trocou o valor no meio (ex.: mudou o estado), para de contar
+      if (!el.isConnected || el.textContent !== ultimo) return;
+      if (t0 === null) t0 = t;
+      var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      var v = k < 1 ? ini + (alvo - ini) * e : alvo;
+      el.textContent = ultimo = antes + v.toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas, useGrouping: milhar }) + depois;
+      if (k < 1) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+  }
+
+  function mostrar(el) {
+    el.classList.add("visivel");
+    if (el.classList.contains("tag")) { var v = el.querySelector(".val"); if (v) contar(v); }
+  }
+
+  function iniciarAnimacoes() {
+    if (semMovimento || !("IntersectionObserver" in window)) return;
+    document.documentElement.classList.add("anima");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { mostrar(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.08 });
+    function preparar(raiz) {
+      var lista = raiz.matches && raiz.matches(ALVOS) ? [raiz] : [];
+      if (raiz.querySelectorAll) lista = lista.concat([].slice.call(raiz.querySelectorAll(ALVOS)));
+      lista.forEach(function (el) {
+        if (el._anim) return; el._anim = true;
+        el.classList.add("aparece");
+        // atraso em cascata entre irmãos (cartões lado a lado)
+        var i = 0, x = el; while ((x = x.previousElementSibling) && i < 6) i++;
+        el.style.setProperty("--atraso", (i * 60) + "ms");
+        io.observe(el);
+      });
+      // gráfico redesenhado dentro de um bloco que já está visível
+      if (raiz.closest) { var pai = raiz.closest(".visivel"); if (pai && raiz !== pai) [].forEach.call(raiz.querySelectorAll ? raiz.querySelectorAll(ALVOS) : [], mostrar); }
+    }
+    preparar(document.body);
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) { [].forEach.call(m.addedNodes, function (n) { if (n.nodeType === 1) preparar(n); }); });
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+
   document.addEventListener("DOMContentLoaded", montarMoldura);
+  document.addEventListener("DOMContentLoaded", iniciarAnimacoes);
 
   window.CVB = {
     SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, seletorLocal: seletorLocal, lembrar: lembrar,
