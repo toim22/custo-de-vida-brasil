@@ -11,6 +11,7 @@ import anp
 import calculos
 import dieese
 import ibge
+import pnad
 from comum import ler_json, salvar_json
 
 TAREFAS = [
@@ -19,6 +20,7 @@ TAREFAS = [
     ("cesta", "DIEESE — cesta básica", dieese.coletar_cesta),
     ("ipca", "IBGE — IPCA", ibge.coletar),
     ("churrasco", "Cálculo — itens avulsos e Churrasco pra 6", calculos.calcular),
+    ("trabalho", "IBGE — PNAD Contínua (desemprego real e renda)", pnad.coletar),  # por último: é a mais demorada
 ]
 
 
