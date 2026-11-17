@@ -30,7 +30,7 @@
 
   <section class="bloco" id="bloco-itens">
     <h2>Item por item</h2>
-    <p class="small read">Quanto cada produto pesa na cesta do mês, o preço por unidade e quanto mudou em 12 meses. Toque num item para ver o gráfico.</p>
+    <p class="small read">Preço por unidade, quanto cada produto pesa na cesta do mês e quanto mudou em 12 meses. Toque num item para ver o gráfico.</p>
     <div class="itens" id="itens"></div>
     <div class="grafico" id="g-item-box" hidden><div class="cab"><b id="g-item-titulo"></b><span class="small">R$</span></div><div id="g-item"></div></div>
   </section>
@@ -72,8 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("lbl").textContent = "cesta inteira · " + (u ? C.data(u[0]) : "");
         document.getElementById("val").textContent = u ? C.brl(u[1], 2) : "—";
         document.getElementById("fatos").innerHTML =
-          '<div class="fato"><span class="num">' + C.pct(C.variacao12(dado.total)) + "</span><span>em 12 meses · no mês: " + (a ? C.pct((u[1] / a[1] - 1) * 100) : "—") + "</span></div>" +
-          (minimo && u ? '<div class="fato"><span class="num">' + C.numero(minimo / u[1], 2) + "</span><span>cestas com um salário mínimo</span></div>" : "") +
+          '<div class="fato"><span class="num">' + C.variacao(C.variacao12(dado.total)) + "</span><span>em 12 meses · no mês: " + (a ? C.variacao((u[1] / a[1] - 1) * 100) : "—") + "</span></div>" +
           (h ? '<div class="fato"><span class="num">' + C.horas(h[1]).replace(" min", "") + "</span><span>de trabalho com salário mínimo para pagar a cesta</span></div>" : "");
         C.grafico(document.getElementById("g"), [{ nome: "Cesta", pontos: dado.total }], { fmtY: function (v) { return C.numero(v, 0); }, marcos: [["2027-01", "novo mandato"]] });
 
@@ -86,12 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
         var box = document.getElementById("itens");
         box.innerHTML = itens.map(function (i) {
           var it = cesta.itens[i.k];
-          return '<button type="button" class="item" data-k="' + i.k + '" style="background:none;border:0;color:inherit;font:inherit;padding:0;text-align:left;cursor:pointer"><span>' + it.nome + (i.preco ? ' <span class="muted">' + C.brl(i.preco, 2) + "/" + it.unidade + "</span>" : "") +
-            '</span><span class="barra" style="width:' + (i.gasto / maior * 100) + '%"></span><span class="r">' + C.brl(i.gasto, 2) + '</span><span class="r var ' + (i.v12 > 0 ? "sobe" : "desce") + '">' + C.pct(i.v12, 0) + "</span></button>";
+          return '<button type="button" class="item" aria-pressed="false" data-k="' + i.k + '"><span class="nome" title="' + it.nome + '">' + it.nome + '</span><span class="r unid">' + (i.preco ? '<span class="rs">R$ </span>' + C.brl(i.preco, 2).replace("R$ ", "") + "/" + it.unidade : "") +
+            '</span><span class="barra" style="width:' + (i.gasto / maior * 100) + '%"></span><span class="r">' + C.brl(i.gasto, 2) + '</span><span class="r var">' + C.variacao(i.v12, { casas: 0 }) + "</span></button>";
         }).join("");
         box.onclick = function (e) {
           var b = e.target.closest(".item"); if (!b) return;
           var s = dado.itens[b.dataset.k], it = cesta.itens[b.dataset.k];
+          [].forEach.call(box.children, function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
           document.getElementById("g-item-box").hidden = false;
           document.getElementById("g-item-titulo").textContent = it.nome + ": preço por " + it.unidade;
           C.grafico(document.getElementById("g-item"), [{ nome: it.nome, pontos: s.preco || s.gasto }], { fmtY: function (v) { return C.numero(v, 2); } });
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
       tb.innerHTML = Object.keys(av.itens).map(function (k) {
         var s = av.series[k]; if (!s) return "";
         var loc = s[local] ? local : "BR"; var u = C.ultimo(s[loc]);
-        return "<tr><td>" + av.itens[k].nome + (loc !== local ? ' <span class="muted">(Brasil)</span>' : "") + '</td><td class="muted">' + av.itens[k].unidade + '</td><td class="r">' + (u ? C.brl(u[1], 2) : "—") + '</td><td class="r">' + C.pct(C.variacao12(s[loc])) + "</td></tr>";
+        return "<tr><td>" + av.itens[k].nome + (loc !== local ? ' <span class="muted">(Brasil)</span>' : "") + '</td><td class="muted">' + av.itens[k].unidade + '</td><td class="r">' + (u ? C.brl(u[1], 2) : "—") + '</td><td class="r">' + C.variacao(C.variacao12(s[loc])) + "</td></tr>";
       }).join("");
       document.getElementById("avulsos-nota").textContent = "Mês de referência: " + C.data(av.atualizado) + ". " + (av.ancora_provisoria ? "Os preços de referência ainda são provisórios e serão substituídos por preços conferidos em supermercados." : "");
     }

@@ -56,13 +56,13 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("val").textContent = u ? C.brl(u[1], 2) : "—";
       document.getElementById("fatos").innerHTML = u ?
         '<div class="fato"><span class="num">' + C.brl(u[1] / ch.pessoas, 2) + "</span><span>por pessoa</span></div>" +
-        (minimo ? '<div class="fato"><span class="num">' + C.numero(u[1] / minimo * 100, 0) + "%</span><span>de um salário mínimo · dá para fazer " + C.numero(minimo / u[1], 1) + " churrascos com um salário</span></div>" : "") +
-        '<div class="fato"><span class="num">' + C.pct(C.variacao12(t)) + "</span><span>em 12 meses · no mês: " + (a ? C.pct((u[1] / a[1] - 1) * 100) : "—") + "</span></div>" : "";
+        (minimo ? '<div class="fato"><span class="num">' + C.numero(u[1] / minimo * 100, 0) + "%</span><span>de um salário mínimo</span></div>" : "") +
+        '<div class="fato"><span class="num">' + C.variacao(C.variacao12(t)) + "</span><span>em 12 meses · no mês: " + (a ? C.variacao((u[1] / a[1] - 1) * 100) : "—") + "</span></div>" : "";
       C.grafico(document.getElementById("g"), [{ nome: "Churrasco pra 6", pontos: t }], { fmtY: function (v) { return C.numero(v, 0); }, marcos: [["2027-01", "novo mandato"]] });
       var det = ch.ultimo_detalhe[local] || {};
       document.getElementById("lista").innerHTML = ch.itens.map(function (i) {
         return "<tr><td>" + i.nome + '</td><td class="r">' + i.texto + '</td><td class="r">' + C.brl(det[i.chave], 2) + "</td></tr>";
-      }).join("") + '<tr><td><b>Total</b></td><td class="r">' + ch.pessoas + ' pessoas</td><td class="r"><b>' + (u ? C.brl(u[1], 2) : "—") + "</b></td></tr>";
+      }).join("") + '<tr class="total"><td>Total</td><td class="r">' + ch.pessoas + ' pessoas</td><td class="r">' + (u ? C.brl(u[1], 2) : "—") + "</td></tr>";
       document.getElementById("nota").textContent = "Preço estimado: valor de referência de cada item corrigido todo mês pela variação oficial do IBGE." + (ch.ancora_provisoria ? " Os valores de referência ainda são provisórios." : "");
     }
     desenhar();
