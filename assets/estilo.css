@@ -323,3 +323,29 @@ tr.total td { background: rgba(255,210,63,.07); border-top: 1px solid rgba(255,2
 .painel .card { display: flex; flex-direction: column; }
 .painel .card .tag { align-self: flex-start; }
 .painel .card .ir { margin-top: auto; padding-top: 6px; }
+
+/* ===================== Animações =====================
+   Só valem quando o JavaScript liga a classe .anima (e nunca para quem pede menos movimento). */
+@keyframes desenha { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes cresce { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pulsa { 0% { box-shadow: 0 0 0 0 rgba(255,210,63,.55); } 100% { box-shadow: 0 0 0 7px rgba(255,210,63,0); } }
+.anima .aparece { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s cubic-bezier(.2,.7,.2,1); transition-delay: var(--atraso, 0ms); }
+.anima .aparece.visivel { opacity: 1; transform: none; }
+.anima a.card.aparece.visivel:hover { transform: translateY(-2px); transition-delay: 0ms; }
+.anima .tag.aparece { transform: translateX(-10px); }
+.anima .tag.aparece.visivel { transform: none; }
+/* gráficos se desenham */
+.anima .visivel .mini-a svg, .anima .grafico.visivel > div > svg, .anima .grafico.visivel svg[role="img"] { animation: desenha 1.1s cubic-bezier(.3,.6,.2,1) both; animation-delay: calc(var(--atraso, 0ms) + 150ms); }
+.anima .visivel .mini-a .mponto { animation: pulsa 1.6s ease-out 1.2s 2; }
+/* barras crescem */
+.anima .visivel .item .barra { transform-origin: left center; animation: cresce .8s cubic-bezier(.2,.7,.2,1) both; }
+.anima .itens.visivel .item:nth-child(n) .barra { animation-delay: calc(var(--i, 0) * 40ms); }
+.anima .impostos.visivel > div { transform-origin: left center; animation: cresce .7s cubic-bezier(.2,.7,.2,1) both; }
+.anima .impostos.visivel > div + div { animation-delay: .15s; }
+/* selo de alta/queda entra depois do número */
+.anima .tag.aparece .selo-var { opacity: 0; transform: translateY(4px); transition: opacity .4s ease .55s, transform .4s ease .55s; }
+.anima .tag.aparece.visivel .selo-var { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .anima .aparece { opacity: 1 !important; transform: none !important; }
+  .anima * { animation: none !important; }
+}
