@@ -58,8 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   var GRUPOS = [
     ["", "Dólar e Bolsa", function (a) { return a.tipo !== "acao"; }],
-    ["federal", "Estatais federais · controladas pela União", function (a) { return a.esfera === "federal"; }],
-    ["estadual", "Estatais estaduais · controladas pelo governo do estado", function (a) { return a.esfera === "estadual"; }]
+    ["federal", "Estatais federais · controladas pela União", function (a) { return a.esfera === "federal"; }]
   ];
 
   Promise.all([C.carregar("mercado"), C.carregar("salario"), C.dolarAoVivo()]).then(function (r) {
@@ -175,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Detalhe do ativo escolhido
       var a = m.ativos[ativo], rc = recorte(a, per), u = C.ultimo(rc.pts), pc = pctDe(rc, a);
       document.getElementById("d-titulo").textContent = a.nome + (a.tipo === "acao" ? " (" + ativo + ")" : "");
-      document.getElementById("d-sub").innerHTML = (a.tipo === "acao" ? (a.descricao ? a.descricao + ". " : "") + "Estatal controlada " + (a.esfera === "federal" ? "pela União" : "pelo governo de " + a.controle) + ". " : a.descricao + ". ") +
+      document.getElementById("d-sub").innerHTML = (a.tipo === "acao" ? (a.descricao ? a.descricao + ". " : "") + "Estatal federal, controlada pela União. " : a.descricao + ". ") +
         "Variação " + P[2] + ": " + C.variacao(pc, { casas: 2, bomSubir: bomSubir(a) }) + ".";
 
         var mx = rc.pts.reduce(function (b, p) { return !b || p[1] > b[1] ? p : b; }, null), mn = rc.pts.reduce(function (b, p) { return !b || p[1] < b[1] ? p : b; }, null);

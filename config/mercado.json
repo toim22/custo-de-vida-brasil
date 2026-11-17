@@ -1,21 +1,74 @@
 {
- "_leia": "Ativos da página Dólar, Bolsa e estatais. Ações: só empresas em que o governo (União ou estado) ainda tem o controle. Conferir 1x por ano ou quando houver privatização. 'yahoo' é o código usado na coleta (Yahoo Finance).",
+ "_leia": "Ativos da página Dólar, Bolsa e estatais. Ações: só estatais federais (controladas pela União), a pedido do Antonio em 17/11/2026. Conferir 1x por ano ou quando houver privatização. 'yahoo' é o código usado na coleta (Yahoo Finance).",
  "verificado_em": "2026-11",
  "ativos": [
-  {"id": "USD", "nome": "Dólar", "descricao": "Dólar comercial, em reais", "yahoo": "BRL=X", "tipo": "moeda"},
-  {"id": "IBOV", "nome": "Ibovespa", "descricao": "Principal índice da Bolsa brasileira (B3), em pontos", "yahoo": "^BVSP", "tipo": "indice"},
-  {"id": "PETR4", "nome": "Petrobras", "descricao": "Petróleo, gás e combustíveis", "yahoo": "PETR4.SA", "tipo": "acao", "controle": "União", "esfera": "federal"},
-  {"id": "BBAS3", "nome": "Banco do Brasil", "descricao": "Banco", "yahoo": "BBAS3.SA", "tipo": "acao", "controle": "União", "esfera": "federal"},
-  {"id": "BBSE3", "nome": "BB Seguridade", "descricao": "Seguros e previdência (controlada pelo Banco do Brasil)", "yahoo": "BBSE3.SA", "tipo": "acao", "controle": "União", "esfera": "federal"},
-  {"id": "CXSE3", "nome": "Caixa Seguridade", "descricao": "Seguros e previdência (controlada pela Caixa)", "yahoo": "CXSE3.SA", "tipo": "acao", "controle": "União", "esfera": "federal"},
-  {"id": "CMIG4", "nome": "Cemig", "descricao": "Energia elétrica", "yahoo": "CMIG4.SA", "tipo": "acao", "controle": "Minas Gerais", "esfera": "estadual"},
-  {"id": "SAPR11", "nome": "Sanepar", "descricao": "Água e esgoto", "yahoo": "SAPR11.SA", "tipo": "acao", "controle": "Paraná", "esfera": "estadual"},
-  {"id": "BRSR6", "nome": "Banrisul", "descricao": "Banco", "yahoo": "BRSR6.SA", "tipo": "acao", "controle": "Rio Grande do Sul", "esfera": "estadual"}
+  {
+   "id": "USD",
+   "nome": "Dólar",
+   "descricao": "Dólar comercial, em reais",
+   "yahoo": "BRL=X",
+   "tipo": "moeda"
+  },
+  {
+   "id": "IBOV",
+   "nome": "Ibovespa",
+   "descricao": "Principal índice da Bolsa brasileira (B3), em pontos",
+   "yahoo": "^BVSP",
+   "tipo": "indice"
+  },
+  {
+   "id": "PETR4",
+   "nome": "Petrobras",
+   "descricao": "Petróleo, gás e combustíveis",
+   "yahoo": "PETR4.SA",
+   "tipo": "acao",
+   "controle": "União",
+   "esfera": "federal"
+  },
+  {
+   "id": "BBAS3",
+   "nome": "Banco do Brasil",
+   "descricao": "Banco",
+   "yahoo": "BBAS3.SA",
+   "tipo": "acao",
+   "controle": "União",
+   "esfera": "federal"
+  },
+  {
+   "id": "BBSE3",
+   "nome": "BB Seguridade",
+   "descricao": "Seguros e previdência (controlada pelo Banco do Brasil)",
+   "yahoo": "BBSE3.SA",
+   "tipo": "acao",
+   "controle": "União",
+   "esfera": "federal"
+  },
+  {
+   "id": "CXSE3",
+   "nome": "Caixa Seguridade",
+   "descricao": "Seguros e previdência (controlada pela Caixa)",
+   "yahoo": "CXSE3.SA",
+   "tipo": "acao",
+   "controle": "União",
+   "esfera": "federal"
+  }
  ],
  "ex_estatais": [
-  ["Eletrobras (ELET3)", "privatizada em 2022; a União ainda tem ações, mas não manda"],
-  ["Copel (CPLE6)", "privatizada em 2023"],
-  ["Sabesp (SBSP3)", "privatizada em 2024"],
-  ["Copasa (CSMG3)", "privatizada em 2026"]
+  [
+   "Eletrobras (ELET3)",
+   "privatizada em 2022; a União ainda tem ações, mas não manda"
+  ],
+  [
+   "Copel (CPLE6)",
+   "privatizada em 2023"
+  ],
+  [
+   "Sabesp (SBSP3)",
+   "privatizada em 2024"
+  ],
+  [
+   "Copasa (CSMG3)",
+   "privatizada em 2026"
+  ]
  ]
 }
