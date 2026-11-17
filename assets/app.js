@@ -359,7 +359,11 @@
      - números da etiqueta amarela contam até o valor
      Tudo é aplicado a elementos novos automaticamente, mesmo os que as páginas desenham depois. */
   var semMovimento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var ALVOS = ".card, .fato, .grafico, .tabela, .itens, .explica, .churras, .impostos, .tag";
+  var ALVOS = ".card, .fato, .grafico, .tabela, .itens, .explica, .churras, .impostos, .tag, .la-card, .hist-band, .ufs, .band-tar, .bloco > h2, .titulo-filtro";
+  // itens de lista que entram um depois do outro
+  var CASCATA = "tbody > tr, .itens > .item, .ufs > .uf, .hist-band .c, .painel .lista li, .cards > .card, .la-cards > .la-card";
+  // números que contam (só elementos sem filhos, para não apagar setas e etiquetas internas)
+  var NUMEROS = ".val, .num, .v, .lista b, td.r, .item .r, .fato .num .d, .uf .v";
 
   function contar(el) {
     if (el._contado) return; el._contado = true;
@@ -369,7 +373,7 @@
     var alvo = parseFloat(bruto.replace(/\./g, "").replace(",", "."));
     if (!isFinite(alvo) || alvo === 0) return;
     var antes = txt.slice(0, m.index), depois = txt.slice(m.index + bruto.length);
-    var ini = alvo * 0.8, t0 = null, dur = 700, ultimo = txt;
+    var ini = alvo * (alvo > 50 ? 0.6 : 0), t0 = null, dur = 1100, ultimo = txt;
     function passo(t) {
       // se a página trocou o valor no meio (ex.: mudou o estado), para de contar
       if (!el.isConnected || el.textContent !== ultimo) return;
@@ -382,9 +386,25 @@
     requestAnimationFrame(passo);
   }
 
+  function contarDentro(el) {
+    var lista = el.matches(NUMEROS) ? [el] : [];
+    lista = lista.concat([].slice.call(el.querySelectorAll(NUMEROS)));
+    lista.slice(0, 120).forEach(function (n) { if (!n.children.length) contar(n); });
+  }
   function mostrar(el) {
     el.classList.add("visivel");
-    if (el.classList.contains("tag")) { var v = el.querySelector(".val"); if (v) contar(v); }
+    contarDentro(el);
+  }
+  function numerar(raiz) {
+    var lista = raiz.matches && raiz.matches(CASCATA) ? [raiz] : [];
+    if (raiz.querySelectorAll) lista = lista.concat([].slice.call(raiz.querySelectorAll(CASCATA)));
+    lista.forEach(function (el) {
+      var i = 0, x = el; while ((x = x.previousElementSibling) && i < 40) i++;
+      el.style.setProperty("--i", i);
+      // linha nova numa tabela que já está na tela (ex.: trocou o filtro): conta os números dela também
+      var pai = el.parentElement && el.parentElement.closest(".visivel");
+      if (pai) contarDentro(el);
+    });
   }
 
   function iniciarAnimacoes() {
@@ -394,6 +414,7 @@
       es.forEach(function (e) { if (e.isIntersecting) { mostrar(e.target); io.unobserve(e.target); } });
     }, { rootMargin: "0px 0px -6% 0px", threshold: 0.08 });
     function preparar(raiz) {
+      numerar(raiz);
       var lista = raiz.matches && raiz.matches(ALVOS) ? [raiz] : [];
       if (raiz.querySelectorAll) lista = lista.concat([].slice.call(raiz.querySelectorAll(ALVOS)));
       lista.forEach(function (el) {
@@ -401,7 +422,7 @@
         el.classList.add("aparece");
         // atraso em cascata entre irmãos (cartões lado a lado)
         var i = 0, x = el; while ((x = x.previousElementSibling) && i < 6) i++;
-        el.style.setProperty("--atraso", (i * 60) + "ms");
+        el.style.setProperty("--atraso", (i * 90) + "ms");
         io.observe(el);
       });
       // gráfico redesenhado dentro de um bloco que já está visível
@@ -415,6 +436,20 @@
 
   document.addEventListener("DOMContentLoaded", montarMoldura);
   document.addEventListener("DOMContentLoaded", iniciarAnimacoes);
+
+  /* Transição entre páginas: a página atual some rápido antes de abrir a próxima. */
+  document.addEventListener("click", function (e) {
+    if (semMovimento || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a || a.target || a.hasAttribute("download")) return;
+    var url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || !/\.html$|\/$/.test(url.pathname) || (url.pathname === location.pathname && url.hash)) return;
+    e.preventDefault();
+    document.documentElement.classList.add("saindo");
+    setTimeout(function () { location.href = url.href; }, 220);
+  });
+  // ao voltar pelo botão "voltar" do navegador, a página não pode ficar apagada
+  window.addEventListener("pageshow", function () { document.documentElement.classList.remove("saindo"); });
 
   window.CVB = {
     SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, seletorLocal: seletorLocal, lembrar: lembrar,
