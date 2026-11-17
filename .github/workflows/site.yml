@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     outputs:
-      falhou: ${{ steps.coleta.outcome == 'failure' }}
+      falhou: ${{ steps.coleta.outcome == 'failure' || steps.luzagua.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,6 +43,12 @@ jobs:
         continue-on-error: true
         timeout-minutes: 30
         run: python -u rodar.py
+      - name: Coletar luz e água
+        id: luzagua
+        working-directory: coletores
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python -u luz_agua.py
       - name: Salvar dados no repositório
         run: |
           git config user.name "robo-coleta"

@@ -1,0 +1,28 @@
+# TEMPORÁRIO: testa o coletor de luz e água neste branch. Apagar antes do merge.
+name: Teste luz e água
+on:
+  push:
+    branches: [claude/project-thread-3vvy46]
+permissions:
+  contents: write
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r coletores/requirements.txt
+      - name: Coletar luz e água
+        working-directory: coletores
+        continue-on-error: true
+        run: python -u luz_agua.py
+      - name: Salvar
+        run: |
+          git config user.name "robo-coleta"
+          git config user.email "robo-coleta@users.noreply.github.com"
+          git add dados/energia.json dados/agua.json dados/ipca_luz_agua.json descobertas/aneel_* 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Teste: coleta de luz e água"
+          git push
