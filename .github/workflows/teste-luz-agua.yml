@@ -28,7 +28,7 @@ jobs:
               if [ "$c" = "200" ] && unzip -tq p$ano.zip >/dev/null 2>&1; then unzip -o -q p$ano.zip -d ae$ano; break; fi
             done
           done
-          for z in /tmp/snis/ae2022/*/Planilha_Resumo_Estado_2022.zip /tmp/snis/ae2022/*/Planilha_AE2022_Completa_Regionais.zip; do unzip -o -q "$z" -d /tmp/snis/x/$(basename $z .zip); done
+          for z in /tmp/snis/ae2022/*/Planilha_Resumo_Estado_2022.zip /tmp/snis/ae2022/*/Planilha_AE2022_Completa_Regionais.zip; do mkdir -p /tmp/snis/x/$(basename $z .zip); unzip -o -q "$z" -d /tmp/snis/x/$(basename $z .zip); done
           find /tmp/snis/x -type f | head -50
           python3 - <<'PY' > $GITHUB_WORKSPACE/descobertas/snis_tarifas.txt
           import glob, pandas as pd
