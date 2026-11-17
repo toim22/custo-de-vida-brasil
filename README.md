@@ -10,11 +10,12 @@ Nome provisório. O site é estático (HTML, CSS e JavaScript, sem servidor) e f
 - `dados/` — os dados coletados, em JSON. Públicos: qualquer pessoa pode baixar.
 - `config/` — o que é editado à mão: itens avulsos e Churrasco pra 6 (`itens.json`), regras de impostos (`impostos.json`) e carro zero mais barato (`carro.json`).
 - `descobertas/` — diagnóstico das fontes, gravado a cada coleta, para ajustar os robôs quando um site muda.
-- `.github/workflows/site.yml` — roda a coleta toda segunda às 9h (Brasília) e todo dia 15, grava os dados e publica o site.
+- `.github/workflows/site.yml` — roda a coleta todo dia às 9h (Brasília), grava os dados e publica o site.
 
 ## Tarefas manuais
 
 - **Carro zero mais barato (1× por mês):** acrescente uma linha em `config/carro.json`.
+- **Tanque médio (1× por ano):** atualize `config/tanque.json` com os 5 carros mais vendidos do ano.
 - **Impostos (quando a lei muda):** acrescente um período em `config/impostos.json`.
 - **Preços de referência dos itens avulsos (a cada 6 meses):** atualize `config/itens.json`.
 

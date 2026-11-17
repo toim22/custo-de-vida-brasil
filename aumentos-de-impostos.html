@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aumentos de impostos desde a eleição · Custo de Vida Brasil</title>
+<meta name="description" content="Todos os impostos que subiram ou foram criados desde o 2º turno de 2026, com os valores, a situação de cada um e como afetam o seu bolso.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+<style>
+  .aumentos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .aumento { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--up); border-radius: 10px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .aumento .topo-card { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; justify-content: space-between; }
+  .aumento .quando { font-family: var(--f-mono); font-size: .78rem; color: var(--muted); }
+  .aumento h3 { font-size: 1.12rem; display: flex; gap: 8px; align-items: baseline; }
+  .aumento h3 .seta { color: var(--up); font-size: .9em; }
+  .aumento .imp { font-size: .78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .aumento .valores { font-size: .92rem; }
+  .aumento .efeito { font-size: .88rem; color: #CDD3D0; border-top: 1px solid var(--line); padding-top: 10px; }
+  .aumento .efeito b { color: var(--ink); }
+  .aumento .pe { font-size: .75rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .aumento .pe a { color: var(--muted); }
+  .st { display: inline-block; font-size: .7rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+  .st.vigor { background: #3A1414; color: var(--up); }
+  .st.tramitando { background: var(--warn-bg); color: var(--warn); }
+  .st.debate { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+  .resumo-imp { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .9rem; color: var(--muted); }
+  .resumo-imp b { font-family: var(--f-mono); color: var(--ink); font-size: 1.15rem; margin-right: 4px; }
+  .resumo-imp b.sobe { color: var(--up); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco">
+    <span class="eyebrow">Desde o 2º turno · 25/10/2026</span>
+    <h1>Aumentos de impostos</h1>
+    <p class="read muted">Todo imposto que subiu ou foi criado depois da eleição, principalmente os federais. Cada cartão diz qual imposto, quanto mudou e como chega no seu bolso.</p>
+    <div class="resumo-imp" id="resumo"></div>
+  </section>
+
+  <section class="bloco">
+    <div class="aumentos" id="lista"><p class="aviso">Carregando…</p></div>
+    <p class="small" id="nota"></p>
+  </section>
+
+  <section class="bloco">
+    <p class="small read"><b>Situação:</b> <span class="st vigor">Em vigor</span> já foi publicado e vale (ou tem data marcada). <span class="st tramitando">Aprovado no Senado</span> ainda precisa passar pela Câmara e pela sanção. <span class="st debate">Em definição</span> o valor ainda vai ser decidido. Só entram fatos publicados em ato oficial ou noticiados por mais de uma fonte; boatos e "o governo estuda" ficam de fora.</p>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function dataBR(iso) { var p = iso.split("-"); return p[2] + "/" + p[1] + "/" + p[0]; }
+  C.carregar("aumentos-impostos").then(function (d) {
+    var lista = document.getElementById("lista");
+    if (!d || !d.itens || !d.itens.length) { lista.innerHTML = '<p class="aviso">Nenhum aumento registrado ainda.</p>'; return; }
+    var itens = d.itens.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; });
+    var vigor = itens.filter(function (i) { return i.status_tipo === "vigor"; }).length;
+    document.getElementById("resumo").innerHTML =
+      '<span><b class="sobe">▲ ' + itens.length + "</b>medidas registradas</span>" +
+      "<span><b>" + vigor + "</b>já publicadas</span>" +
+      "<span><b>" + (itens.length - vigor) + "</b>em votação ou definição</span>";
+    lista.innerHTML = itens.map(function (i) {
+      return '<article class="aumento">' +
+        '<div class="topo-card"><span class="quando">' + dataBR(i.data) + " · " + esc(i.esfera) + '</span><span class="st ' + esc(i.status_tipo) + '">' + esc(i.status) + "</span></div>" +
+        '<h3><span class="seta" aria-hidden="true">▲</span>' + esc(i.titulo) + "</h3>" +
+        '<span class="imp">' + esc(i.imposto) + "</span>" +
+        '<p class="valores">' + esc(i.valores) + "</p>" +
+        '<p class="efeito"><b>No seu bolso:</b> ' + esc(i.efeito) + "</p>" +
+        '<div class="pe"><span>' + esc(i.instrumento) + "</span>" +
+        i.fontes.map(function (f) { return '<a href="' + esc(f[1]) + '" target="_blank" rel="noopener">' + esc(f[0]) + "</a>"; }).join("") +
+        "</div></article>";
+    }).join("");
+    document.getElementById("nota").textContent = "Atualizado em " + dataBR(d.atualizado) + ". " + (d.nota || "");
+  });
+});
+</script>
+</body>
+</html>
