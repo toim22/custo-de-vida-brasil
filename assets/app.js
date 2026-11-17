@@ -548,7 +548,7 @@
   window.CVB = {
     SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, emLocal: emLocal, seletorLocal: seletorLocal, lembrar: lembrar,
     brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, classe: classe,
-    mini: mini, bandeira: bandeira, config: config, barraImpostos: barraImpostos,
+    mini: mini, bandeira: bandeira, iconeRegiao: iconeRegiao, config: config, barraImpostos: barraImpostos,
     ultimo: ultimo, anterior: anterior, valorEm: valorEm, variacao12: variacao12,
     carregar: carregar, grafico: grafico
   };
