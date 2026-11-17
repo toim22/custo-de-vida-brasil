@@ -20,7 +20,7 @@ jobs:
         run: |
           mkdir -p /tmp/snis descobertas
           cd /tmp/snis
-          for ano in 2022 2021; do
+          for ano in 2022; do
             for base in https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/snis/produtos-do-snis/diagnosticos https://www.gov.br/cidades/pt-br/assuntos/saneamento/snis/produtos-do-snis/diagnosticos http://www.snis.gov.br/downloads/diagnosticos/ae/$ano; do
               u="$base/Planilhas_AE$ano.zip"
               c=$(curl -sSL -m 300 -o p$ano.zip -w "%{http_code}" "$u" || echo erro)
@@ -28,10 +28,13 @@ jobs:
               if [ "$c" = "200" ] && unzip -tq p$ano.zip >/dev/null 2>&1; then unzip -o -q p$ano.zip -d ae$ano; break; fi
             done
           done
-          find /tmp/snis -type f | head -50
+          for z in /tmp/snis/ae2022/*/Planilha_Resumo_Estado_2022.zip /tmp/snis/ae2022/*/Planilha_AE2022_Completa_Regionais.zip; do unzip -o -q "$z" -d /tmp/snis/x/$(basename $z .zip); done
+          find /tmp/snis/x -type f | head -50
           python3 - <<'PY' > $GITHUB_WORKSPACE/descobertas/snis_tarifas.txt
           import glob, pandas as pd
-          for f in sorted(glob.glob('/tmp/snis/**/*.xls*', recursive=True)):
+          for f in sorted(glob.glob('/tmp/snis/x/**/*.*', recursive=True)):
+              if f.lower().endswith('.csv'):
+                  print('== CSV', f); print(open(f, encoding='latin-1').read()[:3000]); continue
               try:
                   xl = pd.ExcelFile(f)
               except Exception as e:
@@ -41,8 +44,10 @@ jobs:
                   txt = df.astype(str)
                   hit = txt.apply(lambda c: c.str.contains('IN005|IN006', regex=True)).any().any()
                   print('==', f, sh, df.shape, 'IN005' if hit else '')
-                  if hit and ('egion' in f or 'egion' in sh or df.shape[0] < 80):
-                      print(df.to_csv(sep='\t', index=False)[:60000])
+                  if hit:
+                      cols = [c for c in df.columns if txt[c].str.contains('IN00[456]|Sigla|UF|Prestador|Estado|Abrang', regex=True).any()]
+                      keep = df[cols] if cols else df
+                      print(keep.to_csv(sep='\t', index=False)[:80000])
           PY
           wc -c $GITHUB_WORKSPACE/descobertas/snis_tarifas.txt
       - name: Coletar luz e água
