@@ -495,3 +495,7 @@ button.card[aria-pressed="true"] { border-color: var(--tag); box-shadow: 0 0 0 1
 .m-card .m-var { font-size: .74rem; font-weight: 600; color: var(--muted); line-height: 1.5; }
 .m-card .m-var .d.vd { font-size: .78rem; }
 @media (max-width: 560px) { .m-datas { width: 100%; } .m-datas label { flex: 1 1 140px; justify-content: space-between; } }
+
+/* Logo em imagem (banner recortado). Fundo transparente. */
+.logo img { display: block; height: 32px; width: auto; }
+@media (max-width: 560px) { .logo img { height: 28px; } }
