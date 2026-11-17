@@ -7,7 +7,7 @@
 <meta name="description" content="Preço da cesta básica, gasolina, gás de cozinha, churrasco e o que o salário mínimo compra, atualizado toda semana desde 2023, por estado.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Custo de Vida Brasil">
-<meta property="og:description" content="Quanto custa viver no Brasil hoje: cesta básica, combustível, gás, churrasco e salário mínimo, por estado.">
+<meta property="og:description" content="Quanto custa viver no Brasil hoje? Cesta básica, combustível, gás, churrasco e salário mínimo, por estado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/estilo.css">
@@ -18,7 +18,7 @@
 
   <section class="bloco">
     <span class="eyebrow" id="atualizado">Atualizado todos os dias</span>
-    <h1>Quanto custa viver no Brasil hoje</h1>
+    <h1>Quanto custa viver no Brasil hoje?</h1>
     <div class="filtros">
       <label class="visually-hidden" for="local">Onde você mora</label>
       <select id="local"></select>
@@ -137,10 +137,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       // Aumentos de impostos desde o 2º turno
       if (imp && imp.itens && imp.itens.length) {
-        var ultImp = imp.itens.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; })[0];
-        cards.push({ href: "aumentos-de-impostos.html", titulo: "Aumentos de impostos desde a eleição",
+        var recentes = imp.itens.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; }).slice(0, 4);
+        cards.push({ href: "aumentos-de-impostos.html", destaque: true, titulo: "Aumentos de impostos desde a eleição",
           corpo: '<span class="v sobe">▲ ' + imp.itens.length + " medidas</span>",
-          linhas: ["Mais recente: " + ultImp.titulo], ir: "Ver cada aumento" });
+          linhas: ["Mais recentes:"],
+          depois: '<ul class="lista">' + recentes.map(function (i) { return '<li><span>' + i.titulo + '</span><b class="muted">' + C.data(i.data) + "</b></li>"; }).join("") + "</ul>",
+          ir: "Ver cada aumento" });
       }
       document.getElementById("painel").innerHTML = cards.map(card).join("");
       var ult = sc && C.ultimo(sc.gasolina);
