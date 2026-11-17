@@ -2,8 +2,7 @@ name: Coletar dados e publicar o site
 
 on:
   schedule:
-    - cron: "0 12 * * 1"   # toda segunda-feira, 9h de Brasília
-    - cron: "0 12 15 * *"  # dia 15 de cada mês (pega a cesta e o IPCA do mês)
+    - cron: "0 12 * * *"   # todo dia, 9h de Brasília (as fontes publicam em dias diferentes; assim nada fica mais de 1 dia atrasado)
   workflow_dispatch:
   push:
     branches: [main]
@@ -21,7 +20,7 @@ jobs:
   coletar:
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 75
     outputs:
       falhou: ${{ steps.coleta.outcome == 'failure' || steps.luzagua.outcome == 'failure' }}
     steps:
@@ -41,7 +40,7 @@ jobs:
         id: coleta
         working-directory: coletores
         continue-on-error: true
-        timeout-minutes: 30
+        timeout-minutes: 40
         run: python -u rodar.py
       - name: Coletar luz e água
         id: luzagua
@@ -55,6 +54,8 @@ jobs:
           git config user.email "robo-coleta@users.noreply.github.com"
           git add dados descobertas
           git diff --cached --quiet || git commit -m "Coleta automática $(date -u +%Y-%m-%d)"
+          # se alguém mexeu no main durante a coleta (ex.: um merge), junta antes de enviar
+          git pull --rebase origin main
           git push
 
   publicar:

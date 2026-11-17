@@ -16,13 +16,13 @@
   <section class="bloco texto read">
     <span class="eyebrow">Metodologia</span>
     <h1>Como calculamos</h1>
-    <p>Todo número do site vem de uma fonte oficial ou é calculado por nós a partir delas. Quando é calculado, aparece o selo <span class="selo">estimado</span>. Os dados começam em janeiro de 2023 e são coletados por um robô toda segunda-feira e no dia 15 de cada mês. Todos os arquivos ficam públicos para quem quiser conferir.</p>
+    <p>Todo número do site vem de uma fonte oficial ou é calculado por nós a partir delas. Quando é calculado, aparece o selo <span class="selo">estimado</span>. Os dados começam em janeiro de 2023 e são coletados por um robô todos os dias. Todos os arquivos ficam públicos para quem quiser conferir.</p>
     <nav class="indice" aria-label="Nesta página">
-      <a href="#coleta">Coleta</a><a href="#cesta">Cesta básica</a><a href="#avulsos">Itens do dia a dia</a><a href="#churrasco">Churrasco pra 6</a><a href="#combustiveis">Combustível e gás</a><a href="#impostos">Impostos</a><a href="#salario">Salário mínimo</a><a href="#desemprego">Desemprego real</a><a href="#local">Brasil, regiões e estados</a><a href="#fontes">Fontes</a><a href="#mudancas">Mudanças</a><a href="#erro">Erros</a>
+      <a href="#coleta">Coleta</a><a href="#cesta">Cesta básica</a><a href="#avulsos">Itens do dia a dia</a><a href="#churrasco">Churrasco pra 6</a><a href="#combustiveis">Combustível e gás</a><a href="#impostos">Impostos</a><a href="#salario">Salário mínimo</a><a href="#desemprego">Desemprego real</a><a href="#aluguel">Aluguel</a><a href="#local">Brasil, regiões e estados</a><a href="#fontes">Fontes</a><a href="#mudancas">Mudanças</a><a href="#erro">Erros</a>
     </nav>
 
     <h2 id="coleta">Como os dados chegam</h2>
-    <p>Um robô roda no GitHub Actions toda segunda às 9h (Brasília) e no dia 15 de cada mês. Ele baixa os arquivos das fontes, confere e grava os números em arquivos abertos (JSON). O site só lê esses arquivos; não há servidor. Se uma fonte falhar, o site continua mostrando o último dado bom e a data dele.</p>
+    <p>Um robô roda no GitHub Actions todos os dias às 9h (Brasília). Ele baixa os arquivos das fontes, confere e grava os números em arquivos abertos (JSON). O site só lê esses arquivos; não há servidor. Se uma fonte falhar, o site continua mostrando o último dado bom e a data dele.</p>
     <div id="estado"></div>
 
     <h2 id="cesta">Cesta básica</h2>
@@ -50,8 +50,8 @@
     <h2 id="combustiveis">Combustível e gás de cozinha</h2>
     <p>Fonte: Levantamento de Preços de Combustíveis da ANP, semanal. É o preço médio de revenda (o da bomba ou da revenda de gás), com impostos. Produtos: gasolina comum, etanol hidratado, diesel S10, GNV (por m³) e GLP em botijão de 13 kg. O número de cada semana é o publicado pela ANP para o Brasil, cada região e cada estado. Se a ANP não publicar a média de uma região numa semana, usamos a média simples dos estados.</p>
     <ul>
-      <li><b>Litros por salário mínimo:</b> salário mínimo ÷ preço do litro.</li>
-      <li><b>Tanques:</b> consideramos um tanque de 47 litros, comum em carros populares.</li>
+      <li><b>Tanques por salário mínimo:</b> salário mínimo ÷ (preço do litro × tamanho do tanque). O tanque é de 49 litros: a média dos 5 carros mais vendidos do Brasil em 2025, sem contar picapes (Polo 52 L, Argo 48 L, T-Cross 52 L, HB20 50 L e Onix 44 L). Cada carro tem um tanque diferente, então é uma referência. Atualizamos a lista uma vez por ano.</li>
+      <li><b>Cores e setas:</b> em todo o site, preço que subiu aparece em vermelho com seta para cima, e preço que caiu em verde com seta para baixo. No salário e no poder de compra é o contrário: subir é verde.</li>
     </ul>
 
     <h2 id="impostos">Impostos <span class="selo">estimado</span></h2>
@@ -69,13 +69,25 @@
     <p><b>Carro zero mais barato:</b> conferido à mão uma vez por mês nos sites das montadoras e na tabela FIPE. Mostramos o preço sugerido nacional, mesmo que o modelo mude.</p>
 
     <h2 id="desemprego">Desemprego real</h2>
-    <p>Fonte: IBGE, PNAD Contínua. Mostramos um único número: pessoas que procuram emprego (desocupadas) mais pessoas que querem trabalhar mas desistiram de procurar (desalentadas), sem contar aposentados.</p>
+    <p>Fonte: IBGE, PNAD Contínua (microdados trimestrais). Mostramos um único número: pessoas que procuram emprego (desocupadas) mais pessoas que querem trabalhar mas desistiram de procurar (desalentadas), sem contar aposentados.</p>
     <ul>
       <li>Conta como <b>trabalhando</b> quem trabalhou e recebeu por isso, com ou sem carteira, incluindo MEI e autônomos. É a regra do IBGE.</li>
       <li>Quem recebe Bolsa Família ou outro benefício e não trabalha <b>não</b> conta como trabalhando.</li>
-      <li>Aposentados são retirados usando os microdados da pesquisa.</li>
+      <li><b>Aposentados:</b> as tabelas prontas do IBGE não separam os aposentados. Por isso o robô baixa os microdados da pesquisa (as respostas de cada entrevistado, sem nome). A pergunta sobre aposentadoria só aparece na pesquisa anual (1ª visita), então a conta tem duas partes: (1) a cada trimestre, quantas pessoas procuram emprego ou desistiram de procurar; (2) a cada ano, que parte desse grupo recebe aposentadoria ou pensão da previdência. Tiramos essa parte do número do trimestre. Para os trimestres de um ano que o IBGE ainda não publicou na pesquisa anual, usamos a parte do último ano disponível. A pergunta do IBGE junta aposentadoria e pensão, então pensionistas também saem da conta.</li>
+      <li>Cada resposta é multiplicada pelo peso que o IBGE dá a ela, para representar a população do país. É o mesmo método que o IBGE usa nos números oficiais.</li>
+      <li>O número é <b>trimestral</b>. O IBGE libera os microdados de cada trimestre cerca de um mês e meio depois que ele termina, e o site atualiza na coleta seguinte.</li>
     </ul>
-    <p>Este indicador entra no site assim que o robô estiver lendo as tabelas do IBGE.</p>
+    <p><b>Quanto ganha, em média, quem trabalha:</b> rendimento médio mensal real que as pessoas ocupadas costumam receber somando todos os trabalhos (IBGE, PNAD Contínua, tabela 6390). “Real” quer dizer que o IBGE já corrigiu os meses antigos pela inflação, em reais de hoje. É a média de três meses e sai todo mês.</p>
+
+    <h2 id="aluguel">Aluguel</h2>
+    <p>Não existe um preço oficial de aluguel em reais para o país inteiro. Por isso a página de aluguel junta três fontes abertas, cada uma respondendo uma pergunta diferente. Todas são coletadas pelo robô sem trabalho manual.</p>
+    <ul>
+      <li><b>Quanto o aluguel subiu</b> (IBGE, IPCA, subitem “Aluguel residencial”, mensal): mede o aluguel que as famílias pagam de fato, inclusive em contratos antigos. Cobre o Brasil e as 16 regiões metropolitanas e capitais do IPCA. O acumulado desde janeiro de 2023 é a soma composta das variações mensais: <code>índice = índice do mês anterior × (1 + variação)</code>, com dezembro de 2022 = 100. A inflação geral (IPCA índice geral) do mesmo lugar é calculada do mesmo jeito, para comparar.</li>
+      <li><b>Quanto custa alugar hoje</b> <span class="selo">estimado</span> (FipeZap, mensal): preço médio pedido nos anúncios de aluguel residencial, em reais por m², em cerca de 25 cidades. Multiplicamos por 60 m² (um apartamento de 2 quartos comum). É o preço de quem vai alugar agora, que costuma mudar mais rápido que o dos contratos antigos. Não inclui condomínio nem IPTU.</li>
+      <li><b>Quanto sobe o seu contrato</b> (Banco Central, séries 189 e 433 do SGS): IGP-M e IPCA acumulados em 12 meses, que são os índices usados no reajuste anual da maioria dos contratos.</li>
+      <li>O IVAR, índice de aluguéis da FGV, não entra porque não tem dados abertos que um robô possa baixar.</li>
+    </ul>
+    <p>Se uma das três fontes falhar, o site mantém o último dado bom dela e mostra as outras normalmente.</p>
 
     <h2 id="luz-agua">Conta de luz e de água <span class="selo">estimado</span></h2>
     <p>Não existe uma “conta média” oficial por estado. Montamos uma conta típica de uma casa com as tarifas oficiais:</p>
@@ -95,11 +107,15 @@
       <li><a href="https://www.dieese.org.br/analisecestabasica/salarioMinimo.html">DIEESE — Salário mínimo nominal e necessário</a></li>
       <li><a href="https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas">ANP — Levantamento de Preços de Combustíveis</a></li>
       <li><a href="https://sidra.ibge.gov.br/tabela/7060">IBGE — IPCA (tabela 7060)</a></li>
+      <li><a href="https://www.fipe.org.br/pt-br/indices/fipezap/">FipeZap — Índice de Locação Residencial</a></li>
+      <li><a href="https://www3.bcb.gov.br/sgspub/">Banco Central — SGS (IGP-M e IPCA)</a></li>
+      <li><a href="https://sidra.ibge.gov.br/tabela/6390">IBGE — SIDRA, tabela 6390 (renda média)</a></li>
       <li><a href="https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html">IBGE — PNAD Contínua</a></li>
     </ul>
 
     <h2 id="mudancas">Histórico de mudanças</h2>
     <ul>
+      <li><b>nov/2026:</b> nova página de aluguel (IBGE, FipeZap e Banco Central), com dados desde janeiro de 2023.</li>
       <li><b>out/2026:</b> primeira versão do site, com dados desde janeiro de 2023.</li>
     </ul>
 

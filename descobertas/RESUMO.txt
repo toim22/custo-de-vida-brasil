@@ -1,5 +1,5 @@
 OK   anp_serie: 300647 bytes, 616 links
-OK   anp_semanas: 471888 bytes, 1037 links
+OK   anp_semanas: 471894 bytes, 1037 links
 OK   anp_dados_abertos: 353251 bytes, 818 links
 OK   dieese_cesta: 15152 bytes, 17 links
 OK   dieese_salario: 53263 bytes, 91 links

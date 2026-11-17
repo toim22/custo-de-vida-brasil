@@ -14,7 +14,9 @@
     ["combustiveis.html", "Combustível e gás"],
     ["luz-e-agua.html", "Luz e água"],
     ["churrasco.html", "Churrasco pra 6"],
-    ["trabalho.html", "Salário e trabalho"]
+    ["trabalho.html", "Salário e trabalho"],
+    ["aluguel.html", "Aluguel"],
+    ["aumentos-de-impostos.html", "Aumentos de impostos"]
   ];
 
   var UFS = {
@@ -91,14 +93,58 @@
     if (mm === 60) { hh += 1; mm = 0; }
     return hh + " h " + (mm < 10 ? "0" : "") + mm + " min";
   }
-  /* Para preços, subir é ruim (vermelho). Para salário e poder de compra, passe bomSubir = true. */
+  /* Cores e setas em todo o site: preço que sobe = vermelho com seta para cima; preço que desce = verde com
+     seta para baixo. Para salário e poder de compra é o contrário (bomSubir = true): subir é verde. */
+  function classe(dif, bomSubir) {
+    if (dif === null || dif === undefined || isNaN(dif) || Math.abs(dif) < 1e-9) return "igual";
+    return ((dif > 0) !== !!bomSubir) ? "sobe" : "desce";
+  }
+  function flecha(dif) {
+    if (dif === null || dif === undefined || isNaN(dif)) return "";
+    if (Math.abs(dif) < 1e-9) return "= ";
+    return dif > 0 ? "▲ " : "▼ ";
+  }
+  /* Variação em %, com seta e cor. variacao(12.7) → <span class="d sobe">▲ 12,7%</span> */
+  function variacao(v, opts) {
+    opts = opts || {};
+    if (v === null || v === undefined || isNaN(v)) return '<span class="d igual">—</span>';
+    var casas = opts.casas === undefined ? 1 : opts.casas;
+    if (Math.abs(v) < Math.pow(10, -casas) / 2) v = 0;
+    return '<span class="d ' + classe(v, opts.bomSubir) + '">' + flecha(v) +
+      Math.abs(v).toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas }) + "%" + (opts.sufixo || "") + "</span>";
+  }
+  /* Diferença em valor (ex.: R$ 0,01 na semana), com seta e cor. */
   function seta(atual, anterior, fmt, sufixo, bomSubir) {
-    if (atual === null || anterior === null || atual === undefined || anterior === undefined) return '<span class="d muted">sem comparação</span>';
+    if (atual === null || anterior === null || atual === undefined || anterior === undefined) return '<span class="d igual">sem comparação</span>';
     var dif = atual - anterior;
-    if (Math.abs(dif) < 1e-9) return '<span class="d muted">= sem mudança' + (sufixo || "") + "</span>";
-    var sobe = dif > 0;
-    var cls = (sobe !== !!bomSubir) ? "sobe" : "desce";
-    return '<span class="d ' + cls + '">' + (sobe ? "▲ " : "▼ ") + fmt(Math.abs(dif)) + (sufixo || "") + "</span>";
+    if (Math.abs(dif) < 0.005) return '<span class="d igual">= sem mudança' + (sufixo || "") + "</span>";
+    return '<span class="d ' + classe(dif, bomSubir) + '">' + flecha(dif) + fmt(Math.abs(dif)) + (sufixo || "") + "</span>";
+  }
+
+  /* Gráfico pequeno (sparkline) para os cartões. */
+  function mini(serie, n) {
+    if (!serie || serie.length < 2) return "";
+    var pts = serie.slice(-(n || 48)).filter(function (p) { return p[1] !== null; });
+    if (pts.length < 2) return "";
+    var ys = pts.map(function (p) { return p[1]; });
+    var lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys), W = 120, H = 32;
+    if (hi === lo) { hi += 1; lo -= 1; }
+    var d = pts.map(function (p, i) { return (i ? "L" : "M") + (i / (pts.length - 1) * W).toFixed(1) + " " + (2 + (1 - (p[1] - lo) / (hi - lo)) * (H - 4)).toFixed(1); }).join(" ");
+    return '<svg class="mini" viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" aria-hidden="true"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>';
+  }
+
+  /* Bandeira do estado (imagens em assets/bandeiras). */
+  function bandeira(uf) {
+    if (!UFS[uf]) return "";
+    return '<img class="bandeira" src="assets/bandeiras/' + uf + '.png" alt="" width="23" height="16" loading="lazy">';
+  }
+
+  /* Arquivos de config/ (editados à mão). */
+  var cacheCfg = {};
+  function config(nome) {
+    if (!cacheCfg[nome]) cacheCfg[nome] = fetch("config/" + nome + ".json", { cache: "no-cache" })
+      .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+    return cacheCfg[nome];
   }
 
   /* ---------- Séries ---------- */
@@ -132,7 +178,8 @@
   }
 
   /* ---------- Gráfico de linhas em SVG ---------- */
-  var CORES = ["#3FD08D", "#FFD23F", "#7FB2F0", "#F59E9E", "#C4A3F5"];
+  // amarelo da etiqueta de preço primeiro; verde e vermelho ficam reservados para "desceu" e "subiu"
+  var CORES = ["#FFD23F", "#7FB2F0", "#C4A3F5", "#ECEFED", "#F5B97F"];
 
   function escalaBonita(min, max, n) {
     if (min === max) { min -= 1; max += 1; }
@@ -288,7 +335,8 @@
 
   window.CVB = {
     SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, seletorLocal: seletorLocal, lembrar: lembrar,
-    brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta,
+    brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, classe: classe,
+    mini: mini, bandeira: bandeira, config: config,
     ultimo: ultimo, anterior: anterior, valorEm: valorEm, variacao12: variacao12,
     carregar: carregar, grafico: grafico
   };

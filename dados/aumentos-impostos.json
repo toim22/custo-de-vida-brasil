@@ -1,0 +1,97 @@
+{
+  "atualizado": "2026-11-17",
+  "desde": "2026-10-25",
+  "nota": "Lista feita à mão a partir de atos oficiais e notícias. Entra só o que foi publicado ou votado depois do 2º turno (25/10/2026).",
+  "itens": [
+    {
+      "data": "2026-11-12",
+      "esfera": "Federal",
+      "titulo": "Lucro presumido: aumento dobra",
+      "imposto": "IRPJ e CSLL",
+      "status": "Aprovado no Senado",
+      "status_tipo": "tramitando",
+      "valores": "Acréscimo sobre a base de cálculo sobe de 10% para 20% (faturamento acima de R$ 5 mi/ano). Serviços: base de 35,2% para 38,4%.",
+      "efeito": "Atinge empresas médias (R$ 5 mi a R$ 78 mi por ano). Custo maior tende a chegar ao preço de serviços como clínicas, escolas e escritórios. O projeto também amplia o corte de benefícios fiscais, mas mantém o da cesta básica.",
+      "fontes": [
+        ["Agência Senado", "https://www12.senado.leg.br/institucional/presidencia/destaque-noticia/senado-aprova-texto-base-de-projeto-de-ajuste-fiscal-com-previsao-de-economia-de-ate-r-60-bilhoes"],
+        ["O Tempo/Folhapress", "https://www.otempo.com.br/economia/2026/11/16/novo-pacote-fiscal-do-governo-preve-dobrar-aumento-do-lucro-presumido-e-pressiona-medias-empresas"]
+      ],
+      "instrumento": "PLP 299/2026 (vai para a Câmara)"
+    },
+    {
+      "data": "2026-11-10",
+      "esfera": "Federal",
+      "titulo": "Pneus importados mais caros",
+      "imposto": "Imposto de Importação",
+      "status": "Em vigor",
+      "status_tipo": "vigor",
+      "valores": "Pneus de carro de passeio: de 25% para 30% por 12 meses (até 9/11/2027). A alíquota normal era 16%.",
+      "efeito": "Pode encarecer a troca de pneus e reduzir opções baratas nas lojas. O repasse não é automático.",
+      "fontes": [
+        ["O Povo", "https://www.opovo.com.br/noticias/economia/2026/11/09/governo-eleva-aliquota-de-importacao-de-pneus-de-25-para-30-por-12-meses.html"],
+        ["Vrum", "https://www.vrum.com.br/noticias/2026/11/7538102-governo-aumenta-imposto-de-pneus-importados-de-16-para-30-no-brasil.html"]
+      ],
+      "instrumento": "Decisão do Gecex (Camex)"
+    },
+    {
+      "data": "2026-11-04",
+      "esfera": "Federal",
+      "titulo": "Imposto Seletivo criado: cigarro e bebidas",
+      "imposto": "Imposto Seletivo (novo)",
+      "status": "MP publicada · cobrança a partir de 2/2/2027",
+      "status_tipo": "vigor",
+      "valores": "Cigarro: 66,7% + R$ 3,50 por maço de 20. Refrigerante e bebidas açucaradas: 2,6%. Cerveja: 4,2%. Vinho: 8% a 16%. Cachaça e rum: 20%. Uísque e outros destilados: 24%.",
+      "efeito": "Imposto novo que substitui o IPI nesses produtos. O governo diz que em 2027 a carga fica no nível do IPI atual. As alíquotas definitivas, a partir de 2028, ainda vão ser propostas.",
+      "fontes": [
+        ["Ministério da Fazenda", "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"],
+        ["Estado de Minas", "https://www.em.com.br/politica/2026/11/7533558-governo-federal-divulga-aumento-de-impostos-de-bebidas-veiculos-e-cigarro.html"]
+      ],
+      "instrumento": "MP 1.399/2026"
+    },
+    {
+      "data": "2026-11-04",
+      "esfera": "Federal",
+      "titulo": "Imposto Seletivo criado: carros",
+      "imposto": "Imposto Seletivo (novo)",
+      "status": "MP publicada · cobrança a partir de 2/2/2027",
+      "status_tipo": "vigor",
+      "valores": "Base de 6,3% para carro de passeio, variando de 2% (híbrido plug-in a gasolina) a 12% (diesel). Gasolina: 6,5%. Zero para PcD/TEA, táxi e carros com selo de versão sustentável.",
+      "efeito": "Entra no preço do carro zero no lugar do IPI. Também pega barcos e aviões.",
+      "fontes": [
+        ["Ministério da Fazenda", "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"],
+        ["Estado de Minas", "https://www.em.com.br/politica/2026/11/7533558-governo-federal-divulga-aumento-de-impostos-de-bebidas-veiculos-e-cigarro.html"]
+      ],
+      "instrumento": "MP 1.399/2026"
+    },
+    {
+      "data": "2026-11-04",
+      "esfera": "Federal",
+      "titulo": "Imposto novo na loteria",
+      "imposto": "Imposto Seletivo (novo)",
+      "status": "MP publicada · cobrança a partir de 2/2/2027",
+      "status_tipo": "vigor",
+      "valores": "0,5% sobre Mega-Sena, Lotofácil, Loteca e demais concursos de prognósticos.",
+      "efeito": "Tributo que não existia sobre a aposta na loteria.",
+      "fontes": [
+        ["Ministério da Fazenda", "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"],
+        ["Comsefaz", "https://comsefaz.org.br/novo/mp-1-399-2026-institui-imposto-seletivo-para-2027-com-aliquotas-de-ate-667-e-reducao-da-referencia-da-cbs/"]
+      ],
+      "instrumento": "MP 1.399/2026"
+    },
+    {
+      "data": "2026-10-28",
+      "esfera": "Federal",
+      "titulo": "CBS acima do esperado",
+      "imposto": "CBS (novo, substitui PIS/Cofins)",
+      "status": "Em definição · Senado decide até 15/12",
+      "status_tipo": "debate",
+      "valores": "TCU calculou alíquota de referência de 11,3%. O mercado esperava cerca de 9,5%. Somada ao IBS, o imposto sobre consumo fica perto de 30%.",
+      "efeito": "A CBS vai entrar no preço de quase tudo que se compra. Quanto maior a alíquota, maior o imposto embutido no preço.",
+      "fontes": [
+        ["Gazeta do Povo", "https://www.gazetadopovo.com.br/economia/lula-aumento-carga-tributaria-impostos-2027/"],
+        ["Exame", "https://exame.com/brasil/apos-eleicoes-governo-acumula-tarefas-urgentes-para-evitar-rombo-fiscal-em-2027/"]
+      ],
+      "instrumento": "Cálculo do TCU (EC 132/2023)"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aluguel: quanto subiu desde 2023 · Custo de Vida Brasil</title>
+<meta name="description" content="Quanto o aluguel subiu desde janeiro de 2023 no Brasil e em cada região, quanto custa alugar um apartamento de 60 m² e quanto o seu contrato sobe pelo IGP-M ou pelo IPCA.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco">
+    <span class="eyebrow">Habitação · atualizada todo mês</span>
+    <h1 id="titulo">Aluguel</h1>
+    <div class="filtros"><label class="visually-hidden" for="local">Local</label><select id="local"></select></div>
+  </section>
+
+  <section class="bloco heroi" id="bloco-heroi">
+    <div class="stack">
+      <span class="tag grande"><span class="lbl" id="lbl">aluguel desde jan/2023</span><span class="val" id="val">—</span></span>
+      <div class="fatos" id="fatos"></div>
+      <a class="como" href="como-calculamos.html#aluguel">Como calculamos →</a>
+    </div>
+    <div class="grafico"><div class="cab"><b>Aluguel × inflação geral desde jan/2023</b><span class="small">dez/2022 = 100</span></div><div id="g"></div></div>
+  </section>
+
+  <section class="bloco">
+    <h2>Quanto o aluguel subiu em cada lugar</h2>
+    <p class="small read">Aluguel que as famílias pagam de fato, nos contratos em andamento, segundo o IBGE. A seta mostra o último mês: vermelha quando subiu, verde quando caiu.</p>
+    <div class="cards" id="regioes"></div>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+
+  <section class="bloco">
+    <h2>Quanto custa alugar um apartamento de 60 m² <span class="selo">estimado</span></h2>
+    <p class="small read">Preço médio pedido nos anúncios de aluguel (FipeZap) vezes 60 m², o tamanho de um apartamento de 2 quartos comum. Não inclui condomínio nem IPTU. A seta compara com 12 meses antes.</p>
+    <div class="cards" id="cidades"></div>
+  </section>
+
+  <section class="bloco">
+    <h2>Quanto sobe o seu contrato</h2>
+    <p class="small read">Quase todo contrato de aluguel é reajustado uma vez por ano pelo IGP-M ou pelo IPCA, somando os 12 meses anteriores. Se o seu contrato faz aniversário agora, é isso que o dono pode cobrar a mais.</p>
+    <div class="cards" id="reajuste"></div>
+    <div class="grafico"><div class="cab"><b>IGP-M × IPCA, acumulado em 12 meses</b><span class="small">%</span></div><div id="g-reajuste"></div></div>
+  </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  function card(t, v, d) { return '<div class="card"><span class="t">' + t + '</span><span class="v">' + v + "</span>" + d + "</div>"; }
+  function setaPct(v, texto) { return C.variacao(v, { casas: 2, sufixo: " " + texto }); }
+  function nomeComBandeira(nome, uf) { return uf ? '<span class="uf">' + C.bandeira(uf) + nome + "</span>" : nome; }
+  function desde2023(indice) { var u = C.ultimo(indice); return u ? u[1] - 100 : null; }
+  function vazio(id, txt) { document.getElementById(id).innerHTML = '<p class="aviso" style="grid-column:1/-1">' + txt + "</p>"; }
+
+  C.carregar("aluguel").then(function (al) {
+    if (!al) {
+      document.getElementById("bloco-heroi").innerHTML = '<p class="aviso">Os dados de aluguel aparecem depois da próxima coleta do robô.</p>';
+      ["regioes", "cidades", "reajuste"].forEach(function (id) { vazio(id, "Aparece depois da primeira coleta."); });
+      return;
+    }
+    var locais = al.ipca.locais, sel = document.getElementById("local");
+    C.seletorLocal(sel, Object.keys(locais), C.lembrar("local") || "BR");
+    if (!locais[sel.value]) sel.value = "BR";
+    sel.addEventListener("change", function () { C.lembrar("local", sel.value); desenhar(); });
+
+    // contrato: IGP-M e IPCA de 12 meses
+    var rj = al.reajuste || {}, ig = C.ultimo(rj.igpm), ip = C.ultimo(rj.ipca);
+    if (ig || ip) {
+      var c = [];
+      [["IGP-M", rj.igpm, ig], ["IPCA", rj.ipca, ip]].forEach(function (x) {
+        if (!x[2]) return;
+        var ant = C.anterior(x[1]);
+        c.push(card("Reajuste pelo " + x[0], C.pct(x[2][1], 2),
+          C.seta(x[2][1], ant ? ant[1] : null, function (v) { return C.numero(v, 2); }, " p.p. vs mês anterior") +
+          '<span class="d igual">12 meses até ' + C.data(x[2][0]) + "</span>"));
+      });
+      c.push(card("Aluguel de R$ 1.500 hoje", C.brl(1500 * (1 + (ig ? ig[1] : ip[1]) / 100), 0), '<span class="d igual">vira isso no reajuste pelo ' + (ig ? "IGP-M" : "IPCA") + " de " + C.data((ig || ip)[0]) + "</span>"));
+      document.getElementById("reajuste").innerHTML = c.join("");
+      C.grafico(document.getElementById("g-reajuste"), [
+        { nome: "IGP-M", pontos: rj.igpm || [], cor: "#C4A3F5" },
+        { nome: "IPCA", pontos: rj.ipca || [], cor: "#7FB2F0" }
+      ], { fmtY: function (v) { return C.numero(v, 1); }, marcos: [["2027-01", "novo mandato"]] });
+    } else vazio("reajuste", "Os índices de reajuste aparecem depois da próxima coleta.");
+
+    // cards por região do IPCA
+    var ordem = Object.keys(locais).sort(function (a, b) { return a === "BR" ? -1 : b === "BR" ? 1 : C.nomeLocal(a).localeCompare(C.nomeLocal(b), "pt"); });
+    document.getElementById("regioes").innerHTML = ordem.map(function (k) {
+      var l = locais[k], u = C.ultimo(l.variacao);
+      return card(k === "BR" ? "Brasil" : nomeComBandeira(l.area_ibge, k), C.pct(desde2023(l.indice), 1),
+        '<span class="d igual">desde jan/2023</span>' + C.mini(l.indice) + setaPct(u ? u[1] : null, "em " + (u ? C.data(u[0]) : "")) +
+        C.variacao(C.variacao12(l.indice), { sufixo: " em 12 meses" }));
+    }).join("");
+
+    // FipeZap: apartamento de 60 m²
+    var fz = al.fipezap || {}, area = fz.area_referencia_m2 || 60, cid = fz.cidades || {};
+    var nomes = Object.keys(cid).sort(function (a, b) { return C.ultimo(cid[b].preco_m2)[1] - C.ultimo(cid[a].preco_m2)[1]; });
+    if (nomes.length) {
+      document.getElementById("cidades").innerHTML = nomes.map(function (n) {
+        var s = cid[n].preco_m2, u = C.ultimo(s), base = C.valorEm(s, (+u[0].slice(0, 4) - 1) + u[0].slice(4));
+        return card(nomeComBandeira(n, cid[n].uf), C.brl(u[1] * area, 0) + '<span class="small muted">/mês</span>',
+          C.mini(s) + C.seta(u[1] * area, base ? base * area : null, function (v) { return C.brl(v, 0); }, " em 12 meses") +
+          '<span class="d igual">' + C.brl(u[1], 2) + "/m² · " + C.data(u[0]) + "</span>");
+      }).join("");
+    } else vazio("cidades", "O preço dos anúncios (FipeZap) aparece depois da próxima coleta.");
+
+    function desenhar() {
+      var k = locais[sel.value] ? sel.value : "BR", l = locais[k];
+      var nome = k === "BR" ? "Brasil" : l.area_ibge;
+      document.getElementById("titulo").textContent = "Aluguel · " + nome;
+      var sub = desde2023(l.indice), geral = desde2023(l.indice_geral), u = C.ultimo(l.indice);
+      document.getElementById("lbl").textContent = "aluguel desde jan/2023 · até " + C.data(u && u[0]);
+      document.getElementById("val").textContent = C.pct(sub, 1);
+      var f = [];
+      if (geral !== null) f.push('<div class="fato"><span class="num">' + C.pct(geral, 1) + "</span><span>foi a inflação geral (IPCA) no mesmo lugar e período</span></div>");
+      if (geral !== null && sub !== null) f.push('<div class="fato"><span class="num ' + C.classe(sub - geral) + '">' + (sub > geral ? "▲ " : "▼ ") + C.numero(Math.abs(sub - geral), 1) + "</span><span>pontos percentuais " + (sub > geral ? "a mais" : "a menos") + " que os outros preços</span></div>");
+      var v12 = l.variacao.slice(-12).reduce(function (a, p) { return a * (1 + p[1] / 100); }, 1);
+      if (l.variacao.length >= 12) f.push('<div class="fato"><span class="num">' + C.variacao((v12 - 1) * 100) + "</span><span>nos últimos 12 meses</span></div>");
+      document.getElementById("fatos").innerHTML = f.join("");
+      C.grafico(document.getElementById("g"), [
+        { nome: "Aluguel", pontos: l.indice, cor: "#FFD23F" },
+        { nome: "Inflação geral", pontos: l.indice_geral, cor: "#7FB2F0" }
+      ], { fmtY: function (v) { return C.numero(v, 0); }, marcos: [["2027-01", "novo mandato"]] });
+    }
+    desenhar();
+  });
+});
+</script>
+</body>
+</html>

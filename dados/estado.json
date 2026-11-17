@@ -2,31 +2,45 @@
  "combustiveis": {
   "nome": "ANP — combustíveis e gás",
   "ok": true,
-  "coletado_em": "2026-11-16 21:43 UTC",
+  "coletado_em": "2026-11-17 00:44 UTC",
   "dado_mais_recente": "2026-11-14"
  },
  "salario": {
   "nome": "DIEESE — salário mínimo",
   "ok": true,
-  "coletado_em": "2026-11-16 21:43 UTC",
+  "coletado_em": "2026-11-17 00:44 UTC",
   "dado_mais_recente": "2026-10"
  },
  "cesta": {
   "nome": "DIEESE — cesta básica",
   "ok": true,
-  "coletado_em": "2026-11-16 21:43 UTC",
+  "coletado_em": "2026-11-17 00:44 UTC",
   "dado_mais_recente": "2026-10"
  },
  "ipca": {
   "nome": "IBGE — IPCA",
   "ok": true,
-  "coletado_em": "2026-11-16 21:43 UTC",
+  "coletado_em": "2026-11-17 00:44 UTC",
   "dado_mais_recente": "2026-10"
  },
  "churrasco": {
   "nome": "Cálculo — itens avulsos e Churrasco pra 6",
   "ok": true,
-  "coletado_em": "2026-11-16 21:43 UTC",
+  "coletado_em": "2026-11-17 00:44 UTC",
   "dado_mais_recente": "2026-10"
+ },
+ "aluguel": {
+  "nome": "IBGE, Banco Central e FipeZap — aluguel",
+  "ok": false,
+  "tentado_em": "2026-11-17 00:44 UTC",
+  "erro": "Banco Central: Expecting value: line 1 column 1 (char 0)",
+  "dado_mais_recente": null
+ },
+ "trabalho": {
+  "nome": "IBGE — PNAD Contínua (desemprego real e renda)",
+  "ok": false,
+  "tentado_em": "2026-11-17 00:44 UTC",
+  "erro": "desemprego: dicionário da PNAD sem as variáveis ['V5004A']",
+  "dado_mais_recente": null
  }
 }
