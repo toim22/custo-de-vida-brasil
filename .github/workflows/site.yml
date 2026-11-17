@@ -55,7 +55,8 @@ jobs:
           git add dados descobertas
           git diff --cached --quiet || git commit -m "Coleta automática $(date -u +%Y-%m-%d)"
           # se alguém mexeu no main durante a coleta (ex.: um merge), junta antes de enviar
-          git pull --rebase origin main
+          # em conflito nos arquivos de dados, fica a versão desta coleta (a mais nova)
+          git pull --rebase -X theirs origin main
           git push
 
   publicar:
