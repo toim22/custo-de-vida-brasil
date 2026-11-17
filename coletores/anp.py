@@ -25,7 +25,7 @@ PRODUTOS = {
     "gnv": {"nome": "GNV", "unidade": "m³", "anp": ["gnv"]},
     "glp": {"nome": "Botijão de gás 13 kg", "unidade": "botijão", "anp": ["glp"]},
 }
-REGIOES_ANP = {"norte": "N", "nordeste": "NE", "centro oeste": "CO", "sudeste": "SE", "sul": "S"}
+REGIOES_ANP = {"norte": "N", "nordeste": "NE", "centro oeste": "CO", "sudeste": "SD", "sul": "S"}
 
 
 def produto_chave(txt):

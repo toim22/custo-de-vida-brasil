@@ -21,14 +21,15 @@
 
   var UFS = {
     AC: ["Acre", "N"], AL: ["Alagoas", "NE"], AP: ["Amapá", "N"], AM: ["Amazonas", "N"],
-    BA: ["Bahia", "NE"], CE: ["Ceará", "NE"], DF: ["Distrito Federal", "CO"], ES: ["Espírito Santo", "SE"],
+    BA: ["Bahia", "NE"], CE: ["Ceará", "NE"], DF: ["Distrito Federal", "CO"], ES: ["Espírito Santo", "SD"],
     GO: ["Goiás", "CO"], MA: ["Maranhão", "NE"], MT: ["Mato Grosso", "CO"], MS: ["Mato Grosso do Sul", "CO"],
-    MG: ["Minas Gerais", "SE"], PA: ["Pará", "N"], PB: ["Paraíba", "NE"], PR: ["Paraná", "S"],
-    PE: ["Pernambuco", "NE"], PI: ["Piauí", "NE"], RJ: ["Rio de Janeiro", "SE"], RN: ["Rio Grande do Norte", "NE"],
+    MG: ["Minas Gerais", "SD"], PA: ["Pará", "N"], PB: ["Paraíba", "NE"], PR: ["Paraná", "S"],
+    PE: ["Pernambuco", "NE"], PI: ["Piauí", "NE"], RJ: ["Rio de Janeiro", "SD"], RN: ["Rio Grande do Norte", "NE"],
     RS: ["Rio Grande do Sul", "S"], RO: ["Rondônia", "N"], RR: ["Roraima", "N"], SC: ["Santa Catarina", "S"],
-    SP: ["São Paulo", "SE"], SE: ["Sergipe", "NE"], TO: ["Tocantins", "N"]
+    SP: ["São Paulo", "SD"], SE: ["Sergipe", "NE"], TO: ["Tocantins", "N"]
   };
-  var REGIOES = { N: "Norte", NE: "Nordeste", CO: "Centro-Oeste", SE: "Sudeste", S: "Sul" };
+  // Sudeste usa "SD" porque "SE" é a sigla de Sergipe
+  var REGIOES = { N: "Norte", NE: "Nordeste", CO: "Centro-Oeste", SD: "Sudeste", S: "Sul" };
   var MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 
   function nomeLocal(cod) {
@@ -38,13 +39,22 @@
     return cod;
   }
 
+  /* "no Brasil", "no Sudeste", "na Bahia", "em São Paulo"... */
+  var NO = "AC AM AP CE DF ES MA MT MS PA PR PI RJ RN RS TO".split(" "), NA = ["BA", "PB"];
+  function emLocal(cod) {
+    var n = nomeLocal(cod);
+    if (cod === "BR" || REGIOES[cod] || NO.indexOf(cod) > -1) return "no " + n;
+    if (NA.indexOf(cod) > -1) return "na " + n;
+    return "em " + n;
+  }
+
   /* Monta o seletor Brasil > regiões > estados, só com os códigos que têm dados. */
   function seletorLocal(sel, disponiveis, inicial) {
     var tem = function (c) { return !disponiveis || disponiveis.indexOf(c) > -1; };
     var html = "";
     if (tem("BR")) html += '<option value="BR">Brasil</option>';
     var grupoR = "";
-    Object.keys(REGIOES).forEach(function (r) { if (tem(r)) grupoR += '<option value="' + r + '">' + REGIOES[r] + "</option>"; });
+    Object.keys(REGIOES).forEach(function (r) { if (tem(r)) grupoR += '<option data-tipo="regiao" value="' + r + '">' + REGIOES[r] + "</option>"; });
     if (grupoR) html += '<optgroup label="Regiões">' + grupoR + "</optgroup>";
     var grupoE = "";
     Object.keys(UFS).sort(function (a, b) { return UFS[a][0].localeCompare(UFS[b][0], "pt"); })
@@ -79,7 +89,7 @@
     var botao = sel._escolha.btn;
     function atualizar() {
       var o = sel.options[sel.selectedIndex];
-      botao.innerHTML = (o && UFS[o.value] ? bandeira(o.value) : '<span class="escolha-ico" aria-hidden="true">◎</span>') +
+      botao.innerHTML = (o ? iconeOpcao(o) : '<span class="escolha-ico" aria-hidden="true">◎</span>') +
         "<span>" + (o ? o.textContent : "Escolha o local") + '</span><svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
     }
     function abrir() {
@@ -97,7 +107,7 @@
         '<div class="escolha-lista">' + grupos.filter(function (g) { return g.itens.length; }).map(function (g) {
           return (g.nome ? '<p class="escolha-grupo">' + g.nome + "</p>" : "") + '<div class="escolha-itens' + (g.itens.length > 6 ? " muitos" : "") + '">' +
             g.itens.map(function (o) {
-              return '<button type="button" data-v="' + o.value + '" aria-pressed="' + (o.value === atual) + '">' + (UFS[o.value] ? bandeira(o.value) : "") + "<span>" + o.textContent + "</span></button>";
+              return '<button type="button" data-v="' + o.value + '" aria-pressed="' + (o.value === atual) + '">' + iconeOpcao(o) + "<span>" + o.textContent + "</span></button>";
             }).join("") + "</div>";
         }).join("") + "</div></div>";
       document.body.appendChild(fundo);
@@ -227,8 +237,20 @@
   }
 
   /* Bandeira do estado (imagens em assets/bandeiras). */
+  /* Ícone de uma opção do seletor: bandeira do Brasil, mapa com a região em destaque, ou bandeira do estado.
+     */
+  function iconeOpcao(o) {
+    if (o.value === "BR") return bandeira("BR");
+    if (o.dataset.tipo === "regiao") return iconeRegiao(o.value);
+    return bandeira(o.value);
+  }
+  function iconeRegiao(r) {
+    if (!REGIOES[r]) return "";
+    return '<img class="bandeira mapa" src="assets/bandeiras/regiao-' + r + '.png" alt="" width="23" height="16" loading="lazy">';
+  }
+
   function bandeira(uf) {
-    if (!UFS[uf]) return "";
+    if (!UFS[uf] && uf !== "BR") return "";
     return '<img class="bandeira" src="assets/bandeiras/' + uf + '.png" alt="" width="23" height="16" loading="lazy">';
   }
 
@@ -524,7 +546,7 @@
   window.addEventListener("pageshow", function () { document.documentElement.classList.remove("saindo"); });
 
   window.CVB = {
-    SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, seletorLocal: seletorLocal, lembrar: lembrar,
+    SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, emLocal: emLocal, seletorLocal: seletorLocal, lembrar: lembrar,
     brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, classe: classe,
     mini: mini, bandeira: bandeira, config: config, barraImpostos: barraImpostos,
     ultimo: ultimo, anterior: anterior, valorEm: valorEm, variacao12: variacao12,

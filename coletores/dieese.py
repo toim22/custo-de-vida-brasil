@@ -4,7 +4,9 @@ import re
 
 import pandas as pd
 
-from comum import DESCOBERTAS, INICIO, SESSAO, UF_REGIAO, baixar, norm, salvar_json, serie_ordenada
+import time
+
+from comum import DESCOBERTAS, INICIO, SESSAO, UF_REGIAO, baixar, ler_json, norm, salvar_json, serie_ordenada
 
 URL_SALARIO = "https://www.dieese.org.br/analisecestabasica/salarioMinimo.html"
 MESES = {m: i + 1 for i, m in enumerate(
@@ -175,11 +177,17 @@ def coletar_cesta():
     for cod, uf in CIDADES.items():
         for tipo, nome_tipo in TIPOS.items():
             dados = {"farinha": "true", "cidades": cod, "tipoDado": tipo, "produtos": "0", "dataInicial": ini, "dataFinal": fim}
-            try:
-                r = SESSAO.post(URL_CESTA, data=dados, timeout=(15, 60))
-                r.raise_for_status()
-            except Exception as e:  # noqa: BLE001
-                print(f"    POST falhou {uf} tipo {tipo}: {e}", flush=True)
+            r = None
+            for tentativa in range(3):
+                try:
+                    r = SESSAO.post(URL_CESTA, data=dados, timeout=(15, 60))
+                    r.raise_for_status()
+                    break
+                except Exception as e:  # noqa: BLE001
+                    print(f"    POST falhou {uf} tipo {tipo} (tentativa {tentativa + 1}): {e}", flush=True)
+                    r = None
+                    time.sleep(5 * (tentativa + 1))
+            if r is None:
                 continue
             html = texto(r)
             if not amostra_salva:
@@ -206,6 +214,15 @@ def coletar_cesta():
             "horas": serie_ordenada(tot.get("horas", {})),
             "itens": item,
         }
+
+    # Capital que o DIEESE não respondeu nesta coleta: fica com o último dado bom,
+    # para a lista do site não encolher (aconteceu em 17/11/2026: só 3 capitais vieram).
+    anterior = (ler_json("cesta", {}) or {}).get("capitais", {})
+    faltando = [uf for uf in anterior if uf not in saida_cap or not saida_cap[uf]["total"]]
+    for uf in faltando:
+        saida_cap[uf] = anterior[uf]
+    if faltando:
+        print(f"    sem resposta nesta coleta, mantidas do último dado bom: {', '.join(faltando)}", flush=True)
 
     # Brasil e regiões: média simples das capitais
     grupos = {"BR": list(saida_cap)}

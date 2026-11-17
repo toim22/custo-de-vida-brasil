@@ -1,3 +1,7 @@
 Bandeiras dos estados, em PNG pequeno (40 px de altura), geradas a partir do pacote br-state-flags
 (https://github.com/arthurreira/br-state-flags, licença MIT). A bandeira de Sergipe foi redesenhada à mão
 porque a do pacote estava com a proporção errada.
+
+BR.png: bandeira do Brasil desenhada à mão em formato simplificado.
+regiao-N/NE/CO/SD/S.png: mapa do Brasil com a região em amarelo, feito a partir do pacote @svg-maps/brazil
+(https://github.com/VictorCazanave/svg-maps, licença CC BY 4.0). Sudeste usa a sigla "SD" porque "SE" é Sergipe.

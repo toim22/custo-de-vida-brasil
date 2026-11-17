@@ -213,7 +213,7 @@ def base_aneel():
 
 
 def grupos(series):
-    """Regiões e Brasil (média simples dos estados). "SE" é Sergipe e também Sudeste: o estado vence."""
+    """Regiões e Brasil (média simples dos estados). Sudeste é "SD" ("SE" é Sergipe)."""
     ufs = [u for u in series if u in UF_REGIAO]
     out = [(r, [u for u in ufs if UF_REGIAO[u] == r]) for r in sorted(set(UF_REGIAO.values())) if r not in UF_REGIAO]
     return out + [("BR", ufs)]
