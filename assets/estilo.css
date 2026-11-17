@@ -227,3 +227,99 @@ tr:last-child td { border-bottom: 0; }
 .tag .selo-var.sobe { background: #B42318; color: #fff; }
 .tag .selo-var.desce { background: #13703A; color: #fff; }
 .tag .selo-var.igual { background: rgba(30, 26, 6, .14); color: var(--tag-ink); }
+
+/* ===================== Refino visual (mais moderno) =====================
+   Só ajustes de aparência: cantos mais redondos, cartões com leve brilho, menu em pílulas,
+   tabelas mais leves e botões consistentes. As cores de alta/queda não mudam. */
+:root {
+  --surface: #0E1110;
+  --surface-2: #151917;
+  --line: #222826;
+  --line-2: #2C3330;
+  --raio: 16px;
+  --sombra: 0 1px 0 rgba(255,255,255,.04) inset, 0 10px 30px -18px rgba(0,0,0,.9);
+}
+body { background: radial-gradient(1200px 500px at 15% -10%, rgba(255,210,63,.07), transparent 60%), var(--bg); background-attachment: fixed; }
+::selection { background: var(--tag); color: var(--tag-ink); }
+
+/* Topo: vidro fosco e menu em pílulas que rola de lado no celular */
+.topo { background: rgba(0,0,0,.72); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom-color: rgba(255,255,255,.06); }
+.topo .wrap { padding-block: 10px; gap: 10px 24px; }
+.logo { font-size: 1.05rem; letter-spacing: -.01em; }
+.menu { gap: 4px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; max-width: 100%; }
+.menu::-webkit-scrollbar { display: none; }
+.menu a { padding: 6px 12px; border-radius: 999px; border: 0; color: #C9D0CC; white-space: nowrap; font-size: .86rem; transition: background .15s, color .15s; }
+.menu a:hover { color: var(--ink); background: rgba(255,255,255,.06); }
+.menu a[aria-current="page"] { background: var(--tag); color: var(--tag-ink); }
+
+/* Títulos */
+h1 { font-size: clamp(2rem, 5.5vw, 3.4rem); letter-spacing: -.035em; line-height: 1.04; }
+h2 { letter-spacing: -.02em; }
+.eyebrow { color: #A7B0AB; display: inline-flex; align-items: center; gap: 8px; }
+.eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--tag); box-shadow: 0 0 0 4px rgba(255,210,63,.15); flex: none; }
+main { padding-block: 36px 72px; gap: 44px; }
+
+/* Cartões e caixas: mesmo raio, borda suave e brilho de cima */
+.card, .fato, .grafico, .explica, .aviso, .churras, .tabela, .itens {
+  border-radius: var(--raio);
+}
+.card, .fato, .grafico, .churras {
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,0) 40%), var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--sombra);
+}
+a.card { transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+a.card:hover { transform: translateY(-2px); border-color: var(--line-2); box-shadow: var(--sombra), 0 18px 40px -24px rgba(255,210,63,.25); }
+.painel { gap: 16px; }
+.painel .card { padding: 20px; gap: 10px; }
+.painel .card .t { color: #A7B0AB; }
+.painel .card .ir { display: inline-flex; align-items: center; gap: 4px; }
+a.card:hover .ir { text-decoration: underline; text-underline-offset: 3px; }
+.fato { padding: 14px 16px; }
+.fato .num { font-size: 1.35rem; }
+.grafico { padding: 18px; }
+.explica { background: linear-gradient(135deg, rgba(63,208,141,.14), rgba(63,208,141,.05)); border: 1px solid rgba(63,208,141,.18); }
+
+/* Etiqueta amarela: um pouco mais de presença */
+.tag { padding: 9px 18px 9px 22px; box-shadow: 0 8px 24px -14px rgba(255,210,63,.6); }
+.tag .val { letter-spacing: -.02em; }
+
+/* Filtros: seletor e botões em pílula */
+select { appearance: none; -webkit-appearance: none; border-radius: 999px; padding: 8px 38px 8px 14px; background-color: var(--surface-2); border-color: var(--line-2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23A7B0AB' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+select:hover { border-color: #3A433F; }
+.seg { border-radius: 999px; padding: 3px; gap: 2px; background: var(--surface-2); border-color: var(--line-2); }
+.seg button { border-radius: 999px; padding: 6px 13px; transition: background .15s, color .15s; }
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--tag); color: var(--tag-ink); }
+.seg.pequeno button { padding: 5px 11px; }
+
+/* Tabelas mais leves */
+.tabela { background: var(--surface); border-color: var(--line); }
+th { background: transparent; border-bottom: 1px solid var(--line-2); font-size: .68rem; }
+td { border-bottom-color: rgba(255,255,255,.05); }
+tbody tr { transition: background .12s; }
+tbody tr:hover td { background: rgba(255,255,255,.025); }
+tr.total td { background: rgba(255,210,63,.07); border-top: 1px solid rgba(255,210,63,.35); }
+.itens { background: var(--surface); }
+.item { border-bottom-color: rgba(255,255,255,.05); }
+.item .barra { border-radius: 999px; background: linear-gradient(90deg, rgba(255,210,63,.35), rgba(255,210,63,.8)); opacity: 1; }
+
+/* Selos e anúncio */
+.selo { border-radius: 999px; }
+.anuncio { border-radius: var(--raio); border-color: var(--line); background: rgba(255,255,255,.015); }
+
+/* Rodapé */
+.rodape-site { background: transparent; border-top-color: rgba(255,255,255,.06); }
+.rodape-site .wrap { padding-block: 24px 32px; }
+
+@media (max-width: 860px) {
+  .topo .wrap { gap: 8px; }
+  .menu { margin-inline: -16px; padding-inline: 16px; width: calc(100% + 32px); max-width: none; }
+  .painel .card { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { a.card:hover { transform: none; } }
+.painel .card { display: flex; flex-direction: column; }
+.painel .card .tag { align-self: flex-start; }
+.painel .card .ir { margin-top: auto; padding-top: 6px; }
