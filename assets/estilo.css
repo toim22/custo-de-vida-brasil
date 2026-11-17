@@ -116,7 +116,12 @@ a.card:hover { border-color: var(--muted); }
 .painel .lista li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 6px; font-size: .9rem; }
 .painel .lista li:last-child { border-bottom: 0; }
 .painel .lista b { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
-.mini { width: 100%; height: 34px; color: var(--tag); opacity: .85; display: block; }
+.mini-g { padding: 4px 6px 18px 40px; color: var(--tag); }
+.mini-a { position: relative; height: 64px; }
+.mini-a svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mini-a .my { position: absolute; right: 100%; margin-right: 6px; transform: translateY(-50%); font-family: var(--f-mono); font-size: .64rem; color: var(--muted); white-space: nowrap; }
+.mini-a .mx { position: absolute; top: 100%; margin-top: 3px; font-size: .64rem; color: var(--muted); white-space: nowrap; }
+.mini-a .mponto { position: absolute; right: -4px; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: currentColor; }
 
 /* Bandeiras dos estados */
 .uf { display: inline-flex; align-items: center; }
