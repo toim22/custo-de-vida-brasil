@@ -121,16 +121,30 @@
     return '<span class="d ' + classe(dif, bomSubir) + '">' + flecha(dif) + fmt(Math.abs(dif)) + (sufixo || "") + "</span>";
   }
 
-  /* Gráfico pequeno (sparkline) para os cartões. */
-  function mini(serie, n) {
+  /* Gráfico pequeno para os cartões: linha, área, linhas-guia com valores e datas de início e fim.
+     As linhas são SVG esticado na largura do cartão; os textos são HTML, para não deformar. */
+  function mini(serie, n, fmt) {
     if (!serie || serie.length < 2) return "";
     var pts = serie.slice(-(n || 48)).filter(function (p) { return p[1] !== null; });
     if (pts.length < 2) return "";
     var ys = pts.map(function (p) { return p[1]; });
-    var lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys), W = 120, H = 32;
-    if (hi === lo) { hi += 1; lo -= 1; }
-    var d = pts.map(function (p, i) { return (i ? "L" : "M") + (i / (pts.length - 1) * W).toFixed(1) + " " + (2 + (1 - (p[1] - lo) / (hi - lo)) * (H - 4)).toFixed(1); }).join(" ");
-    return '<svg class="mini" viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" aria-hidden="true"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>';
+    var ticks = escalaBonita(Math.min.apply(null, ys), Math.max.apply(null, ys), 2);
+    var y0 = ticks[0], y1 = ticks[ticks.length - 1], W = 300, H = 100;
+    var passo = ticks.length > 1 ? ticks[1] - ticks[0] : 1;
+    fmt = fmt || function (v) { return numero(v, passo >= 1 ? 0 : 2); };
+    var px = function (i) { return i / (pts.length - 1) * W; };
+    var py = function (v) { return (1 - (v - y0) / (y1 - y0)) * H; };
+    var d = pts.map(function (p, i) { return (i ? "L" : "M") + px(i).toFixed(1) + " " + py(p[1]).toFixed(1); }).join(" ");
+    var guias = ticks.map(function (t) { return '<line x1="0" x2="' + W + '" y1="' + py(t).toFixed(1) + '" y2="' + py(t).toFixed(1) + '" stroke="#2E3531" vector-effect="non-scaling-stroke"/>'; }).join("");
+    var rot = ticks.map(function (t) { return '<span class="my" style="top:' + (py(t) / H * 100).toFixed(1) + '%">' + fmt(t) + "</span>"; }).join("");
+    var mes = function (k) { var m = /^(\d{4})-(\d{2})/.exec(k); return m ? MESES[+m[2] - 1] + "/" + m[1].slice(2) : k; };
+    var u = pts[pts.length - 1];
+    return '<div class="mini-g" aria-hidden="true"><div class="mini-a">' +
+      '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none">' + guias +
+      '<path d="' + d + " L" + W + " " + H + " L0 " + H + ' Z" fill="currentColor" opacity=".10"/>' +
+      '<path d="' + d + '" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>' +
+      '<i class="mponto" style="top:' + (py(u[1]) / H * 100).toFixed(1) + '%"></i>' + rot +
+      '<span class="mx" style="left:0">' + mes(pts[0][0]) + '</span><span class="mx" style="right:0">' + mes(u[0]) + "</span></div></div>";
   }
 
   /* Barra verde e amarela de impostos: valor em R$ nas duas partes e % na amarela. */
