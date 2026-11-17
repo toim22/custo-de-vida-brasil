@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var icms = regra.icms !== undefined ? regra.icms : regra.icms_kg * (cfg.kg_por_unidade || 1);
         var trib = icms + (regra.federal || 0);
         var semImp = u[1] - trib, pImp = Math.max(0, Math.min(100, trib / u[1] * 100));
-        document.getElementById("barra").innerHTML = '<div class="p1" style="width:' + (100 - pImp) + '%" title="Produto e distribuição">Produto<span class="longo">&nbsp;e distribuição</span>&nbsp;' + C.brl(semImp, 2) + '</div><div class="p2" style="width:' + pImp + '%" title="Impostos"><span class="longo">Impostos&nbsp;</span>' + C.numero(pImp, 0) + "% · " + C.brl(trib, 2) + "</div>";
+        document.getElementById("barra").innerHTML = C.barraImpostos(semImp, trib, "Produto e distribuição");
         document.getElementById("impostos-txt").textContent = "Impostos de " + C.brl(trib, 2) + " por " + info.unidade + ": ICMS " + C.brl(icms, 2) + " (valor fixo, igual em todos os estados) e tributos federais " + C.brl(regra.federal || 0, 2) + ".";
         box.hidden = false;
       } else {
