@@ -50,10 +50,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return null;
     }
 
+    // selo dentro da etiqueta amarela: subiu (vermelho) ou desceu (verde); no salário é o contrário
+    function selo(dif, texto, bomSubir) {
+      if (dif === null || dif === undefined || isNaN(dif)) return "";
+      var cls = C.classe(dif, bomSubir);
+      return '<span class="selo-var ' + cls + '">' + (cls === "igual" ? "= " : dif > 0 ? "▲ " : "▼ ") + texto + "</span>";
+    }
+    function txtPct(v) { return Math.abs(v).toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + "%"; }
+
     function card(o) {
       return '<a class="card' + (o.destaque ? " destaque" : "") + '" href="' + o.href + '">' +
         '<span class="t">' + o.titulo + "</span>" +
-        (o.valor ? '<span class="tag"><span class="lbl">' + o.rotulo + '</span><span class="val">' + o.valor + "</span></span>" : "") +
+        (o.valor ? '<span class="tag"><span class="lbl">' + o.rotulo + '</span><span class="val">' + o.valor + "</span>" + (o.selo || "") + "</span>" : "") +
         (o.corpo || "") + (o.linhas || []).map(function (l) { return '<span class="linha">' + l + "</span>"; }).join("") + (o.depois || "") +
         '<span class="ir">' + o.ir + " →</span></a>";
     }
@@ -70,8 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (cb && C.ultimo(cb.total)) {
         var u = C.ultimo(cb.total), a = C.anterior(cb.total);
         cards.push({ href: "cesta.html", destaque: true, titulo: "Cesta básica · DIEESE · " + cb.nome, rotulo: C.data(u[0]), valor: C.brl(u[1], 2),
+          selo: a ? selo((u[1] / a[1] - 1) * 100, txtPct((u[1] / a[1] - 1) * 100) + " no mês") : "",
           corpo: C.mini(cb.total),
-          linhas: [C.variacao(C.variacao12(cb.total)) + " em 12 meses · " + (a ? C.variacao((u[1] / a[1] - 1) * 100) : "—") + " no mês"],
+          linhas: [C.variacao(C.variacao12(cb.total)) + " em 12 meses"],
           ir: "Ver item por item" });
       } else cards.push({ href: "cesta.html", destaque: true, titulo: "Cesta básica · DIEESE", linhas: ["Entra na próxima coleta mensal."], ir: "Ver a cesta" });
 
@@ -83,20 +92,23 @@ document.addEventListener("DOMContentLoaded", function () {
           return '<span class="nw">' + comb.produtos[p].nome.replace(" S10", "") + ' <b class="mono">' + C.brl(x[1], 2) + "</b> " + C.seta(x[1], y && y[1], function (v) { return C.brl(v, 2); }) + "</span>";
         });
         cards.push({ href: "combustiveis.html#gasolina", titulo: "Gasolina · " + C.nomeLocal(localComb), rotulo: "litro · semana até " + C.data(ug[0]), valor: C.brl(ug[1], 2),
-          corpo: C.mini(g, 26), linhas: [C.seta(ug[1], ag && ag[1], function (v) { return C.brl(v, 2); }, " na semana") + " · " + C.variacao(C.variacao12(g)) + " em 12 meses"].concat(outros.length ? [outros.join(" · ")] : []),
+          selo: ag ? selo(Math.abs(ug[1] - ag[1]) < 0.005 ? 0 : ug[1] - ag[1], C.brl(Math.abs(ug[1] - ag[1]), 2) + " na semana") : "",
+          corpo: C.mini(g, 26), linhas: [C.variacao(C.variacao12(g)) + " em 12 meses"].concat(outros.length ? [outros.join(" · ")] : []),
           ir: "Ver por estado e quanto é imposto" });
       }
       // Gás de cozinha
       if (sc && C.ultimo(sc.glp)) {
         var b = sc.glp, ub = C.ultimo(b), ab = C.anterior(b);
         cards.push({ href: "combustiveis.html#glp", titulo: "Gás de cozinha · " + C.nomeLocal(localComb), rotulo: "botijão de 13 kg", valor: C.brl(ub[1], 2),
-          corpo: C.mini(b, 26), linhas: [C.seta(ub[1], ab && ab[1], function (v) { return C.brl(v, 2); }, " na semana") + " · " + C.variacao(C.variacao12(b)) + " em 12 meses"],
+          selo: ab ? selo(Math.abs(ub[1] - ab[1]) < 0.005 ? 0 : ub[1] - ab[1], C.brl(Math.abs(ub[1] - ab[1]), 2) + " na semana") : "",
+          corpo: C.mini(b, 26), linhas: [C.variacao(C.variacao12(b)) + " em 12 meses"],
           ir: "Ver o gás por estado" });
       }
       // Churrasco
       if (ch && ch.total) {
         var t = ch.total[local] || ch.total.BR, uc = C.ultimo(t);
         if (uc) cards.push({ href: "churrasco.html", titulo: "Churrasco pra 6 · " + C.nomeLocal(ch.total[local] ? local : "BR"), rotulo: "6 pessoas · " + C.data(uc[0]), valor: C.brl(uc[1], 0),
+          selo: C.anterior(t) ? selo((uc[1] / C.anterior(t)[1] - 1) * 100, txtPct((uc[1] / C.anterior(t)[1] - 1) * 100) + " no mês") : "",
           corpo: C.mini(t), linhas: [C.brl(uc[1] / 6, 2) + " por pessoa · " + C.variacao(C.variacao12(t)) + " em 12 meses"], ir: "Ver a lista" });
       }
       // Salário mínimo e o que ele compra (no salário, subir é bom: verde)
@@ -108,7 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (sc && C.ultimo(sc.glp)) itens.push(["Botijões de gás", C.numero(minimo / C.ultimo(sc.glp)[1], 0)]);
         if (ch && ch.total && C.ultimo(ch.total[local] || ch.total.BR)) itens.push(["Churrascos pra 6", C.numero(minimo / C.ultimo(ch.total[local] || ch.total.BR)[1], 1)]);
         cards.push({ href: "trabalho.html", titulo: "Salário mínimo", rotulo: "por mês · " + C.data(us[0]), valor: C.brl(us[1], 0),
-          linhas: [C.variacao(C.variacao12(ss), { bomSubir: true }) + " em 12 meses · com ele dá para comprar:"],
+          selo: C.variacao12(ss) !== null ? selo(C.variacao12(ss), txtPct(C.variacao12(ss)) + " em 12 meses", true) : "",
+          linhas: ["Com ele dá para comprar:"],
           corpo: "", depois: itens.length ? '<ul class="lista">' + itens.map(function (i) { return "<li><span>" + i[0] + "</span><b>" + i[1] + "</b></li>"; }).join("") + "</ul>" : "",
           ir: "Ver salário e poder de compra" });
       }
@@ -117,10 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
         var la = al.ipca.locais[local] ? local : "BR", li = al.ipca.locais[la].indice, ua = C.ultimo(li);
         var v12a = C.variacao12(li), fz = (al.fipezap && al.fipezap.cidades) || {};
         var cidAl = Object.keys(fz).filter(function (n) { return la === "BR" ? fz[n].media : fz[n].uf === la; }).sort(function (a, b) { return (fz[b].capital ? 1 : 0) - (fz[a].capital ? 1 : 0); })[0];
-        var linhasAl = [C.variacao(v12a) + " em 12 meses"];
+        var linhasAl = [];
         if (cidAl && C.ultimo(fz[cidAl].preco_m2)) linhasAl.push("Apê de 60 m² " + (fz[cidAl].media ? "(média das cidades)" : "em " + cidAl) + ': <b class="mono">' + C.brl(C.ultimo(fz[cidAl].preco_m2)[1] * (al.fipezap.area_referencia_m2 || 60), 0) + "</b>/mês");
         if (ua) cards.push({ href: "aluguel.html", titulo: "Aluguel · " + (la === "BR" ? "Brasil" : al.ipca.locais[la].area_ibge), rotulo: "subiu desde jan/2023 · até " + C.data(ua[0]),
-          valor: C.pct(ua[1] - 100, 1), corpo: C.mini(li), linhas: linhasAl, ir: "Ver o aluguel por região" });
+          valor: C.pct(ua[1] - 100, 1), selo: v12a !== null ? selo(v12a, txtPct(v12a) + " em 12 meses") : "", corpo: C.mini(li), linhas: linhasAl, ir: "Ver o aluguel por região" });
       }
       // Aumentos de impostos desde o 2º turno
       if (imp && imp.itens && imp.itens.length) {
