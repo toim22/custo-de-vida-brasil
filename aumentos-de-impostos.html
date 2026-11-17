@@ -26,6 +26,10 @@
   .st { display: inline-block; font-size: .7rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
   .st.vigor { background: #3A1414; color: var(--up); }
   .st.tramitando { background: var(--warn-bg); color: var(--warn); }
+  .st.anunciado { background: #3A1414; color: #FCA5A5; border: 1px dashed var(--up); }
+  .st.proposto { background: var(--surface-2); color: var(--ink); border: 1px dashed var(--muted); }
+  .aumento .apelido { font-family: var(--f-display); font-size: .95rem; font-weight: 800; color: var(--tag); }
+  .aumento.fraco { border-left-color: #7A3434; }
   .st.debate { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
   .resumo-imp { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .9rem; color: var(--muted); }
   .resumo-imp b { font-family: var(--f-mono); color: var(--ink); font-size: 1.15rem; margin-right: 4px; }
@@ -37,7 +41,7 @@
   <section class="bloco">
     <span class="eyebrow">Desde o 2º turno · 25/10/2026</span>
     <h1>Aumentos de impostos</h1>
-    <p class="read muted">Todo imposto que subiu ou foi criado depois da eleição, principalmente os federais. Cada cartão diz qual imposto, quanto mudou e como chega no seu bolso.</p>
+    <p class="read muted">Todo imposto que subiu, foi criado ou foi proposto depois da eleição, principalmente os federais. Cada cartão diz qual imposto (com o nome popular, quando tem), quanto muda e como chega no seu bolso.</p>
     <div class="resumo-imp" id="resumo"></div>
   </section>
 
@@ -47,7 +51,7 @@
   </section>
 
   <section class="bloco">
-    <p class="small read"><b>Situação:</b> <span class="st vigor">Em vigor</span> já foi publicado e vale (ou tem data marcada). <span class="st tramitando">Aprovado no Senado</span> ainda precisa passar pela Câmara e pela sanção. <span class="st debate">Em definição</span> o valor ainda vai ser decidido. Só entram fatos publicados em ato oficial ou noticiados por mais de uma fonte; boatos e "o governo estuda" ficam de fora.</p>
+    <p class="small read"><b>Situação:</b> <span class="st vigor">Em vigor</span> já foi publicado e vale (ou tem data marcada). <span class="st tramitando">Aprovado no Senado</span> ainda precisa passar pela Câmara e pela sanção. <span class="st anunciado">Começa em 2027</span> já está previsto em lei, mas a cobrança ainda não começou. <span class="st debate">Em definição</span> o valor ainda vai ser decidido. <span class="st proposto">Proposto</span> projeto apresentado no Congresso, sem votação. Só entram fatos publicados em ato oficial ou noticiados por mais de uma fonte; boatos e "o governo estuda" ficam de fora.</p>
   </section>
 
   <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
@@ -61,15 +65,18 @@ document.addEventListener("DOMContentLoaded", function () {
   C.carregar("aumentos-impostos").then(function (d) {
     var lista = document.getElementById("lista");
     if (!d || !d.itens || !d.itens.length) { lista.innerHTML = '<p class="aviso">Nenhum aumento registrado ainda.</p>'; return; }
-    var itens = d.itens.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; });
-    var vigor = itens.filter(function (i) { return i.status_tipo === "vigor"; }).length;
+    var ordem = { vigor: 0, anunciado: 0, tramitando: 1, debate: 1, proposto: 2 };
+    var itens = d.itens.slice().sort(function (a, b) { return (ordem[a.status_tipo] - ordem[b.status_tipo]) || (a.data < b.data ? 1 : -1); });
+    var conta = function (tipos) { return itens.filter(function (i) { return tipos.indexOf(i.status_tipo) > -1; }).length; };
     document.getElementById("resumo").innerHTML =
       '<span><b class="sobe">▲ ' + itens.length + "</b>medidas registradas</span>" +
-      "<span><b>" + vigor + "</b>já publicadas</span>" +
-      "<span><b>" + (itens.length - vigor) + "</b>em votação ou definição</span>";
+      "<span><b>" + conta(["vigor", "anunciado"]) + "</b>já publicadas ou com data</span>" +
+      "<span><b>" + conta(["tramitando", "debate"]) + "</b>em votação ou definição</span>" +
+      "<span><b>" + conta(["proposto"]) + "</b>só propostas</span>";
     lista.innerHTML = itens.map(function (i) {
-      return '<article class="aumento">' +
+      return '<article class="aumento' + (i.status_tipo === "proposto" ? " fraco" : "") + '">' +
         '<div class="topo-card"><span class="quando">' + dataBR(i.data) + " · " + esc(i.esfera) + '</span><span class="st ' + esc(i.status_tipo) + '">' + esc(i.status) + "</span></div>" +
+        (i.apelido ? '<span class="apelido">“' + esc(i.apelido) + '”</span>' : "") +
         '<h3><span class="seta" aria-hidden="true">▲</span>' + esc(i.titulo) + "</h3>" +
         '<span class="imp">' + esc(i.imposto) + "</span>" +
         '<p class="valores">' + esc(i.valores) + "</p>" +

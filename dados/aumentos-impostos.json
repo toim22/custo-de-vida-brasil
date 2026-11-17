@@ -1,7 +1,7 @@
 {
   "atualizado": "2026-11-17",
   "desde": "2026-10-25",
-  "nota": "Lista feita à mão a partir de atos oficiais e notícias. Entra só o que foi publicado ou votado depois do 2º turno (25/10/2026).",
+  "nota": "Lista feita à mão a partir de atos oficiais, notícias e checagens. Entra o que foi publicado, votado ou formalmente proposto depois do 2º turno (25/10/2026). Boato e \"o governo estuda\" ficam de fora.",
   "itens": [
     {
       "data": "2026-11-12",
@@ -13,8 +13,14 @@
       "valores": "Acréscimo sobre a base de cálculo sobe de 10% para 20% (faturamento acima de R$ 5 mi/ano). Serviços: base de 35,2% para 38,4%.",
       "efeito": "Atinge empresas médias (R$ 5 mi a R$ 78 mi por ano). Custo maior tende a chegar ao preço de serviços como clínicas, escolas e escritórios. O projeto também amplia o corte de benefícios fiscais, mas mantém o da cesta básica.",
       "fontes": [
-        ["Agência Senado", "https://www12.senado.leg.br/institucional/presidencia/destaque-noticia/senado-aprova-texto-base-de-projeto-de-ajuste-fiscal-com-previsao-de-economia-de-ate-r-60-bilhoes"],
-        ["O Tempo/Folhapress", "https://www.otempo.com.br/economia/2026/11/16/novo-pacote-fiscal-do-governo-preve-dobrar-aumento-do-lucro-presumido-e-pressiona-medias-empresas"]
+        [
+          "Agência Senado",
+          "https://www12.senado.leg.br/institucional/presidencia/destaque-noticia/senado-aprova-texto-base-de-projeto-de-ajuste-fiscal-com-previsao-de-economia-de-ate-r-60-bilhoes"
+        ],
+        [
+          "O Tempo/Folhapress",
+          "https://www.otempo.com.br/economia/2026/11/16/novo-pacote-fiscal-do-governo-preve-dobrar-aumento-do-lucro-presumido-e-pressiona-medias-empresas"
+        ]
       ],
       "instrumento": "PLP 299/2026 (vai para a Câmara)"
     },
@@ -28,55 +34,82 @@
       "valores": "Pneus de carro de passeio: de 25% para 30% por 12 meses (até 9/11/2027). A alíquota normal era 16%.",
       "efeito": "Pode encarecer a troca de pneus e reduzir opções baratas nas lojas. O repasse não é automático.",
       "fontes": [
-        ["O Povo", "https://www.opovo.com.br/noticias/economia/2026/11/09/governo-eleva-aliquota-de-importacao-de-pneus-de-25-para-30-por-12-meses.html"],
-        ["Vrum", "https://www.vrum.com.br/noticias/2026/11/7538102-governo-aumenta-imposto-de-pneus-importados-de-16-para-30-no-brasil.html"]
+        [
+          "O Povo",
+          "https://www.opovo.com.br/noticias/economia/2026/11/09/governo-eleva-aliquota-de-importacao-de-pneus-de-25-para-30-por-12-meses.html"
+        ],
+        [
+          "Vrum",
+          "https://www.vrum.com.br/noticias/2026/11/7538102-governo-aumenta-imposto-de-pneus-importados-de-16-para-30-no-brasil.html"
+        ]
       ],
       "instrumento": "Decisão do Gecex (Camex)"
     },
     {
       "data": "2026-11-04",
       "esfera": "Federal",
-      "titulo": "Imposto Seletivo criado: cigarro e bebidas",
+      "titulo": "Cigarro e bebidas",
       "imposto": "Imposto Seletivo (novo)",
       "status": "MP publicada · cobrança a partir de 2/2/2027",
       "status_tipo": "vigor",
       "valores": "Cigarro: 66,7% + R$ 3,50 por maço de 20. Refrigerante e bebidas açucaradas: 2,6%. Cerveja: 4,2%. Vinho: 8% a 16%. Cachaça e rum: 20%. Uísque e outros destilados: 24%.",
       "efeito": "Imposto novo que substitui o IPI nesses produtos. O governo diz que em 2027 a carga fica no nível do IPI atual. As alíquotas definitivas, a partir de 2028, ainda vão ser propostas.",
       "fontes": [
-        ["Ministério da Fazenda", "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"],
-        ["Estado de Minas", "https://www.em.com.br/politica/2026/11/7533558-governo-federal-divulga-aumento-de-impostos-de-bebidas-veiculos-e-cigarro.html"]
+        [
+          "Ministério da Fazenda",
+          "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"
+        ],
+        [
+          "Estado de Minas",
+          "https://www.em.com.br/politica/2026/11/7533558-governo-federal-divulga-aumento-de-impostos-de-bebidas-veiculos-e-cigarro.html"
+        ]
       ],
-      "instrumento": "MP 1.399/2026"
+      "instrumento": "MP 1.399/2026",
+      "apelido": "Imposto do pecado"
     },
     {
       "data": "2026-11-04",
       "esfera": "Federal",
-      "titulo": "Imposto Seletivo criado: carros",
+      "titulo": "Carros, barcos e aviões",
       "imposto": "Imposto Seletivo (novo)",
       "status": "MP publicada · cobrança a partir de 2/2/2027",
       "status_tipo": "vigor",
       "valores": "Base de 6,3% para carro de passeio, variando de 2% (híbrido plug-in a gasolina) a 12% (diesel). Gasolina: 6,5%. Zero para PcD/TEA, táxi e carros com selo de versão sustentável.",
       "efeito": "Entra no preço do carro zero no lugar do IPI. Também pega barcos e aviões.",
       "fontes": [
-        ["Ministério da Fazenda", "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"],
-        ["Estado de Minas", "https://www.em.com.br/politica/2026/11/7533558-governo-federal-divulga-aumento-de-impostos-de-bebidas-veiculos-e-cigarro.html"]
+        [
+          "Ministério da Fazenda",
+          "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"
+        ],
+        [
+          "Estado de Minas",
+          "https://www.em.com.br/politica/2026/11/7533558-governo-federal-divulga-aumento-de-impostos-de-bebidas-veiculos-e-cigarro.html"
+        ]
       ],
-      "instrumento": "MP 1.399/2026"
+      "instrumento": "MP 1.399/2026",
+      "apelido": "Imposto do pecado"
     },
     {
       "data": "2026-11-04",
       "esfera": "Federal",
-      "titulo": "Imposto novo na loteria",
+      "titulo": "Loteria",
       "imposto": "Imposto Seletivo (novo)",
       "status": "MP publicada · cobrança a partir de 2/2/2027",
       "status_tipo": "vigor",
       "valores": "0,5% sobre Mega-Sena, Lotofácil, Loteca e demais concursos de prognósticos.",
       "efeito": "Tributo que não existia sobre a aposta na loteria.",
       "fontes": [
-        ["Ministério da Fazenda", "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"],
-        ["Comsefaz", "https://comsefaz.org.br/novo/mp-1-399-2026-institui-imposto-seletivo-para-2027-com-aliquotas-de-ate-667-e-reducao-da-referencia-da-cbs/"]
+        [
+          "Ministério da Fazenda",
+          "https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/novembro/governo-federal-define-aliquotas-do-imposto-seletivo-para-2027-por-meio-de-medida-provisoria"
+        ],
+        [
+          "Comsefaz",
+          "https://comsefaz.org.br/novo/mp-1-399-2026-institui-imposto-seletivo-para-2027-com-aliquotas-de-ate-667-e-reducao-da-referencia-da-cbs/"
+        ]
       ],
-      "instrumento": "MP 1.399/2026"
+      "instrumento": "MP 1.399/2026",
+      "apelido": "Imposto do pecado"
     },
     {
       "data": "2026-10-28",
@@ -88,10 +121,126 @@
       "valores": "TCU calculou alíquota de referência de 11,3%. O mercado esperava cerca de 9,5%. Somada ao IBS, o imposto sobre consumo fica perto de 30%.",
       "efeito": "A CBS vai entrar no preço de quase tudo que se compra. Quanto maior a alíquota, maior o imposto embutido no preço.",
       "fontes": [
-        ["Gazeta do Povo", "https://www.gazetadopovo.com.br/economia/lula-aumento-carga-tributaria-impostos-2027/"],
-        ["Exame", "https://exame.com/brasil/apos-eleicoes-governo-acumula-tarefas-urgentes-para-evitar-rombo-fiscal-em-2027/"]
+        [
+          "Gazeta do Povo",
+          "https://www.gazetadopovo.com.br/economia/lula-aumento-carga-tributaria-impostos-2027/"
+        ],
+        [
+          "Exame",
+          "https://exame.com/brasil/apos-eleicoes-governo-acumula-tarefas-urgentes-para-evitar-rombo-fiscal-em-2027/"
+        ]
       ],
       "instrumento": "Cálculo do TCU (EC 132/2023)"
+    },
+    {
+      "data": "2026-11-10",
+      "esfera": "Federal",
+      "apelido": "Taxa das blusinhas",
+      "titulo": "Não volta, mas compra de fora paga CBS",
+      "imposto": "CBS sobre compras internacionais",
+      "status": "Começa em 2027",
+      "status_tipo": "anunciado",
+      "valores": "O Imposto de Importação de 20% em compras até US$ 50 foi zerado em 2026 e o governo diz que ele não volta. Mas, a partir de 2027, essas compras passam a pagar CBS (referência de 11,3%, ainda a ser fixada pelo Senado), além do ICMS de 17% a 20% que já existe.",
+      "efeito": "Compras em sites como Shein, Shopee e AliExpress devem ficar mais caras em 2027, mas menos do que com a antiga taxa de 20%.",
+      "fontes": [
+        [
+          "Agência Lupa",
+          "https://www.agencialupa.org/verificacao/2026/11/10/governo-federal-nao-anunciou-a-volta-da-taxa-das-blusinhas-em-2027-apos-reeleicao/"
+        ],
+        [
+          "Secom",
+          "https://www.gov.br/secom/pt-br/fatos/brasil-contra-fake/noticias/2026/10/e-falso-que-a-201ctaxa-das-blusinhas201d-voltara-em-2027"
+        ]
+      ],
+      "instrumento": "Reforma tributária (LC 214/2025)"
+    },
+    {
+      "data": "2026-11-13",
+      "esfera": "Federal",
+      "apelido": "Taxação das grandes fortunas",
+      "titulo": "Imposto sobre patrimônio acima de R$ 15 mi",
+      "imposto": "Imposto sobre Grandes Fortunas (novo)",
+      "status": "Proposto por deputados do PT",
+      "status_tipo": "proposto",
+      "valores": "De 0,7% a 3% ao ano sobre o patrimônio líquido acima de R$ 15 milhões, em quatro faixas.",
+      "efeito": "Atinge só quem tem mais de R$ 15 milhões. Ainda não tem relator nem data de votação.",
+      "fontes": [
+        [
+          "Gazeta do Povo",
+          "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"
+        ],
+        [
+          "Blog do Esmael",
+          "https://esmaelmorais.com.br/pt-quatro-projetos-taxar-fortunas-dividendos"
+        ]
+      ],
+      "instrumento": "PL 5.852/2026"
+    },
+    {
+      "data": "2026-11-13",
+      "esfera": "Federal",
+      "apelido": "Fim da isenção da LCI e LCA",
+      "titulo": "Imposto de renda em investimentos isentos",
+      "imposto": "Imposto de Renda",
+      "status": "Proposto por deputados do PT",
+      "status_tipo": "proposto",
+      "valores": "7,5% de IR sobre o rendimento de LCI, LCA, CRI, CRA, debêntures incentivadas e outros papéis que hoje são isentos para pessoa física.",
+      "efeito": "Quem investe nesses papéis ganharia menos. Bancos podem cobrar mais caro no crédito para casa e para o agro, que esses papéis financiam.",
+      "fontes": [
+        [
+          "Gazeta do Povo",
+          "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"
+        ],
+        [
+          "Blog do Esmael",
+          "https://esmaelmorais.com.br/pt-quatro-projetos-taxar-fortunas-dividendos"
+        ]
+      ],
+      "instrumento": "PL 5.853/2026"
+    },
+    {
+      "data": "2026-11-13",
+      "esfera": "Federal",
+      "apelido": "Taxação de dividendos",
+      "titulo": "Dividendos de 10% para 15%",
+      "imposto": "Imposto de Renda",
+      "status": "Proposto por deputados do PT",
+      "status_tipo": "proposto",
+      "valores": "IR sobre dividendos sobe de 10% para 15% e deixa de ter o piso de R$ 50 mil por mês. Hoje só paga quem recebe acima desse valor.",
+      "efeito": "Passaria a atingir pequenos sócios e investidores em ações, que hoje recebem dividendos sem imposto.",
+      "fontes": [
+        [
+          "Gazeta do Povo",
+          "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"
+        ],
+        [
+          "Blog do Esmael",
+          "https://esmaelmorais.com.br/pt-quatro-projetos-taxar-fortunas-dividendos"
+        ]
+      ],
+      "instrumento": "PL 5.854/2026"
+    },
+    {
+      "data": "2026-11-13",
+      "esfera": "Federal",
+      "apelido": null,
+      "titulo": "JCP de 17,5% para 20%",
+      "imposto": "Imposto de Renda",
+      "status": "Proposto por deputados do PT",
+      "status_tipo": "proposto",
+      "valores": "IR sobre juros sobre capital próprio sobe de 17,5% para 20%.",
+      "efeito": "Quem recebe JCP de ações ficaria com um pouco menos.",
+      "fontes": [
+        [
+          "Gazeta do Povo",
+          "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"
+        ],
+        [
+          "Blog do Esmael",
+          "https://esmaelmorais.com.br/pt-quatro-projetos-taxar-fortunas-dividendos"
+        ]
+      ],
+      "instrumento": "PL 5.855/2026"
     }
   ]
 }
