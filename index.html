@@ -116,9 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (al && al.ipca && al.ipca.locais) {
         var la = al.ipca.locais[local] ? local : "BR", li = al.ipca.locais[la].indice, ua = C.ultimo(li);
         var v12a = C.variacao12(li), fz = (al.fipezap && al.fipezap.cidades) || {};
-        var cidAl = Object.keys(fz).filter(function (n) { return fz[n].uf === la; }).sort(function (a, b) { return a.length - b.length; })[0];
+        var cidAl = Object.keys(fz).filter(function (n) { return la === "BR" ? fz[n].media : fz[n].uf === la; }).sort(function (a, b) { return (fz[b].capital ? 1 : 0) - (fz[a].capital ? 1 : 0); })[0];
         var linhasAl = [C.variacao(v12a) + " em 12 meses"];
-        if (cidAl && C.ultimo(fz[cidAl].preco_m2)) linhasAl.push("Apê de 60 m² em " + cidAl + ': <b class="mono">' + C.brl(C.ultimo(fz[cidAl].preco_m2)[1] * (al.fipezap.area_referencia_m2 || 60), 0) + "</b>/mês");
+        if (cidAl && C.ultimo(fz[cidAl].preco_m2)) linhasAl.push("Apê de 60 m² " + (fz[cidAl].media ? "(média das cidades)" : "em " + cidAl) + ': <b class="mono">' + C.brl(C.ultimo(fz[cidAl].preco_m2)[1] * (al.fipezap.area_referencia_m2 || 60), 0) + "</b>/mês");
         if (ua) cards.push({ href: "aluguel.html", titulo: "Aluguel · " + (la === "BR" ? "Brasil" : al.ipca.locais[la].area_ibge), rotulo: "subiu desde jan/2023 · até " + C.data(ua[0]),
           valor: C.pct(ua[1] - 100, 1), corpo: C.mini(li), linhas: linhasAl, ir: "Ver o aluguel por região" });
       }

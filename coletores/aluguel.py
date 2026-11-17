@@ -18,7 +18,11 @@ from ibge import API, UF_IBGE
 
 IPCA_ALUGUEL = 7448   # 2101001.Aluguel residencial
 IPCA_GERAL = 7169     # Índice geral
-SGS = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{}/dados?formato=json&dataInicial={}"
+SGS = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{}/dados?formato=json&dataInicial={}&dataFinal={}"
+IPEA = "http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='{}')"
+# (chave, código no Ipeadata, série no SGS do Banco Central). O Ipeadata responde a partir do GitHub;
+# o SGS às vezes devolve "Requisição inválida" para servidores fora do Brasil e fica como reserva.
+REAJUSTE = (("igpm", "IGP12_IGPMG12", 189), ("ipca", "PRECOS12_IPCAG12", 433))
 FIPEZAP_URL = "https://downloads.fipe.org.br/indices/fipezap/fipezap-serieshistoricas.xlsx"
 AREA_REFERENCIA = 60  # m², apartamento de 2 quartos típico
 
@@ -100,19 +104,40 @@ def coletar_ipca():
 
 
 # ---------- 2. IGP-M e IPCA para reajuste de contrato ----------
+def _mensal_ipea(codigo, desde):
+    var = []
+    for d in baixar(IPEA.format(codigo)).json()["value"]:
+        mes = str(d.get("VALDATA", ""))[:7]
+        if mes >= desde and d.get("VALVALOR") is not None:
+            var.append([mes, float(d["VALVALOR"])])
+    return sorted(var)
+
+
+def _mensal_sgs(serie, desde):
+    ini = f"01/{desde[5:7]}/{desde[:4]}"
+    fim = date.today().strftime("%d/%m/%Y")
+    var = []
+    for d in baixar(SGS.format(serie, ini, fim), tentativas=2).json():
+        _, mes, ano = d["data"].split("/")
+        var.append([f"{ano}-{mes}", float(d["valor"])])
+    return sorted(var)
+
+
 def coletar_reajuste():
-    desde = f"01/01/{int(INICIO[:4]) - 1}"  # um ano antes, para o acumulado de jan/2023
-    saida = {}
-    for chave, serie in (("igpm", 189), ("ipca", 433)):
-        dados = baixar(SGS.format(serie, desde)).json()
-        var = []
-        for d in dados:
-            dia, mes, ano = d["data"].split("/")
-            var.append([f"{ano}-{mes}", float(d["valor"])])
-        var.sort()
-        saida[chave] = acumulado_12m(var, _mes_inicio())
-        if not saida[chave]:
-            raise RuntimeError(f"Banco Central: série {serie} sem dados")
+    desde = f"{int(INICIO[:4]) - 1}-01"  # um ano antes, para o acumulado de jan/2023
+    saida, erros = {}, []
+    for chave, ipea, sgs in REAJUSTE:
+        for nome, func, cod in (("Ipeadata", _mensal_ipea, ipea), ("Banco Central", _mensal_sgs, sgs)):
+            try:
+                serie = acumulado_12m(func(cod, desde), _mes_inicio())
+            except Exception as e:  # noqa: BLE001
+                erros.append(f"{nome} {cod}: {e}"[:150])
+                continue
+            if serie:
+                saida[chave] = serie
+                break
+        if chave not in saida:
+            raise RuntimeError(f"{chave} sem dados: " + "; ".join(erros))
     return saida
 
 
@@ -146,15 +171,34 @@ def _coluna_preco_locacao(rot):
     candidatas = []
     for j, r in enumerate(rot):
         n = norm(r)
+        if "residenc" not in n or "comerc" in n:
+            continue
         if "loca" in n and "preco medio" in n and "venda" not in n.split("loca")[-1]:
-            candidatas.append((("total" in n) * 2 - bool(re.search(r"\b[1-4]\s*(dorm|quarto)", n)), j))
-    return max(candidatas)[1] if candidatas else None
+            candidatas.append((("total" in n) * 2 - bool(re.search(r"\b[1-4]\s*(d|dorm|quarto)", n)), -j))
+    return -max(candidatas)[1] if candidatas else None
+
+
+# Cidades do FipeZap que não são capitais
+OUTRAS_UF = {
+    "SP": ["barueri", "campinas", "diadema", "guaruja", "guarulhos", "osasco", "praia grande", "ribeirao preto",
+           "santo andre", "santos", "sao bernardo do campo", "sao caetano do sul", "sao jose do rio preto",
+           "sao jose dos campos", "sao vicente", "sorocaba", "jundiai", "mogi das cruzes"],
+    "RJ": ["niteroi"], "MG": ["betim", "contagem", "juiz de fora", "uberlandia"], "ES": ["vila velha", "serra"],
+    "RS": ["canoas", "caxias do sul", "novo hamburgo", "pelotas", "santa maria", "sao leopoldo"],
+    "PR": ["londrina", "sao jose dos pinhais", "maringa"],
+    "SC": ["balneario camboriu", "blumenau", "itajai", "itapema", "joinville", "sao jose"],
+    "PE": ["jaboatao dos guararapes"],
+}
+NOME_MEDIA = "Média das cidades do FipeZap"
 
 
 def _uf_cidade(nome):
     n = norm(nome)
     if n in CAPITAL_UF:
         return CAPITAL_UF[n]
+    for uf, cidades in OUTRAS_UF.items():
+        if n in cidades:
+            return uf
     m = re.search(r"\(([A-Za-z]{2})\)\s*$", nome) or re.search(r"[-–/]\s*([A-Za-z]{2})\s*$", nome)
     return m.group(1).upper() if m else None
 
@@ -169,7 +213,7 @@ def coletar_fipezap():
         rot = _rotulos(df)
         col = _coluna_preco_locacao(rot)
         diag.append(f"== {aba}: coluna escolhida {col}\n" + "\n".join(f"  {j}: {x}" for j, x in enumerate(rot) if x))
-        if col is None or norm(aba) in {"resumo", "indice fipezap", "fipezap", "notas", "sumario", "sumário"}:
+        if col is None or norm(aba) in {"resumo", "aux", "notas", "sumario"}:
             continue
         col_data = next((j for j in range(df.shape[1]) if sum(_mes_de(v) is not None for v in df.iloc[:, j]) > 12), None)
         if col_data is None:
@@ -185,7 +229,13 @@ def coletar_fipezap():
                 pts[mes] = round(v, 2)
         if len(pts) >= 6:
             nome = str(aba).strip()
-            cidades[nome] = {"uf": _uf_cidade(nome), "preco_m2": sorted([m, x] for m, x in pts.items())}
+            media = norm(nome) in {"indice fipezap", "fipezap"}
+            cidades[NOME_MEDIA if media else nome] = {
+                "uf": None if media else _uf_cidade(nome),
+                "capital": norm(nome) in CAPITAL_UF,
+                "media": media,
+                "preco_m2": sorted([m, x] for m, x in pts.items()),
+            }
     _anotar("fipezap_cabecalhos.txt", "\n\n".join(diag))
     if not cidades:
         raise RuntimeError("FipeZap: nenhuma cidade com preço de locação reconhecido (veja descobertas/fipezap_cabecalhos.txt)")

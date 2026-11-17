@@ -100,14 +100,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // FipeZap: apartamento de 60 m²
     var fz = al.fipezap || {}, area = fz.area_referencia_m2 || 60, cid = fz.cidades || {};
-    var nomes = Object.keys(cid).sort(function (a, b) { return C.ultimo(cid[b].preco_m2)[1] - C.ultimo(cid[a].preco_m2)[1]; });
+    var nomes = Object.keys(cid).sort(function (a, b) {
+      if (cid[a].media !== cid[b].media) return cid[a].media ? -1 : 1;  // a média de todas as cidades primeiro
+      return C.ultimo(cid[b].preco_m2)[1] - C.ultimo(cid[a].preco_m2)[1];
+    });
+    function cartaoCidade(n) {
+      var s = cid[n].preco_m2, u = C.ultimo(s), base = C.valorEm(s, (+u[0].slice(0, 4) - 1) + u[0].slice(4));
+      return card(nomeComBandeira(n, cid[n].uf), C.brl(u[1] * area, 0) + '<span class="small muted">/mês</span>',
+        C.mini(s) + C.seta(u[1] * area, base ? base * area : null, function (v) { return C.brl(v, 0); }, " em 12 meses") +
+        '<span class="d igual">' + C.brl(u[1], 2) + "/m² · " + C.data(u[0]) + "</span>");
+    }
     if (nomes.length) {
-      document.getElementById("cidades").innerHTML = nomes.map(function (n) {
-        var s = cid[n].preco_m2, u = C.ultimo(s), base = C.valorEm(s, (+u[0].slice(0, 4) - 1) + u[0].slice(4));
-        return card(nomeComBandeira(n, cid[n].uf), C.brl(u[1] * area, 0) + '<span class="small muted">/mês</span>',
-          C.mini(s) + C.seta(u[1] * area, base ? base * area : null, function (v) { return C.brl(v, 0); }, " em 12 meses") +
-          '<span class="d igual">' + C.brl(u[1], 2) + "/m² · " + C.data(u[0]) + "</span>");
-      }).join("");
+      // capitais e a média aparecem direto; as outras cidades ficam num "ver mais", para a página não ficar enorme
+      var principais = nomes.filter(function (n) { return cid[n].media || cid[n].capital || cid[n].capital === undefined; });
+      var outras = nomes.filter(function (n) { return principais.indexOf(n) < 0; });
+      document.getElementById("cidades").innerHTML = principais.map(cartaoCidade).join("");
+      if (outras.length) {
+        var det = document.createElement("details");
+        det.innerHTML = "<summary>Ver mais " + outras.length + ' cidades</summary><div class="cards" style="margin-top:12px">' + outras.map(cartaoCidade).join("") + "</div>";
+        document.getElementById("cidades").after(det);
+      }
     } else vazio("cidades", "O preço dos anúncios (FipeZap) aparece depois da próxima coleta.");
 
     function desenhar() {
