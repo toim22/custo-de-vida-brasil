@@ -73,7 +73,7 @@
     <ul>
       <li>Conta como <b>trabalhando</b> quem trabalhou e recebeu por isso, com ou sem carteira, incluindo MEI e autônomos. É a regra do IBGE.</li>
       <li>Quem recebe Bolsa Família ou outro benefício e não trabalha <b>não</b> conta como trabalhando.</li>
-      <li><b>Aposentados:</b> as tabelas prontas do IBGE não separam os aposentados. Por isso o robô baixa os microdados da pesquisa (as respostas de cada entrevistado, sem nome) e tira quem diz receber aposentadoria ou pensão da previdência. A pergunta do IBGE junta aposentadoria e pensão, então pensionistas também saem da conta.</li>
+      <li><b>Aposentados:</b> as tabelas prontas do IBGE não separam os aposentados. Por isso o robô baixa os microdados da pesquisa (as respostas de cada entrevistado, sem nome). A pergunta sobre aposentadoria só aparece na pesquisa anual (1ª visita), então a conta tem duas partes: (1) a cada trimestre, quantas pessoas procuram emprego ou desistiram de procurar; (2) a cada ano, que parte desse grupo recebe aposentadoria ou pensão da previdência. Tiramos essa parte do número do trimestre. Para os trimestres de um ano que o IBGE ainda não publicou na pesquisa anual, usamos a parte do último ano disponível. A pergunta do IBGE junta aposentadoria e pensão, então pensionistas também saem da conta.</li>
       <li>Cada resposta é multiplicada pelo peso que o IBGE dá a ela, para representar a população do país. É o mesmo método que o IBGE usa nos números oficiais.</li>
       <li>O número é <b>trimestral</b>. O IBGE libera os microdados de cada trimestre cerca de um mês e meio depois que ele termina, e o site atualiza na coleta seguinte.</li>
     </ul>
