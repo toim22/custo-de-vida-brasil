@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var u = C.ultimo(serie), a = C.anterior(serie);
       var DO = { gasolina: "da gasolina comum", etanol: "do etanol", diesel: "do diesel S10", gnv: "do GNV", glp: "do botijão de gás" };
       document.getElementById("t-rank").textContent = regiao ? "Estados do " + C.REGIOES[regiao] + ", do mais caro ao mais barato" : "Estados, do mais caro ao mais barato";
-      document.getElementById("titulo").textContent = "Preço " + (DO[prod] || info.nome) + (local === "BR" ? " no Brasil" : " em " + C.nomeLocal(local));
+      document.getElementById("titulo").textContent = "Preço " + (DO[prod] || info.nome) + " " + C.emLocal(local);
       document.getElementById("lbl").textContent = "média da semana · " + info.unidade;
       document.getElementById("val").textContent = u ? C.brl(u[1], 2) : "—";
       var v12 = C.variacao12(serie);

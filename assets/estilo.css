@@ -437,3 +437,6 @@ html.escolha-aberta, html.escolha-aberta body { overflow: hidden; }
 @keyframes gaveta { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
 .anima .escolha-painel { animation: gaveta .3s cubic-bezier(.2,.8,.2,1) both; }
 @media (prefers-reduced-motion: reduce) { .escolha-painel { animation: none !important; } }
+
+/* Ícone de região: mapinha do Brasil com a região em amarelo (sem a moldura das bandeiras) */
+.bandeira.mapa { outline: 0; border-radius: 0; }

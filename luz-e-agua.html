@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function desenhar() {
       var local = sel.value || "BR";
-      var em = local === "BR" ? " no Brasil" : " em " + C.nomeLocal(local);
+      var em = " " + C.emLocal(local);
       document.getElementById("titulo").textContent = "Conta de luz e de água" + em;
 
       // Luz

@@ -24,10 +24,10 @@ UF_REGIAO = {
     "AC": "N", "AP": "N", "AM": "N", "PA": "N", "RO": "N", "RR": "N", "TO": "N",
     "AL": "NE", "BA": "NE", "CE": "NE", "MA": "NE", "PB": "NE", "PE": "NE", "PI": "NE", "RN": "NE", "SE": "NE",
     "DF": "CO", "GO": "CO", "MT": "CO", "MS": "CO",
-    "ES": "SE", "MG": "SE", "RJ": "SE", "SP": "SE",
+    "ES": "SD", "MG": "SD", "RJ": "SD", "SP": "SD",
     "PR": "S", "RS": "S", "SC": "S",
 }
-REGIAO_NOMES = {"N": "Norte", "NE": "Nordeste", "CO": "Centro-Oeste", "SE": "Sudeste", "S": "Sul"}
+REGIAO_NOMES = {"N": "Norte", "NE": "Nordeste", "CO": "Centro-Oeste", "SD": "Sudeste", "S": "Sul"}
 CAPITAL_UF = {
     "aracaju": "SE", "belem": "PA", "belo horizonte": "MG", "boa vista": "RR", "brasilia": "DF",
     "campo grande": "MS", "cuiaba": "MT", "curitiba": "PR", "florianopolis": "SC", "fortaleza": "CE",
