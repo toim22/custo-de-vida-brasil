@@ -15,13 +15,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r coletores/requirements.txt
-      - name: Diagnóstico ANEEL
+      - name: SNIS (tarifas de água por estado)
         continue-on-error: true
         run: |
-          getent hosts dadosabertos.aneel.gov.br || true
-          for u in https://dadosabertos.aneel.gov.br/api/3/action/package_show?id=bandeiras-tarifarias http://dadosabertos.aneel.gov.br/ https://www.aneel.gov.br/ https://www.gov.br/aneel/pt-br https://portalrelatorios.aneel.gov.br/ https://git.aneel.gov.br/ ; do
-            curl -s -o /dev/null -m 90 -w "%{http_code} %{time_total}s $u\n" "$u" || echo "falhou $u"
-          done
+          sudo apt-get install -y -qq poppler-utils >/dev/null
+          curl -sSL -m 300 -o /tmp/snis.pdf https://tratabrasil.org.br/wp-content/uploads/2024/04/DIAGNOSTICO_TEMATICO_VISAO_GERAL_AE_SNIS_2023.pdf
+          ls -la /tmp/snis.pdf
+          pdftotext -layout /tmp/snis.pdf /tmp/snis.txt
+          grep -n -i "tarifa m" /tmp/snis.txt | head -80
+          mkdir -p descobertas && cp /tmp/snis.txt descobertas/snis_2023_visao_geral.txt
       - name: Coletar luz e água
         working-directory: coletores
         continue-on-error: true
@@ -30,6 +32,6 @@ jobs:
         run: |
           git config user.name "robo-coleta"
           git config user.email "robo-coleta@users.noreply.github.com"
-          for f in dados/energia.json dados/agua.json dados/ipca_luz_agua.json descobertas/aneel_*; do [ -e "$f" ] && git add "$f"; done; true
+          for f in dados/energia.json dados/agua.json dados/ipca_luz_agua.json descobertas/aneel_* descobertas/snis_*; do [ -e "$f" ] && git add "$f"; done; true
           git diff --cached --quiet || git commit -m "Teste: coleta de luz e água"
           git push
