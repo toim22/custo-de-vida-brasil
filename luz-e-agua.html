@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR" data-repo="toim22/custo-de-vida-brasil">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Conta de luz e de água por estado · Custo de Vida Brasil</title>
+<meta name="description" content="Quanto custa a conta de luz e a conta de água em cada estado, a bandeira tarifária do mês, os impostos e quanto subiu desde 2023.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="assets/app.js" defer></script>
+<style>
+  .la-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .la-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+  .la-card .t { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .la-card .ico { font-size: 1.1rem; }
+  .la-card .tag { margin-top: 2px; }
+  .la-card .linha { font-size: .86rem; color: var(--muted); }
+  .la-card .linha b { color: var(--ink); }
+  .la-var { font-weight: 700; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .band-tar { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; }
+  .band-tar i { width: 26px; height: 18px; border-radius: 3px; display: block; }
+  .b-verde i { background: #22C55E; } .b-amarela i { background: #FACC15; } .b-vermelha i { background: #EF4444; } .b-vermelha2 i { background: #991B1B; } .b-escassez i { background: #111; border: 2px solid #EF4444; }
+  .hist-band { display: flex; gap: 2px; flex-wrap: wrap; }
+  .hist-band span { width: 9px; height: 14px; border-radius: 2px; display: block; }
+  .graficos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+  .ufs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .uf { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 2px; cursor: pointer; text-align: left; font: inherit; color: var(--ink); }
+  .uf:hover { border-color: var(--muted); }
+  .uf[aria-pressed="true"] { border-color: var(--tag); box-shadow: inset 0 0 0 1px var(--tag); }
+  .uf .n { font-size: .8rem; font-weight: 700; color: var(--muted); display: flex; justify-content: space-between; gap: 6px; }
+  .uf .v { font-family: var(--f-mono); font-weight: 600; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+  .uf .d { font-size: .74rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="bloco">
+    <span class="eyebrow">Luz e água · conta típica de uma casa</span>
+    <h1 id="titulo">Conta de luz e de água</h1>
+    <div class="filtros">
+      <label class="visually-hidden" for="local">Local</label>
+      <select id="local"></select>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <div class="la-cards">
+      <article class="la-card" id="c-luz">
+        <span class="t"><span class="ico" aria-hidden="true">💡</span>Conta de luz</span>
+        <span class="tag grande"><span class="lbl" id="luz-lbl">por mês</span><span class="val" id="luz-val">—</span></span>
+        <p class="linha" id="luz-sub"></p>
+        <span class="selo" style="justify-self:start">estimado</span>
+      </article>
+      <article class="la-card" id="c-band">
+        <span class="t"><span class="ico" aria-hidden="true">🚦</span>Bandeira do mês</span>
+        <span class="band-tar" id="band">—</span>
+        <p class="linha" id="band-sub"></p>
+        <div class="hist-band" id="band-hist" aria-hidden="true"></div>
+        <p class="small" id="band-leg"></p>
+      </article>
+      <article class="la-card" id="c-agua">
+        <span class="t"><span class="ico" aria-hidden="true">🚿</span>Conta de água e esgoto</span>
+        <span class="tag grande"><span class="lbl" id="agua-lbl">por mês</span><span class="val" id="agua-val">—</span></span>
+        <p class="linha" id="agua-sub"></p>
+        <span class="selo" style="justify-self:start">estimado</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <div class="la-cards">
+      <article class="la-card">
+        <span class="t">Quanto da conta de luz é imposto <span class="selo">estimado</span></span>
+        <div class="impostos" id="barra"></div>
+        <p id="impostos-tot" class="linha"></p>
+        <p class="small" id="impostos-txt"></p>
+      </article>
+      <article class="la-card">
+        <span class="t">No seu bolso</span>
+        <p id="bolso" class="linha"></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2>Desde jan/2023</h2>
+    <div class="graficos">
+      <div class="grafico"><div class="cab"><b>Conta de luz</b><span class="small">R$ por mês</span></div><div id="g-luz"></div></div>
+      <div class="grafico"><div class="cab"><b>Conta de água e esgoto</b><span class="small">R$ por mês</span></div><div id="g-agua"></div></div>
+    </div>
+    <a class="como" href="como-calculamos.html#luz-agua">Como calculamos →</a>
+  </section>
+
+  <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
+
+  <section class="bloco">
+    <div class="filtros" style="justify-content:space-between">
+      <h2 id="t-rank">Estados, da conta mais cara à mais barata</h2>
+      <div class="seg" id="ordem" role="group" aria-label="Ordenar por">
+        <button type="button" data-o="luz" aria-pressed="true">Luz</button><button type="button" data-o="agua" aria-pressed="false">Água</button>
+      </div>
+    </div>
+    <div class="ufs" id="ufs"></div>
+    <p class="small" id="fonte"></p>
+  </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.CVB;
+  var CORES_BAND = { verde: "#22C55E", amarela: "#FACC15", vermelha: "#EF4444", vermelha2: "#991B1B", escassez: "#6B7280" };
+  function tipoBand(nome) {
+    var n = (nome || "").toLowerCase();
+    if (n.indexOf("escassez") > -1) return "escassez";
+    if (n.indexOf("vermelha") > -1) return /2|ii/.test(n) ? "vermelha2" : "vermelha";
+    if (n.indexOf("amarela") > -1) return "amarela";
+    return "verde";
+  }
+  /* variação em %: subir é ruim (vermelho, seta para cima) */
+  function varPct(v, sufixo) {
+    if (C.variacao) return (v === null || v === undefined || isNaN(v)) ? "" : C.variacao(v, { sufixo: sufixo });
+    if (v === null || v === undefined || isNaN(v)) return "";
+    if (Math.abs(v) < 0.05) return '<span class="la-var muted">= estável' + (sufixo || "") + "</span>";
+    return '<span class="la-var ' + (v > 0 ? "sobe" : "desce") + '">' + (v > 0 ? "▲ " : "▼ ") + C.numero(Math.abs(v), 1) + "%" + (sufixo || "") + "</span>";
+  }
+  function desdeInicio(serie) {
+    if (!serie || serie.length < 2) return null;
+    return (serie[serie.length - 1][1] / serie[0][1] - 1) * 100;
+  }
+
+  Promise.all([C.carregar("energia"), C.carregar("agua"), C.carregar("salario")]).then(function (r) {
+    var luz = r[0], agua = r[1], sal = r[2];
+    if (!luz && !agua) { document.querySelector("main").insertAdjacentHTML("afterbegin", '<p class="aviso">Os valores aparecem depois da próxima coleta automática.</p>'); return; }
+    var locais = Object.keys((luz && luz.series) || {}).concat(Object.keys((agua && agua.series) || {}));
+    var sel = document.getElementById("local");
+    C.seletorLocal(sel, locais, C.lembrar("local") || "BR");
+    sel.addEventListener("change", function () { C.lembrar("local", sel.value); desenhar(); });
+    var minimo = sal && C.ultimo(sal.serie) ? C.ultimo(sal.serie)[1] : null;
+    var ordem = "luz";
+    document.getElementById("ordem").addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return; ordem = b.dataset.o;
+      [].forEach.call(this.children, function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      ranking();
+    });
+
+    function serie(fonte, local, k) { return fonte && fonte.series[local] ? fonte.series[local][k] || [] : []; }
+
+    function desenhar() {
+      var local = sel.value || "BR";
+      var em = local === "BR" ? " no Brasil" : " em " + C.nomeLocal(local);
+      document.getElementById("titulo").textContent = "Conta de luz e de água" + em;
+
+      // Luz
+      var sl = serie(luz, local, "conta"), ul = C.ultimo(sl);
+      document.getElementById("luz-lbl").textContent = (luz ? luz.kwh_mes : 160) + " kWh · " + (ul ? C.data(ul[0]) : "");
+      document.getElementById("luz-val").textContent = ul ? C.brl(ul[1], 2) : "—";
+      var est = luz && luz.estados[local];
+      var tar = C.ultimo(serie(luz, local, "tarifa"));
+      document.getElementById("luz-sub").innerHTML = ul ? [
+        varPct(C.variacao12(sl), " em 12 meses"),
+        varPct(desdeInicio(sl), " desde jan/2023"),
+        tar ? "Tarifa: <b>" + C.brl(tar[1], 3) + "</b> por kWh, sem impostos" : "",
+        est && est.ultimo_reajuste ? "Último reajuste da " + est.distribuidora + ": " + varPct(est.ultimo_reajuste.pct) + " em " + C.data(est.ultimo_reajuste.data) : "",
+        !C.UFS[local] ? "Média simples dos estados" : ""
+      ].filter(Boolean).join("<br>") : "Sem dados ainda.";
+
+      // Bandeira (é a mesma em todo o país)
+      var bs = (luz && luz.bandeiras) || [], b = bs[bs.length - 1];
+      var el = document.getElementById("band");
+      if (b) {
+        var tp = tipoBand(b[1]);
+        el.className = "band-tar b-" + tp; el.innerHTML = "<i></i>" + b[1].replace(/^bandeira\s*/i, "");
+        document.getElementById("band-sub").innerHTML = C.data(b[0]) + " · " + (b[2] > 0 ? "acrescenta <b>" + C.brl(b[2] * 100, 2) + "</b> a cada 100 kWh (" + C.brl(b[2] * (luz.kwh_mes || 160), 2) + " na conta típica, antes dos impostos)" : "sem custo extra na conta");
+        document.getElementById("band-hist").innerHTML = bs.map(function (x) { return '<span title="' + C.data(x[0]) + ": " + x[1] + '" style="background:' + CORES_BAND[tipoBand(x[1])] + '"></span>'; }).join("");
+        document.getElementById("band-leg").textContent = "Cada quadradinho é um mês desde " + C.data(bs[0][0]) + ". Vale para todo o país.";
+      } else { el.textContent = "—"; document.getElementById("band-sub").textContent = "Aguardando a próxima coleta."; }
+
+      // Água
+      var sa = serie(agua, local, "conta"), ua = C.ultimo(sa), ea = agua && agua.estados[local];
+      document.getElementById("agua-lbl").textContent = (agua ? agua.m3_mes : 10) + " m³ · " + (ua ? C.data(ua[0]) : "");
+      document.getElementById("agua-val").textContent = ua ? C.brl(ua[1], 2) : "—";
+      document.getElementById("agua-sub").innerHTML = ua ? [
+        varPct(C.variacao12(sa), " em 12 meses"),
+        varPct(desdeInicio(sa), " desde jan/2023"),
+        ea ? "Tarifa média de água e esgoto do estado (SNIS), corrigida pela inflação" : "Média simples dos estados",
+        ea && !ea.ipca_local ? "Reajuste estimado pela inflação da água no Brasil (o IBGE não pesquisa neste estado)" : ""
+      ].filter(Boolean).join("<br>") : "Sem dados ainda.";
+
+      // Impostos da luz
+      var barra = document.getElementById("barra"), txt = document.getElementById("impostos-txt");
+      var icms = est ? est.icms : null;
+      if (icms === null && luz) { var ufs = Object.keys(luz.estados).filter(function (u) { return local === "BR" || C.UFS[u][1] === local; }); icms = ufs.reduce(function (s, u) { return s + luz.estados[u].icms; }, 0) / (ufs.length || 1); }
+      if (ul && icms !== null) {
+        var pImp = (icms + luz.pis_cofins) * 100, vImp = ul[1] * pImp / 100;
+        barra.innerHTML = '<div class="p1" style="width:' + (100 - pImp) + '%">Energia ' + C.brl(ul[1] - vImp, 2) + '</div><div class="p2" style="width:' + pImp + '%">' + C.numero(pImp, 0) + "%</div>";
+        document.getElementById("impostos-tot").innerHTML = "Impostos: <b>" + C.numero(pImp, 0) + "%</b> da conta, ou <b>" + C.brl(vImp, 2) + "</b> por mês";
+        txt.textContent = "ICMS " + C.numero(icms * 100, 1) + "% (estadual) e PIS/Cofins cerca de " + C.numero(luz.pis_cofins * 100, 0) + "% (federal). Não inclui a taxa de iluminação pública, que cada prefeitura cobra à parte.";
+      } else { barra.innerHTML = ""; document.getElementById("impostos-tot").textContent = ""; txt.textContent = "Sem estimativa ainda."; }
+
+      // No bolso
+      var partes = [];
+      if (minimo && ul) partes.push("A conta de luz típica come <b>" + C.numero(ul[1] / minimo * 100, 1) + "%</b> de um salário mínimo.");
+      if (minimo && ua) partes.push("A de água, <b>" + C.numero(ua[1] / minimo * 100, 1) + "%</b>.");
+      if (minimo && ul && ua) partes.push("Juntas, <b>" + C.brl(ul[1] + ua[1], 2) + "</b> por mês, ou " + C.horas((ul[1] + ua[1]) / (minimo / 220)) + " de trabalho de quem ganha o mínimo.");
+      document.getElementById("bolso").innerHTML = partes.join(" ") || "Aguardando dados.";
+
+      // Gráficos
+      function linhas(fonte, k) {
+        var s = [{ nome: C.nomeLocal(local), pontos: serie(fonte, local, k) }];
+        if (local !== "BR" && fonte && fonte.series.BR) s.push({ nome: "Brasil", pontos: fonte.series.BR[k], cor: "#929C97" });
+        return s;
+      }
+      C.grafico(document.getElementById("g-luz"), linhas(luz, "conta"), { fmtY: function (v) { return C.numero(v, 0); }, titulo: "Conta de luz típica por mês", marcos: [["2027-01-01", "novo mandato"]] });
+      C.grafico(document.getElementById("g-agua"), linhas(agua, "conta"), { fmtY: function (v) { return C.numero(v, 0); }, titulo: "Conta de água e esgoto por mês", marcos: [["2027-01-01", "novo mandato"]] });
+      ranking();
+    }
+
+    function ranking() {
+      var local = sel.value || "BR";
+      var fonte = ordem === "luz" ? luz : agua;
+      document.getElementById("t-rank").textContent = "Estados, da conta de " + (ordem === "luz" ? "luz" : "água") + " mais cara à mais barata";
+      var lista = Object.keys(C.UFS).map(function (uf) {
+        var s = serie(fonte, uf, "conta"), u = C.ultimo(s);
+        return u ? { uf: uf, v: u[1], a12: C.variacao12(s) } : null;
+      }).filter(Boolean).sort(function (a, b) { return b.v - a.v; });
+      var box = document.getElementById("ufs");
+      box.innerHTML = lista.map(function (l, i) {
+        return '<button type="button" class="uf" data-uf="' + l.uf + '" aria-pressed="' + (l.uf === local) + '"><span class="n"><span>' + (i + 1) + "º " + (C.bandeira ? C.bandeira(l.uf) : "") + C.UFS[l.uf][0] + '</span></span><span class="v">' + C.brl(l.v, 2) + '</span><span class="d">' + (varPct(l.a12, " em 12 meses") || '<span class="muted">—</span>') + "</span></button>";
+      }).join("") || '<p class="aviso">Sem dados por estado ainda.</p>';
+      box.onclick = function (e) { var b = e.target.closest(".uf"); if (!b) return; sel.value = b.dataset.uf; C.lembrar("local", sel.value); desenhar(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+      document.getElementById("fonte").innerHTML = (luz ? 'Luz: <a href="' + luz.fonte_url + '">' + luz.fonte + "</a>. " : "") + (agua ? "Água: " + (agua.fonte_url ? '<a href="' + agua.fonte_url + '">' + agua.fonte + "</a>" : agua.fonte) + ", corrigida pelo IPCA (IBGE)." : "");
+    }
+    desenhar();
+  });
+});
+</script>
+</body>
+</html>

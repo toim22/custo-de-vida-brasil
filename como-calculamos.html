@@ -89,6 +89,15 @@
     </ul>
     <p>Se uma das três fontes falhar, o site mantém o último dado bom dela e mostra as outras normalmente.</p>
 
+    <h2 id="luz-agua">Conta de luz e de água <span class="selo">estimado</span></h2>
+    <p>Não existe uma “conta média” oficial por estado. Montamos uma conta típica de uma casa com as tarifas oficiais:</p>
+    <ul>
+      <li><b>Luz:</b> tarifa residencial comum (subgrupo B1, convencional) da distribuidora que atende a capital do estado, publicada pela ANEEL, mais a bandeira tarifária do mês. A conta é de 160 kWh por mês, perto do consumo médio das casas no Brasil (EPE).</li>
+      <li><b>Impostos da luz:</b> somamos o ICMS residencial de cada estado e cerca de 5% de PIS/Cofins. A tarifa da ANEEL vem sem impostos, então a conta é <code>160 × (tarifa + bandeira) ÷ (1 − ICMS − PIS/Cofins)</code>. Não incluímos a taxa de iluminação pública, que cada prefeitura cobra de um jeito, nem a tarifa social.</li>
+      <li><b>Água:</b> cada estado tem sua companhia e sua tabela. Partimos da tarifa média de água e de esgoto de cada estado num mês de referência e aplicamos, mês a mês, a variação oficial do IPCA “taxa de água e esgoto”. Onde o IBGE pesquisa (16 capitais e regiões metropolitanas), usamos a variação local; nos outros estados, a do Brasil. A conta é de 10 m³ por mês, com coleta de esgoto.</li>
+      <li><b>Regiões e Brasil:</b> média simples dos estados.</li>
+    </ul>
+
     <h2 id="local">Brasil, regiões e estados</h2>
     <p>Combustíveis e gás têm dado oficial por estado e região. A cesta básica cobre as capitais; o número “do estado” é o da capital. Brasil e regiões da cesta são médias das capitais. Itens estimados usam a variação da região metropolitana do IPCA daquele estado, quando existe.</p>
 

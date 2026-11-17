@@ -12,6 +12,7 @@
     ["index.html", "Início"],
     ["cesta.html", "Cesta básica"],
     ["combustiveis.html", "Combustível e gás"],
+    ["luz-e-agua.html", "Luz e água"],
     ["churrasco.html", "Churrasco pra 6"],
     ["trabalho.html", "Salário e trabalho"],
     ["aluguel.html", "Aluguel"],
