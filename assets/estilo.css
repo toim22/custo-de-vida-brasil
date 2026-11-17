@@ -213,3 +213,9 @@ tr:last-child td { border-bottom: 0; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
 .nw { white-space: nowrap; }
+
+/* Selo de alta/queda dentro da etiqueta amarela (página inicial). Fundo escuro e texto branco para ler bem no amarelo. */
+.tag .selo-var { align-self: flex-start; margin-top: 5px; font-family: var(--f-body); font-size: .74rem; font-weight: 700; letter-spacing: .01em; padding: 2px 9px; border-radius: 999px; color: #fff; white-space: nowrap; }
+.tag .selo-var.sobe { background: #B42318; color: #fff; }
+.tag .selo-var.desce { background: #13703A; color: #fff; }
+.tag .selo-var.igual { background: rgba(30, 26, 6, .14); color: var(--tag-ink); }
