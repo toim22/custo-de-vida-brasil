@@ -23,6 +23,7 @@
     <div class="stack">
       <span class="tag grande"><span class="lbl" id="lbl">aluguel desde jan/2023</span><span class="val" id="val">—</span></span>
       <div class="fatos" id="fatos"></div>
+      <p class="aviso small" id="aviso-local" hidden></p>
       <a class="como" href="como-calculamos.html#aluguel">Como calculamos →</a>
     </div>
     <div class="grafico"><div class="cab"><b>Aluguel × inflação geral desde jan/2023</b><span class="small">dez/2022 = 100</span></div><div id="g"></div></div>
@@ -30,8 +31,11 @@
 
   <section class="bloco">
     <h2>Quanto o aluguel subiu em cada lugar</h2>
-    <p class="small read">Aluguel que as famílias pagam de fato, nos contratos em andamento, segundo o IBGE. A seta mostra o último mês: vermelha quando subiu, verde quando caiu.</p>
+    <p class="small read">Aluguel que as famílias pagam de fato, nos contratos em andamento, segundo o IBGE. A seta mostra o último mês: vermelha quando subiu, verde quando caiu. Onde o IBGE não pesquisa, o cartão diz qual fonte usamos (marcado com <span class="selo">outra fonte</span>).</p>
+    <h3>Brasil e regiões</h3>
     <div class="cards" id="regioes"></div>
+    <h3>Estados e DF</h3>
+    <div class="cards" id="estados"></div>
   </section>
 
   <div class="anuncio" role="complementary" aria-label="Publicidade"><div><b>Publicidade</b>Espaço para parceiros</div></div>
@@ -90,13 +94,21 @@ document.addEventListener("DOMContentLoaded", function () {
     } else vazio("reajuste", "Os índices de reajuste aparecem depois da próxima coleta.");
 
     // cards por região do IPCA
-    var ordem = Object.keys(locais).sort(function (a, b) { return a === "BR" ? -1 : b === "BR" ? 1 : C.nomeLocal(a).localeCompare(C.nomeLocal(b), "pt"); });
-    document.getElementById("regioes").innerHTML = ordem.map(function (k) {
+    function cartaoLocal(k) {
       var l = locais[k], u = C.ultimo(l.variacao);
-      return card(k === "BR" ? "Brasil" : nomeComBandeira(l.area_ibge, k), C.pct(desde2023(l.indice), 1),
-        '<span class="d igual">desde jan/2023</span>' + C.mini(l.indice) + setaPct(u ? u[1] : null, "em " + (u ? C.data(u[0]) : "")) +
-        C.variacao(C.variacao12(l.indice), { sufixo: " em 12 meses" }));
-    }).join("");
+      var icone = k === "BR" ? C.bandeira("BR") : C.REGIOES[k] ? C.iconeRegiao(k) : C.bandeira(k);
+      var onde = l.fonte === "ipca" && k !== "BR" ? '<span class="d igual" style="white-space:normal">pesquisa em ' + l.area_ibge.split(" - ")[0] + "</span>"
+        : l.fonte === "fipezap" ? '<span class="d igual" style="white-space:normal"><span class="selo">outra fonte</span> anúncios em ' + l.area_ibge.split(" - ")[0] + "</span>"
+        : l.fonte === "regiao" ? '<span class="d igual" style="white-space:normal"><span class="selo">sem pesquisa</span> média do ' + C.nomeLocal(C.UFS[k][1]) + "</span>"
+        : l.fonte === "media" ? '<span class="d igual" style="white-space:normal">média das capitais</span>' : "";
+      return card('<span class="uf">' + icone + C.nomeLocal(k) + "</span>", C.pct(desde2023(l.indice), 1),
+        '<span class="d igual">desde ' + C.data(l.indice[0][0] <= "2023-01" ? "2023-01" : l.indice[0][0]) + "</span>" + onde + C.mini(l.indice) +
+        setaPct(u ? u[1] : null, "em " + (u ? C.data(u[0]) : "")) + C.variacao(C.variacao12(l.indice), { sufixo: " em 12 meses" }));
+    }
+    document.getElementById("regioes").innerHTML = ["BR"].concat(Object.keys(C.REGIOES)).filter(function (k) { return locais[k]; }).map(cartaoLocal).join("");
+    document.getElementById("estados").innerHTML = Object.keys(C.UFS).filter(function (k) { return locais[k]; })
+      .sort(function (a, b) { return C.nomeLocal(a).localeCompare(C.nomeLocal(b), "pt"); }).map(cartaoLocal).join("") ||
+      '<p class="aviso" style="grid-column:1/-1">Os estados aparecem depois da próxima coleta.</p>';
 
     // FipeZap: apartamento de 60 m²
     var fz = al.fipezap || {}, area = fz.area_referencia_m2 || 60, cid = fz.cidades || {};
@@ -124,13 +136,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function desenhar() {
       var k = locais[sel.value] ? sel.value : "BR", l = locais[k];
-      var nome = k === "BR" ? "Brasil" : l.area_ibge;
+      var nome = C.nomeLocal(k);
+      var av = document.getElementById("aviso-local");
+      av.hidden = !l.aviso; av.textContent = l.aviso || "";
       document.getElementById("titulo").textContent = "Aluguel · " + nome;
       var sub = desde2023(l.indice), geral = desde2023(l.indice_geral), u = C.ultimo(l.indice);
       document.getElementById("lbl").textContent = "aluguel desde jan/2023 · até " + C.data(u && u[0]);
       document.getElementById("val").textContent = C.pct(sub, 1);
       var f = [];
-      if (geral !== null) f.push('<div class="fato"><span class="num">' + C.pct(geral, 1) + "</span><span>foi a inflação geral (IPCA) no mesmo lugar e período</span></div>");
+      if (geral !== null) f.push('<div class="fato"><span class="num">' + C.pct(geral, 1) + "</span><span>foi a inflação geral (IPCA) " + (l.fonte === "ipca" ? "no mesmo lugar e período" : "na região, no mesmo período") + "</span></div>");
       if (geral !== null && sub !== null) f.push('<div class="fato"><span class="num ' + C.classe(sub - geral) + '">' + (sub > geral ? "▲ " : "▼ ") + C.numero(Math.abs(sub - geral), 1) + "</span><span>pontos percentuais " + (sub > geral ? "a mais" : "a menos") + " que os outros preços</span></div>");
       var v12 = l.variacao.slice(-12).reduce(function (a, p) { return a * (1 + p[1] / 100); }, 1);
       if (l.variacao.length >= 12) f.push('<div class="fato"><span class="num">' + C.variacao((v12 - 1) * 100) + "</span><span>nos últimos 12 meses</span></div>");

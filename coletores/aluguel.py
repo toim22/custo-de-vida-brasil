@@ -13,7 +13,7 @@ import io
 import re
 from datetime import date, datetime
 
-from comum import CAPITAL_UF, DESCOBERTAS, INICIO, baixar, ler_json, norm, salvar_json
+from comum import CAPITAL_UF, REGIAO_NOMES, UF_NOMES, UF_REGIAO, DESCOBERTAS, INICIO, baixar, ler_json, norm, salvar_json
 from ibge import API, UF_IBGE
 
 IPCA_ALUGUEL = 7448   # 2101001.Aluguel residencial
@@ -96,6 +96,7 @@ def coletar_ipca():
         geral = sorted([m, x] for m, x in por[IPCA_GERAL].get(local, {}).items())
         locais[local] = {
             "area_ibge": "Brasil" if local == "BR" else nomes.get(local, local),
+            "fonte": "ipca",
             "variacao": var,
             "indice": indice_acumulado(var),
             "indice_geral": indice_acumulado(geral),
@@ -242,6 +243,87 @@ def coletar_fipezap():
     return cidades
 
 
+# ---------- 4. Regiões e os 27 estados ----------
+def _media_mensal(series):
+    """Média simples, mês a mês, de várias séries [[mes, var%]]. Só usa meses que todas têm."""
+    dicts = [dict(s) for s in series if s]
+    if not dicts:
+        return []
+    meses = sorted(set.intersection(*(set(d) for d in dicts)))
+    return [[m, round(sum(d[m] for d in dicts) / len(dicts), 4)] for m in meses]
+
+
+def _var_de_precos(precos):
+    """[[mes, R$/m²]] -> [[mes, var%]] (o primeiro mês vira a base)."""
+    return [[precos[i][0], round((precos[i][1] / precos[i - 1][1] - 1) * 100, 4)] for i in range(1, len(precos))]
+
+
+def _com_base(var, base_mes):
+    """Índice com 100 no mês base (que entra como primeiro ponto)."""
+    return [[base_mes, 100.0]] + indice_acumulado(var)
+
+
+def completar_locais(ipca, fipezap):
+    """Acrescenta as 5 regiões e os estados que o IPCA não cobre.
+
+    Regiões: média simples, mês a mês, das áreas do IPCA daquela região.
+    Estado sem IPCA: variação do preço anunciado na capital (FipeZap), se houver.
+    Estado sem nenhuma pesquisa: repete a região, com aviso claro.
+    """
+    locais = dict(ipca)
+    ufs_ipca = [u for u in ipca if u in UF_REGIAO]
+    for reg, nome in REGIAO_NOMES.items():
+        ufs = [u for u in ufs_ipca if UF_REGIAO[u] == reg]
+        if not ufs:
+            continue
+        var = _media_mensal([ipca[u]["variacao"] for u in ufs])
+        geral = _media_mensal([[[m, v] for m, v in _vars_do_indice(ipca[u]["indice_geral"])] for u in ufs])
+        cidades = ", ".join(ipca[u]["area_ibge"].split(" - ")[0] for u in sorted(ufs))
+        locais[reg] = {
+            "area_ibge": nome, "fonte": "media", "variacao": var,
+            "indice": indice_acumulado(var), "indice_geral": indice_acumulado(geral),
+            "aviso": f"Média das áreas pesquisadas pelo IBGE na região: {cidades}.",
+        }
+    capital_de = {uf: c for c, v in fipezap.items() if v.get("capital") and (uf := v.get("uf"))}
+    for uf, nome_uf in UF_NOMES.items():
+        if uf in locais:
+            continue
+        reg = locais.get(UF_REGIAO[uf], {})
+        cidade = capital_de.get(uf)
+        if cidade and len(fipezap[cidade]["preco_m2"]) >= 13:
+            precos = fipezap[cidade]["preco_m2"]
+            var = _var_de_precos(precos)
+            locais[uf] = {
+                "area_ibge": f"{cidade} - {uf}", "fonte": "fipezap", "variacao": var,
+                "indice": _com_base(var, precos[0][0]), "indice_geral": reg.get("indice_geral", []),
+                "aviso": f"O IBGE não pesquisa aluguel {_em(uf)}. Usamos o preço dos anúncios de aluguel em {cidade} (FipeZap), desde {precos[0][0][5:]}/{precos[0][0][:4]}.",
+            }
+        elif reg:
+            locais[uf] = {
+                "area_ibge": f"{nome_uf} (média do {REGIAO_NOMES[UF_REGIAO[uf]]})", "fonte": "regiao",
+                "variacao": reg["variacao"], "indice": reg["indice"], "indice_geral": reg["indice_geral"],
+                "aviso": f"Nenhuma pesquisa oficial ou de anúncios cobre aluguel {_em(uf)}. Mostramos a média da região {REGIAO_NOMES[UF_REGIAO[uf]]}.",
+            }
+    return locais
+
+
+def _em(uf):
+    """'no Amapá', 'na Paraíba', 'em Alagoas'."""
+    nome = UF_NOMES[uf]
+    if uf in {"AC", "AM", "AP", "CE", "DF", "ES", "MA", "MT", "MS", "PA", "PR", "PI", "RJ", "RN", "RS", "TO"}:
+        return "no " + nome
+    return ("na " if uf in {"BA", "PB"} else "em ") + nome
+
+
+def _vars_do_indice(indice):
+    """Índice base 100 (mês anterior ao primeiro ponto) -> variações mensais."""
+    saida, ant = [], 100.0
+    for m, v in indice:
+        saida.append([m, (v / ant - 1) * 100])
+        ant = v
+    return saida
+
+
 def coletar():
     anterior = ler_json("aluguel", {}) or {}
     avisos = []
@@ -265,7 +347,7 @@ def coletar():
             "fonte": "IBGE — IPCA, tabela 7060, subitem 2101001 Aluguel residencial (variação mensal, %)",
             "fonte_url": "https://sidra.ibge.gov.br/tabela/7060",
             "base": "índice 100 = dezembro de 2022",
-            "locais": ipca,
+            "locais": completar_locais(ipca, fipezap),
         },
         "reajuste": {
             "fonte": "Banco Central, SGS: IGP-M (série 189) e IPCA (série 433), acumulado em 12 meses (%)",
