@@ -7,6 +7,7 @@ import sys
 import traceback
 from datetime import datetime, timezone
 
+import aluguel
 import anp
 import calculos
 import dieese
@@ -19,6 +20,7 @@ TAREFAS = [
     ("cesta", "DIEESE — cesta básica", dieese.coletar_cesta),
     ("ipca", "IBGE — IPCA", ibge.coletar),
     ("churrasco", "Cálculo — itens avulsos e Churrasco pra 6", calculos.calcular),
+    ("aluguel", "IBGE, Banco Central e FipeZap — aluguel", aluguel.coletar),
 ]
 
 

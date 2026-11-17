@@ -13,7 +13,8 @@
     ["cesta.html", "Cesta básica"],
     ["combustiveis.html", "Combustível e gás"],
     ["churrasco.html", "Churrasco pra 6"],
-    ["trabalho.html", "Salário e trabalho"]
+    ["trabalho.html", "Salário e trabalho"],
+    ["aluguel.html", "Aluguel"]
   ];
 
   var UFS = {
