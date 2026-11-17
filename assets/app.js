@@ -14,6 +14,7 @@
     ["combustiveis.html", "Combustível e gás"],
     ["churrasco.html", "Churrasco pra 6"],
     ["trabalho.html", "Salário e trabalho"],
+    ["aluguel.html", "Aluguel"],
     ["aumentos-de-impostos.html", "Aumentos de impostos"]
   ];
 
