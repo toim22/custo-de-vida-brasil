@@ -183,6 +183,194 @@
    3790.0
   ]
  ],
- "desemprego_trimestres": [],
- "desemprego_real": []
+ "desemprego_trimestres": [
+  {
+   "trimestre": "2023-T1",
+   "arquivo": "PNADC_012023_20250815.zip",
+   "desocupados": 9246618,
+   "desalentados": 3818129,
+   "fracao_aposentados_ano": "2023",
+   "total": 12477617
+  },
+  {
+   "trimestre": "2023-T2",
+   "arquivo": "PNADC_022023_20250815.zip",
+   "desocupados": 8467547,
+   "desalentados": 3629569,
+   "fracao_aposentados_ano": "2023",
+   "total": 11553472
+  },
+  {
+   "trimestre": "2023-T3",
+   "arquivo": "PNADC_032023_20250815.zip",
+   "desocupados": 8149546,
+   "desalentados": 3457647,
+   "fracao_aposentados_ano": "2023",
+   "total": 11085566
+  },
+  {
+   "trimestre": "2023-T4",
+   "arquivo": "PNADC_042023_20250815.zip",
+   "desocupados": 7926113,
+   "desalentados": 3411202,
+   "fracao_aposentados_ano": "2023",
+   "total": 10827816
+  },
+  {
+   "trimestre": "2024-T1",
+   "arquivo": "PNADC_012024_20250815.zip",
+   "desocupados": 8452616,
+   "desalentados": 3556574,
+   "fracao_aposentados_ano": "2024",
+   "total": 11448481
+  },
+  {
+   "trimestre": "2024-T2",
+   "arquivo": "PNADC_022024_20260324.zip",
+   "desocupados": 7388299,
+   "desalentados": 3205214,
+   "fracao_aposentados_ano": "2024",
+   "total": 10098902
+  },
+  {
+   "trimestre": "2024-T3",
+   "arquivo": "PNADC_032024_20250815.zip",
+   "desocupados": 6853709,
+   "desalentados": 3070962,
+   "fracao_aposentados_ano": "2024",
+   "total": 9461288
+  },
+  {
+   "trimestre": "2024-T4",
+   "arquivo": "PNADC_042024_20250815.zip",
+   "desocupados": 6684402,
+   "desalentados": 2989073,
+   "fracao_aposentados_ano": "2024",
+   "total": 9221820
+  },
+  {
+   "trimestre": "2025-T1",
+   "arquivo": "PNADC_012025.zip",
+   "desocupados": 7566459,
+   "desalentados": 3191826,
+   "fracao_aposentados_ano": "2025",
+   "total": 10222845
+  },
+  {
+   "trimestre": "2025-T2",
+   "arquivo": "PNADC_022025.zip",
+   "desocupados": 6253418,
+   "desalentados": 2755751,
+   "fracao_aposentados_ano": "2025",
+   "total": 8560783
+  },
+  {
+   "trimestre": "2025-T3",
+   "arquivo": "PNADC_032025.zip",
+   "desocupados": 6044829,
+   "desalentados": 2636975,
+   "fracao_aposentados_ano": "2025",
+   "total": 8249711
+  },
+  {
+   "trimestre": "2025-T4",
+   "arquivo": "PNADC_042025.zip",
+   "desocupados": 5502580,
+   "desalentados": 2645989,
+   "fracao_aposentados_ano": "2025",
+   "total": 7743015
+  },
+  {
+   "trimestre": "2026-T1",
+   "arquivo": "PNADC_012026.zip",
+   "desocupados": 6579328,
+   "desalentados": 2682919,
+   "fracao_aposentados_ano": "2025",
+   "total": 8801265
+  },
+  {
+   "trimestre": "2026-T2",
+   "arquivo": "PNADC_022026.zip",
+   "desocupados": 5861466,
+   "desalentados": 2287922,
+   "fracao_aposentados_ano": "2025",
+   "total": 7743793
+  }
+ ],
+ "desemprego_aposentados_por_ano": [
+  {
+   "ano": "2023",
+   "arquivo": "PNADC_2023_visita1_20250822.zip",
+   "fracao_aposentados": 0.04494
+  },
+  {
+   "ano": "2024",
+   "arquivo": "PNADC_2024_visita1_20251119.zip",
+   "fracao_aposentados": 0.04669
+  },
+  {
+   "ano": "2025",
+   "arquivo": "PNADC_2025_visita1_20260923.zip",
+   "fracao_aposentados": 0.04977
+  }
+ ],
+ "desemprego_faltam": 0,
+ "desemprego_real": [
+  [
+   "2023-T1",
+   12477617
+  ],
+  [
+   "2023-T2",
+   11553472
+  ],
+  [
+   "2023-T3",
+   11085566
+  ],
+  [
+   "2023-T4",
+   10827816
+  ],
+  [
+   "2024-T1",
+   11448481
+  ],
+  [
+   "2024-T2",
+   10098902
+  ],
+  [
+   "2024-T3",
+   9461288
+  ],
+  [
+   "2024-T4",
+   9221820
+  ],
+  [
+   "2025-T1",
+   10222845
+  ],
+  [
+   "2025-T2",
+   8560783
+  ],
+  [
+   "2025-T3",
+   8249711
+  ],
+  [
+   "2025-T4",
+   7743015
+  ],
+  [
+   "2026-T1",
+   8801265
+  ],
+  [
+   "2026-T2",
+   7743793
+  ]
+ ]
 }

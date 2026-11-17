@@ -33,7 +33,7 @@
   0: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
   1: último dado disponível | 2 | 3
 
-== Índice FipeZAP: coluna escolhida 54
+== Índice FipeZAP: coluna escolhida 37
   1: Índice FipeZAP | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total
   3: Imóveis residenciais | Venda | Número-Índice | 1D
@@ -90,7 +90,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São Paulo: coluna escolhida 54
+== São Paulo: coluna escolhida 37
   1: São Paulo | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total
   3: Imóveis residenciais | Venda | Número-Índice | 1D
@@ -147,7 +147,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Barueri: coluna escolhida 54
+== Barueri: coluna escolhida 37
   1: Barueri | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -204,7 +204,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Campinas: coluna escolhida 54
+== Campinas: coluna escolhida 37
   1: Campinas | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -261,7 +261,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Diadema: coluna escolhida 54
+== Diadema: coluna escolhida 37
   1: Diadema | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -318,7 +318,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Guarujá: coluna escolhida 54
+== Guarujá: coluna escolhida 37
   1: Guarujá | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -375,7 +375,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Guarulhos: coluna escolhida 54
+== Guarulhos: coluna escolhida 37
   1: Guarulhos | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -432,7 +432,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Osasco: coluna escolhida 54
+== Osasco: coluna escolhida 37
   1: Osasco | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -489,7 +489,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Praia Grande: coluna escolhida 54
+== Praia Grande: coluna escolhida 37
   1: Praia Grande | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -546,7 +546,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Ribeirão Preto: coluna escolhida 54
+== Ribeirão Preto: coluna escolhida 37
   1: Ribeirão Preto | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -603,7 +603,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Santo André: coluna escolhida 54
+== Santo André: coluna escolhida 37
   1: Santo André | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -660,7 +660,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Santos: coluna escolhida 54
+== Santos: coluna escolhida 37
   1: Santos | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -717,7 +717,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São Bernardo do Campo: coluna escolhida 54
+== São Bernardo do Campo: coluna escolhida 37
   1: São Bernardo do Campo | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -774,7 +774,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São Caetano do Sul: coluna escolhida 54
+== São Caetano do Sul: coluna escolhida 37
   1: São Caetano do Sul | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -831,7 +831,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São José do Rio Preto: coluna escolhida 54
+== São José do Rio Preto: coluna escolhida 37
   1: São José do Rio Preto | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -888,7 +888,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São José dos Campos: coluna escolhida 54
+== São José dos Campos: coluna escolhida 37
   1: São José dos Campos | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -945,7 +945,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São Vicente: coluna escolhida 54
+== São Vicente: coluna escolhida 37
   1: São Vicente | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1002,7 +1002,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Rio de Janeiro: coluna escolhida 54
+== Rio de Janeiro: coluna escolhida 37
   1: Rio de Janeiro | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total
   3: Imóveis residenciais | Venda | Número-Índice | 1D
@@ -1059,7 +1059,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Niterói: coluna escolhida 54
+== Niterói: coluna escolhida 37
   1: Niterói | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1116,7 +1116,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Belo Horizonte: coluna escolhida 54
+== Belo Horizonte: coluna escolhida 37
   1: Belo Horizonte | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1173,7 +1173,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Betim: coluna escolhida 54
+== Betim: coluna escolhida 37
   1: Betim | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1230,7 +1230,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Contagem: coluna escolhida 54
+== Contagem: coluna escolhida 37
   1: Contagem | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1287,7 +1287,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Porto Alegre: coluna escolhida 54
+== Porto Alegre: coluna escolhida 37
   1: Porto Alegre | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1344,7 +1344,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Canoas: coluna escolhida 54
+== Canoas: coluna escolhida 37
   1: Canoas | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1401,7 +1401,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Caxias do Sul: coluna escolhida 54
+== Caxias do Sul: coluna escolhida 37
   1: Caxias do Sul | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1458,7 +1458,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Novo Hamburgo: coluna escolhida 54
+== Novo Hamburgo: coluna escolhida 37
   1: Novo Hamburgo | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1515,7 +1515,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Pelotas: coluna escolhida 54
+== Pelotas: coluna escolhida 37
   1: Pelotas | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1572,7 +1572,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Santa Maria: coluna escolhida 54
+== Santa Maria: coluna escolhida 37
   1: Santa Maria | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1629,7 +1629,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São Leopoldo: coluna escolhida 54
+== São Leopoldo: coluna escolhida 37
   1: São Leopoldo | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1686,7 +1686,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Curitiba: coluna escolhida 54
+== Curitiba: coluna escolhida 37
   1: Curitiba | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1743,7 +1743,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Londrina: coluna escolhida 54
+== Londrina: coluna escolhida 37
   1: Londrina | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1800,7 +1800,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São José dos Pinhais: coluna escolhida 54
+== São José dos Pinhais: coluna escolhida 37
   1: São José dos Pinhais | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1857,7 +1857,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Florianópolis: coluna escolhida 54
+== Florianópolis: coluna escolhida 37
   1: Florianópolis | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1914,7 +1914,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Balneário Camboriú: coluna escolhida 54
+== Balneário Camboriú: coluna escolhida 37
   1: Balneário Camboriú | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -1971,7 +1971,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Blumenau: coluna escolhida 54
+== Blumenau: coluna escolhida 37
   1: Blumenau | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2028,7 +2028,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Itajaí: coluna escolhida 54
+== Itajaí: coluna escolhida 37
   1: Itajaí | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2085,7 +2085,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Itapema: coluna escolhida 54
+== Itapema: coluna escolhida 37
   1: Itapema | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2142,7 +2142,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Joinville: coluna escolhida 54
+== Joinville: coluna escolhida 37
   1: Joinville | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2199,7 +2199,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São José: coluna escolhida 54
+== São José: coluna escolhida 37
   1: São José | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2256,7 +2256,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Vitória: coluna escolhida 54
+== Vitória: coluna escolhida 37
   1: Vitória | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2313,7 +2313,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Vila Velha: coluna escolhida 54
+== Vila Velha: coluna escolhida 37
   1: Vila Velha | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2370,7 +2370,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Brasília: coluna escolhida 54
+== Brasília: coluna escolhida 37
   1: Brasília | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2427,7 +2427,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Goiânia: coluna escolhida 54
+== Goiânia: coluna escolhida 37
   1: Goiânia | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2484,7 +2484,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Campo Grande: coluna escolhida 54
+== Campo Grande: coluna escolhida 37
   1: Campo Grande | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2541,7 +2541,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Cuiabá: coluna escolhida 54
+== Cuiabá: coluna escolhida 37
   1: Cuiabá | Data
   2: Imóveis residenciais | Preços de venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Preços de venda | Número-Índice | 1D | . | . | . | .
@@ -2598,7 +2598,7 @@
   54: Imóveis comerciais | Preços de locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Aracaju: coluna escolhida 54
+== Aracaju: coluna escolhida 37
   1: Aracaju | Data
   2: Imóveis residenciais | Preços de venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Preços de venda | Número-Índice | 1D | . | . | . | .
@@ -2655,7 +2655,7 @@
   54: Imóveis comerciais | Preços de locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Fortaleza: coluna escolhida 54
+== Fortaleza: coluna escolhida 37
   1: Fortaleza | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2712,7 +2712,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== João Pessoa: coluna escolhida 54
+== João Pessoa: coluna escolhida 37
   1: João Pessoa | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2769,7 +2769,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Maceió: coluna escolhida 54
+== Maceió: coluna escolhida 37
   1: Maceió | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2826,7 +2826,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Natal: coluna escolhida 54
+== Natal: coluna escolhida 37
   1: Natal | Data
   2: Imóveis residenciais | Preços de venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Preços de venda | Número-Índice | 1D | . | . | . | .
@@ -2883,7 +2883,7 @@
   54: Imóveis comerciais | Preços de locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Recife: coluna escolhida 54
+== Recife: coluna escolhida 37
   1: Recife | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2940,7 +2940,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Salvador: coluna escolhida 54
+== Salvador: coluna escolhida 37
   1: Salvador | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -2997,7 +2997,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== São Luís: coluna escolhida 54
+== São Luís: coluna escolhida 37
   1: São Luís | Data
   2: Imóveis residenciais | Preços de venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Preços de venda | Número-Índice | 1D | . | . | . | .
@@ -3054,7 +3054,7 @@
   54: Imóveis comerciais | Preços de locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Teresina: coluna escolhida 54
+== Teresina: coluna escolhida 37
   1: Teresina | Data
   2: Imóveis residenciais | Preços de venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Preços de venda | Número-Índice | 1D | . | . | . | .
@@ -3111,7 +3111,7 @@
   54: Imóveis comerciais | Preços de locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Jaboatão dos Guararapes: coluna escolhida 54
+== Jaboatão dos Guararapes: coluna escolhida 37
   1: Jaboatão dos Guararapes | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
@@ -3168,7 +3168,7 @@
   54: Imóveis comerciais | Locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Belém: coluna escolhida 54
+== Belém: coluna escolhida 37
   1: Belém | Data
   2: Imóveis residenciais | Preços de venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Preços de venda | Número-Índice | 1D | . | . | . | .
@@ -3225,7 +3225,7 @@
   54: Imóveis comerciais | Preços de locação | Preço médio (R$/m²) | Total | . | . | . | .
   55: Imóveis comerciais | Rentabilidade do aluguel (rental yield) | (% - mensalizada) | Total | . | . | . | .
 
-== Manaus: coluna escolhida 54
+== Manaus: coluna escolhida 37
   1: Manaus | Data
   2: Imóveis residenciais | Venda | Número-Índice | Total | . | . | . | .
   3: Imóveis residenciais | Venda | Número-Índice | 1D | . | . | . | .
