@@ -440,3 +440,36 @@ html.escolha-aberta, html.escolha-aberta body { overflow: hidden; }
 
 /* Ícone de região: mapinha do Brasil com a região em amarelo (sem a moldura das bandeiras) */
 .bandeira.mapa { outline: 0; border-radius: 0; }
+
+/* Dólar e Ibovespa no canto superior direito (todas as páginas) */
+.topo .logo { margin-right: 0; }
+.cotas { order: 0; margin-left: auto; display: inline-flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 999px; border: 1px solid var(--line-2, var(--line)); background: rgba(255,255,255,.03); color: var(--ink); text-decoration: none; font-size: .78rem; line-height: 1.2; transition: border-color .15s, background .15s; }
+.cotas:hover, .cotas[aria-current="page"] { border-color: var(--tag); background: rgba(255,210,63,.08); }
+.cota { display: inline-flex; align-items: baseline; gap: 6px; padding: 2px 8px; white-space: nowrap; }
+.cota + .cota { border-left: 1px solid var(--line); }
+.cota .cn { color: var(--muted); font-weight: 600; }
+.cota b { font-family: var(--f-mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+.cota .d { font-size: .72rem; }
+.cota .cn-c { display: none; }
+.topo .menu { order: 1; flex: 1 0 100%; }
+@media (max-width: 560px) {
+  .cotas { font-size: .72rem; padding: 3px 4px; }
+  .cota { padding: 2px 6px; gap: 4px; }
+  .cota .cn-l { display: none; }
+  .cota .cn-c { display: inline; }
+}
+@media (max-width: 340px) { .cota .d { display: none; } }
+
+/* Página mercado.html */
+.m-grupo { display: grid; gap: 10px; }
+.m-grupo h3 { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #A7B0AB; font-family: var(--f-body); }
+.m-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+button.card { font: inherit; text-align: left; cursor: pointer; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+button.card:hover { transform: translateY(-2px); border-color: var(--line-2, var(--muted)); }
+button.card[aria-pressed="true"] { border-color: var(--tag); box-shadow: 0 0 0 1px var(--tag), var(--sombra, none); }
+.m-card .topo-c { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.m-card .cod { font-family: var(--f-mono); font-size: .72rem; color: var(--muted); }
+.m-card .v { font-size: 1.35rem; }
+.m-card .sub { font-size: .76rem; color: var(--muted); }
+.m-card svg.spark { width: 100%; height: 38px; color: var(--tag); margin-top: 4px; }
+@media (max-width: 860px) { .m-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
