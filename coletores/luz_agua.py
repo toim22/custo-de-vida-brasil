@@ -191,6 +191,13 @@ def tarifa_no_dia(periodos, d):
     return max(vale)[2] if vale else None
 
 
+def grupos(series):
+    """Regiões e Brasil (média simples dos estados). "SE" é Sergipe e também Sudeste: o estado vence."""
+    ufs = [u for u in series if u in UF_REGIAO]
+    out = [(r, [u for u in ufs if UF_REGIAO[u] == r]) for r in sorted(set(UF_REGIAO.values())) if r not in UF_REGIAO]
+    return out + [("BR", ufs)]
+
+
 def coletar_energia():
     cfg = config("energia")
     tarifas = tarifas_residenciais()
@@ -223,7 +230,7 @@ def coletar_energia():
         series[uf] = {"tarifa": tar, "conta": conta}
         info[uf] = {"distribuidora": ags[-1], "icms": e["icms"], "ultimo_reajuste": reaj}
     # Regiões e Brasil: média simples dos estados
-    for grupo, ufs in list({r: [u for u in series if UF_REGIAO[u] == r] for r in set(UF_REGIAO.values())}.items()) + [("BR", list(series))]:
+    for grupo, ufs in grupos(series):
         if not ufs:
             continue
         agg = {}
@@ -293,7 +300,7 @@ def coletar_agua(ipca):
                 valores[m] = atual
         series[uf] = {"conta": [[m, round(x, 2)] for m, x in sorted(valores.items()) if m >= INICIO[:7]]}
         info[uf] = {"empresa": e.get("empresa"), "ipca_local": local != "BR", "agua_m3": e["agua"], "esgoto_m3": e.get("esgoto", 0)}
-    for grupo, ufs in list({r: [u for u in series if UF_REGIAO[u] == r] for r in set(UF_REGIAO.values())}.items()) + [("BR", list(series))]:
+    for grupo, ufs in grupos(series):
         if not ufs:
             continue
         todos = sorted({m for u in ufs for m, _ in series[u]["conta"]})
