@@ -69,13 +69,15 @@
     <p><b>Carro zero mais barato:</b> conferido à mão uma vez por mês nos sites das montadoras e na tabela FIPE. Mostramos o preço sugerido nacional, mesmo que o modelo mude.</p>
 
     <h2 id="desemprego">Desemprego real</h2>
-    <p>Fonte: IBGE, PNAD Contínua. Mostramos um único número: pessoas que procuram emprego (desocupadas) mais pessoas que querem trabalhar mas desistiram de procurar (desalentadas), sem contar aposentados.</p>
+    <p>Fonte: IBGE, PNAD Contínua (microdados trimestrais). Mostramos um único número: pessoas que procuram emprego (desocupadas) mais pessoas que querem trabalhar mas desistiram de procurar (desalentadas), sem contar aposentados.</p>
     <ul>
       <li>Conta como <b>trabalhando</b> quem trabalhou e recebeu por isso, com ou sem carteira, incluindo MEI e autônomos. É a regra do IBGE.</li>
       <li>Quem recebe Bolsa Família ou outro benefício e não trabalha <b>não</b> conta como trabalhando.</li>
-      <li>Aposentados são retirados usando os microdados da pesquisa.</li>
+      <li><b>Aposentados:</b> as tabelas prontas do IBGE não separam os aposentados. Por isso o robô baixa os microdados da pesquisa (as respostas de cada entrevistado, sem nome) e tira quem diz receber aposentadoria ou pensão da previdência. A pergunta do IBGE junta aposentadoria e pensão, então pensionistas também saem da conta.</li>
+      <li>Cada resposta é multiplicada pelo peso que o IBGE dá a ela, para representar a população do país. É o mesmo método que o IBGE usa nos números oficiais.</li>
+      <li>O número é <b>trimestral</b>. O IBGE libera os microdados de cada trimestre cerca de um mês e meio depois que ele termina, e o site atualiza na coleta seguinte.</li>
     </ul>
-    <p>Este indicador entra no site assim que o robô estiver lendo as tabelas do IBGE.</p>
+    <p><b>Quanto ganha, em média, quem trabalha:</b> rendimento médio mensal real que as pessoas ocupadas costumam receber somando todos os trabalhos (IBGE, PNAD Contínua, tabela 6390). “Real” quer dizer que o IBGE já corrigiu os meses antigos pela inflação, em reais de hoje. É a média de três meses e sai todo mês.</p>
 
     <h2 id="local">Brasil, regiões e estados</h2>
     <p>Combustíveis e gás têm dado oficial por estado e região. A cesta básica cobre as capitais; o número “do estado” é o da capital. Brasil e regiões da cesta são médias das capitais. Itens estimados usam a variação da região metropolitana do IPCA daquele estado, quando existe.</p>
@@ -86,6 +88,7 @@
       <li><a href="https://www.dieese.org.br/analisecestabasica/salarioMinimo.html">DIEESE — Salário mínimo nominal e necessário</a></li>
       <li><a href="https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas">ANP — Levantamento de Preços de Combustíveis</a></li>
       <li><a href="https://sidra.ibge.gov.br/tabela/7060">IBGE — IPCA (tabela 7060)</a></li>
+      <li><a href="https://sidra.ibge.gov.br/tabela/6390">IBGE — SIDRA, tabela 6390 (renda média)</a></li>
       <li><a href="https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-mensal.html">IBGE — PNAD Contínua</a></li>
     </ul>
 

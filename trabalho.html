@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
       '<p class="aviso" style="grid-column:1/-1">Aparece depois da primeira coleta.</p>';
 
     var t = [];
-    if (trab && trab.desemprego_real && C.ultimo(trab.desemprego_real)) { var d = C.ultimo(trab.desemprego_real); t.push(["Desemprego real", C.milhoes(d[1]), C.data(d[0])]); }
+    if (trab && trab.desemprego_real && C.ultimo(trab.desemprego_real)) { var d = C.ultimo(trab.desemprego_real); t.push(["Desemprego real", C.milhoes(d[1]) + " de pessoas", C.data(d[0])]); }
     else t.push(["Desemprego real", "em breve", "dados do IBGE (PNAD Contínua)"]);
-    if (trab && trab.renda_media && C.ultimo(trab.renda_media)) { var m = C.ultimo(trab.renda_media); t.push(["Quanto ganha, em média, quem trabalha", C.brl(m[1], 0), C.data(m[0])]); }
+    if (trab && trab.renda_media && C.ultimo(trab.renda_media)) { var m = C.ultimo(trab.renda_media); t.push(["Quanto ganha, em média, quem trabalha", C.brl(m[1], 0) + " por mês", "trimestre até " + C.data(m[0])]); }
     else t.push(["Quanto ganha, em média, quem trabalha", "em breve", "dados do IBGE (PNAD Contínua)"]);
     document.getElementById("trabalho").innerHTML = t.map(function (i) { return '<div class="card"><span class="t">' + i[0] + '</span><span class="v">' + i[1] + '</span><span class="d muted">' + i[2] + "</span></div>"; }).join("");
 
