@@ -34,8 +34,8 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   var C = window.CVB;
-  Promise.all([C.carregar("combustiveis"), C.carregar("cesta"), C.carregar("salario"), C.carregar("churrasco"), C.config("tanque")]).then(function (r) {
-    var comb = r[0], cesta = r[1], sal = r[2], ch = r[3], tanque = r[4];
+  Promise.all([C.carregar("combustiveis"), C.carregar("cesta"), C.carregar("salario"), C.carregar("churrasco"), C.config("tanque"), C.carregar("aumentos-impostos")]).then(function (r) {
+    var comb = r[0], cesta = r[1], sal = r[2], ch = r[3], tanque = r[4], imp = r[5];
     var litrosTanque = (tanque && tanque.litros) || 49;
     var sel = document.getElementById("local");
     var locais = comb ? Object.keys(comb.series) : ["BR"];
@@ -111,6 +111,13 @@ document.addEventListener("DOMContentLoaded", function () {
           linhas: [C.variacao(C.variacao12(ss), { bomSubir: true }) + " em 12 meses · com ele dá para comprar:"],
           corpo: "", depois: itens.length ? '<ul class="lista">' + itens.map(function (i) { return "<li><span>" + i[0] + "</span><b>" + i[1] + "</b></li>"; }).join("") + "</ul>" : "",
           ir: "Ver salário e poder de compra" });
+      }
+      // Aumentos de impostos desde o 2º turno
+      if (imp && imp.itens && imp.itens.length) {
+        var ultImp = imp.itens.slice().sort(function (a, b) { return a.data < b.data ? 1 : -1; })[0];
+        cards.push({ href: "aumentos-de-impostos.html", titulo: "Aumentos de impostos desde a eleição",
+          corpo: '<span class="v sobe">▲ ' + imp.itens.length + " medidas</span>",
+          linhas: ["Mais recente: " + ultImp.titulo], ir: "Ver cada aumento" });
       }
       document.getElementById("painel").innerHTML = cards.map(card).join("");
       var ult = sc && C.ultimo(sc.gasolina);
