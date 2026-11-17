@@ -15,15 +15,36 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r coletores/requirements.txt
-      - name: SNIS (tarifas de água por estado)
+      - name: SNIS (tabelas por prestador)
         continue-on-error: true
         run: |
-          sudo apt-get install -y -qq poppler-utils >/dev/null
-          curl -sSL -m 300 -o /tmp/snis.pdf https://tratabrasil.org.br/wp-content/uploads/2024/04/DIAGNOSTICO_TEMATICO_VISAO_GERAL_AE_SNIS_2023.pdf
-          ls -la /tmp/snis.pdf
-          pdftotext -layout /tmp/snis.pdf /tmp/snis.txt
-          grep -n -i "tarifa m" /tmp/snis.txt | head -80
-          mkdir -p descobertas && cp /tmp/snis.txt descobertas/snis_2023_visao_geral.txt
+          mkdir -p /tmp/snis descobertas
+          cd /tmp/snis
+          for ano in 2022 2021; do
+            for base in https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/snis/produtos-do-snis/diagnosticos https://www.gov.br/cidades/pt-br/assuntos/saneamento/snis/produtos-do-snis/diagnosticos http://www.snis.gov.br/downloads/diagnosticos/ae/$ano; do
+              u="$base/Planilhas_AE$ano.zip"
+              c=$(curl -sSL -m 300 -o p$ano.zip -w "%{http_code}" "$u" || echo erro)
+              echo "$c $u $(stat -c %s p$ano.zip 2>/dev/null)"
+              if [ "$c" = "200" ] && unzip -tq p$ano.zip >/dev/null 2>&1; then unzip -o -q p$ano.zip -d ae$ano; break; fi
+            done
+          done
+          find /tmp/snis -type f | head -50
+          python3 - <<'PY' > $GITHUB_WORKSPACE/descobertas/snis_tarifas.txt
+          import glob, pandas as pd
+          for f in sorted(glob.glob('/tmp/snis/**/*.xls*', recursive=True)):
+              try:
+                  xl = pd.ExcelFile(f)
+              except Exception as e:
+                  print('ERRO', f, e); continue
+              for sh in xl.sheet_names:
+                  df = xl.parse(sh, header=None)
+                  txt = df.astype(str)
+                  hit = txt.apply(lambda c: c.str.contains('IN005|IN006', regex=True)).any().any()
+                  print('==', f, sh, df.shape, 'IN005' if hit else '')
+                  if hit and ('egion' in f or 'egion' in sh or df.shape[0] < 80):
+                      print(df.to_csv(sep='\t', index=False)[:60000])
+          PY
+          wc -c $GITHUB_WORKSPACE/descobertas/snis_tarifas.txt
       - name: Coletar luz e água
         working-directory: coletores
         continue-on-error: true
