@@ -19,6 +19,12 @@
     <div class="filtros">
       <div class="seg" id="periodos" role="group" aria-label="Período"></div>
     </div>
+    <div class="m-datas" id="datas" hidden>
+      <label>De <input type="date" id="de"></label>
+      <label>Até <input type="date" id="ate"></label>
+      <span class="atalhos" id="atalhos"></span>
+      <span class="aviso-datas" id="aviso-datas" hidden></span>
+    </div>
   </section>
 
   <section class="bloco heroi" id="detalhe">
@@ -54,7 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ["semana", "Semana", "em 7 dias", "há 7 dias", "últimos 7 dias"],
     ["mes", "Mês", "em 1 mês", "há 1 mês", "último mês"],
     ["ano", "Ano", "em 1 ano", "há 1 ano", "último ano"],
-    ["tudo", "Desde 2023", "desde jan/2023", "no começo de 2023", "desde jan/2023"]
+    ["tudo", "Desde 2023", "desde jan/2023", "no começo de 2023", "desde jan/2023"],
+    ["datas", "Escolher datas", "", "", ""]  // textos montados com as datas escolhidas
   ];
   var GRUPOS = [
     ["", "Dólar e Bolsa", function (a) { return a.tipo !== "acao"; }],
@@ -83,13 +90,34 @@ document.addEventListener("DOMContentLoaded", function () {
     var h = (location.hash || "").slice(1).split("/");
     var ativo = ids.indexOf(h[0]) > -1 ? h[0] : "IBOV";
     var per = PERIODOS.some(function (p) { return p[0] === h[1]; }) ? h[1] : (C.lembrar("periodo-mercado") || "mes");
-    if (!PERIODOS.some(function (p) { return p[0] === per; })) per = "mes";
+    if (!PERIODOS.some(function (p) { return p[0] === per; }) || per === "datas") per = "mes";
+
+    // Período escolhido pela pessoa (#IBOV/2024-01-02_2024-06-28)
+    var primeiroDia = ids.reduce(function (d, id) { var x = m.ativos[id].diario[0]; return x && x[0] < d ? x[0] : d; }, "9999");
+    var ultimoDia = ids.reduce(function (d, id) { var x = C.ultimo(m.ativos[id].diario); return x && x[0] > d ? x[0] : d; }, "0000");
+    var deEl = document.getElementById("de"), ateEl = document.getElementById("ate");
+    [deEl, ateEl].forEach(function (el) { el.min = primeiroDia; el.max = ultimoDia; });
+    var mh = /^(\d{4}-\d{2}-\d{2})_(\d{4}-\d{2}-\d{2})$/.exec(h[1] || "");
+    if (mh) { per = "datas"; deEl.value = mh[1]; ateEl.value = mh[2]; }
+    else { deEl.value = menosMeses(ultimoDia, 3); ateEl.value = ultimoDia; }
+    var ATALHOS = [["3 meses", 3], ["6 meses", 6], ["Este ano", "ano"], ["2 anos", 24]];
+    document.getElementById("atalhos").innerHTML = ATALHOS.map(function (x, i) { return '<button type="button" data-i="' + i + '">' + x[0] + "</button>"; }).join("");
+    document.getElementById("atalhos").addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      var x = ATALHOS[+b.dataset.i][1];
+      deEl.value = x === "ano" ? ultimoDia.slice(0, 4) + "-01-01" : menosMeses(ultimoDia, x);
+      if (deEl.value < primeiroDia) deEl.value = primeiroDia;
+      ateEl.value = ultimoDia; desenhar();
+    });
+    [deEl, ateEl].forEach(function (el) { el.addEventListener("change", desenhar); });
 
     var segs = document.getElementById("periodos");
-    segs.innerHTML = PERIODOS.map(function (p) { return '<button type="button" data-p="' + p[0] + '">' + p[1] + "</button>"; }).join("");
+    var CAL = '<svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><rect x="1.5" y="2.5" width="13" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 6.5h13M5 1v3M11 1v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    segs.innerHTML = PERIODOS.map(function (p) { return '<button type="button" data-p="' + p[0] + '">' + (p[0] === "datas" ? CAL : "") + p[1] + "</button>"; }).join("");
     segs.addEventListener("click", function (e) {
       var b = e.target.closest("button"); if (!b) return;
-      per = b.dataset.p; C.lembrar("periodo-mercado", per); desenhar();
+      per = b.dataset.p; if (per !== "datas") C.lembrar("periodo-mercado", per); desenhar();
+      if (per === "datas" && window.matchMedia("(hover: hover)").matches) deEl.focus();
     });
 
     var lista = document.getElementById("lista");
@@ -113,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /* Pontos do período escolhido e o valor de partida (para a variação). */
     function recorte(a, p) {
       var pts, base;
+      if (p === "datas") return recorteDatas(a);
       if ((p === "24h" || p === "semana") && a.intradia && a.intradia.length > 1) {
         var fim = quando(C.ultimo(a.intradia)[0]).getTime();
         var corte = chaveBRT(new Date(fim - (p === "24h" ? 24 : 24 * 7) * 3600e3));
@@ -134,6 +163,36 @@ document.addEventListener("DOMContentLoaded", function () {
       base = pts.length ? pts[0][1] : null;
       return { pts: pts, base: base, intradia: false };
     }
+    /* Entre duas datas: fechamentos diários; se o intervalo cabe nos últimos 5 pregões (até 7 dias), usa os preços de 15 em 15 min. */
+    function recorteDatas(a) {
+      var de = datas.de, ate = datas.ate;
+      var curto = (new Date(ate) - new Date(de)) / 864e5 <= 7;
+      if (curto && a.intradia && a.intradia.length && a.intradia[0][0].slice(0, 10) <= de) {
+        var pi = a.intradia.filter(function (x) { return x[0].slice(0, 10) >= de && x[0].slice(0, 10) <= ate; });
+        if (pi.length > 1) {
+          var antI = a.intradia.filter(function (x) { return x[0].slice(0, 10) < de; });
+          var b0 = antI.length ? C.ultimo(antI) : null;
+          var bD = b0 ? b0[1] : C.valorEm(a.diario, chaveDia(de, -1));
+          if (b0) pi.unshift(b0);
+          return { pts: pi, base: bD || pi[0][1], intradia: true };
+        }
+      }
+      var dias = a.diario || [];
+      var pts = dias.filter(function (x) { return x[0] >= de && x[0] <= ate; });
+      var ant = dias.filter(function (x) { return x[0] < de; });
+      if (ant.length) pts.unshift(C.ultimo(ant));  // fechamento do dia anterior: ponto de partida
+      return { pts: pts, base: pts.length ? pts[0][1] : null, intradia: false };
+    }
+    var datas = {};
+    function lerDatas() {
+      var de = deEl.value || primeiroDia, ate = ateEl.value || ultimoDia, aviso = "";
+      if (de < primeiroDia) { de = primeiroDia; aviso = "Os dados começam em " + C.data(primeiroDia) + "."; }
+      if (ate > ultimoDia) { ate = ultimoDia; aviso = "Ainda não há cotação depois de " + C.data(ultimoDia) + "."; }
+      if (de > ate) { var t = de; de = ate; ate = t; deEl.value = de; ateEl.value = ate; aviso = "Invertemos as datas: a primeira tem que vir antes."; }
+      datas = { de: de, ate: ate };
+      var av = document.getElementById("aviso-datas"); av.textContent = aviso; av.hidden = !aviso;
+    }
+
     function chaveDia(k, n) { var d = new Date(k.slice(0, 10) + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
 
     function bomSubir(a) { return a.tipo !== "moeda"; } // dólar subindo encarece as coisas: vermelho
@@ -141,6 +200,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function valor(a, v) { return a.tipo === "indice" ? C.numero(v, 0) + " pts" : C.brl(v, 2); }
     function codigo(id, a) { return a.tipo === "moeda" ? "USD" : a.tipo === "indice" ? "IBOV" : id; }
     function pctDe(rc, a) { var u = C.ultimo(rc.pts); return u && rc.base ? (u[1] / rc.base - 1) * 100 : null; }
+    function difDe(rc) { var u = C.ultimo(rc.pts); return u && rc.base ? u[1] - rc.base : null; }
+    // variação em valor e em %: ▲ R$ 0,05 · 0,87%
+    function vari(a, rc, sufixo) {
+      var fmt = a.tipo === "indice" ? function (v) { return C.numero(v, 0) + " pts"; } : a.tipo === "moeda" ? function (v) { return "R$ " + C.numero(v, 3); } : function (v) { return C.brl(v, 2); };
+      return C.varDupla(difDe(rc), pctDe(rc, a), fmt, { bomSubir: bomSubir(a), sufixo: sufixo });
+    }
 
     function spark(pts) {
       if (!pts || pts.length < 2) return "";
@@ -151,8 +216,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function desenhar() {
-      history.replaceState(null, "", "#" + ativo + "/" + per);
       var P = PERIODOS.filter(function (p) { return p[0] === per; })[0];
+      document.getElementById("datas").hidden = per !== "datas";
+      if (per === "datas") {
+        lerDatas();
+        var dd = C.data(datas.de), da = C.data(datas.ate);
+        P = ["datas", "", "de " + dd + " a " + da, "em " + dd, dd + " a " + da];
+        history.replaceState(null, "", "#" + ativo + "/" + datas.de + "_" + datas.ate);
+      } else history.replaceState(null, "", "#" + ativo + "/" + per);
       [].forEach.call(segs.children, function (b) { b.setAttribute("aria-pressed", b.dataset.p === per ? "true" : "false"); });
 
       // Cartões de todos os ativos, com a variação no período
@@ -160,11 +231,11 @@ document.addEventListener("DOMContentLoaded", function () {
         var doGrupo = ids.filter(function (id) { return g[2](m.ativos[id]); });
         if (!doGrupo.length) return "";
         return '<div class="m-grupo"><h3>' + g[1] + '</h3><div class="m-cards">' + doGrupo.map(function (id) {
-          var a = m.ativos[id], rc = recorte(a, per), pc = pctDe(rc, a);
+          var a = m.ativos[id], rc = recorte(a, per);
           return '<button type="button" class="card m-card" data-a="' + id + '" aria-pressed="' + (id === ativo) + '">' +
             '<span class="topo-c"><span class="t">' + a.nome + '</span><span class="cod">' + codigo(id, a) + "</span></span>" +
             '<span class="v mono">' + valor(a, a.preco) + "</span>" +
-            C.variacao(pc, { casas: 2, bomSubir: bomSubir(a), sufixo: " " + P[2] }) +
+            vari(a, rc, per === "datas" ? "no período escolhido" : P[2]) +
             spark(rc.pts) +
             (a.controle ? '<span class="sub">Controle: ' + a.controle + "</span>" : '<span class="sub">' + (a.descricao || "") + "</span>") +
             "</button>";
@@ -172,10 +243,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }).join("");
 
       // Detalhe do ativo escolhido
-      var a = m.ativos[ativo], rc = recorte(a, per), u = C.ultimo(rc.pts), pc = pctDe(rc, a);
+      var a = m.ativos[ativo], rc = recorte(a, per), u = C.ultimo(rc.pts);
+      var fimTxt = per === "datas" ? "em " + C.data(datas.ate) : "hoje";
       document.getElementById("d-titulo").textContent = a.nome + (a.tipo === "acao" ? " (" + ativo + ")" : "");
       document.getElementById("d-sub").innerHTML = (a.tipo === "acao" ? (a.descricao ? a.descricao + ". " : "") + "Estatal federal, controlada pela União. " : a.descricao + ". ") +
-        "Variação " + P[2] + ": " + C.variacao(pc, { casas: 2, bomSubir: bomSubir(a) }) + ".";
+        "Variação " + P[2] + ": " + vari(a, rc) + ".";
 
         var mx = rc.pts.reduce(function (b, p) { return !b || p[1] > b[1] ? p : b; }, null), mn = rc.pts.reduce(function (b, p) { return !b || p[1] < b[1] ? p : b; }, null);
       var qd = function (k) { return k.length > 10 ? diaMes(k) + " às " + hora(k) : C.data(k); };
@@ -187,14 +259,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // No seu bolso: coisas concretas
       var bolso = document.getElementById("d-bolso"), txt = "";
       if (a.tipo === "moeda" && sal && sal.serie && u) {
-        var smHoje = C.ultimo(sal.serie)[1], ini = rc.pts[0];
+        var smHoje = per === "datas" ? C.valorEm(sal.serie, datas.ate) || C.valorEm(sal.serie, datas.ate.slice(0, 7)) : C.ultimo(sal.serie)[1], ini = rc.pts[0];
         var smIni = C.valorEm(sal.serie, ini[0].slice(0, 10)) || C.valorEm(sal.serie, ini[0].slice(0, 7));
-        txt = "<b>No seu bolso:</b> um salário mínimo (" + C.brl(smHoje, 0) + ") vale <b>US$ " + C.numero(smHoje / u[1], 0) + "</b> hoje";
-        if (smIni && per !== "24h" && per !== "semana") txt += "; " + P[3] + " valia US$ " + C.numero(smIni / ini[1], 0);
-        txt += ". Dólar mais caro encarece combustível, trigo, eletrônicos e remédios.";
+        if (smHoje) txt = "<b>No seu bolso:</b> um salário mínimo (" + C.brl(smHoje, 0) + ") " + (per === "datas" ? "valia" : "vale") + " <b>US$ " + C.numero(smHoje / u[1], 0) + "</b> " + fimTxt;
+        if (txt && smIni && per !== "24h" && per !== "semana" && ini[0] !== u[0]) txt += "; " + P[3] + " valia US$ " + C.numero(smIni / ini[1], 0);
+        if (txt) txt += ". Dólar mais caro encarece combustível, trigo, eletrônicos e remédios.";
       } else if (a.tipo !== "moeda" && rc.base && u) {
         txt = "<b>No seu bolso:</b> R$ 1.000 " + (a.tipo === "indice" ? "num fundo que copia o Ibovespa" : "em ações da " + a.nome) + " " + P[3] +
-          " virariam <b>" + C.brl(1000 * u[1] / rc.base, 0) + "</b> hoje (sem contar dividendos e taxas).";
+          " virariam <b>" + C.brl(1000 * u[1] / rc.base, 0) + "</b> " + fimTxt + " (sem contar dividendos e taxas).";
       }
       bolso.innerHTML = txt; bolso.hidden = !txt;
 
@@ -208,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (rc.intradia) {
         opts.rotK = function (k) { return diaMes(k) + " " + hora(k); };
         opts.rotX = per === "24h" ? opts.rotK : diaMes;
-      } else if (per === "mes" || per === "24h" || per === "semana") opts.rotX = diaMes;
+      } else if (per === "mes" || per === "24h" || per === "semana" || (per === "datas" && rc.pts.length < 70 && datas.de.slice(0, 4) === datas.ate.slice(0, 4))) opts.rotX = diaMes;
       C.grafico(document.getElementById("g"), [{ nome: a.nome, pontos: rc.pts }], opts);
     }
     desenhar();
