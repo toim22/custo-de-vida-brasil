@@ -22,8 +22,14 @@
   .band-tar { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; }
   .band-tar i { width: 26px; height: 18px; border-radius: 3px; display: block; }
   .b-verde i { background: #22C55E; } .b-amarela i { background: #FACC15; } .b-vermelha i { background: #EF4444; } .b-vermelha2 i { background: #991B1B; } .b-escassez i { background: #111; border: 2px solid #EF4444; }
-  .hist-band { display: flex; gap: 2px; flex-wrap: wrap; }
-  .hist-band span { width: 9px; height: 14px; border-radius: 2px; display: block; }
+  .hist-band { display: grid; grid-template-columns: 2.6rem repeat(12, minmax(0, 1fr)); gap: 3px; align-items: center; font-size: .66rem; color: var(--muted); }
+  .hist-band .m { text-align: center; font-weight: 700; }
+  .hist-band .a { font-family: var(--f-mono); font-weight: 600; font-size: .74rem; color: var(--ink); }
+  .hist-band .c { height: 16px; border-radius: 3px; display: block; }
+  .hist-band .c.vazio { background: transparent; border: 1px dashed var(--line); }
+  .leg-band { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: .74rem; color: var(--muted); }
+  .leg-band span { display: inline-flex; align-items: center; gap: 5px; }
+  .leg-band i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
   .graficos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
   .ufs { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
   .uf { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 2px; cursor: pointer; text-align: left; font: inherit; color: var(--ink); }
@@ -57,7 +63,8 @@
         <span class="t"><span class="ico" aria-hidden="true">🚦</span>Bandeira do mês</span>
         <span class="band-tar" id="band">—</span>
         <p class="linha" id="band-sub"></p>
-        <div class="hist-band" id="band-hist" aria-hidden="true"></div>
+        <div class="hist-band" id="band-hist" role="img" aria-label="Bandeira de cada mês, por ano"></div>
+        <div class="leg-band" id="band-cores"></div>
         <p class="small" id="band-leg"></p>
       </article>
       <article class="la-card" id="c-agua">
@@ -173,8 +180,22 @@ document.addEventListener("DOMContentLoaded", function () {
         var tp = tipoBand(b[1]);
         el.className = "band-tar b-" + tp; el.innerHTML = "<i></i>" + b[1].replace(/^bandeira\s*/i, "");
         document.getElementById("band-sub").innerHTML = C.data(b[0]) + " · " + (b[2] > 0 ? "acrescenta <b>" + C.brl(b[2] * 100, 2) + "</b> a cada 100 kWh (" + C.brl(b[2] * (luz.kwh_mes || 160), 2) + " na conta típica, antes dos impostos)" : "sem custo extra na conta");
-        document.getElementById("band-hist").innerHTML = bs.map(function (x) { return '<span title="' + C.data(x[0]) + ": " + x[1] + '" style="background:' + CORES_BAND[tipoBand(x[1])] + '"></span>'; }).join("");
-        document.getElementById("band-leg").textContent = "Cada quadradinho é um mês desde " + C.data(bs[0][0]) + ". Vale para todo o país.";
+        var porMes = {}; bs.forEach(function (x) { porMes[x[0]] = x; });
+        var anos = []; for (var a = +bs[0][0].slice(0, 4); a <= +b[0].slice(0, 4); a++) anos.push(a);
+        var MES = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+        var h = "<span></span>" + MES.map(function (m) { return '<span class="m">' + m + "</span>"; }).join("");
+        anos.reverse().forEach(function (a) {
+          h += '<span class="a">' + a + "</span>";
+          for (var m = 1; m <= 12; m++) {
+            var k = a + "-" + (m < 10 ? "0" : "") + m, x = porMes[k];
+            h += x ? '<span class="c" title="' + C.data(k) + ": " + x[1] + '" style="background:' + CORES_BAND[tipoBand(x[1])] + '"></span>' : '<span class="c vazio" title="' + C.data(k) + ': ainda sem bandeira"></span>';
+          }
+        });
+        document.getElementById("band-hist").innerHTML = h;
+        var usadas = {}; bs.forEach(function (x) { usadas[tipoBand(x[1])] = x[1].replace(/^bandeira\s*/i, ""); });
+        document.getElementById("band-cores").innerHTML = ["verde", "amarela", "vermelha", "vermelha2", "escassez"].filter(function (t) { return usadas[t]; })
+          .map(function (t) { return '<span><i style="background:' + CORES_BAND[t] + '"></i>' + usadas[t] + "</span>"; }).join("");
+        document.getElementById("band-leg").textContent = "Uma linha por ano, do mais recente ao mais antigo. A bandeira vale para todo o país.";
       } else { el.textContent = "—"; document.getElementById("band-sub").textContent = "Aguardando a próxima coleta."; }
 
       // Água
