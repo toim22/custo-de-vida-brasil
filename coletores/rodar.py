@@ -12,6 +12,7 @@ import anp
 import calculos
 import dieese
 import ibge
+import pnad
 from comum import ler_json, salvar_json
 
 TAREFAS = [
@@ -21,6 +22,7 @@ TAREFAS = [
     ("ipca", "IBGE — IPCA", ibge.coletar),
     ("churrasco", "Cálculo — itens avulsos e Churrasco pra 6", calculos.calcular),
     ("aluguel", "IBGE, Banco Central e FipeZap — aluguel", aluguel.coletar),
+    ("trabalho", "IBGE — PNAD Contínua (desemprego real e renda)", pnad.coletar),  # por último: é a mais demorada
 ]
 
 
