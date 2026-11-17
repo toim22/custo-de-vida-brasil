@@ -133,6 +133,13 @@
     return '<svg class="mini" viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" aria-hidden="true"><path d="' + d + '" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>';
   }
 
+  /* Barra verde e amarela de impostos: valor em R$ nas duas partes e % na amarela. */
+  function barraImpostos(semImp, imposto, rotulo) {
+    var total = semImp + imposto, p = total > 0 ? Math.max(0, Math.min(100, imposto / total * 100)) : 0;
+    return '<div class="p1" style="flex:' + (100 - p).toFixed(2) + ' 1 0" title="' + rotulo + '"><span class="r">' + rotulo + '</span><b>' + brl(semImp, 2) + "</b></div>" +
+      '<div class="p2" style="flex:' + p.toFixed(2) + ' 1 0" title="Impostos"><span class="r">Impostos ' + numero(p, 0) + "%</span><b>" + brl(imposto, 2) + "</b></div>";
+  }
+
   /* Bandeira do estado (imagens em assets/bandeiras). */
   function bandeira(uf) {
     if (!UFS[uf]) return "";
@@ -336,7 +343,7 @@
   window.CVB = {
     SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, seletorLocal: seletorLocal, lembrar: lembrar,
     brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, classe: classe,
-    mini: mini, bandeira: bandeira, config: config,
+    mini: mini, bandeira: bandeira, config: config, barraImpostos: barraImpostos,
     ultimo: ultimo, anterior: anterior, valorEm: valorEm, variacao12: variacao12,
     carregar: carregar, grafico: grafico
   };

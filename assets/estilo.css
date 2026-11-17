@@ -162,8 +162,11 @@ tr:last-child td { border-bottom: 0; }
 .como:hover { text-decoration: underline; }
 
 /* Barra de impostos */
-.impostos { display: flex; height: 34px; border-radius: 6px; overflow: hidden; font-size: .72rem; font-weight: 700; }
-.impostos div { display: grid; place-items: center; color: var(--tag-ink); min-width: 0; overflow: hidden; white-space: nowrap; }
+.impostos { display: flex; min-height: 46px; border-radius: 6px; overflow: hidden; font-size: .72rem; font-weight: 700; }
+.impostos div { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1px; padding: 4px 6px; color: var(--tag-ink); min-width: 0; overflow: hidden; white-space: nowrap; line-height: 1.15; text-align: center; }
+.impostos .p2 { min-width: 88px; }
+.impostos .r { font-size: .68rem; font-weight: 600; }
+.impostos b { font-family: var(--f-mono); font-size: .86rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .impostos .p1 { background: #8CCBA8; }
 .impostos .p2 { background: var(--tag); }
 
