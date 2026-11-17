@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return '<button type="button" class="card m-card" data-a="' + id + '" aria-pressed="' + (id === ativo) + '">' +
             '<span class="topo-c"><span class="t">' + a.nome + '</span><span class="cod">' + codigo(id, a) + "</span></span>" +
             '<span class="v mono">' + valor(a, a.preco) + "</span>" +
-            vari(a, rc, per === "datas" ? "no período escolhido" : P[2]) +
+            '<span class="m-var">' + vari(a, rc) + " " + (per === "datas" ? "no período escolhido" : P[2]) + "</span>" +
             spark(rc.pts) +
             (a.controle ? '<span class="sub">Controle: ' + a.controle + "</span>" : '<span class="sub">' + (a.descricao || "") + "</span>") +
             "</button>";
