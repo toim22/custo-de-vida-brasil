@@ -1,0 +1,13 @@
+{
+  "_leia": "Tanque médio usado em 'tanques de gasolina'. Média do tanque dos 5 carros (sem picapes) mais vendidos do Brasil no ano. Atualize uma vez por ano, quando sair o ranking anual de emplacamentos.",
+  "ano_ranking": 2025,
+  "fonte_ranking": "https://autopapo.com.br/noticia/carros-mais-vendidos-2025/",
+  "carros": [
+    ["Volkswagen Polo", 52],
+    ["Fiat Argo", 48],
+    ["Volkswagen T-Cross", 52],
+    ["Hyundai HB20", 50],
+    ["Chevrolet Onix", 44]
+  ],
+  "litros": 49
+}

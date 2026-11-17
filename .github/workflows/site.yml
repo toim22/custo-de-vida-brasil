@@ -2,8 +2,7 @@ name: Coletar dados e publicar o site
 
 on:
   schedule:
-    - cron: "0 12 * * 1"   # toda segunda-feira, 9h de Brasília
-    - cron: "0 12 15 * *"  # dia 15 de cada mês (pega a cesta e o IPCA do mês)
+    - cron: "0 12 * * *"   # todo dia, 9h de Brasília (as fontes publicam em dias diferentes; assim nada fica mais de 1 dia atrasado)
   workflow_dispatch:
   push:
     branches: [main]
