@@ -47,14 +47,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   var C = window.CVB;
   Promise.all([C.carregar("salario"), C.carregar("cesta"), C.carregar("combustiveis"), C.carregar("trabalho"), C.carregar("ipca"),
-    fetch("config/carro.json").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })]).then(function (r) {
-    var sal = r[0], cesta = r[1], comb = r[2], trab = r[3], ipca = r[4], carro = r[5];
+    C.config("carro"), C.config("tanque")]).then(function (r) {
+    var sal = r[0], cesta = r[1], comb = r[2], trab = r[3], ipca = r[4], carro = r[5], tanque = r[6];
+    var litrosTanque = (tanque && tanque.litros) || 49;
     var u = sal && C.ultimo(sal.serie);
     var minimo = u ? u[1] : null, necessario = u ? u[2] : null;
     if (u) {
       document.getElementById("lbl").textContent = "salário mínimo · " + C.data(u[0]);
       document.getElementById("val").textContent = C.brl(minimo, 2);
+      var v12 = C.variacao12(sal.serie.map(function (p) { return [p[0], p[1]]; }));
       document.getElementById("fatos").innerHTML =
+        (v12 !== null ? '<div class="fato"><span class="num">' + C.variacao(v12, { bomSubir: true }) + "</span><span>em 12 meses</span></div>" : "") +
         '<div class="fato"><span class="num">' + C.brl(necessario, 0) + "</span><span>seria o necessário para uma família de 4, segundo o DIEESE</span></div>" +
         '<div class="fato"><span class="num">' + C.numero(necessario / minimo, 1) + "×</span><span>o salário mínimo atual</span></div>";
       C.grafico(document.getElementById("g"), [
@@ -66,12 +69,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var cards = [];
     if (minimo && cesta && cesta.agregados && C.ultimo(cesta.agregados.BR.total)) {
       var cb = C.ultimo(cesta.agregados.BR.total)[1];
-      cards.push(["Cestas básicas", C.numero(minimo / cb, 2), "média das capitais"]);
-      var h = C.ultimo(cesta.agregados.BR.horas); if (h) cards.push(["Horas para pagar a cesta", C.horas(h[1]), "média das capitais"]);
+      cards.push(["Cestas básicas", C.numero(minimo / cb, 1) + " cestas", "média das capitais"]);
     }
     if (minimo && comb) {
       var g = C.ultimo(comb.series.BR.gasolina), b = C.ultimo(comb.series.BR.glp);
-      if (g) cards.push(["Gasolina", C.numero(minimo / g[1], 0) + " litros", "média Brasil, semana até " + C.data(g[0])]);
+      if (g) cards.push(["Gasolina", C.numero(minimo / (g[1] * litrosTanque), 1) + " tanques cheios", "tanque de " + litrosTanque + " L · média Brasil"]);
       if (b) cards.push(["Gás de cozinha", C.numero(minimo / b[1], 1) + " botijões", "média Brasil"]);
     }
     if (minimo && carro && carro.serie.length) {

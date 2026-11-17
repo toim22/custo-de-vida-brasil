@@ -1,0 +1,3 @@
+Bandeiras dos estados, em PNG pequeno (40 px de altura), geradas a partir do pacote br-state-flags
+(https://github.com/arthurreira/br-state-flags, licença MIT). A bandeira de Sergipe foi redesenhada à mão
+porque a do pacote estava com a proporção errada.
