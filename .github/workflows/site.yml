@@ -87,6 +87,10 @@ jobs:
           mkdir _site
           cp -r *.html assets dados config _site/
           touch _site/.nojekyll
+          # versão nos arquivos do site: o navegador baixa o CSS/JS/logo novos logo após cada publicação
+          v=${GITHUB_SHA::8}
+          sed -i "s#assets/estilo.css\"#assets/estilo.css?v=$v\"#; s#assets/app.js\"#assets/app.js?v=$v\"#" _site/*.html
+          sed -i "s#assets/logo.png#assets/logo.png?v=$v#" _site/assets/app.js
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
