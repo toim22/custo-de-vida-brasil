@@ -10,7 +10,7 @@ Nome provisório. O site é estático (HTML, CSS e JavaScript, sem servidor) e f
 - `dados/` — os dados coletados, em JSON. Públicos: qualquer pessoa pode baixar.
 - `config/` — o que é editado à mão: itens avulsos e Churrasco pra 6 (`itens.json`), regras de impostos (`impostos.json`) e carro zero mais barato (`carro.json`).
 - `descobertas/` — diagnóstico das fontes, gravado a cada coleta, para ajustar os robôs quando um site muda.
-- `.github/workflows/site.yml` — roda a coleta todo dia às 9h (Brasília), grava os dados e publica o site.
+- `.github/workflows/site.yml` — roda a coleta todo dia às 5h e às 17h (Brasília), grava os dados e publica o site.
 
 ## Tarefas manuais
 

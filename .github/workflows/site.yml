@@ -2,7 +2,7 @@ name: Coletar dados e publicar o site
 
 on:
   schedule:
-    - cron: "0 12 * * *"   # todo dia, 9h de Brasília (as fontes publicam em dias diferentes; assim nada fica mais de 1 dia atrasado)
+    - cron: "0 8,20 * * *"   # todo dia, 5h e 17h de Brasília (UTC-3)
   workflow_dispatch:
   push:
     branches: [main]
