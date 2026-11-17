@@ -195,6 +195,17 @@
     return '<span class="d ' + classe(v, opts.bomSubir) + '">' + flecha(v) +
       Math.abs(v).toLocaleString("pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas }) + "%" + (opts.sufixo || "") + "</span>";
   }
+  /* Variação em valor e em %, juntas, com seta e cor: ▲ R$ 0,05 · 0,87%
+     dif = diferença em valor; fmtAbs formata o valor (sem sinal). Usado no dólar, Ibovespa e ações. */
+  function varDupla(dif, pct, fmtAbs, opts) {
+    opts = opts || {};
+    if (dif === null || dif === undefined || isNaN(dif) || pct === null || pct === undefined || isNaN(pct)) return '<span class="d vd igual">—</span>';
+    var cls = Math.abs(pct) < 0.005 ? "igual" : classe(dif, opts.bomSubir);
+    var seta = cls === "igual" ? "= " : dif > 0 ? "▲ " : "▼ ";
+    return '<span class="d vd ' + cls + '"><span class="vt">' + seta.trim() + '</span><span class="va">' + fmtAbs(Math.abs(dif)) + '</span><span class="vp">' +
+      Math.abs(pct).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%</span>" + (opts.sufixo ? '<span class="vs">' + opts.sufixo + "</span>" : "") + "</span>";
+  }
+
   /* Diferença em valor (ex.: R$ 0,01 na semana), com seta e cor. */
   function seta(atual, anterior, fmt, sufixo, bomSubir) {
     if (atual === null || anterior === null || atual === undefined || anterior === undefined) return '<span class="d igual">sem comparação</span>';
@@ -456,7 +467,7 @@
     try { var c = JSON.parse(sessionStorage.getItem("cvb-usd") || "null"); if (c && Date.now() - c.t < 120000) return Promise.resolve(c.v); } catch (e) {}
     return fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
       var q = j && j.USDBRL; if (!q || !(+q.bid > 0)) return null;
-      var v = { preco: +q.bid, pct: +q.pctChange, hora: new Date(+q.timestamp * 1000).toISOString() };
+      var v = { preco: +q.bid, pct: +q.pctChange, dif: +q.varBid, hora: new Date(+q.timestamp * 1000).toISOString() };
       try { sessionStorage.setItem("cvb-usd", JSON.stringify({ t: Date.now(), v: v })); } catch (e) {}
       return v;
     }).catch(function () { return null; });
@@ -467,16 +478,17 @@
     if (aqui) a.setAttribute("aria-current", "page");
     a.setAttribute("aria-label", "Dólar e Ibovespa: ver gráficos e ações das estatais");
     depoisDe.insertAdjacentElement("afterend", a);
-    function item(rot, curto, valor, pct, bomSubir) {
+    function item(rot, curto, valor, dif, pct, fmtAbs, bomSubir) {
       return '<span class="cota"><span class="cn"><span class="cn-l">' + rot + '</span><span class="cn-c">' + curto + "</span></span><b>" + valor + "</b>" +
-        (pct === null || isNaN(pct) ? "" : variacao(pct, { casas: 2, bomSubir: bomSubir })) + "</span>";
+        varDupla(dif, pct, fmtAbs, { bomSubir: bomSubir }) + "</span>";
     }
+    var f3 = function (v) { return numero(v, 3); }, f0 = function (v) { return numero(v, 0); };
     Promise.all([carregar("mercado-agora"), dolarAoVivo()]).then(function (r) {
       var m = (r[0] && r[0].ativos) || {}, vivo = r[1], h = "";
       var usd = m.USD, ib = m.IBOV;
-      if (vivo) h += item("Dólar", "USD", brl(vivo.preco, 2), vivo.pct, false);
-      else if (usd && usd.preco) h += item("Dólar", "USD", brl(usd.preco, 2), usd.anterior ? (usd.preco / usd.anterior - 1) * 100 : null, false);
-      if (ib && ib.preco) h += item("Ibovespa", "Ibov", numero(ib.preco, 0), ib.anterior ? (ib.preco / ib.anterior - 1) * 100 : null, true);
+      if (vivo) h += item("Dólar", "USD", brl(vivo.preco, 2), isNaN(vivo.dif) ? vivo.preco - vivo.preco / (1 + vivo.pct / 100) : vivo.dif, vivo.pct, f3, false);
+      else if (usd && usd.preco) h += item("Dólar", "USD", brl(usd.preco, 2), usd.anterior ? usd.preco - usd.anterior : null, usd.anterior ? (usd.preco / usd.anterior - 1) * 100 : null, f3, false);
+      if (ib && ib.preco) h += item("Ibovespa", "Ibov", numero(ib.preco, 0), ib.anterior ? ib.preco - ib.anterior : null, ib.anterior ? (ib.preco / ib.anterior - 1) * 100 : null, f0, true);
       if (!h) return;
       a.innerHTML = h; a.hidden = false;
     });
@@ -583,7 +595,7 @@
 
   window.CVB = {
     SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, emLocal: emLocal, seletorLocal: seletorLocal, lembrar: lembrar,
-    brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, classe: classe,
+    brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, varDupla: varDupla, classe: classe,
     mini: mini, bandeira: bandeira, iconeRegiao: iconeRegiao, config: config, barraImpostos: barraImpostos,
     ultimo: ultimo, anterior: anterior, valorEm: valorEm, variacao12: variacao12,
     carregar: carregar, grafico: grafico, dolarAoVivo: dolarAoVivo, MESES: MESES
