@@ -54,11 +54,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   var C = window.CVB;
   function card(t, v, d) { return '<div class="card"><span class="t">' + t + '</span><span class="v">' + v + "</span>" + d + "</div>"; }
-  function setaPct(v, texto) {
-    if (v === null || v === undefined) return '<span class="d muted">sem comparação</span>';
-    if (Math.abs(v) < 0.005) return '<span class="d muted">= sem mudança ' + texto + "</span>";
-    return '<span class="d ' + (v > 0 ? "sobe" : "desce") + '">' + (v > 0 ? "▲ " : "▼ ") + C.numero(Math.abs(v), 2) + "% " + texto + "</span>";
-  }
+  function setaPct(v, texto) { return C.variacao(v, { casas: 2, sufixo: " " + texto }); }
+  function nomeComBandeira(nome, uf) { return uf ? '<span class="uf">' + C.bandeira(uf) + nome + "</span>" : nome; }
   function desde2023(indice) { var u = C.ultimo(indice); return u ? u[1] - 100 : null; }
   function vazio(id, txt) { document.getElementById(id).innerHTML = '<p class="aviso" style="grid-column:1/-1">' + txt + "</p>"; }
 
@@ -82,12 +79,12 @@ document.addEventListener("DOMContentLoaded", function () {
         var ant = C.anterior(x[1]);
         c.push(card("Reajuste pelo " + x[0], C.pct(x[2][1], 2),
           C.seta(x[2][1], ant ? ant[1] : null, function (v) { return C.numero(v, 2); }, " p.p. vs mês anterior") +
-          '<span class="d muted">12 meses até ' + C.data(x[2][0]) + "</span>"));
+          '<span class="d igual">12 meses até ' + C.data(x[2][0]) + "</span>"));
       });
-      c.push(card("Aluguel de R$ 1.500 hoje", C.brl(1500 * (1 + (ig ? ig[1] : ip[1]) / 100), 0), '<span class="d muted">vira isso no reajuste pelo ' + (ig ? "IGP-M" : "IPCA") + " de " + C.data((ig || ip)[0]) + "</span>"));
+      c.push(card("Aluguel de R$ 1.500 hoje", C.brl(1500 * (1 + (ig ? ig[1] : ip[1]) / 100), 0), '<span class="d igual">vira isso no reajuste pelo ' + (ig ? "IGP-M" : "IPCA") + " de " + C.data((ig || ip)[0]) + "</span>"));
       document.getElementById("reajuste").innerHTML = c.join("");
       C.grafico(document.getElementById("g-reajuste"), [
-        { nome: "IGP-M", pontos: rj.igpm || [], cor: "#FFD23F" },
+        { nome: "IGP-M", pontos: rj.igpm || [], cor: "#C4A3F5" },
         { nome: "IPCA", pontos: rj.ipca || [], cor: "#7FB2F0" }
       ], { fmtY: function (v) { return C.numero(v, 1); }, marcos: [["2027-01", "novo mandato"]] });
     } else vazio("reajuste", "Os índices de reajuste aparecem depois da próxima coleta.");
@@ -96,8 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var ordem = Object.keys(locais).sort(function (a, b) { return a === "BR" ? -1 : b === "BR" ? 1 : C.nomeLocal(a).localeCompare(C.nomeLocal(b), "pt"); });
     document.getElementById("regioes").innerHTML = ordem.map(function (k) {
       var l = locais[k], u = C.ultimo(l.variacao);
-      return card(k === "BR" ? "Brasil" : l.area_ibge, C.pct(desde2023(l.indice), 1),
-        '<span class="d muted">desde jan/2023</span>' + setaPct(u ? u[1] : null, "em " + (u ? C.data(u[0]) : "")));
+      return card(k === "BR" ? "Brasil" : nomeComBandeira(l.area_ibge, k), C.pct(desde2023(l.indice), 1),
+        '<span class="d igual">desde jan/2023</span>' + C.mini(l.indice) + setaPct(u ? u[1] : null, "em " + (u ? C.data(u[0]) : "")) +
+        C.variacao(C.variacao12(l.indice), { sufixo: " em 12 meses" }));
     }).join("");
 
     // FipeZap: apartamento de 60 m²
@@ -106,9 +104,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (nomes.length) {
       document.getElementById("cidades").innerHTML = nomes.map(function (n) {
         var s = cid[n].preco_m2, u = C.ultimo(s), base = C.valorEm(s, (+u[0].slice(0, 4) - 1) + u[0].slice(4));
-        return card(n, C.brl(u[1] * area, 0) + '<span class="small muted">/mês</span>',
-          C.seta(u[1] * area, base ? base * area : null, function (v) { return C.brl(v, 0); }, " em 12 meses") +
-          '<span class="d muted">' + C.brl(u[1], 2) + "/m² · " + C.data(u[0]) + "</span>");
+        return card(nomeComBandeira(n, cid[n].uf), C.brl(u[1] * area, 0) + '<span class="small muted">/mês</span>',
+          C.mini(s) + C.seta(u[1] * area, base ? base * area : null, function (v) { return C.brl(v, 0); }, " em 12 meses") +
+          '<span class="d igual">' + C.brl(u[1], 2) + "/m² · " + C.data(u[0]) + "</span>");
       }).join("");
     } else vazio("cidades", "O preço dos anúncios (FipeZap) aparece depois da próxima coleta.");
 
@@ -121,13 +119,13 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("val").textContent = C.pct(sub, 1);
       var f = [];
       if (geral !== null) f.push('<div class="fato"><span class="num">' + C.pct(geral, 1) + "</span><span>foi a inflação geral (IPCA) no mesmo lugar e período</span></div>");
-      if (geral !== null && sub !== null) f.push('<div class="fato"><span class="num ' + (sub > geral ? "sobe" : "desce") + '">' + (sub > geral ? "▲ " : "▼ ") + C.numero(Math.abs(sub - geral), 1) + "</span><span>pontos percentuais " + (sub > geral ? "a mais" : "a menos") + " que os outros preços</span></div>");
+      if (geral !== null && sub !== null) f.push('<div class="fato"><span class="num ' + C.classe(sub - geral) + '">' + (sub > geral ? "▲ " : "▼ ") + C.numero(Math.abs(sub - geral), 1) + "</span><span>pontos percentuais " + (sub > geral ? "a mais" : "a menos") + " que os outros preços</span></div>");
       var v12 = l.variacao.slice(-12).reduce(function (a, p) { return a * (1 + p[1] / 100); }, 1);
-      if (l.variacao.length >= 12) f.push('<div class="fato"><span class="num">' + C.pct((v12 - 1) * 100, 1) + "</span><span>nos últimos 12 meses</span></div>");
+      if (l.variacao.length >= 12) f.push('<div class="fato"><span class="num">' + C.variacao((v12 - 1) * 100) + "</span><span>nos últimos 12 meses</span></div>");
       document.getElementById("fatos").innerHTML = f.join("");
       C.grafico(document.getElementById("g"), [
-        { nome: "Aluguel", pontos: l.indice, cor: "#F59E9E" },
-        { nome: "Inflação geral", pontos: l.indice_geral, cor: "#929C97" }
+        { nome: "Aluguel", pontos: l.indice, cor: "#FFD23F" },
+        { nome: "Inflação geral", pontos: l.indice_geral, cor: "#7FB2F0" }
       ], { fmtY: function (v) { return C.numero(v, 0); }, marcos: [["2027-01", "novo mandato"]] });
     }
     desenhar();
