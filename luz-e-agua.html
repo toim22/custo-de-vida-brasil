@@ -19,8 +19,8 @@
   .la-card .linha { font-size: .86rem; color: var(--muted); }
   .la-card .linha b { color: var(--ink); }
   .la-var { font-weight: 700; font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .bandeira { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; }
-  .bandeira i { width: 26px; height: 18px; border-radius: 3px; display: block; }
+  .band-tar { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; }
+  .band-tar i { width: 26px; height: 18px; border-radius: 3px; display: block; }
   .b-verde i { background: #22C55E; } .b-amarela i { background: #FACC15; } .b-vermelha i { background: #EF4444; } .b-vermelha2 i { background: #991B1B; } .b-escassez i { background: #111; border: 2px solid #EF4444; }
   .hist-band { display: flex; gap: 2px; flex-wrap: wrap; }
   .hist-band span { width: 9px; height: 14px; border-radius: 2px; display: block; }
@@ -55,7 +55,7 @@
       </article>
       <article class="la-card" id="c-band">
         <span class="t"><span class="ico" aria-hidden="true">🚦</span>Bandeira do mês</span>
-        <span class="bandeira" id="band">—</span>
+        <span class="band-tar" id="band">—</span>
         <p class="linha" id="band-sub"></p>
         <div class="hist-band" id="band-hist" aria-hidden="true"></div>
         <p class="small" id="band-leg"></p>
@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   /* variação em %: subir é ruim (vermelho, seta para cima) */
   function varPct(v, sufixo) {
+    if (C.variacao) return (v === null || v === undefined || isNaN(v)) ? "" : C.variacao(v, { sufixo: sufixo });
     if (v === null || v === undefined || isNaN(v)) return "";
     if (Math.abs(v) < 0.05) return '<span class="la-var muted">= estável' + (sufixo || "") + "</span>";
     return '<span class="la-var ' + (v > 0 ? "sobe" : "desce") + '">' + (v > 0 ? "▲ " : "▼ ") + C.numero(Math.abs(v), 1) + "%" + (sufixo || "") + "</span>";
@@ -170,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var el = document.getElementById("band");
       if (b) {
         var tp = tipoBand(b[1]);
-        el.className = "bandeira b-" + tp; el.innerHTML = "<i></i>" + b[1].replace(/^bandeira\s*/i, "");
+        el.className = "band-tar b-" + tp; el.innerHTML = "<i></i>" + b[1].replace(/^bandeira\s*/i, "");
         document.getElementById("band-sub").innerHTML = C.data(b[0]) + " · " + (b[2] > 0 ? "acrescenta <b>" + C.brl(b[2] * 100, 2) + "</b> a cada 100 kWh (" + C.brl(b[2] * (luz.kwh_mes || 160), 2) + " na conta típica, antes dos impostos)" : "sem custo extra na conta");
         document.getElementById("band-hist").innerHTML = bs.map(function (x) { return '<span title="' + C.data(x[0]) + ": " + x[1] + '" style="background:' + CORES_BAND[tipoBand(x[1])] + '"></span>'; }).join("");
         document.getElementById("band-leg").textContent = "Cada quadradinho é um mês desde " + C.data(bs[0][0]) + ". Vale para todo o país.";
@@ -226,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }).filter(Boolean).sort(function (a, b) { return b.v - a.v; });
       var box = document.getElementById("ufs");
       box.innerHTML = lista.map(function (l, i) {
-        return '<button type="button" class="uf" data-uf="' + l.uf + '" aria-pressed="' + (l.uf === local) + '"><span class="n"><span>' + (i + 1) + "º " + C.UFS[l.uf][0] + '</span></span><span class="v">' + C.brl(l.v, 2) + '</span><span class="d">' + (varPct(l.a12, " em 12 meses") || '<span class="muted">—</span>') + "</span></button>";
+        return '<button type="button" class="uf" data-uf="' + l.uf + '" aria-pressed="' + (l.uf === local) + '"><span class="n"><span>' + (i + 1) + "º " + (C.bandeira ? C.bandeira(l.uf) : "") + C.UFS[l.uf][0] + '</span></span><span class="v">' + C.brl(l.v, 2) + '</span><span class="d">' + (varPct(l.a12, " em 12 meses") || '<span class="muted">—</span>') + "</span></button>";
       }).join("") || '<p class="aviso">Sem dados por estado ainda.</p>';
       box.onclick = function (e) { var b = e.target.closest(".uf"); if (!b) return; sel.value = b.dataset.uf; C.lembrar("local", sel.value); desenhar(); window.scrollTo({ top: 0, behavior: "smooth" }); };
       document.getElementById("fonte").innerHTML = (luz ? 'Luz: <a href="' + luz.fonte_url + '">' + luz.fonte + "</a>. " : "") + (agua ? "Água: " + (agua.fonte_url ? '<a href="' + agua.fonte_url + '">' + agua.fonte + "</a>" : agua.fonte) + ", corrigida pelo IPCA (IBGE)." : "");
