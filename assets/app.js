@@ -52,6 +52,78 @@
     if (grupoE) html += '<optgroup label="Estados e DF">' + grupoE + "</optgroup>";
     sel.innerHTML = html;
     if (inicial && tem(inicial)) sel.value = inicial;
+    escolhaLocal(sel);
+  }
+
+  /* Escolha de local em painel próprio (no celular abre por baixo, como uma gaveta).
+     O <select> continua na página, escondido: as páginas seguem lendo sel.value e o evento "change".
+     Motivo: a lista nativa do celular não rolava bem com a lista de regiões e estados. */
+  function escolhaLocal(sel) {
+    if (!sel._escolha) {
+      var btn = document.createElement("button");
+      btn.type = "button"; btn.className = "escolha-btn"; btn.setAttribute("aria-haspopup", "dialog");
+      btn.id = (sel.id || "local") + "-botao";
+      sel.classList.add("visually-hidden"); sel.tabIndex = -1; sel.setAttribute("aria-hidden", "true");
+      sel.insertAdjacentElement("afterend", btn);
+      var lbl = sel.id && document.querySelector('label[for="' + sel.id + '"]');
+      if (lbl) lbl.htmlFor = btn.id;
+      // quando a página muda sel.value por código, o botão acompanha
+      var desc = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, "value");
+      Object.defineProperty(sel, "value", { configurable: true,
+        get: function () { return desc.get.call(this); },
+        set: function (v) { desc.set.call(this, v); atualizar(); } });
+      sel.addEventListener("change", atualizar);
+      btn.addEventListener("click", abrir);
+      sel._escolha = { btn: btn };
+    }
+    var botao = sel._escolha.btn;
+    function atualizar() {
+      var o = sel.options[sel.selectedIndex];
+      botao.innerHTML = (o && UFS[o.value] ? bandeira(o.value) : '<span class="escolha-ico" aria-hidden="true">◎</span>') +
+        "<span>" + (o ? o.textContent : "Escolha o local") + '</span><svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+    }
+    function abrir() {
+      var grupos = [{ nome: "", itens: [] }];
+      [].forEach.call(sel.children, function (n) {
+        if (n.tagName === "OPTGROUP") grupos.push({ nome: n.label, itens: [].slice.call(n.children) });
+        else grupos[0].itens.push(n);
+      });
+      var atual = sel.value;
+      var fundo = document.createElement("div");
+      fundo.className = "escolha";
+      fundo.innerHTML = '<div class="escolha-painel" role="dialog" aria-modal="true" aria-label="Escolha o local">' +
+        '<div class="escolha-topo"><b>Onde você mora?</b><button type="button" class="escolha-fechar" aria-label="Fechar">✕</button></div>' +
+        '<input type="search" class="escolha-busca" placeholder="Buscar estado ou região" aria-label="Buscar estado ou região">' +
+        '<div class="escolha-lista">' + grupos.filter(function (g) { return g.itens.length; }).map(function (g) {
+          return (g.nome ? '<p class="escolha-grupo">' + g.nome + "</p>" : "") + '<div class="escolha-itens' + (g.itens.length > 6 ? " muitos" : "") + '">' +
+            g.itens.map(function (o) {
+              return '<button type="button" data-v="' + o.value + '" aria-pressed="' + (o.value === atual) + '">' + (UFS[o.value] ? bandeira(o.value) : "") + "<span>" + o.textContent + "</span></button>";
+            }).join("") + "</div>";
+        }).join("") + "</div></div>";
+      document.body.appendChild(fundo);
+      document.documentElement.classList.add("escolha-aberta");
+      var busca = fundo.querySelector(".escolha-busca");
+      function fechar() { fundo.remove(); document.documentElement.classList.remove("escolha-aberta"); document.removeEventListener("keydown", tecla); botao.focus(); }
+      function tecla(e) { if (e.key === "Escape") fechar(); }
+      document.addEventListener("keydown", tecla);
+      fundo.addEventListener("click", function (e) {
+        if (e.target === fundo || e.target.closest(".escolha-fechar")) return fechar();
+        var b = e.target.closest("button[data-v]"); if (!b) return;
+        if (b.dataset.v !== sel.value) { sel.value = b.dataset.v; sel.dispatchEvent(new Event("change", { bubbles: true })); }
+        fechar();
+      });
+      busca.addEventListener("input", function () {
+        var q = busca.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        [].forEach.call(fundo.querySelectorAll("button[data-v]"), function (b) {
+          b.hidden = q && b.textContent.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().indexOf(q) < 0 && b.dataset.v.toLowerCase() !== q;
+        });
+      });
+      var marcado = fundo.querySelector('[aria-pressed="true"]');
+      if (marcado) marcado.scrollIntoView({ block: "center" });
+      // no celular não abre o teclado sozinho (cobriria a lista); no computador já dá para digitar
+      if (window.matchMedia("(hover: hover)").matches) busca.focus(); else (marcado || fundo.querySelector("button[data-v]")).focus({ preventScroll: true });
+    }
+    atualizar();
   }
 
   function lembrar(chave, valor) {
