@@ -336,7 +336,7 @@ def coletar_agua(ipca):
                 atual /= 1 + (v.get(nxt, br.get(nxt, 0.0))) / 100
                 valores[m] = atual
         series[uf] = {"conta": [[m, round(x, 2)] for m, x in sorted(valores.items()) if m >= INICIO[:7]]}
-        info[uf] = {"empresa": e.get("empresa"), "ipca_local": local != "BR", "agua_m3": e["agua"], "esgoto_m3": e.get("esgoto", 0)}
+        info[uf] = {"ipca_local": local != "BR", "agua_m3": e["agua"], "esgoto_m3": e.get("esgoto", 0)}
     for grupo, ufs in grupos(series):
         if not ufs:
             continue

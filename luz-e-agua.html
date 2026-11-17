@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("agua-sub").innerHTML = ua ? [
         varPct(C.variacao12(sa), " em 12 meses"),
         varPct(desdeInicio(sa), " desde jan/2023"),
-        ea ? "Companhia de referência: <b>" + ea.empresa + "</b>" : "Média simples dos estados",
+        ea ? "Tarifa média de água e esgoto do estado (SNIS), corrigida pela inflação" : "Média simples dos estados",
         ea && !ea.ipca_local ? "Reajuste estimado pela inflação da água no Brasil (o IBGE não pesquisa neste estado)" : ""
       ].filter(Boolean).join("<br>") : "Sem dados ainda.";
 

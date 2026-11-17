@@ -1,0 +1,117 @@
+{
+ "_leia": "Tarifa média de água (IN005) e de esgoto (IN006) de cada estado, em R$/m³, do SNIS 2022 (Diagnóstico dos Serviços de Água e Esgotos, planilha resumo por estado, publicada em 15/12/2023). É a média do que os prestadores do estado efetivamente cobraram em 2022 (todas as categorias). O robô corrige mês a mês pelo IPCA 'taxa de água e esgoto'. Troque por um ano mais novo quando o SINISA publicar a tabela por estado.",
+ "fonte": "SNIS 2022 — tarifa média de água (IN005) e de esgoto (IN006) por estado",
+ "fonte_url": "https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/snis/produtos-do-snis/diagnosticos/Planilhas_AE2022.zip",
+ "ref": "2022-07",
+ "m3_mes": 10,
+ "estados": {
+  "AC": {
+   "agua": 2.81,
+   "esgoto": 3.22
+  },
+  "AL": {
+   "agua": 5.1,
+   "esgoto": 5.8
+  },
+  "AM": {
+   "agua": 4.11,
+   "esgoto": 6.13
+  },
+  "AP": {
+   "agua": 3.13,
+   "esgoto": 4.89
+  },
+  "BA": {
+   "agua": 6.07,
+   "esgoto": 4.5
+  },
+  "CE": {
+   "agua": 4.27,
+   "esgoto": 5.0
+  },
+  "DF": {
+   "agua": 6.25,
+   "esgoto": 6.22
+  },
+  "ES": {
+   "agua": 4.41,
+   "esgoto": 3.92
+  },
+  "GO": {
+   "agua": 6.07,
+   "esgoto": 6.15
+  },
+  "MA": {
+   "agua": 3.74,
+   "esgoto": 4.68
+  },
+  "MG": {
+   "agua": 4.78,
+   "esgoto": 3.75
+  },
+  "MS": {
+   "agua": 7.43,
+   "esgoto": 4.65
+  },
+  "MT": {
+   "agua": 3.75,
+   "esgoto": 3.05
+  },
+  "PA": {
+   "agua": 3.88,
+   "esgoto": 2.91
+  },
+  "PB": {
+   "agua": 5.3,
+   "esgoto": 5.61
+  },
+  "PE": {
+   "agua": 4.71,
+   "esgoto": 4.95
+  },
+  "PI": {
+   "agua": 4.63,
+   "esgoto": 4.99
+  },
+  "PR": {
+   "agua": 6.69,
+   "esgoto": 5.14
+  },
+  "RJ": {
+   "agua": 5.39,
+   "esgoto": 5.88
+  },
+  "RN": {
+   "agua": 4.91,
+   "esgoto": 3.38
+  },
+  "RO": {
+   "agua": 4.08,
+   "esgoto": 2.25
+  },
+  "RR": {
+   "agua": 2.86,
+   "esgoto": 2.75
+  },
+  "RS": {
+   "agua": 8.96,
+   "esgoto": 4.7
+  },
+  "SC": {
+   "agua": 6.72,
+   "esgoto": 6.4
+  },
+  "SE": {
+   "agua": 6.01,
+   "esgoto": 4.99
+  },
+  "SP": {
+   "agua": 4.04,
+   "esgoto": 4.16
+  },
+  "TO": {
+   "agua": 6.44,
+   "esgoto": 6.17
+  }
+ }
+}
