@@ -48,6 +48,8 @@ jobs:
           git config user.email "robo-coleta@users.noreply.github.com"
           git add dados descobertas
           git diff --cached --quiet || git commit -m "Coleta automática $(date -u +%Y-%m-%d)"
+          # se alguém mexeu no main durante a coleta (ex.: um merge), junta antes de enviar
+          git pull --rebase origin main
           git push
 
   publicar:
