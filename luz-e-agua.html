@@ -74,6 +74,7 @@
       <article class="la-card">
         <span class="t">Quanto da conta de luz é imposto <span class="selo">estimado</span></span>
         <div class="impostos" id="barra"></div>
+        <p id="impostos-tot" class="linha"></p>
         <p class="small" id="impostos-txt"></p>
       </article>
       <article class="la-card">
@@ -192,9 +193,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (icms === null && luz) { var ufs = Object.keys(luz.estados).filter(function (u) { return local === "BR" || C.UFS[u][1] === local; }); icms = ufs.reduce(function (s, u) { return s + luz.estados[u].icms; }, 0) / (ufs.length || 1); }
       if (ul && icms !== null) {
         var pImp = (icms + luz.pis_cofins) * 100, vImp = ul[1] * pImp / 100;
-        barra.innerHTML = '<div class="p1" style="width:' + (100 - pImp) + '%">Energia ' + C.brl(ul[1] - vImp, 2) + '</div><div class="p2" style="width:' + pImp + '%">Impostos ' + C.numero(pImp, 0) + "% · " + C.brl(vImp, 2) + "</div>";
+        barra.innerHTML = '<div class="p1" style="width:' + (100 - pImp) + '%">Energia ' + C.brl(ul[1] - vImp, 2) + '</div><div class="p2" style="width:' + pImp + '%">' + C.numero(pImp, 0) + "%</div>";
+        document.getElementById("impostos-tot").innerHTML = "Impostos: <b>" + C.numero(pImp, 0) + "%</b> da conta, ou <b>" + C.brl(vImp, 2) + "</b> por mês";
         txt.textContent = "ICMS " + C.numero(icms * 100, 1) + "% (estadual) e PIS/Cofins cerca de " + C.numero(luz.pis_cofins * 100, 0) + "% (federal). Não inclui a taxa de iluminação pública, que cada prefeitura cobra à parte.";
-      } else { barra.innerHTML = ""; txt.textContent = "Sem estimativa ainda."; }
+      } else { barra.innerHTML = ""; document.getElementById("impostos-tot").textContent = ""; txt.textContent = "Sem estimativa ainda."; }
 
       // No bolso
       var partes = [];

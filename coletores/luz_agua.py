@@ -70,7 +70,7 @@ def mes_atual():
 # ---------------------------------------------------------------- ANEEL (CKAN)
 
 def recursos(pacote):
-    j = baixar(f"{CKAN}/package_show?id={pacote}").json()
+    j = baixar(f"{CKAN}/package_show?id={pacote}", tentativas=1, timeout=(20, 60)).json()
     return j["result"]["resources"]
 
 
@@ -178,7 +178,7 @@ def bandeiras():
 
 def escolher_agentes(tarifas, candidatos):
     nomes = {norm(a): a for a in tarifas}
-    achados = [nomes[norm(c)] for c in candidatos if norm(c) in nomes]
+    achados = [nomes[norm(c)] for c in candidatos if norm(c) in nomes][:1]  # só a primeira: nomes parecidos podem ser outra empresa
     if not achados:
         achados = [a for a in tarifas if any(norm(a).startswith(norm(c) + " ") or norm(a).startswith(norm(c) + "-") for c in candidatos[:2])]
     return list(dict.fromkeys(achados))
@@ -191,6 +191,27 @@ def tarifa_no_dia(periodos, d):
     return max(vale)[2] if vale else None
 
 
+def base_aneel():
+    """Tarifas e bandeiras: da ANEEL quando ela responde; senão, da cópia em config/aneel_base.json."""
+    base = config("aneel_base")
+    try:
+        tarifas = tarifas_residenciais()
+        band = bandeiras()
+        if len(tarifas) >= 20 and band:
+            base["tarifas"] = {a: [[i.isoformat(), f.isoformat() if f else None, round(v, 5)] for i, f, v in p]
+                               for a, p in tarifas.items()}
+            base["bandeiras"] = [[m, n, round(v, 5)] for m, (n, v) in sorted(band.items()) if m >= "2022-12"]
+            base["gerado"] = date.today().isoformat()
+            (DESCOBERTAS.parent / "config" / "aneel_base.json").write_text(json.dumps(base, ensure_ascii=False) + "\n", encoding="utf-8")
+            print("  cópia da ANEEL atualizada")
+            base["_ao_vivo"] = True
+    except Exception as e:  # noqa: BLE001
+        print(f"  ANEEL indisponível ({str(e)[:120]}); usando a cópia de {base.get('gerado')}")
+    tar = {a: [(dia(i), dia(f) if f else None, v) for i, f, v in p] for a, p in base["tarifas"].items()}
+    band = {m: (n, v) for m, n, v in base["bandeiras"]}
+    return tar, band, base.get("gerado"), bool(base.get("_ao_vivo"))
+
+
 def grupos(series):
     """Regiões e Brasil (média simples dos estados). "SE" é Sergipe e também Sudeste: o estado vence."""
     ufs = [u for u in series if u in UF_REGIAO]
@@ -198,14 +219,10 @@ def grupos(series):
     return out + [("BR", ufs)]
 
 
-def coletar_energia():
+def coletar_energia(ipca):
     cfg = config("energia")
-    tarifas = tarifas_residenciais()
-    try:
-        band = bandeiras()
-    except Exception as e:  # noqa: BLE001
-        print("  aviso: bandeiras indisponíveis:", e)
-        band = {}
+    tarifas, band, gerado, ao_vivo = base_aneel()
+    var = ipca.get("energia", {}) if ipca else {}
     fim = mes_atual()
     kwh, pis = cfg["kwh_mes"], cfg["pis_cofins"]
     series, info = {}, {}
@@ -215,21 +232,39 @@ def coletar_energia():
             print(f"  aviso: distribuidora de {uf} não encontrada ({e['distribuidora']})")
             continue
         periodos = sorted(p for a in ags for p in tarifas[a])
-        tar, conta = [], []
+        fim_conhecido = max((p[1] for p in periodos if p[1]), default=None)
+        v = var.get(uf) or var.get("BR", {})
+        tar, conta, estimado = [], [], []
+        t_ant = None
         for m in meses(INICIO[:7], fim):
-            t = tarifa_no_dia(periodos, date(int(m[:4]), int(m[5:7]), 15))
+            d15 = date(int(m[:4]), int(m[5:7]), 15)
+            if fim_conhecido and d15 > fim_conhecido and t_ant is not None:
+                # tarifa nova ainda não publicada na cópia: estima com a inflação oficial da energia
+                t = t_ant * (1 + v.get(m, 0.0) / 100)  # sem IPCA do mês ainda: repete a última
+                estimado.append(m)
+            else:
+                t = tarifa_no_dia(periodos, d15)
             if t is None:
                 continue
-            adic = band.get(m, (None, 0.0))[1]
+            t_ant = t
+            adic = band[m][1] if m in band else 0.0  # mês sem bandeira conhecida: conta sem adicional
             tar.append([m, round(t, 5)])
             conta.append([m, round(kwh * (t + adic) / (1 - e["icms"] - pis), 2)])
         ultimos = [p for p in periodos if p[0] <= date.today()]
         reaj = None
-        if len(ultimos) >= 2 and ultimos[-2][2]:
-            reaj = {"data": ultimos[-1][0].isoformat(), "pct": round((ultimos[-1][2] / ultimos[-2][2] - 1) * 100, 2)}
+        # reajuste: compara com a última tarifa diferente (a ANEEL repete a mesma tarifa em alguns períodos)
+        if ultimos:
+            atual = ultimos[-1]
+            ant = next((p for p in reversed(ultimos[:-1]) if abs(p[2] - atual[2]) > 1e-6), None)
+            ini = atual[0]
+            for p in reversed(ultimos[:-1]):
+                if abs(p[2] - atual[2]) > 1e-6:
+                    break
+                ini = p[0]
+            if ant:
+                reaj = {"data": ini.isoformat(), "pct": round((atual[2] / ant[2] - 1) * 100, 2)}
         series[uf] = {"tarifa": tar, "conta": conta}
-        info[uf] = {"distribuidora": ags[-1], "icms": e["icms"], "ultimo_reajuste": reaj}
-    # Regiões e Brasil: média simples dos estados
+        info[uf] = {"distribuidora": ags[0], "icms": e["icms"], "ultimo_reajuste": reaj, "meses_estimados": estimado}
     for grupo, ufs in grupos(series):
         if not ufs:
             continue
@@ -238,18 +273,20 @@ def coletar_energia():
             todos = sorted({m for u in ufs for m, _ in series[u][k]})
             agg[k] = [[m, round(media([dict(series[u][k]).get(m) for u in ufs]), 5 if k == "tarifa" else 2)] for m in todos]
         series[grupo] = agg
+    if not info:
+        raise RuntimeError("nenhuma distribuidora encontrada; veja descobertas/aneel_agentes.txt")
     salvar_json("energia", {
         "fonte": "ANEEL — tarifas homologadas das distribuidoras e bandeiras tarifárias (dados abertos)",
         "fonte_url": "https://dadosabertos.aneel.gov.br/dataset/tarifas-distribuidoras-energia-eletrica",
+        "copia_aneel": gerado, "aneel_ao_vivo": ao_vivo,
         "kwh_mes": kwh, "pis_cofins": pis,
         "bandeiras": [[m, n, round(v, 5)] for m, (n, v) in sorted(band.items()) if m >= INICIO[:7]],
         "estados": info,
         "series": series,
         "atualizado": max((s["conta"][-1][0] for s in series.values() if s.get("conta")), default=None),
     })
-    if not series:
-        raise RuntimeError("nenhuma distribuidora encontrada; veja descobertas/aneel_agentes.txt")
-    return f"{len(info)} estados, bandeira {band.get(fim, ('?',))[0]}"
+    ub = max(band) if band else None
+    return f"{len(info)} estados; bandeira {band[ub][0] if ub else '?'} ({ub}); cópia ANEEL de {gerado}"
 
 
 # ---------------------------------------------------------------- IPCA energia e água
@@ -350,7 +387,7 @@ def main():
             return None
 
     ipca = rodar("ipca_luz_agua", TAREFAS[0][1], coletar_tudo)
-    rodar("energia", TAREFAS[1][1], coletar_energia)
+    rodar("energia", TAREFAS[1][1], lambda: coletar_energia(ipca))
     if ipca:
         rodar("agua", TAREFAS[2][1], lambda: coletar_agua(ipca))
     # rodar.py pode ter gravado o estado nesse meio-tempo; junta com o que está no disco
