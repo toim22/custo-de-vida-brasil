@@ -349,3 +349,55 @@ tr.total td { background: rgba(255,210,63,.07); border-top: 1px solid rgba(255,2
   .anima .aparece { opacity: 1 !important; transform: none !important; }
   .anima * { animation: none !important; }
 }
+
+/* ===================== Mais animação ===================== */
+@keyframes entra-pagina { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes linha { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
+@keyframes surge { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+@keyframes pula-cima { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(-5px); } 60% { transform: translateY(1px); } }
+@keyframes pula-baixo { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(5px); } 60% { transform: translateY(-1px); } }
+@keyframes brilho { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@keyframes balanca { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-1.5deg); } 75% { transform: rotate(1.5deg); } }
+
+/* entrada da página e saída ao clicar num link */
+.anima main { animation: entra-pagina .6s cubic-bezier(.2,.7,.2,1) both; }
+html.saindo main { opacity: 0; transform: translateY(-10px); transition: opacity .2s ease, transform .2s ease; }
+html.saindo .topo .menu a:not([aria-current]) { opacity: .5; }
+
+/* entradas mais visíveis */
+.anima .aparece { transform: translateY(30px) scale(.97); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1.15); }
+.anima .tag.aparece { transform: translateX(-24px) rotate(-2deg); }
+.anima .tag.aparece.visivel { animation: balanca .6s ease 1s 1; }
+.anima .bloco > h2.aparece, .anima .titulo-filtro.aparece { transform: translateX(-20px); }
+
+/* listas e tabelas: linha por linha */
+.anima .visivel tbody > tr, .anima .itens.visivel > .item, .anima .ufs.visivel > .uf, .anima .visivel .lista li {
+  animation: linha .5s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i, 0) * 45ms + 120ms);
+}
+.anima .itens.visivel > .item .barra { animation-delay: calc(var(--i, 0) * 45ms + 300ms); animation-duration: 1s; }
+.anima .hist-band.visivel .c { animation: surge .35s cubic-bezier(.2,.8,.3,1.4) both; animation-delay: calc(var(--i, 0) * 30ms); }
+.anima .cards > .card.aparece, .anima .la-cards > .la-card.aparece { transition-delay: calc(var(--i, 0) * 70ms); }
+
+/* setas de alta e queda dão um pulinho quando aparecem */
+.anima .visivel .d.sobe, .anima .visivel .sobe > .d, .anima .visivel .selo-var.sobe { display: inline-block; animation: pula-cima .7s ease 1.1s 2; }
+.anima .visivel .d.desce, .anima .visivel .selo-var.desce { display: inline-block; animation: pula-baixo .7s ease 1.1s 2; }
+
+/* hover mais vivo */
+a.card { transition: transform .25s cubic-bezier(.2,.8,.2,1.3), border-color .2s, box-shadow .25s; }
+.anima a.card.aparece.visivel:hover, a.card:hover { transform: translateY(-6px) scale(1.012); border-color: rgba(255,210,63,.45); box-shadow: var(--sombra), 0 22px 50px -22px rgba(255,210,63,.45); }
+a.card:hover .tag { transform: rotate(-1.5deg) scale(1.03); transition: transform .25s cubic-bezier(.2,.8,.2,1.4); }
+a.card:hover .ir { color: var(--tag); }
+.menu a:hover { transform: translateY(-1px); }
+.seg button:active, .menu a:active, a.card:active { transform: scale(.97); }
+tbody tr:hover td { background: rgba(255,210,63,.06); }
+.item:hover { background: rgba(255,210,63,.05); }
+.item:hover .barra { filter: brightness(1.25); }
+/* brilho que passa na etiqueta amarela ao passar o mouse */
+a.card:hover .tag::after, .tag.grande:hover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%); background-size: 200% 100%; animation: brilho .9s ease; pointer-events: none; }
+.tag { position: relative; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anima main, html.saindo main { animation: none !important; opacity: 1 !important; transform: none !important; }
+  a.card:hover, a.card:hover .tag { transform: none !important; }
+  a.card:hover .tag::after, .tag.grande:hover::after { display: none; }
+}
