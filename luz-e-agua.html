@@ -14,7 +14,6 @@
   .la-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
   .la-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
   .la-card .t { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-  .la-card .ico { font-size: 1.1rem; }
   .la-card .tag { margin-top: 2px; }
   .la-card .linha { font-size: .86rem; color: var(--muted); }
   .la-card .linha b { color: var(--ink); }
@@ -54,13 +53,13 @@
   <section class="bloco">
     <div class="la-cards">
       <article class="la-card" id="c-luz">
-        <span class="t"><span class="ico" aria-hidden="true">💡</span>Conta de luz</span>
+        <span class="t">Conta de luz</span>
         <span class="tag grande"><span class="lbl" id="luz-lbl">por mês</span><span class="val" id="luz-val">—</span></span>
         <p class="linha" id="luz-sub"></p>
         <span class="selo" style="justify-self:start">estimado</span>
       </article>
       <article class="la-card" id="c-band">
-        <span class="t"><span class="ico" aria-hidden="true">🚦</span>Bandeira do mês</span>
+        <span class="t">Bandeira do mês</span>
         <span class="band-tar" id="band">—</span>
         <p class="linha" id="band-sub"></p>
         <div class="hist-band" id="band-hist" role="img" aria-label="Bandeira de cada mês, por ano"></div>
@@ -68,7 +67,7 @@
         <p class="small" id="band-leg"></p>
       </article>
       <article class="la-card" id="c-agua">
-        <span class="t"><span class="ico" aria-hidden="true">🚿</span>Conta de água e esgoto</span>
+        <span class="t">Conta de água e esgoto</span>
         <span class="tag grande"><span class="lbl" id="agua-lbl">por mês</span><span class="val" id="agua-val">—</span></span>
         <p class="linha" id="agua-sub"></p>
         <span class="selo" style="justify-self:start">estimado</span>
