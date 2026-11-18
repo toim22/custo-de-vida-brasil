@@ -1,17 +1,17 @@
 {
- "atualizado": "2026-11-17T23:23",
+ "atualizado": "2026-11-18T14:12",
  "ativos": {
   "USD": {
    "nome": "Dólar",
-   "preco": 5.7778,
+   "preco": 5.8348,
    "anterior": 5.7826,
-   "hora": "2026-11-17T21:11"
+   "hora": "2026-11-18T14:12"
   },
   "IBOV": {
    "nome": "Ibovespa",
-   "preco": 169816.64,
-   "anterior": 169295.0,
-   "hora": "2026-11-17T18:17"
+   "preco": 167258.58,
+   "anterior": 169817.0,
+   "hora": "2026-11-18T13:57"
   }
  }
 }

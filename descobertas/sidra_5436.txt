@@ -1,5 +1,5 @@
 TABELA 5436: Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente e efetivamente recebidos no trabalho principal e em todos os trabalhos, por sexo
-periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202603}
 niveis: {'Administrativo': ['N1', 'N2', 'N6', 'N14', 'N7', 'N3'], 'Especial': [], 'IBGE': []}
 VARIAVEIS:
   5932: Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente recebido no trabalho principal (Reais)

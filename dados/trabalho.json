@@ -295,6 +295,14 @@
    "desalentados": 2287922,
    "fracao_aposentados_ano": "2025",
    "total": 7743793
+  },
+  {
+   "trimestre": "2026-T3",
+   "arquivo": "PNADC_032026.zip",
+   "desocupados": 5627694,
+   "desalentados": 2458906,
+   "fracao_aposentados_ano": "2025",
+   "total": 7684130
   }
  ],
  "desemprego_aposentados_por_ano": [
@@ -371,6 +379,10 @@
   [
    "2026-T2",
    7743793
+  ],
+  [
+   "2026-T3",
+   7684130
   ]
  ]
 }

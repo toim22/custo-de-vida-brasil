@@ -1,5 +1,5 @@
 TABELA 4097: Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, por posição na ocupação e categoria do emprego no trabalho principal
-periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202603}
 niveis: {'Administrativo': ['N1', 'N2', 'N3'], 'Especial': [], 'IBGE': []}
 VARIAVEIS:
   4090: Pessoas de 14 anos ou mais de idade ocupadas na semana de referência (Mil pessoas)

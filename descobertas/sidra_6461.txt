@@ -1,5 +1,5 @@
 TABELA 6461: Taxa de participação na força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade - Total, coeficiente de variação, variações em relação ao trimestre anterior e ao mesmo trimestre do ano anterior
-periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202603}
 niveis: {'Administrativo': ['N1', 'N2', 'N3'], 'Especial': [], 'IBGE': []}
 VARIAVEIS:
   4096: Taxa de participação na força de trabalho, na semana de referência, das pessoas de 14 anos ou mais de idade (%)

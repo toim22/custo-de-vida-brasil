@@ -1,5 +1,5 @@
 TABELA 4094: Pessoas de 14 anos ou mais de idade, total, na força de trabalho, ocupadas, desocupadas, fora da força de trabalho, em situação de informalidade e respectivas taxas e níveis, por grupo de idade
-periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202602}
+periodicidade: {'frequencia': 'trimestral', 'inicio': 201201, 'fim': 202603}
 niveis: {'Administrativo': ['N1', 'N2', 'N6', 'N14', 'N7', 'N3'], 'Especial': [], 'IBGE': []}
 VARIAVEIS:
   1641: Pessoas de 14 anos ou mais de idade (Mil pessoas)
