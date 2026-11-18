@@ -1,0 +1,236 @@
+{
+ "atualizado": "2026-11-18T22:11Z",
+ "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
+ "falhas": [],
+ "projetos": [
+  {
+   "id": "senado-176440",
+   "casa": "Senado",
+   "numero": "PLP 308/2026",
+   "data": "2026-11-17",
+   "ementa": "Institui a Contribuição Social sobre Serviços Digitais – CSSD, destinada ao financiamento de programas de renda básica.",
+   "autor": "Senador Randolfe Rodrigues (PT/AP)",
+   "link": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176440",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": false
+  },
+  {
+   "id": "camara-2654838",
+   "casa": "Câmara",
+   "numero": "PL 5.889/2026",
+   "data": "2026-11-17",
+   "ementa": "Dispõe sobre a incidência do Imposto sobre a Renda das Pessoas Físicas sobre lucros e dividendos distribuídos por pessoas jurídicas, altera as Leis nº 9.249, de 26 de dezembro de 1995, e nº 9.250, de 26 de dezembro de 1995, e dá outras providências.",
+   "autor": "Afonso Florence (PT-BA) e mais 78",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2654838",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": true
+  },
+  {
+   "id": "camara-2654382",
+   "casa": "Câmara",
+   "numero": "PLP 307/2026",
+   "data": "2026-11-17",
+   "ementa": "Institui o Imposto sobre Grandes  Fortunas, previsto no art. 153, inciso VII, da Constituição Federal.",
+   "autor": "Afonso Florence (PT-BA) e mais 88",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2654382",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": true
+  },
+  {
+   "id": "camara-2653947",
+   "casa": "Câmara",
+   "numero": "PL 5.855/2026",
+   "data": "2026-11-13",
+   "ementa": "Altera a Lei nº 9.249, de 26 de dezembro de 1995, para elevar a alíquota do Imposto de Renda Retido na Fonte incidente sobre os juros sobre o capital próprio.",
+   "autor": "Afonso Florence (PT-BA) e mais 81",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2653947",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": true
+  },
+  {
+   "id": "camara-2653946",
+   "casa": "Câmara",
+   "numero": "PL 5.854/2026",
+   "data": "2026-11-13",
+   "ementa": "Dispõe sobre a incidência do Imposto sobre a Renda das Pessoas Físicas sobre lucros e dividendos distribuídos por pessoas jurídicas, altera as Leis nº 9.249, de 26 de dezembro de 1995, e nº 9.250, de 26 de dezembro de 1995, e dá outras providências.",
+   "autor": "Afonso Florence (PT-BA) e mais 82",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2653946",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": true
+  },
+  {
+   "id": "camara-2653945",
+   "casa": "Câmara",
+   "numero": "PL 5.853/2026",
+   "data": "2026-11-13",
+   "ementa": "Dispõe sobre a incidência do Imposto de Renda Retido na Fonte sobre os rendimentos de títulos e valores mobiliários.",
+   "autor": "Afonso Florence (PT-BA) e mais 85",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2653945",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": true
+  },
+  {
+   "id": "camara-2653944",
+   "casa": "Câmara",
+   "numero": "PL 5.852/2026",
+   "data": "2026-11-13",
+   "ementa": "Institui o Imposto sobre Grandes  Fortunas, previsto no art. 153, inciso VII, da Constituição Federal.",
+   "autor": "Afonso Florence (PT-BA) e mais 84",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2653944",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": true
+  },
+  {
+   "id": "camara-2652867",
+   "casa": "Câmara",
+   "numero": "PLP 297/2026",
+   "data": "2026-11-11",
+   "ementa": "Institui o Imposto sobre Grandes Fortunas.",
+   "autor": "Merlong Solano (PT-PI)",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2652867",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": false
+  },
+  {
+   "id": "senado-176169",
+   "casa": "Senado",
+   "numero": "PLP 282/2026",
+   "data": "2026-11-03",
+   "ementa": "Altera a Lei Complementar nº 214, de 16 de janeiro de 2025, para instituir a verificação anual de excesso de arrecadação da Contribuição sobre Bens e Serviços (CBS) e assegurar a transparência do cálculo das alíquotas de referência.",
+   "autor": "Senador Izalci Lucas (PL/DF)",
+   "link": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176169",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": false
+  },
+  {
+   "id": "camara-2650051",
+   "casa": "Câmara",
+   "numero": "PL 5.742/2026",
+   "data": "2026-11-03",
+   "ementa": "Dispõe sobre medidas tributárias e aduaneiras referentes à realização da Copa do Mundo Feminina da Fédération Internationale de Football Association – FIFA 2027 na República Federativa do Brasil.",
+   "autor": "Poder Executivo",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2650051",
+   "visto_em": "2026-11-18",
+   "ja_nos_cartoes": false
+  }
+ ],
+ "noticias": [
+  {
+   "id": "n-lider-do-governo-quer-taxar-servicos-digitais-para-financiar-renda-basica",
+   "titulo": "Líder do governo quer taxar serviços digitais para financiar renda básica",
+   "fonte": "Metrópoles",
+   "data": "2026-11-18",
+   "hora": "16:14",
+   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQM0pWMlpCQVI4VWg2S0tLZUVCMDc3QVJ2MjBvRkdyRUJiYy1sZzV3MldmUjRIeTBRX0dNMzBuU0Y5R3VQbDFFRU0tTzJYOW1PamJvU1dXU3poTzl2ZVZfazlIckZRRk1nSmFoSDllOFlyTDVYNG9fNWM1MU1DdmloYUVOQVJEbm5sRkM5NVBoWEprVEJnUUZTRllYT1BhR1FMbkFfcDZOcGJDaHZSeE1OU0J4UzJlUkE2YUUtN0VyeFk?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-lider-do-governo-no-congresso-apresenta-projeto-para-taxar-big-techs",
+   "titulo": "Líder do governo no Congresso apresenta projeto para taxar big techs",
+   "fonte": "InfoMoney",
+   "data": "2026-11-18",
+   "hora": "11:05",
+   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNc2xzYV82cy01bG5zYzJpYUFFVzdaMUpRbFBiTlQ2Z2NOMTNmcXd3U2VncE5DMzVPeEJKVGhmNVZjMW9xY3hmbHBCUHA1YWZXbDh6RVNJMkNmX0RBbWtrWGpkMW1DT1VTbng3Q3ZIZjAtR3lva1JGUVdyT1YzRHNwclJ3R1kxY2h2anR6M2pUQXZZWnBpOWpGUmlQUF9SOTdVSmNXd09zYVdLSVHSAbABQVVfeXFMTzBDVEpweFUzb1RpQUczQUV1c1pJYkxwNzlCWHo0akR0SXB5aXF0M2R4cGZiV2hkMFE0dEU0OWtTYTlOSTNfV0Z1Y1pObkdqVVZUbnpYeC1Na1hCVVlNaUZ3NklkSUpkTTUtUU1rbmh2bUZIYWF3WHRjZk8wdDBWVUt6VjdtVzBvM1AtdGpBX2F3dGRnRnNYWE1lWTZqdGk1WEdCVmpsQU9Gay00UHRsRC0?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-projeto-da-base-de-lula-propoe-taxar-dividendos-em-ate-25-",
+   "titulo": "Projeto da base de Lula propõe taxar dividendos em até 25%",
+   "fonte": "Poder360",
+   "data": "2026-11-17",
+   "hora": "23:32",
+   "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPckZ1QW1mWTFYX3UxcnFqaER3N0hTaHczVDlvMTBlYzRobVQ3Yk11TnZIei01SENqUHNzRVJNWUFwVDNUOExUdklVQ2VzMVh3RW5qdmloM2NqeFdCd3k0T1NFcV9Za3BtQlFLX1h0RGtVeEZLMVF5V3BxSzdhVmJCYTRHLW1tMHRVaVc3TlJDdWRkTlM4WTlRd0Jxa0NTdHc5STdRNg?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-projeto-propoe-taxar-big-techs-em-3-para-financiar-renda-basica",
+   "titulo": "Projeto propõe taxar big techs em 3% para financiar renda básica",
+   "fonte": "Band",
+   "data": "2026-11-17",
+   "hora": "19:47",
+   "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPVUFmSS1BYlRxY1Z0dXVqeFNHLUNmYnpqVDZxdjFPclU0eldEUWpPTkUyWC1nNUhJMXpQNDhGQWVpaURkUGxtMXI4UjVRYmhBNllGYlAxMXVjRzd6b0NrTGNOT09jQUpOczdqMGNUMlhpSmFFOUhZUjhta19lMV83UW95SllFNXY3bk83SnluWXBmLTZXVFpzeVo5WGc?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-lider-do-governo-propoe-taxar-em-3-receitas-de-big-techs",
+   "titulo": "Líder do governo propõe taxar em 3% receitas de big techs",
+   "fonte": "SBT News",
+   "data": "2026-11-17",
+   "hora": "19:45",
+   "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQaEIxOWxpSkpYQWFfQ3dkdGRVRjhEZEh3VnZZNWp3bUZ0dkUtV1hjMWxpT3p2cE5ha25mTnFwMUg5b294LXgzR3ZTc3I2WnNLWEIwZGVSMDFadlp3Mkg4a3ctZTF1MEJ2TWNNRlJHQUZBa0FQa1FwSTVlbjVwZ01KQjdKS19ubVI0VWVsaUU3czNIeVJDRHBfRUw2R2Jfbjk5bTJuTTlRczJuTjNn?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-lider-do-governo-lula-propoe-novo-imposto-sobre-as-receitas-das-big-techs",
+   "titulo": "Líder do governo Lula propõe novo imposto sobre as receitas das big techs",
+   "fonte": "Gazeta do Povo",
+   "data": "2026-11-17",
+   "hora": "18:56",
+   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOOGVoSlJXQ1EtSXZSTjltR19mZHYwcmp3NnlGYVBaUGh0UGhNcGh3WkNNWk5yWFlldTlmUUN1TFIzeXFnQUEzY2hTOENmNFhncXBTWTRqRkg0YVFLNUNJZDJCWWF5SEFXRlY0ZUFlRVMyd3hYNXpfc0FZNTJ2RmpFaHowXzUwXzNmWldfVnhrdjBOdFVXempsM0NKYkhUU0hmNmtFV21uRmpCQWVWOXluYTU4d0gyZGM?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-audiencia-no-senado-debate-nova-aliquota-da-reforma-tributaria",
+   "titulo": "Audiência no Senado debate nova alíquota da reforma tributária",
+   "fonte": "Agência Brasil",
+   "data": "2026-11-17",
+   "hora": "13:50",
+   "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQeXp1bXJnNVN2ZDZPZjAycUR0cGVQS2FuMVdGWUJrTFBZWlZCOUZjNUY5NktwbThsazhoSVc5UmpHbk55eHV4RnpUX21TVkJ4NWZacXVGZVcwZ1pHa0ZfczVxNEdsV0d0ZUdweHpIckNfQXYwR0poV3czOVZzVG9IRkZDSW5GUjdHMjhOb3RPT1VDejdQeFpMZHdzdEZsWUkyYk1WRmJjaEhvLW1OcG11d1NaN3Y3TURGWFpZS1Q1V2VYYmNrazRGRFRfRzN4YnR6MUp5dGViVQ?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-senado-limita-compensacao-tributaria-entenda-o-impacto-no-caixa-das-empresas",
+   "titulo": "Senado limita compensação tributária: entenda o impacto no caixa das empresas",
+   "fonte": "Gazeta do Povo",
+   "data": "2026-11-16",
+   "hora": "21:20",
+   "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPVGpIX0Yxd1l3Y2ltbEZ2VmpMRFpmcTFxWDkyT1l6UVFMQ01DU296U2gzcGNzQlBWbXdQSDByekVSRk5GNjVFZVdMTEU2MHdLV201NnVKT0tVbGFDbjE3bGZxRzNyX2UxbjFlN3UxeGxzeFMwUzVCN3FFVk1LVzJ2aEZwTFFRQWc5eEJzQTJBTXg3NkZMVHdDY0RpWXJwVU5ZVUF5MlcybF84Q09SWTlsOTVISVhoZU93RV9HVlZR?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-sistema-faep-pede-rejeicao-de-projeto-que-preve-taxar-titulos-do-agro",
+   "titulo": "Sistema FAEP pede rejeição de projeto que prevê taxar títulos do agro",
+   "fonte": "CNN Brasil",
+   "data": "2026-11-16",
+   "hora": "17:29",
+   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMkZaam9qcDN2cUZyakhSc3Yxbkl3cnRiRW5weUtMZ2QtSHRvVHhFUThDQTdxZ3ZLcm1BVDhEclpEUzlVMWtMRUhDVU9BRFVtR0ZTQW9YdFA1WjllLXpwMFc4VzdxeTFmRlBpTzM5MnlydU80SElQSDRxN09YWjVmR3VVcW4wYTFGT0F0Q0xuOGdITUxhMzduczZNek9mZWtXTGtvUjVaUQ?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-durigan-vai-ao-senado-debater-aliquota-de-novo-imposto",
+   "titulo": "Durigan vai ao Senado debater alíquota de novo imposto",
+   "fonte": "SBT News",
+   "data": "2026-11-16",
+   "hora": "06:00",
+   "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPVGJ6aHg2WWNUaXZRYUxpVmIyMW5sUDlQSVBoakVuOHhLcm43SGx5YURRYnVJRU9pV0hzQWl2dWI4QWhoYzNzajVmOERxdGtGWHVBWlpVS25TcFVpaHlnSktTa0JZTkkzTkpqejlvQmljWGxFajV5c2Y5d3RCSE9mOEh5ellmV0dyWmxVd18yaU9oNDR4UmVxM0dQdmNWeDg?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-governo-aumenta-imposto-sobre-pneus-importados-e-tarifa-pode-encarecer-produto-s",
+   "titulo": "Governo aumenta imposto sobre pneus importados e tarifa pode encarecer produto #shorts #JR24H",
+   "fonte": "R7",
+   "data": "2026-11-14",
+   "hora": "21:50",
+   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOai1CNHBGUnFIQm9GbFZoMnFXbnZDOUpLeHhKanpxUzNwWlJNbGM2VlZaTVd4UWJmT0NJUDljbUpjY0dQNWZxWnZEYXVxSFJUSHdGRzM4WlFyM1VSTlh1LXFKZEczUXJBU0w1NE15My1CdkFVcEFCaHFUTWJKMEprLUJNQmd5M3IzMjlhczF3U21uQ3I3V0RrZ3ZjTTRQS2tZckNHRGlXdXEyMFNZQWFaejdZNmxXMGluZm84ZUJoQ1NINFY3aks2cndEUkNYdUU?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-governo-aumenta-imposto-sobre-pneus-importados-e-medida-pode-elevar-precos",
+   "titulo": "Governo aumenta imposto sobre pneus importados e medida pode elevar preços",
+   "fonte": "R7",
+   "data": "2026-11-14",
+   "hora": "20:20",
+   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOaFAzV1RBR3lsR2o2YlIzaUdKeTljUllxSmtjZjlkUG1VLXFaNUVKRWxCTHhkdGFCOTJrWml6QnBGQTRieUlleF9jc3FReGdkSTlBcHNEemcxU2dLbjNlcmhXejJVRUJwMlVncHJ1VVZrU1VSdmY0VFhuVTBLZ0tVVXQ2MV9QNmZYOUQybUJ0Y2FITFB6Sk1hNF85UmNWc2FnUzd5b3l5WGZkdWpMWjh2c3dHMVY2YjN6cm51SHl6NUU?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-ala-do-pt-defende-ajuste-fiscal-com-mais-impostos",
+   "titulo": "Ala do PT defende ajuste fiscal com mais impostos",
+   "fonte": "Poder360",
+   "data": "2026-11-14",
+   "hora": "19:12",
+   "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQTUNuNUFQVTI5X1FzRmZxUGxLbmMzVFhYN0E2MnpvUGxjQjZrUUo2cXJHNUpLUHVUWmxwaU9NSFU1Y0xVQmlsTExmU2NCLWtnbjhaM0pKQ3Z2ZGs5U3BFTGJ2N1pxdEVQRGlkelNnTGFnOEVTdlJxUzdWcW1xblVyM2VPNm5nSENxYnNkNU5hdnJoNjc2OHNSSGRR?oc=5",
+   "visto_em": "2026-11-18"
+  }
+ ]
+}
