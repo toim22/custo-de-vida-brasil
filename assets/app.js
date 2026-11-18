@@ -410,12 +410,29 @@
         return (series.length > 1 ? se.nome + " " : "") + (p ? fmtY(p[1]) : "—");
       }).join(" · ");
       dica.textContent = txt; dica.hidden = false;
-      dica.style.left = (px(i) / W * r.width) + "px";
-      dica.style.top = (mT / H * r.height + 8) + "px";
+      // mantém a etiqueta inteira dentro do gráfico (não corta nas pontas)
+      var ra = alvo.getBoundingClientRect(), larg = dica.offsetWidth, cx = px(i) / W * r.width;
+      cx = Math.max(larg / 2, Math.min(r.width - larg / 2, cx));
+      dica.style.left = (r.left - ra.left + cx) + "px";
+      dica.style.top = (r.top - ra.top + mT / H * r.height + 8) + "px";
     }
+    function esconder() { dica.hidden = true; guia.setAttribute("visibility", "hidden"); }
+    // Celular: o dedo arrastando na horizontal mostra os valores (a página não rola);
+    // na vertical a página rola normalmente. Ao soltar, a etiqueta fica até tocar fora.
+    svg.style.touchAction = "pan-y";
+    svg.addEventListener("pointerdown", function (ev) {
+      if (ev.pointerType !== "mouse") { try { svg.setPointerCapture(ev.pointerId); } catch (e) {} }
+      mover(ev);
+    });
     svg.addEventListener("pointermove", mover);
-    svg.addEventListener("pointerleave", function () { dica.hidden = true; guia.setAttribute("visibility", "hidden"); });
+    svg.addEventListener("pointerleave", function (ev) { if (ev.pointerType === "mouse") esconder(); });
+    alvo._esconder = esconder;
   }
+
+  // tocar fora de um gráfico esconde a etiqueta de valor
+  document.addEventListener("pointerdown", function (ev) {
+    desenhados.forEach(function (el) { if (el._esconder && !el.contains(ev.target)) el._esconder(); });
+  });
 
   // redesenha os gráficos quando a largura muda (girar o celular, por exemplo)
   var desenhados = [], espera;
