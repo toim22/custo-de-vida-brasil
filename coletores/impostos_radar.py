@@ -152,6 +152,7 @@ def noticias(cfg):
             titulo = (it.findtext("title") or "").strip()
             if fonte and titulo.endswith(" - " + fonte):
                 titulo = titulo[: -len(fonte) - 3].strip()
+            titulo = re.sub(r"(\s#\w+)+$", "", titulo).strip()  # tira hashtags do fim (#shorts)
             if norm(fonte) not in confiaveis:
                 continue
             t = norm(titulo)

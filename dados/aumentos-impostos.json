@@ -257,6 +257,28 @@
         ]
       ],
       "instrumento": "PL 5.855/2026"
+    },
+    {
+      "data": "2026-11-17",
+      "esfera": "Federal",
+      "apelido": "Taxa das big techs",
+      "titulo": "Imposto de 3% sobre big techs",
+      "imposto": "CSSD, Contribuição Social sobre Serviços Digitais (novo)",
+      "status": "Proposto pelo líder do governo",
+      "status_tipo": "proposto",
+      "valores": "3% sobre a receita bruta de redes sociais, publicidade digital, streaming, buscadores e inteligência artificial. Vale para empresas, do Brasil ou de fora, com faturamento global acima de R$ 3 bilhões e receita acima de R$ 30 milhões no Brasil.",
+      "efeito": "Cobrado das grandes empresas, mas pode chegar ao preço de assinaturas de streaming e de anúncios. O dinheiro iria para programas de renda básica por cinco anos. O projeto não diz quanto arrecadaria.",
+      "fontes": [
+        [
+          "Senado (PLP 308/2026)",
+          "https://www25.senado.leg.br/web/atividade/materias/-/materia/176440"
+        ],
+        [
+          "InfoMoney/O Globo",
+          "https://www.infomoney.com.br/politica/lider-do-governo-no-congresso-apresenta-projeto-para-taxar-big-techs/"
+        ]
+      ],
+      "instrumento": "PLP 308/2026 (Senado, Randolfe Rodrigues, PT-AP)"
     }
   ]
 }
