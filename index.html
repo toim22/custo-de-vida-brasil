@@ -13,8 +13,8 @@
 <meta property="og:description" content="Quanto custa viver no Brasil hoje? Cesta básica, combustível, gás, churrasco e salário mínimo, por estado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="assets/estilo.css?v=20261118-renda1">
-<script src="assets/app.js?v=20261118-renda1" defer></script>
+<link rel="stylesheet" href="assets/estilo.css?v=20261118-semrenda">
+<script src="assets/app.js?v=20261118-semrenda" defer></script>
 </head>
 <body>
 <main class="wrap">
@@ -37,10 +37,8 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   var C = window.CVB;
-  Promise.all([C.carregar("combustiveis"), C.carregar("cesta"), C.carregar("salario"), C.carregar("churrasco"), C.config("tanque"), C.carregar("aumentos-impostos"), C.carregar("aluguel"), C.carregar("trabalho"), C.carregar("ipca")]).then(function (r) {
+  Promise.all([C.carregar("combustiveis"), C.carregar("cesta"), C.carregar("salario"), C.carregar("churrasco"), C.config("tanque"), C.carregar("aumentos-impostos"), C.carregar("aluguel")]).then(function (r) {
     var comb = r[0], cesta = r[1], sal = r[2], ch = r[3], tanque = r[4], imp = r[5], al = r[6];
-    // renda média de quem trabalha (IBGE), em valor nominal, para comparar com o preço de cada cartão
-    var renda = C.rendaNominal(r[7], r[8]);
     var litrosTanque = (tanque && tanque.litros) || 49;
     var sel = document.getElementById("local");
     var locais = comb ? Object.keys(comb.series) : ["BR"];
@@ -84,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var u = C.ultimo(cb.total), a = C.anterior(cb.total);
         cards.push({ href: "cesta.html", destaque: true, titulo: "Cesta básica · DIEESE · " + cb.nome, rotulo: C.data(u[0]), valor: C.brl(u[1], 2),
           selo: a ? selo((u[1] / a[1] - 1) * 100, txtPct((u[1] / a[1] - 1) * 100) + " no mês") : "",
-          corpo: C.versus(cb.total, renda, "Cesta", { brasil: local !== "BR" }),
+          corpo: C.mini(cb.total),
           linhas: [C.variacao(C.variacao12(cb.total)) + " em 12 meses"],
           ir: "Ver item por item" });
       } else cards.push({ href: "cesta.html", destaque: true, titulo: "Cesta básica · DIEESE", linhas: ["Entra na próxima coleta mensal."], ir: "Ver a cesta" });
@@ -98,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         cards.push({ href: "combustiveis.html#gasolina", titulo: "Gasolina · " + C.nomeLocal(localComb), rotulo: "litro · semana até " + C.data(ug[0]), valor: C.brl(ug[1], 2),
           selo: ag ? selo(Math.abs(ug[1] - ag[1]) < 0.005 ? 0 : ug[1] - ag[1], C.brl(Math.abs(ug[1] - ag[1]), 2) + " na semana") : "",
-          corpo: C.versus(g, renda, "Gasolina", { brasil: local !== "BR" }), linhas: [C.variacao(C.variacao12(g)) + " em 12 meses"].concat(outros.length ? [outros.join(" · ")] : []),
+          corpo: C.mini(g, 26), linhas: [C.variacao(C.variacao12(g)) + " em 12 meses"].concat(outros.length ? [outros.join(" · ")] : []),
           ir: "Ver por estado e quanto é imposto" });
       }
       // Gás de cozinha
@@ -106,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var b = sc.glp, ub = C.ultimo(b), ab = C.anterior(b);
         cards.push({ href: "combustiveis.html#glp", titulo: "Gás de cozinha · " + C.nomeLocal(localComb), rotulo: "botijão de 13 kg", valor: C.brl(ub[1], 2),
           selo: ab ? selo(Math.abs(ub[1] - ab[1]) < 0.005 ? 0 : ub[1] - ab[1], C.brl(Math.abs(ub[1] - ab[1]), 2) + " na semana") : "",
-          corpo: C.versus(b, renda, "Gás", { brasil: local !== "BR" }), linhas: [C.variacao(C.variacao12(b)) + " em 12 meses"],
+          corpo: C.mini(b, 26), linhas: [C.variacao(C.variacao12(b)) + " em 12 meses"],
           ir: "Ver o gás por estado" });
       }
       // Churrasco
@@ -114,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var t = ch.total[local] || ch.total.BR, uc = C.ultimo(t);
         if (uc) cards.push({ href: "churrasco.html", titulo: "Churrasco pra 6 · " + C.nomeLocal(ch.total[local] ? local : "BR"), rotulo: "6 pessoas · " + C.data(uc[0]), valor: C.brl(uc[1], 0),
           selo: C.anterior(t) ? selo((uc[1] / C.anterior(t)[1] - 1) * 100, txtPct((uc[1] / C.anterior(t)[1] - 1) * 100) + " no mês") : "",
-          corpo: C.versus(t, renda, "Churrasco", { brasil: local !== "BR" }), linhas: [C.brl(uc[1] / 6, 2) + " por pessoa · " + C.variacao(C.variacao12(t)) + " em 12 meses"], ir: "Ver a lista" });
+          corpo: C.mini(t), linhas: [C.brl(uc[1] / 6, 2) + " por pessoa · " + C.variacao(C.variacao12(t)) + " em 12 meses"], ir: "Ver a lista" });
       }
       // Salário mínimo e o que ele compra (no salário, subir é bom: verde)
       if (sal && C.ultimo(sal.serie)) {
@@ -135,11 +133,10 @@ document.addEventListener("DOMContentLoaded", function () {
         var la = al.ipca.locais[local] ? local : "BR", li = al.ipca.locais[la].indice, ua = C.ultimo(li);
         var v12a = C.variacao12(li), fz = (al.fipezap && al.fipezap.cidades) || {};
         var cidAl = Object.keys(fz).filter(function (n) { return la === "BR" ? fz[n].media : fz[n].uf === la; }).sort(function (a, b) { return (fz[b].capital ? 1 : 0) - (fz[a].capital ? 1 : 0); })[0];
-        // etiqueta: aluguel de um apê de 60 m² (FipeZap); o quanto subiu desde jan/2023 já aparece no gráfico
-        var apeAl = cidAl && C.ultimo(fz[cidAl].preco_m2), m2Al = al.fipezap && al.fipezap.area_referencia_m2 || 60;
-        if (ua) cards.push({ href: "aluguel.html", titulo: "Aluguel · " + (la === "BR" ? "Brasil" : al.ipca.locais[la].area_ibge),
-          rotulo: apeAl ? "apê de " + m2Al + " m² · " + (fz[cidAl].media ? "média das cidades" : cidAl) + " · " + C.data(apeAl[0]) : "subiu desde jan/2023 · até " + C.data(ua[0]),
-          valor: apeAl ? C.brl(apeAl[1] * m2Al, 0) : C.pct(ua[1] - 100, 1), selo: (function (v) { return v !== null ? selo(v, txtPct(v) + " em 12 meses") : ""; })(apeAl ? C.variacao12(fz[cidAl].preco_m2) : v12a), corpo: C.versus(li, renda, "Aluguel", { brasil: local !== "BR" }), ir: "Ver o aluguel por região" });
+        var linhasAl = [];
+        if (cidAl && C.ultimo(fz[cidAl].preco_m2)) linhasAl.push("Apê de 60 m² " + (fz[cidAl].media ? "(média das cidades)" : "em " + cidAl) + ': <b class="mono">' + C.brl(C.ultimo(fz[cidAl].preco_m2)[1] * (al.fipezap.area_referencia_m2 || 60), 0) + "</b>/mês");
+        if (ua) cards.push({ href: "aluguel.html", titulo: "Aluguel · " + (la === "BR" ? "Brasil" : al.ipca.locais[la].area_ibge), rotulo: "subiu desde jan/2023 · até " + C.data(ua[0]),
+          valor: C.pct(ua[1] - 100, 1), selo: v12a !== null ? selo(v12a, txtPct(v12a) + " em 12 meses") : "", corpo: C.mini(li), linhas: linhasAl, ir: "Ver o aluguel por região" });
       }
       // Aumentos de impostos desde o 2º turno
       if (imp && imp.itens && imp.itens.length) {

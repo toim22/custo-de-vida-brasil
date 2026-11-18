@@ -240,73 +240,6 @@
       '<span class="mx" style="left:0">' + mes(pts[0][0]) + '</span><span class="mx" style="right:0">' + mes(u[0]) + "</span></div></div>";
   }
 
-  /* ---------- Preço x renda ----------
-     Renda média de quem trabalha (IBGE, PNAD Contínua, tabela 6390). O IBGE só publica essa série
-     em valores REAIS (já descontada a inflação, em reais do último trimestre). Para comparar com preços
-     de etiqueta, voltamos ao valor nominal: real × IPCA médio do trimestre móvel ÷ IPCA médio do último
-     trimestre. Índice do IPCA com base dez/2022 = 100 (nov/2022 = 100 ÷ 1,0062, porque o IPCA de dez/2022 foi 0,62%). */
-  function rendaNominal(trab, ipca) {
-    var real = trab && trab.renda_media, vari = ipca && ipca.series && ipca.series.geral && ipca.series.geral.BR;
-    if (!real || !real.length || !vari || !vari.length) return null;
-    var ind = { "2022-11": 100 / 1.0062, "2022-12": 100 }, n = 100;
-    vari.forEach(function (p) { n = n * (1 + p[1] / 100); ind[p[0]] = n; });
-    var mesAntes = function (k, q) { var a = +k.slice(0, 4), m = +k.slice(5, 7) - q; while (m < 1) { m += 12; a -= 1; } return a + "-" + (m < 10 ? "0" : "") + m; };
-    var tri = function (k) { var v = [k, mesAntes(k, 1), mesAntes(k, 2)].map(function (x) { return ind[x]; }); return v.indexOf(undefined) > -1 ? null : (v[0] + v[1] + v[2]) / 3; };
-    var pts = real.filter(function (p) { return tri(p[0]) !== null; });
-    if (!pts.length) return null;
-    var ref = tri(pts[pts.length - 1][0]);
-    return pts.map(function (p) { return [p[0], p[1] * tri(p[0]) / ref]; });
-  }
-
-  /* Série semanal/diária → mensal (média dos valores do mês). Série mensal passa igual. */
-  function mensal(serie) {
-    var soma = {}, cont = {};
-    (serie || []).forEach(function (p) { if (p[1] === null) return; var k = p[0].slice(0, 7); soma[k] = (soma[k] || 0) + p[1]; cont[k] = (cont[k] || 0) + 1; });
-    return Object.keys(soma).sort().map(function (k) { return [k, soma[k] / cont[k]]; });
-  }
-
-  /* Gráfico pequeno do cartão: quanto o preço subiu x quanto a renda subiu, em %, desde o mesmo mês.
-     Os dois começam em 0% e vão até o último mês que os dois têm. Embaixo, uma frase só:
-     o item pesa X% mais (vermelho) ou menos (verde) no bolso do que pesava no começo. */
-  function versus(preco, renda, nomeItem, opts) {
-    preco = mensal(preco); renda = renda || [];
-    if (preco.length < 2 || renda.length < 2) return "";
-    var mapa = {}; renda.forEach(function (p) { mapa[p[0]] = p[1]; });
-    var comum = preco.filter(function (p) { return mapa[p[0]] !== undefined; });
-    if (comum.length < 2) return "";
-    var p0 = comum[0][1], r0 = mapa[comum[0][0]];
-    var sp = comum.map(function (p) { return [p[0], (p[1] / p0 - 1) * 100]; });
-    var sr = comum.map(function (p) { return [p[0], (mapa[p[0]] / r0 - 1) * 100]; });
-    var ys = sp.concat(sr).map(function (p) { return p[1]; }).concat([0]);
-    var ticks = escalaBonita(Math.min.apply(null, ys), Math.max.apply(null, ys), 4);
-    var y0 = ticks[0], y1 = ticks[ticks.length - 1], W = 300, H = 100;
-    var px = function (i) { return i / (comum.length - 1) * W; };
-    var py = function (v) { return (1 - (v - y0) / (y1 - y0)) * H; };
-    var linha = function (s) { return s.map(function (p, i) { return (i ? "L" : "M") + px(i).toFixed(1) + " " + py(p[1]).toFixed(1); }).join(" "); };
-    var mes = function (k) { return MESES[+k.slice(5, 7) - 1] + "/" + k.slice(2, 4); };
-    var up = sp[sp.length - 1][1], ur = sr[sr.length - 1][1];
-    var guias = ticks.map(function (t) { return '<line x1="0" x2="' + W + '" y1="' + py(t).toFixed(1) + '" y2="' + py(t).toFixed(1) + '" stroke="#2E3531" vector-effect="non-scaling-stroke"/>'; }).join("");
-    // números do eixo só no 0% e no topo, para não poluir o cartão
-    var rot = ticks.filter(function (t) { return t === 0 || t === y1; }).map(function (t) { return '<span class="my" style="top:' + (py(t) / H * 100).toFixed(1) + '%">' + numero(t, 0) + "%</span>"; }).join("");
-    // rótulos do fim das linhas, afastados para não ficarem um em cima do outro
-    var tp = py(up) / H * 100, tr = py(ur) / H * 100;
-    if (Math.abs(tp - tr) < 22) { var meio = (tp + tr) / 2, des = tp <= tr ? -11 : 11; tp = meio + des; tr = meio - des; }
-    var ponto = function (v, cls) { return '<i class="vs-ponto ' + cls + '" style="top:' + (py(v) / H * 100).toFixed(1) + '%"></i>'; };
-    var fim = function (v, top, cls) { return '<b class="vs-fim ' + cls + '" style="top:' + top.toFixed(1) + '%">' + pct(v, 1) + "</b>"; };
-    // quanto o item pesa no bolso agora, comparado ao começo: (1 + preço) ÷ (1 + renda) − 1
-    var peso = ((1 + up / 100) / (1 + ur / 100) - 1) * 100;
-    var frase = Math.abs(peso) < 0.05 ? '<span class="d igual">= Pesa o mesmo no bolso que em ' + data(comum[0][0]) + "</span>"
-      : '<span class="d ' + classe(peso) + '">' + flecha(peso) + numero(Math.abs(peso), 1) + "% " + (peso > 0 ? "mais pesado" : "mais leve") + "</span> no bolso que em " + data(comum[0][0]);
-    return '<div class="vs" aria-label="' + nomeItem + " subiu " + pct(up, 1) + " e a renda média subiu " + pct(ur, 1) + " de " + data(comum[0][0]) + " a " + data(comum[comum.length - 1][0]) + '">' +
-      '<div class="vs-leg" aria-hidden="true"><span class="vs-p">' + nomeItem + '</span><span class="vs-r">Renda média' + (opts && opts.brasil ? " (Brasil)" : "") + '</span></div>' +
-      '<div class="mini-g vs-g" aria-hidden="true"><div class="mini-a"><svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none">' + guias +
-      '<path d="' + linha(sr) + '" fill="none" stroke="#7FB2F0" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>' +
-      '<path d="' + linha(sp) + '" fill="none" stroke="#FFD23F" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>' +
-      ponto(ur, "vs-r") + ponto(up, "vs-p") + fim(ur, tr, "vs-r") + fim(up, tp, "vs-p") + rot +
-      '<span class="mx" style="left:0">' + mes(comum[0][0]) + '</span><span class="mx" style="right:0">' + mes(comum[comum.length - 1][0]) + "</span></div></div>" +
-      '<span class="linha vs-frase">' + frase + "</span></div>";
-  }
-
   /* Barra verde e amarela de impostos: valor em R$ nas duas partes e % na amarela. */
   function barraImpostos(semImp, imposto, rotulo) {
     var total = semImp + imposto, p = total > 0 ? Math.max(0, Math.min(100, imposto / total * 100)) : 0;
@@ -721,7 +654,7 @@
   window.CVB = {
     SITE: SITE, UFS: UFS, REGIOES: REGIOES, nomeLocal: nomeLocal, emLocal: emLocal, seletorLocal: seletorLocal, lembrar: lembrar,
     brl: brl, numero: numero, pct: pct, milhoes: milhoes, data: data, horas: horas, seta: seta, variacao: variacao, varDupla: varDupla, classe: classe,
-    mini: mini, versus: versus, rendaNominal: rendaNominal, mensal: mensal, bandeira: bandeira, iconeRegiao: iconeRegiao, config: config, barraImpostos: barraImpostos,
+    mini: mini, bandeira: bandeira, iconeRegiao: iconeRegiao, config: config, barraImpostos: barraImpostos,
     ultimo: ultimo, anterior: anterior, valorEm: valorEm, variacao12: variacao12,
     carregar: carregar, grafico: grafico, dolarAoVivo: dolarAoVivo, MESES: MESES
   };
