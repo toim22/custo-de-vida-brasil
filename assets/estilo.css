@@ -129,11 +129,11 @@ a.card:hover { border-color: var(--muted); }
 
 /* Gráfico */
 .grafico { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: grid; gap: 8px; min-width: 0; }
-.grafico svg { width: 100%; height: auto; display: block; }
+.grafico svg { width: 100%; height: auto; display: block; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
 .grafico .cab { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: baseline; }
 .grafico .rodape { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--muted); }
 .grafico details summary { cursor: pointer; font-size: .8rem; color: var(--accent); }
-.tooltip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: .78rem; font-weight: 600; padding: 4px 8px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, -120%); }
+.tooltip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: .78rem; font-weight: 600; padding: 4px 8px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, -120%); z-index: 2; box-shadow: 0 4px 14px rgba(0,0,0,.35); }
 
 /* Tabelas */
 .tabela { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
