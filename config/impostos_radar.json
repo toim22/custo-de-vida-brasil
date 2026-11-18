@@ -1,0 +1,25 @@
+{
+  "nota": "Configuração do radar automático de impostos (coletores/impostos_radar.py). Dá para editar à mão.",
+  "dias_projetos": 15,
+  "guardar_projetos_dias": 60,
+  "dias_noticias": 4,
+  "guardar_noticias_dias": 10,
+  "max_noticias": 15,
+  "buscas_noticias": [
+    "\"novo imposto\" Brasil",
+    "\"aumento de imposto\" OR \"aumenta imposto\" OR \"eleva imposto\"",
+    "\"projeto de lei\" taxar OR taxação OR tributar",
+    "alíquota sobe OR elevação imposto governo federal",
+    "Câmara OR Senado aprova imposto"
+  ],
+  "fontes_confiaveis": [
+    "g1", "Folha de S.Paulo", "Folha", "Estadão", "O Estado de S. Paulo", "O Globo", "UOL", "Valor Econômico", "Valor",
+    "CNN Brasil", "Poder360", "InfoMoney", "Exame", "Metrópoles", "Correio Braziliense", "Estado de Minas",
+    "Gazeta do Povo", "O Tempo", "Agência Brasil", "Agência Senado", "Agência Câmara de Notícias", "Câmara dos Deputados",
+    "Senado Federal", "R7", "R7.com", "SBT News", "Band", "BandNews", "InvestNews", "JOTA", "VEJA", "Veja", "CartaCapital",
+    "Terra", "IstoÉ Dinheiro", "Seu Dinheiro", "Money Times", "Jornal do Commercio", "Zero Hora", "GZH", "O Povo",
+    "Diário do Nordeste", "Correio do Povo", "Jovem Pan", "Revista Oeste", "Revista Fórum", "Brasil de Fato",
+    "BBC", "BBC News Brasil", "Reuters", "Bloomberg Línea", "Ministério da Fazenda", "gov.br", "Agência Gov",
+    "Lupa", "Aos Fatos", "Estadão Verifica", "Pública"
+  ]
+}
