@@ -593,10 +593,9 @@
     }).observe(document.body, { childList: true, subtree: true });
   }
 
-  /* ---------- Foto pequena no canto de cada cartão ----------
-     Fotos do Wikimedia Commons com licença livre (créditos em como-calculamos.html),
-     recortadas em 200x200 e guardadas em assets/fotos/. O cartão é reconhecido pelo título;
-     cartões com bandeira de estado/região ficam sem foto para não poluir. */
+  /* ---------- Desenho pequeno no canto de cada cartão ----------
+     Ilustrações coloridas feitas para o site (assets/desenhos/*.svg, sem licença de terceiros).
+     O cartão é reconhecido pelo título; cartões com bandeira de estado/região ficam sem desenho. */
   // a ordem importa: o primeiro que bater no título vale
   var QUAL_DESENHO = [
     [/imposto/, "imposto"], [/cesta/, "cesta"], [/gasolina|etanol|diesel|combust/, "bomba"],
@@ -617,7 +616,7 @@
     if (!achou || velho) return;
     var s = document.createElement("span");
     s.className = "ico-card"; s.dataset.d = achou[1]; s.setAttribute("aria-hidden", "true");
-    s.innerHTML = '<img src="assets/fotos/' + achou[1] + '.jpg" alt="" loading="lazy" decoding="async" width="200" height="200">';
+    s.innerHTML = '<img src="assets/desenhos/' + achou[1] + '.svg" alt="" decoding="async" width="64" height="64">';
     el.insertBefore(s, el.firstChild);
   }
   function desenharCartoes(raiz) {
