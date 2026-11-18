@@ -505,3 +505,18 @@ button.card[aria-pressed="true"] { border-color: var(--tag); box-shadow: 0 0 0 1
   .topo .cota .d.vd .va { display: none; }          /* no celular, só seta e % (o valor fica na página Mercado) */
   .topo .cota .d.vd .vp { min-width: 0; border-left: 0; padding-left: 0; }
 }
+
+/* Desenho no canto de cada cartão: some da esquerda para a direita e fica atrás do conteúdo */
+.card, .la-card { position: relative; isolation: isolate; }
+.ico-card { position: absolute; top: 12px; right: 12px; width: 64px; height: 64px; color: var(--tag); opacity: .42; z-index: 0; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, #000 15%, rgba(0,0,0,.08) 100%); mask-image: linear-gradient(to right, #000 15%, rgba(0,0,0,.08) 100%); }
+.ico-card svg { width: 100%; height: 100%; display: block; }
+:where(.card, .la-card) > :where(:not(.ico-card)) { position: relative; z-index: 1; }
+.painel .card.destaque .ico-card { width: 76px; height: 76px; }
+@media (max-width: 640px) { .ico-card { width: 46px; height: 46px; top: 10px; right: 10px; } .painel .card.destaque .ico-card { width: 52px; height: 52px; } }
+.la-card .ico-card { width: 46px; height: 46px; opacity: .34; }
+.la-card #bolso { padding-right: 44px; }
+.m-card .ico-card { width: 30px; height: 30px; top: 10px; right: 10px; opacity: .5; }
+.m-card .topo-c { padding-right: 34px; }
+.cards > .card .ico-card { width: 44px; height: 44px; opacity: .36; }
+.cards > .card .t { padding-right: 40px; }
