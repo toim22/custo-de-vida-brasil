@@ -1,5 +1,5 @@
 {
-  "atualizado": "2026-11-17",
+  "atualizado": "2026-11-18",
   "desde": "2026-10-25",
   "nota": "Lista feita à mão a partir de atos oficiais, notícias e checagens. Entra o que foi publicado, votado ou formalmente proposto depois do 2º turno (25/10/2026). Boato e \"o governo estuda\" ficam de fora.",
   "itens": [
@@ -155,26 +155,30 @@
       "instrumento": "Reforma tributária (LC 214/2025)"
     },
     {
-      "data": "2026-11-13",
+      "data": "2026-11-17",
       "esfera": "Federal",
       "apelido": "Taxação das grandes fortunas",
       "titulo": "Imposto sobre patrimônio acima de R$ 15 mi",
       "imposto": "Imposto sobre Grandes Fortunas (novo)",
       "status": "Proposto por deputados do PT",
       "status_tipo": "proposto",
-      "valores": "De 0,7% a 3% ao ano sobre o patrimônio líquido acima de R$ 15 milhões, em quatro faixas.",
-      "efeito": "Atinge só quem tem mais de R$ 15 milhões. Ainda não tem relator nem data de votação.",
+      "valores": "De 0,7% a 3% ao ano sobre o patrimônio líquido acima de R$ 15 milhões, em quatro faixas. A faixa de 3% vale para a parte acima de R$ 200 milhões.",
+      "efeito": "Atinge só quem tem mais de R$ 15 milhões. Foi reapresentado como projeto de lei complementar, que é o tipo de lei que a Constituição exige para esse imposto. Ainda não tem relator nem data de votação.",
       "fontes": [
+        [
+          "Câmara (PLP 307/2026)",
+          "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2654382"
+        ],
+        [
+          "Gazeta do Povo",
+          "https://www.gazetadopovo.com.br/republica/pt-apresenta-alternativa-ao-ajuste-fiscal-com-mais-impostos-e-mudanca-na-autonomia-do-bc/"
+        ],
         [
           "Gazeta do Povo",
           "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"
-        ],
-        [
-          "Blog do Esmael",
-          "https://esmaelmorais.com.br/pt-quatro-projetos-taxar-fortunas-dividendos"
         ]
       ],
-      "instrumento": "PL 5.852/2026"
+      "instrumento": "PLP 307/2026 (refeito; antes era o PL 5.852/2026)"
     },
     {
       "data": "2026-11-13",
@@ -188,6 +192,10 @@
       "efeito": "Quem investe nesses papéis ganharia menos. Bancos podem cobrar mais caro no crédito para casa e para o agro, que esses papéis financiam.",
       "fontes": [
         [
+          "Câmara (PL 5.853/2026)",
+          "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2653945"
+        ],
+        [
           "Gazeta do Povo",
           "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"
         ],
@@ -199,26 +207,30 @@
       "instrumento": "PL 5.853/2026"
     },
     {
-      "data": "2026-11-13",
+      "data": "2026-11-17",
       "esfera": "Federal",
       "apelido": "Taxação de dividendos",
-      "titulo": "Dividendos de 10% para 15%",
+      "titulo": "Dividendos: imposto de até 25%",
       "imposto": "Imposto de Renda",
       "status": "Proposto por deputados do PT",
       "status_tipo": "proposto",
-      "valores": "IR sobre dividendos sobe de 10% para 15% e deixa de ter o piso de R$ 50 mil por mês. Hoje só paga quem recebe acima desse valor.",
-      "efeito": "Passaria a atingir pequenos sócios e investidores em ações, que hoje recebem dividendos sem imposto.",
+      "valores": "Isento até R$ 5 mil por mês. Acima disso, imposto que sobe aos poucos: 10% até R$ 20 mil, 15% até R$ 50 mil, 20% até R$ 150 mil e 25% acima de R$ 150 mil por mês. Hoje são 10%, só acima de R$ 50 mil por mês.",
+      "efeito": "Quem recebe muito em dividendos pagaria bem mais. Pequenos sócios e investidores, com até R$ 5 mil por mês, continuariam sem imposto. A primeira versão, de 13/11, cobrava 15% de todo mundo e foi trocada por esta.",
       "fontes": [
         [
-          "Gazeta do Povo",
-          "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"
+          "Câmara (PL 5.889/2026)",
+          "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2654838"
         ],
         [
-          "Blog do Esmael",
-          "https://esmaelmorais.com.br/pt-quatro-projetos-taxar-fortunas-dividendos"
+          "Revista Fórum/Contracs",
+          "https://contracs.org.br/2026/11/18/projeto-do-pt-aumenta-imposto-sobre-dividendos-dos-mais-ricos-e-isenta-ganhos-de-ate-r-5-mil/"
+        ],
+        [
+          "Gazeta do Povo",
+          "https://www.gazetadopovo.com.br/republica/pt-apresenta-alternativa-ao-ajuste-fiscal-com-mais-impostos-e-mudanca-na-autonomia-do-bc/"
         ]
       ],
-      "instrumento": "PL 5.854/2026"
+      "instrumento": "PL 5.889/2026 (nova versão; substitui o PL 5.854/2026)"
     },
     {
       "data": "2026-11-13",
@@ -231,6 +243,10 @@
       "valores": "IR sobre juros sobre capital próprio sobe de 17,5% para 20%.",
       "efeito": "Quem recebe JCP de ações ficaria com um pouco menos.",
       "fontes": [
+        [
+          "Câmara (PL 5.855/2026)",
+          "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2653947"
+        ],
         [
           "Gazeta do Povo",
           "https://www.gazetadopovo.com.br/economia/pt-impostos-lucros-dividendos-lci-lca-grandes-fortunas/"

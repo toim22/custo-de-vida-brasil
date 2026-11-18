@@ -50,6 +50,12 @@ jobs:
         continue-on-error: true
         timeout-minutes: 20
         run: python -u luz_agua.py
+      - name: Radar de impostos (projetos na Câmara e no Senado e notícias)
+        # não marca a coleta como falha: se der erro, fica o radar salvo da última vez
+        working-directory: coletores
+        continue-on-error: true
+        timeout-minutes: 10
+        run: python -u impostos_radar.py
       - name: Salvar dados no repositório
         run: |
           git config user.name "robo-coleta"

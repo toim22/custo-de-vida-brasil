@@ -34,6 +34,15 @@
   .resumo-imp { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .9rem; color: var(--muted); }
   .resumo-imp b { font-family: var(--f-mono); color: var(--ink); font-size: 1.15rem; margin-right: 4px; }
   .resumo-imp b.sobe { color: var(--up); }
+  .radar { display: grid; gap: 14px; }
+  .radar h2 { font-size: 1.15rem; }
+  .radar .aviso-radar { font-size: .85rem; color: var(--muted); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; }
+  .radar ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .radar li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: grid; gap: 4px; min-width: 0; }
+  .radar li .quando { font-family: var(--f-mono); font-size: .74rem; color: var(--muted); }
+  .radar li a { color: var(--ink); overflow-wrap: anywhere; }
+  .radar li .ementa { font-size: .88rem; color: #CDD3D0; }
+  .radar .novo { font-size: .68rem; font-weight: 700; color: #000; background: var(--tag); border-radius: 999px; padding: 1px 7px; margin-left: 6px; }
 </style>
 </head>
 <body>
@@ -41,13 +50,21 @@
   <section class="bloco">
     <span class="eyebrow">Desde o 2º turno · 25/10/2026</span>
     <h1>Aumentos de impostos</h1>
-    <p class="read muted">Todo imposto que subiu, foi criado ou foi proposto depois da eleição, principalmente os federais. Cada cartão diz qual imposto (com o nome popular, quando tem), quanto muda e como chega no seu bolso.</p>
+    <p class="read muted">Todo imposto que subiu, foi criado ou foi proposto depois da eleição, principalmente os federais. A lista é conferida à mão; no fim da página ficam os achados automáticos de cada dia. Cada cartão diz qual imposto (com o nome popular, quando tem), quanto muda e como chega no seu bolso.</p>
     <div class="resumo-imp" id="resumo"></div>
   </section>
 
   <section class="bloco">
     <div class="aumentos" id="lista"><p class="aviso">Carregando…</p></div>
     <p class="small" id="nota"></p>
+  </section>
+
+  <section class="bloco radar" id="radar" hidden>
+    <h2>No radar: achados automáticos</h2>
+    <p class="aviso-radar">Duas vezes por dia, o site procura projetos novos sobre impostos na Câmara e no Senado e notícias em veículos conhecidos. <b>O que aparece aqui ainda não foi conferido</b> e pode não ser aumento. Só vira cartão acima depois de checado.</p>
+    <div id="radar-projetos"></div>
+    <div id="radar-noticias"></div>
+    <p class="small" id="radar-nota"></p>
   </section>
 
   <section class="bloco">
@@ -86,6 +103,28 @@ document.addEventListener("DOMContentLoaded", function () {
         "</div></article>";
     }).join("");
     document.getElementById("nota").textContent = "Atualizado em " + dataBR(d.atualizado) + ". " + (d.nota || "");
+  });
+
+  C.carregar("impostos-radar").then(function (r) {
+    if (!r) return;
+    var hoje = r.atualizado ? r.atualizado.slice(0, 10) : "";
+    var novo = function (i) { return i.visto_em && i.visto_em >= hoje ? '<span class="novo">novo</span>' : ""; };
+    var proj = (r.projetos || []).filter(function (p) { return !p.ja_nos_cartoes; });
+    var nots = r.noticias || [];
+    if (!proj.length && !nots.length) return;
+    if (proj.length) document.getElementById("radar-projetos").innerHTML =
+      '<h3 class="small">Projetos apresentados no Congresso</h3><ul>' + proj.map(function (p) {
+        return '<li><span class="quando">' + dataBR(p.data) + " · " + esc(p.casa) + (p.autor ? " · " + esc(p.autor) : "") + "</span>" +
+          '<span><a href="' + esc(p.link) + '" target="_blank" rel="noopener"><b>' + esc(p.numero) + "</b></a>" + novo(p) + "</span>" +
+          '<span class="ementa">' + esc(p.ementa) + "</span></li>";
+      }).join("") + "</ul>";
+    if (nots.length) document.getElementById("radar-noticias").innerHTML =
+      '<h3 class="small">Na imprensa</h3><ul>' + nots.map(function (n) {
+        return '<li><span class="quando">' + dataBR(n.data) + " · " + esc(n.fonte) + "</span>" +
+          '<span><a href="' + esc(n.link) + '" target="_blank" rel="nofollow noopener">' + esc(n.titulo) + "</a>" + novo(n) + "</span></li>";
+      }).join("") + "</ul>";
+    document.getElementById("radar-nota").textContent = "Busca automática feita em " + dataBR(hoje) + ". Fontes: dados abertos da Câmara e do Senado, Google Notícias.";
+    document.getElementById("radar").hidden = false;
   });
 });
 </script>
