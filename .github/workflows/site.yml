@@ -85,7 +85,7 @@ jobs:
       - name: Montar a pasta do site
         run: |
           mkdir _site
-          cp -r *.html assets dados config _site/
+          cp -r *.html CNAME assets dados config _site/
           touch _site/.nojekyll
           # versão nos arquivos do site: o navegador baixa o CSS/JS/logo novos logo após cada publicação
           v=${GITHUB_SHA::8}

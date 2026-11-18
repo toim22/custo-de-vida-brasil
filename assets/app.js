@@ -3,7 +3,7 @@
   "use strict";
 
   var SITE = {
-    nome: "Custo de Vida Brasil",
+    nome: "Tudo Subiu",
     // Endereço do GoatCounter (ex.: "https://custodevida.goatcounter.com"). Vazio = contador desligado.
     contador: ""
   };
