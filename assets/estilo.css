@@ -122,19 +122,6 @@ a.card:hover { border-color: var(--muted); }
 .mini-a .my { position: absolute; right: 100%; margin-right: 6px; transform: translateY(-50%); font-family: var(--f-mono); font-size: .64rem; color: var(--muted); white-space: nowrap; }
 .mini-a .mx { position: absolute; top: 100%; margin-top: 3px; font-size: .64rem; color: var(--muted); white-space: nowrap; }
 .mini-a .mponto { position: absolute; right: -4px; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: currentColor; }
-/* Preço x renda (cartões da página inicial): preço em amarelo, renda em azul; % desde o mesmo mês */
-.vs { display: grid; gap: 6px; }
-.vs-leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .74rem; font-weight: 700; }
-.vs-leg span::before { content: ""; display: inline-block; width: 12px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle; background: currentColor; }
-.vs-p { color: var(--tag); }
-.vs-r { color: #7FB2F0; }
-.vs-g { padding-right: 52px; }
-.vs-g .mini-a { height: 72px; }
-.vs-ponto { position: absolute; right: -4px; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: currentColor; }
-.vs-ponto.vs-p { color: var(--tag); }
-.vs-ponto.vs-r { color: #7FB2F0; }
-.vs-fim { position: absolute; left: 100%; margin-left: 8px; transform: translateY(-50%); font-family: var(--f-mono); font-size: .74rem; font-weight: 600; white-space: nowrap; }
-.painel .card .vs-frase { color: var(--muted); }
 
 /* Bandeiras dos estados */
 .uf { display: inline-flex; align-items: center; }
