@@ -1,4 +1,4 @@
-# Tudo Subiu (tudosubiu.com.br)
+# Tudo Caro (tudocaro.com.br)
 
 Site que acompanha quanto custa viver no Brasil: cesta básica item a item, combustíveis e gás toda semana, Churrasco pra 6, salário mínimo e o que ele compra. Dados desde janeiro de 2023, por Brasil, região e estado.
 
