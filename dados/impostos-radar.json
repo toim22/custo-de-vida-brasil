@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-18T22:11Z",
+ "atualizado": "2026-11-19T01:54Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -12,7 +12,7 @@
    "autor": "Senador Randolfe Rodrigues (PT/AP)",
    "link": "https://www25.senado.leg.br/web/atividade/materias/-/materia/176440",
    "visto_em": "2026-11-18",
-   "ja_nos_cartoes": false
+   "ja_nos_cartoes": true
   },
   {
    "id": "camara-2654838",
@@ -116,12 +116,30 @@
  ],
  "noticias": [
   {
+   "id": "n-senado-pede-explicacoes-ao-tcu-sobre-calculo-de-taxa-de-11-3-para-novo-imposto",
+   "titulo": "Senado pede explicações ao TCU sobre cálculo de taxa de 11,3% para novo imposto",
+   "fonte": "R7",
+   "data": "2026-11-18",
+   "hora": "17:58",
+   "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVF9rekRpelBLQVRzVlI2a1N6V0EzZV9iSWRIczlUc0picEJucTVGdjlJZFNGTjFCMmtSa0JKMzVlSWx0YlJTdlphVVk2ZG0weEpsWHpudmZTbjZPN051ZG80ejBidlVpSEJIWEhtanZUMGpMcVNrTC1SUkg5OV9ZWWhmNGpzUmFqRVVZNUdHczBfMHN6R3dWMnVSOFRrR3NIb2V0LXVQN3ppWXhWSzVRcG9xTExXcUZWTlQtNg?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
    "id": "n-lider-do-governo-quer-taxar-servicos-digitais-para-financiar-renda-basica",
    "titulo": "Líder do governo quer taxar serviços digitais para financiar renda básica",
    "fonte": "Metrópoles",
    "data": "2026-11-18",
    "hora": "16:14",
    "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQM0pWMlpCQVI4VWg2S0tLZUVCMDc3QVJ2MjBvRkdyRUJiYy1sZzV3MldmUjRIeTBRX0dNMzBuU0Y5R3VQbDFFRU0tTzJYOW1PamJvU1dXU3poTzl2ZVZfazlIckZRRk1nSmFoSDllOFlyTDVYNG9fNWM1MU1DdmloYUVOQVJEbm5sRkM5NVBoWEprVEJnUUZTRllYT1BhR1FMbkFfcDZOcGJDaHZSeE1OU0J4UzJlUkE2YUUtN0VyeFk?oc=5",
+   "visto_em": "2026-11-18"
+  },
+  {
+   "id": "n-reforma-tributaria-aliquota-de-11-3-da-cbs-pode-valer-so-em-2027-e-mudar-depois-",
+   "titulo": "Reforma tributária: alíquota de 11,3% da CBS pode valer só em 2027 e mudar depois; entenda",
+   "fonte": "G1",
+   "data": "2026-11-18",
+   "hora": "15:28",
+   "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOMGdBTTB5Qkdsc01sRlFqV09KNWo3QTlVeUJST21iSHA0TE5MU25ZRF91clk2cV8yWkxsdnp0YnRKam1xdjg1Y3pPaTJEWGJianJXSWtDazJMcktxSi1xYTFRZ25ZLVhBVDRMNExBUmFhZ0xiVXY1RENmUER1OEV1cGR6R3ZqcXVvRG1qdWFuUHA4OFRKbmFtRWxHTmFNTDUtYVdfM0pUS0dFWWM4Wk84TlpkbEVOVWN5SGxUTTJFQkoyQ3VKcDNYNnZlZ25RamxIWEcwNEZWZ3ZTYk90QVVhMS1GYXhxRHJvVWVYSWNfVHZzYzc5bThmRXcxaDVwNEdXYXdZcmd2cVVDdElDbGfSAZwCQVVfeXFMTl9CUGM1cmRGRWw3bDJsTkVsME96dHA5Qmw0Mzk3Y0N1WjduRUpHYjZPQUNGcXNaMG1mTEZUWW9HaTY0UUdQU2tlbEctZUV4dzdoakRpVzNjMVFfZ3FPLWFIdVd4TVRtaFZha3NFSU9ET1dfcVctZEIwQVo0T2JPTzBfbG42WEVSeG4wRGJVN2Y3MUNzMmJQYTFSOGUyRGZvcE9UdTdxbHg2LW9ZaTJPdTI2WDU4dzBtemUyalhaZXRnd3ZkbExmOWFSaC1DQVJaYTAza3ViZ1VsWGpFT1JnNG1XMHluOHlPV050VmF2Rk5hTDVVeGQzWVM4VGpQeWtGUVJnNXl0eGhvLURfLTlLck5IbmFvRXNTbXZ3RVk?oc=5",
    "visto_em": "2026-11-18"
   },
   {

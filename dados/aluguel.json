@@ -25990,8 +25990,6 @@
    }
   }
  },
- "avisos": [
-  "Banco Central: igpm sem dados: Ipeadata IGP12_IGPMG12: falha ao baixar http://www.ipeadata.gov.br/api/odata4/ValoresSerie(SERCODIGO='IGP12_IGPMG12'): HTTPConnectionPool(host='www.ip; Banco Central 189: Expecting value: line 1 column 1 (char 0)"
- ],
+ "avisos": [],
  "atualizado": "2026-10"
 }
