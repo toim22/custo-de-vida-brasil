@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-19T01:54Z",
+ "atualizado": "2026-11-19T17:20Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -161,6 +161,15 @@
    "visto_em": "2026-11-18"
   },
   {
+   "id": "n-projeto-do-pt-aumenta-imposto-sobre-dividendos-dos-mais-ricos-e-isenta-ganhos-de",
+   "titulo": "Projeto do PT aumenta imposto sobre dividendos dos mais ricos e isenta ganhos de até R$ 5 mil",
+   "fonte": "Revista Fórum",
+   "data": "2026-11-17",
+   "hora": "20:49",
+   "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE85ZVFlRS1uOTVmNkE5NEZ4dy1zZFEzeFVLRWRSMFFSbXRtTk9ZcEFVZmtNaGttNVF3MHBUeUlfNV9qSmdFNlI1TjhWR0sxOVVxaERCbWQtZXpGYlN6MnpmZUZBSlgzemJWZE5R?oc=5",
+   "visto_em": "2026-11-19"
+  },
+  {
    "id": "n-projeto-propoe-taxar-big-techs-em-3-para-financiar-renda-basica",
    "titulo": "Projeto propõe taxar big techs em 3% para financiar renda básica",
    "fonte": "Band",
@@ -224,30 +233,21 @@
    "visto_em": "2026-11-18"
   },
   {
+   "id": "n-pt-protocola-projetos-para-taxar-lucros-e-dividendos-com-aliquota-de-15-e-tribut",
+   "titulo": "PT protocola projetos para taxar lucros e dividendos com alíquota de 15% e tributar LCI e LCA",
+   "fonte": "Terra",
+   "data": "2026-11-16",
+   "hora": "05:00",
+   "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxNZTZWNEFTX1p6MHN1SDBqem1wQjgwanNZbzI5Y0dfYVlzS2NrbDhlSFZrSWlEOU1OY2NyWkdjbUEzSE4tTXNGNk9lUXpRSWVfU25YR0t1QlNmNmxpUUZFYS16R2lHWlptMEtQSWlyMFFfUl9QSzk2RjhnS25WQXMySVRsVnlKS0c1U0YxS0JzSDVaMy1RZjJ5OGF1RlUzMXZZUmJBallCUW1sanc0Vk9kUDRyNmtyckh4cExCdzh0TUQ1dXRzcjFqb2VPSlpJazlvdUgwY2tpaHZxZFI0QlZPeXZvdzRrVGxsZHExbUhqZ0w1N1lfUWc4cGRTUDV5S2NvdlE?oc=5",
+   "visto_em": "2026-11-19"
+  },
+  {
    "id": "n-governo-aumenta-imposto-sobre-pneus-importados-e-tarifa-pode-encarecer-produto-s",
    "titulo": "Governo aumenta imposto sobre pneus importados e tarifa pode encarecer produto #shorts #JR24H",
    "fonte": "R7",
    "data": "2026-11-14",
    "hora": "21:50",
    "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOai1CNHBGUnFIQm9GbFZoMnFXbnZDOUpLeHhKanpxUzNwWlJNbGM2VlZaTVd4UWJmT0NJUDljbUpjY0dQNWZxWnZEYXVxSFJUSHdGRzM4WlFyM1VSTlh1LXFKZEczUXJBU0w1NE15My1CdkFVcEFCaHFUTWJKMEprLUJNQmd5M3IzMjlhczF3U21uQ3I3V0RrZ3ZjTTRQS2tZckNHRGlXdXEyMFNZQWFaejdZNmxXMGluZm84ZUJoQ1NINFY3aks2cndEUkNYdUU?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-governo-aumenta-imposto-sobre-pneus-importados-e-medida-pode-elevar-precos",
-   "titulo": "Governo aumenta imposto sobre pneus importados e medida pode elevar preços",
-   "fonte": "R7",
-   "data": "2026-11-14",
-   "hora": "20:20",
-   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOaFAzV1RBR3lsR2o2YlIzaUdKeTljUllxSmtjZjlkUG1VLXFaNUVKRWxCTHhkdGFCOTJrWml6QnBGQTRieUlleF9jc3FReGdkSTlBcHNEemcxU2dLbjNlcmhXejJVRUJwMlVncHJ1VVZrU1VSdmY0VFhuVTBLZ0tVVXQ2MV9QNmZYOUQybUJ0Y2FITFB6Sk1hNF85UmNWc2FnUzd5b3l5WGZkdWpMWjh2c3dHMVY2YjN6cm51SHl6NUU?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-ala-do-pt-defende-ajuste-fiscal-com-mais-impostos",
-   "titulo": "Ala do PT defende ajuste fiscal com mais impostos",
-   "fonte": "Poder360",
-   "data": "2026-11-14",
-   "hora": "19:12",
-   "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQTUNuNUFQVTI5X1FzRmZxUGxLbmMzVFhYN0E2MnpvUGxjQjZrUUo2cXJHNUpLUHVUWmxwaU9NSFU1Y0xVQmlsTExmU2NCLWtnbjhaM0pKQ3Z2ZGs5U3BFTGJ2N1pxdEVQRGlkelNnTGFnOEVTdlJxUzdWcW1xblVyM2VPNm5nSENxYnNkNU5hdnJoNjc2OHNSSGRR?oc=5",
    "visto_em": "2026-11-18"
   }
  ]
