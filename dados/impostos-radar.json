@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-19T17:20Z",
+ "atualizado": "2026-11-20T01:51Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -116,6 +116,42 @@
  ],
  "noticias": [
   {
+   "id": "n-pt-propoe-taxar-lcas-e-titulos-do-agro-veja-os-impactos-no-credito-rural",
+   "titulo": "PT propõe taxar LCAs e títulos do agro: veja os impactos no crédito rural",
+   "fonte": "Gazeta do Povo",
+   "data": "2026-11-19",
+   "hora": "21:21",
+   "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQcFJZbF9sWndRdjlzUVE5OUxuRWhrYzRKc2Y0VWhVcHZpa1FRVnFhYXZ2ZXdRUVFLekN6OVdWUmlSbE1JR0tSZ1RTbl9zUzZVSG1XeU5iNzBJenoxRGxBRTFxNnF1a2pheG5iS0tJOWQ2VlNlOXJpVEg1RGh6T0hfUzFhTk8xZzlwQklGa2MwTnFKUkY4VjdkaWRwZUQyVGFjR2kyUnM4RUlVR3pFTXZzNzhaUU5UWHA2bHlz?oc=5",
+   "visto_em": "2026-11-19"
+  },
+  {
+   "id": "n-em-nova-investida-prejudicial-ao-agro-pt-quer-taxar-titulos-que-financiam-o-seto",
+   "titulo": "Em nova investida prejudicial ao agro, PT quer taxar títulos que financiam o setor",
+   "fonte": "Gazeta do Povo",
+   "data": "2026-11-19",
+   "hora": "17:20",
+   "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9xQ3pUV25ONFgydFBZWEJ0amh3cFJrVWVxUHo3WEp4alpjQnBhczA1NUxJMW54Wlo3WGhMZWJHRmsybUs2WUlMT2JRMnB0cC1JSFU0bkg5MnVPd0hPeHEzaG1mdXAtMGw0YTBYcUFwZWRWVkN4eGJycGgtUmVndFU?oc=5",
+   "visto_em": "2026-11-19"
+  },
+  {
+   "id": "n-pt-recua-e-retira-projeto-que-poderia-taxar-lucros-de-meis-em-ate-25-",
+   "titulo": "PT recua e retira projeto que poderia taxar lucros de MEIs em até 25%",
+   "fonte": "InfoMoney",
+   "data": "2026-11-19",
+   "hora": "15:16",
+   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxORTNlSUVGdFlmZUZPVk5QenV5cVFldUdpVlJhUE8zckE4X3NQZElHQThUdFdhRnUtWElUZXdmRkt1Q01MWUxPOGxaV2xDMmtCSkhySDUyZlhwSi04dnhWUnZDOTE4X040dG9RR1dJbW81UmZrb0ZKMHJnc3ppZkRLQV95R2JvNmRzUktmT3pOWU45aGJpcExCQVV0X2huUUh1SEhYdnJNRnN0MW_SAbABQVVfeXFMUGxvRER6M29tOWFJTjdEQXo1UU8yYnJ0c0hMeGFuTV9NLVJ5WXRsS25BLWM5bkpYM2tSZzRSMWIxazBlcllWYVpocllvODZ2dTRrVkg0ejNWQ3doZHRVZk5CYlBIRGYwQUdTUWtkdnJWaVZCRTlLc1lxb3VxRTF6enoyZG91WEYtT1pVOWdwY0V4VlpCMWM5QWpBUV9xbWJPWEEwd3hwZ19LRzZLNllmMzc?oc=5",
+   "visto_em": "2026-11-19"
+  },
+  {
+   "id": "n-lider-do-pt-retira-projeto-para-tributar-lucros-que-poderia-atingir-meis",
+   "titulo": "Líder do PT retira projeto para tributar lucros que poderia atingir MEIs",
+   "fonte": "Metrópoles",
+   "data": "2026-11-19",
+   "hora": "14:54",
+   "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPTEZkdURhTzUtbEFGNFg0U05QM0k2SlB0R3Y3UXlFT2UwQS1Jc0hCSlBpdDN2bk9GSEZuZHllVm1IVzNXaGEyUFRSODkxUEl6dzN4RkxFTXdybTlpeGlrS0pzOE5fX0hXejZwbWxlLTl6U0ZKcGhEempRdjJZNkJRd1ZCU0FSSlNBRF8wRGUyZnhSNnRnOVAtaEdJbkFJY0lqN3dkX2ZFMjJPcEhfVWM0TzJ1WEFobF9TLVc1YXVJSQ?oc=5",
+   "visto_em": "2026-11-19"
+  },
+  {
    "id": "n-senado-pede-explicacoes-ao-tcu-sobre-calculo-de-taxa-de-11-3-para-novo-imposto",
    "titulo": "Senado pede explicações ao TCU sobre cálculo de taxa de 11,3% para novo imposto",
    "fonte": "R7",
@@ -212,42 +248,6 @@
    "data": "2026-11-16",
    "hora": "21:20",
    "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPVGpIX0Yxd1l3Y2ltbEZ2VmpMRFpmcTFxWDkyT1l6UVFMQ01DU296U2gzcGNzQlBWbXdQSDByekVSRk5GNjVFZVdMTEU2MHdLV201NnVKT0tVbGFDbjE3bGZxRzNyX2UxbjFlN3UxeGxzeFMwUzVCN3FFVk1LVzJ2aEZwTFFRQWc5eEJzQTJBTXg3NkZMVHdDY0RpWXJwVU5ZVUF5MlcybF84Q09SWTlsOTVISVhoZU93RV9HVlZR?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-sistema-faep-pede-rejeicao-de-projeto-que-preve-taxar-titulos-do-agro",
-   "titulo": "Sistema FAEP pede rejeição de projeto que prevê taxar títulos do agro",
-   "fonte": "CNN Brasil",
-   "data": "2026-11-16",
-   "hora": "17:29",
-   "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNMkZaam9qcDN2cUZyakhSc3Yxbkl3cnRiRW5weUtMZ2QtSHRvVHhFUThDQTdxZ3ZLcm1BVDhEclpEUzlVMWtMRUhDVU9BRFVtR0ZTQW9YdFA1WjllLXpwMFc4VzdxeTFmRlBpTzM5MnlydU80SElQSDRxN09YWjVmR3VVcW4wYTFGT0F0Q0xuOGdITUxhMzduczZNek9mZWtXTGtvUjVaUQ?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-durigan-vai-ao-senado-debater-aliquota-de-novo-imposto",
-   "titulo": "Durigan vai ao Senado debater alíquota de novo imposto",
-   "fonte": "SBT News",
-   "data": "2026-11-16",
-   "hora": "06:00",
-   "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPVGJ6aHg2WWNUaXZRYUxpVmIyMW5sUDlQSVBoakVuOHhLcm43SGx5YURRYnVJRU9pV0hzQWl2dWI4QWhoYzNzajVmOERxdGtGWHVBWlpVS25TcFVpaHlnSktTa0JZTkkzTkpqejlvQmljWGxFajV5c2Y5d3RCSE9mOEh5ellmV0dyWmxVd18yaU9oNDR4UmVxM0dQdmNWeDg?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-pt-protocola-projetos-para-taxar-lucros-e-dividendos-com-aliquota-de-15-e-tribut",
-   "titulo": "PT protocola projetos para taxar lucros e dividendos com alíquota de 15% e tributar LCI e LCA",
-   "fonte": "Terra",
-   "data": "2026-11-16",
-   "hora": "05:00",
-   "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxNZTZWNEFTX1p6MHN1SDBqem1wQjgwanNZbzI5Y0dfYVlzS2NrbDhlSFZrSWlEOU1OY2NyWkdjbUEzSE4tTXNGNk9lUXpRSWVfU25YR0t1QlNmNmxpUUZFYS16R2lHWlptMEtQSWlyMFFfUl9QSzk2RjhnS25WQXMySVRsVnlKS0c1U0YxS0JzSDVaMy1RZjJ5OGF1RlUzMXZZUmJBallCUW1sanc0Vk9kUDRyNmtyckh4cExCdzh0TUQ1dXRzcjFqb2VPSlpJazlvdUgwY2tpaHZxZFI0QlZPeXZvdzRrVGxsZHExbUhqZ0w1N1lfUWc4cGRTUDV5S2NvdlE?oc=5",
-   "visto_em": "2026-11-19"
-  },
-  {
-   "id": "n-governo-aumenta-imposto-sobre-pneus-importados-e-tarifa-pode-encarecer-produto-s",
-   "titulo": "Governo aumenta imposto sobre pneus importados e tarifa pode encarecer produto #shorts #JR24H",
-   "fonte": "R7",
-   "data": "2026-11-14",
-   "hora": "21:50",
-   "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOai1CNHBGUnFIQm9GbFZoMnFXbnZDOUpLeHhKanpxUzNwWlJNbGM2VlZaTVd4UWJmT0NJUDljbUpjY0dQNWZxWnZEYXVxSFJUSHdGRzM4WlFyM1VSTlh1LXFKZEczUXJBU0w1NE15My1CdkFVcEFCaHFUTWJKMEprLUJNQmd5M3IzMjlhczF3U21uQ3I3V0RrZ3ZjTTRQS2tZckNHRGlXdXEyMFNZQWFaejdZNmxXMGluZm84ZUJoQ1NINFY3aks2cndEUkNYdUU?oc=5",
    "visto_em": "2026-11-18"
   }
  ]
