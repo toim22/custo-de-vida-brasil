@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-23T00:48Z",
+ "atualizado": "2026-11-23T20:07Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -119,10 +119,37 @@
    "id": "n-previsto-para-2027-novo-imposto-sobre-a-chuva-pode-custar-ate-r-1-000-por-ano-pa",
    "titulo": "Previsto para 2027, novo \"imposto sobre a chuva\" pode custar até R$ 1.000 por ano para donos de casas nesse país",
    "fonte": "Terra",
-   "data": "2026-11-22",
-   "hora": "10:40",
+   "data": "2026-11-23",
+   "hora": "11:46",
    "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNbFhmYmxPcllJUnp1N2Z6QjllSTFERzhnLVF4MXV3blFQdUVfNllBaDNUQjhXaTF4TVpzMHpFYS1jblUzWmxMbDhxNmdhc1l2bUxJQ1JzZE9DeU1MUmo2UnlUN3pWeEdycmJON3dGdFRSTDh2ZmZIT3FKY01Ob0tVMlhFenBuV0dhV0w3MU15Y3JWZi1TRGd4VXBvYTdhY2I1bVZTbmYybXp0TnN0dnNmbUNyYTdCY21Ob0hGMUJZTl94VXJ5OExQMjVGbVc0b1gzMDh6YU13aDc0T0h5cVhfajNaSWNIVk1Md0w5bnNZc2lQUlZGb3pRMldwT1FVMUlpVE9hMmliV2k0REdhUEdLcw?oc=5",
    "visto_em": "2026-11-22"
+  },
+  {
+   "id": "n--imposto-do-pecado-pode-ser-o-mais-inteligente-da-reforma-tributaria",
+   "titulo": "\"Imposto do pecado\" pode ser o mais inteligente da reforma tributária",
+   "fonte": "CNN Brasil",
+   "data": "2026-11-23",
+   "hora": "10:30",
+   "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNTRTamNLemR6OFg4MFVlX0Y4M29ZUlJqejdXTERLekJFcV9XYW1oaVFLczRTNHNRcVY4VjJPZnhaclZJdXpTV3hVZGhBbGdGeTBMTWx0Nnc1RUJpaUNJaUxqa2RSTXQ4ODlBcWlTUUc2MnRGV1lfcmk5MVprRmk2WTJ4cTA3VzdDUWIwblpNVEdwOWlNcy1uMkFubnNtM2lybDd1WjNTUmF5U2xnLUxKaC02cDJucG9XWEZmRkN6V3Zua3BfR21JTk9ndGViR3dFZHVZZ3RvdlBzNHYxWFE?oc=5",
+   "visto_em": "2026-11-23"
+  },
+  {
+   "id": "n-receita-expande-piloto-da-cbs-novo-imposto-da-reforma-tributaria-para-todas-as-e",
+   "titulo": "Receita expande piloto da CBS, novo imposto da Reforma Tributária, para todas as empresas",
+   "fonte": "O Tempo",
+   "data": "2026-11-23",
+   "hora": "09:45",
+   "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNbHZIeXR4NW90TDNNVklqb0R4Z0xSX1N3R2pPeElWdi1Hektvd29CT2EwME9pY3JlZ280S3RzY1p0NTFpaWQtWGx5cDFtcnFfWTlXZDJjeml3RVJub2RGUWdDaWJpRmxHUllMeUVyakd2bEpZdUZ1RFdNTm1tZEFndXZKaEthd21ySk00Mng1SHY4bXpSa0p5VDNOV3VNTnk5ZFdfODlhWDBuX3Z4dm5idTRGVkxFRUo0VUJIaDJhUkhLVWNVNmhOTnN4TWMwdw?oc=5",
+   "visto_em": "2026-11-23"
+  },
+  {
+   "id": "n-13o-salario-2026-novo-imposto-de-renda-pode-aumentar-valor-liquido",
+   "titulo": "13º salário 2026: novo Imposto de Renda pode aumentar valor líquido",
+   "fonte": "ISTOÉ DINHEIRO",
+   "data": "2026-11-23",
+   "hora": "07:50",
+   "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE51cnlfY0haVURFeFJMRGtGQUFubGZqWG51Ri1kWDB3VzRKcEp1RktyN09CMUd5aGRkZkU2R3NrTXlyT25oT212eFJIUEVJSjFQbzAwTmxXOWYzYjJtZU5rZ2REWGlSWmVIdHVRejRRQWRndDlG?oc=5",
+   "visto_em": "2026-11-23"
   },
   {
    "id": "n-pt-propoe-taxar-lcas-e-titulos-do-agro-veja-os-impactos-no-credito-rural",
@@ -221,33 +248,6 @@
    "data": "2026-11-17",
    "hora": "19:47",
    "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPVUFmSS1BYlRxY1Z0dXVqeFNHLUNmYnpqVDZxdjFPclU0eldEUWpPTkUyWC1nNUhJMXpQNDhGQWVpaURkUGxtMXI4UjVRYmhBNllGYlAxMXVjRzd6b0NrTGNOT09jQUpOczdqMGNUMlhpSmFFOUhZUjhta19lMV83UW95SllFNXY3bk83SnluWXBmLTZXVFpzeVo5WGc?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-lider-do-governo-propoe-taxar-em-3-receitas-de-big-techs",
-   "titulo": "Líder do governo propõe taxar em 3% receitas de big techs",
-   "fonte": "SBT News",
-   "data": "2026-11-17",
-   "hora": "19:45",
-   "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQaEIxOWxpSkpYQWFfQ3dkdGRVRjhEZEh3VnZZNWp3bUZ0dkUtV1hjMWxpT3p2cE5ha25mTnFwMUg5b294LXgzR3ZTc3I2WnNLWEIwZGVSMDFadlp3Mkg4a3ctZTF1MEJ2TWNNRlJHQUZBa0FQa1FwSTVlbjVwZ01KQjdKS19ubVI0VWVsaUU3czNIeVJDRHBfRUw2R2Jfbjk5bTJuTTlRczJuTjNn?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-lider-do-governo-lula-propoe-novo-imposto-sobre-as-receitas-das-big-techs",
-   "titulo": "Líder do governo Lula propõe novo imposto sobre as receitas das big techs",
-   "fonte": "Gazeta do Povo",
-   "data": "2026-11-17",
-   "hora": "18:56",
-   "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOOGVoSlJXQ1EtSXZSTjltR19mZHYwcmp3NnlGYVBaUGh0UGhNcGh3WkNNWk5yWFlldTlmUUN1TFIzeXFnQUEzY2hTOENmNFhncXBTWTRqRkg0YVFLNUNJZDJCWWF5SEFXRlY0ZUFlRVMyd3hYNXpfc0FZNTJ2RmpFaHowXzUwXzNmWldfVnhrdjBOdFVXempsM0NKYkhUU0hmNmtFV21uRmpCQWVWOXluYTU4d0gyZGM?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-audiencia-no-senado-debate-nova-aliquota-da-reforma-tributaria",
-   "titulo": "Audiência no Senado debate nova alíquota da reforma tributária",
-   "fonte": "Agência Brasil",
-   "data": "2026-11-17",
-   "hora": "13:50",
-   "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQeXp1bXJnNVN2ZDZPZjAycUR0cGVQS2FuMVdGWUJrTFBZWlZCOUZjNUY5NktwbThsazhoSVc5UmpHbk55eHV4RnpUX21TVkJ4NWZacXVGZVcwZ1pHa0ZfczVxNEdsV0d0ZUdweHpIckNfQXYwR0poV3czOVZzVG9IRkZDSW5GUjdHMjhOb3RPT1VDejdQeFpMZHdzdEZsWUkyYk1WRmJjaEhvLW1OcG11d1NaN3Y3TURGWFpZS1Q1V2VYYmNrazRGRFRfRzN4YnR6MUp5dGViVQ?oc=5",
    "visto_em": "2026-11-18"
   }
  ]
