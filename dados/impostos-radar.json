@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-23T20:07Z",
+ "atualizado": "2026-11-24T04:49Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -116,6 +116,15 @@
  ],
  "noticias": [
   {
+   "id": "n-ajuste-fiscal-de-lula-vai-de-supersalarios-a-incentivos-tributarios-entenda-o-pl",
+   "titulo": "Ajuste fiscal de Lula vai de supersalários a incentivos tributários: entenda o plano de R$ 56 bi aprovado na Câmara",
+   "fonte": "O GLOBO",
+   "data": "2026-11-23",
+   "hora": "22:35",
+   "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPQjA1cXFfa3hqQ2FjTUZhdDRoZ1hKb2xIenBWb0I0UE1UNjBLR3poY3VabTdjMHBWend3YmJTOHZsSzQzalBwMFhzcW5sYVBwM1BwYk1QRGUzekRKM2xJOFFfdzFfbUpzVmRScnZWVVZlWEZLdE9FSnVWUU9YUW16OEZEdjdoN29Xc004UmhmcGFEbWhTdVB5dlF3REdLaFh4RkI5TndQbC1EMmctX3VJV1QyckpYWDkxclMxZVQ2ZzlkQ3RvQ0ZNQ0JGSHdjWmtqeDU1R29MLTN4clJDS0dnbGFyZHl6bGNUX3psVDFOMlVaczYtSzdZNXpNYmhKTWJ1eEHSAZACQVVfeXFMUGZlVkVFdVc2WGRQOV9jSTlJYVRoS2V1cURwdVZqVGFkNlRpZ2o1c0x3REQzbXA4U3J0VTVVaVY4OVVlOEZCVGZjWmhaU0o4bElFV1A3b2ZSc0tEYW0tSmIzb0lfSTBmVkk0blZjVGd6UWpEZjU2WGpBNjFHTkZWYlR1TWtKUURLNHpHTWIxQmRnQWx1ajFHeG1wYkNwOU5UeXZIbVNDWUU3Tm9Tc0NpeE1nNXhKUTlmakNQLUFrLWZWT2hCc0hscWJFVkZBYW0zZExJSHdBa1R4Yl90YzBTMldwVThzWGsydnpVWU4wY0x5S2I3UWg0eHdlLUMyaldGSzEzWUVVYzYxQUdUdDBXNmw?oc=5",
+   "visto_em": "2026-11-24"
+  },
+  {
    "id": "n-previsto-para-2027-novo-imposto-sobre-a-chuva-pode-custar-ate-r-1-000-por-ano-pa",
    "titulo": "Previsto para 2027, novo \"imposto sobre a chuva\" pode custar até R$ 1.000 por ano para donos de casas nesse país",
    "fonte": "Terra",
@@ -150,6 +159,15 @@
    "hora": "07:50",
    "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE51cnlfY0haVURFeFJMRGtGQUFubGZqWG51Ri1kWDB3VzRKcEp1RktyN09CMUd5aGRkZkU2R3NrTXlyT25oT212eFJIUEVJSjFQbzAwTmxXOWYzYjJtZU5rZ2REWGlSWmVIdHVRejRRQWRndDlG?oc=5",
    "visto_em": "2026-11-23"
+  },
+  {
+   "id": "n-tributar-mais-fortunas-e-investimentos-nao-significa-combater-a-pobreza",
+   "titulo": "Tributar mais fortunas e investimentos não significa combater a pobreza",
+   "fonte": "Estadão",
+   "data": "2026-11-22",
+   "hora": "07:30",
+   "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQVlFJemhuSUxnY2pjOV9fNTdUYzZTMDF3enJXbUhLbkdPUUZTMUNremtCN0ZjbjV6Mnp5cDEtRUNhRVh5NGhWWmZqaUpQRDBHMHRocmpsRWtvM25rYmdWMjQ5S1IwRnVhalFZOUJwX3M5aExrUmV2eDZwYVdFbFVfcXZYRUNNRzMzdEltVktqamt3WWhXNmFwbXllb3ZuMmFYS2czdnF2UUZtaFZFTzRzWnNpaUJ3N0pNZDk3VlA3cEhYUdIBxwFBVV95cUxPbDZ1djBsTUh6TWtSejk0QmJCNXJnbzFyRjR4VVZ5TERIdFduel8zSmdZSUU0b09IRVJpbmE1cGVwM0NZdEsyRUxSNzE0YmVxUzdyNnhNMlVoaFZZTXJONkpHTzZpamh2bm1GQmNfcll1X2d4UVRDcDNXaEhhSzE0eGNKcE9vU1FJVlZBSHVOOG1sbWVPR05UTVU0c1V4bGxXeWlmWHVrMFVMNDVhQWlET3J5VmMxVDZfb0NZWUl0TUZnYXJpWFdB?oc=5",
+   "visto_em": "2026-11-24"
   },
   {
    "id": "n-pt-propoe-taxar-lcas-e-titulos-do-agro-veja-os-impactos-no-credito-rural",
@@ -230,24 +248,6 @@
    "data": "2026-11-17",
    "hora": "23:32",
    "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPckZ1QW1mWTFYX3UxcnFqaER3N0hTaHczVDlvMTBlYzRobVQ3Yk11TnZIei01SENqUHNzRVJNWUFwVDNUOExUdklVQ2VzMVh3RW5qdmloM2NqeFdCd3k0T1NFcV9Za3BtQlFLX1h0RGtVeEZLMVF5V3BxSzdhVmJCYTRHLW1tMHRVaVc3TlJDdWRkTlM4WTlRd0Jxa0NTdHc5STdRNg?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-projeto-do-pt-aumenta-imposto-sobre-dividendos-dos-mais-ricos-e-isenta-ganhos-de",
-   "titulo": "Projeto do PT aumenta imposto sobre dividendos dos mais ricos e isenta ganhos de até R$ 5 mil",
-   "fonte": "Revista Fórum",
-   "data": "2026-11-17",
-   "hora": "20:49",
-   "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE85ZVFlRS1uOTVmNkE5NEZ4dy1zZFEzeFVLRWRSMFFSbXRtTk9ZcEFVZmtNaGttNVF3MHBUeUlfNV9qSmdFNlI1TjhWR0sxOVVxaERCbWQtZXpGYlN6MnpmZUZBSlgzemJWZE5R?oc=5",
-   "visto_em": "2026-11-19"
-  },
-  {
-   "id": "n-projeto-propoe-taxar-big-techs-em-3-para-financiar-renda-basica",
-   "titulo": "Projeto propõe taxar big techs em 3% para financiar renda básica",
-   "fonte": "Band",
-   "data": "2026-11-17",
-   "hora": "19:47",
-   "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPVUFmSS1BYlRxY1Z0dXVqeFNHLUNmYnpqVDZxdjFPclU0eldEUWpPTkUyWC1nNUhJMXpQNDhGQWVpaURkUGxtMXI4UjVRYmhBNllGYlAxMXVjRzd6b0NrTGNOT09jQUpOczdqMGNUMlhpSmFFOUhZUjhta19lMV83UW95SllFNXY3bk83SnluWXBmLTZXVFpzeVo5WGc?oc=5",
    "visto_em": "2026-11-18"
   }
  ]
