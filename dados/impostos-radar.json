@@ -1,8 +1,19 @@
 {
- "atualizado": "2026-11-24T04:49Z",
+ "atualizado": "2026-11-24T19:33Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
+  {
+   "id": "camara-2659238",
+   "casa": "Câmara",
+   "numero": "PL 5.957/2026",
+   "data": "2026-11-24",
+   "ementa": "Altera a Lei nº 13.988, de 14 de abril de 2020, e a Lei nº 10.522, de 19 de julho de 2002, para instituir modalidade de transação tributária vinculada à capacidade efetiva de pagamento, criar o Bônus de Conformidade Corrente para contribuintes adimplentes, instituir o Cadastro Nacional de Grandes Devedores Contumazes da Dívida Ativa e estabelecer regras céleres de cobrança e constrição patrimonial, e dá outras providências.",
+   "autor": "Mauricio Neves (PP-SP)",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2659238",
+   "visto_em": "2026-11-24",
+   "ja_nos_cartoes": false
+  },
   {
    "id": "senado-176440",
    "casa": "Senado",
@@ -125,6 +136,15 @@
    "visto_em": "2026-11-24"
   },
   {
+   "id": "n-o-projeto-do-pt-que-pretende-criar-o-controverso-imposto-sobre-grandes-fortunas",
+   "titulo": "O projeto do PT que pretende criar o controverso imposto sobre grandes fortunas",
+   "fonte": "VEJA",
+   "data": "2026-11-23",
+   "hora": "16:44",
+   "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPLVZzS1hnNkF1TlJ0U1lGdDBLV2c3UG16aWExMkZIdFBhUFRtQUZZOENFRWtQbERYenZGOHlnV1lmaFNWU0dCVFFfbHRtYWVxdDBZNVctUm1XT3hFSEkxRnY3WS1faHg3cmZ3dXVtc21ZRFU5THlwenpJckhyRU9xS1lpV0JHNnBhaUV2VHR6THB4RTNCQXhzWl9iS3JYZW1BWG40SHI2SjhyMi0tTjhvMXdHemU4UQ?oc=5",
+   "visto_em": "2026-11-24"
+  },
+  {
    "id": "n-previsto-para-2027-novo-imposto-sobre-a-chuva-pode-custar-ate-r-1-000-por-ano-pa",
    "titulo": "Previsto para 2027, novo \"imposto sobre a chuva\" pode custar até R$ 1.000 por ano para donos de casas nesse país",
    "fonte": "Terra",
@@ -239,15 +259,6 @@
    "data": "2026-11-18",
    "hora": "11:05",
    "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNc2xzYV82cy01bG5zYzJpYUFFVzdaMUpRbFBiTlQ2Z2NOMTNmcXd3U2VncE5DMzVPeEJKVGhmNVZjMW9xY3hmbHBCUHA1YWZXbDh6RVNJMkNmX0RBbWtrWGpkMW1DT1VTbng3Q3ZIZjAtR3lva1JGUVdyT1YzRHNwclJ3R1kxY2h2anR6M2pUQXZZWnBpOWpGUmlQUF9SOTdVSmNXd09zYVdLSVHSAbABQVVfeXFMTzBDVEpweFUzb1RpQUczQUV1c1pJYkxwNzlCWHo0akR0SXB5aXF0M2R4cGZiV2hkMFE0dEU0OWtTYTlOSTNfV0Z1Y1pObkdqVVZUbnpYeC1Na1hCVVlNaUZ3NklkSUpkTTUtUU1rbmh2bUZIYWF3WHRjZk8wdDBWVUt6VjdtVzBvM1AtdGpBX2F3dGRnRnNYWE1lWTZqdGk1WEdCVmpsQU9Gay00UHRsRC0?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-projeto-da-base-de-lula-propoe-taxar-dividendos-em-ate-25-",
-   "titulo": "Projeto da base de Lula propõe taxar dividendos em até 25%",
-   "fonte": "Poder360",
-   "data": "2026-11-17",
-   "hora": "23:32",
-   "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPckZ1QW1mWTFYX3UxcnFqaER3N0hTaHczVDlvMTBlYzRobVQ3Yk11TnZIei01SENqUHNzRVJNWUFwVDNUOExUdklVQ2VzMVh3RW5qdmloM2NqeFdCd3k0T1NFcV9Za3BtQlFLX1h0RGtVeEZLMVF5V3BxSzdhVmJCYTRHLW1tMHRVaVc3TlJDdWRkTlM4WTlRd0Jxa0NTdHc5STdRNg?oc=5",
    "visto_em": "2026-11-18"
   }
  ]
