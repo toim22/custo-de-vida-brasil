@@ -1,8 +1,19 @@
 {
- "atualizado": "2026-11-25T03:35Z",
+ "atualizado": "2026-11-25T18:39Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
+  {
+   "id": "camara-2659905",
+   "casa": "Câmara",
+   "numero": "PL 5.967/2026",
+   "data": "2026-11-25",
+   "ementa": "Altera a Lei nº 9.718, de 27 de novembro de 1998, para atualizar os limites de receita relativos à opção pela tributação com base no lucro presumido.",
+   "autor": "Gilson Daniel (PODE-ES)",
+   "link": "https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2659905",
+   "visto_em": "2026-11-25",
+   "ja_nos_cartoes": false
+  },
   {
    "id": "camara-2659238",
    "casa": "Câmara",
@@ -127,6 +138,33 @@
  ],
  "noticias": [
   {
+   "id": "n-tarifaco-de-trump-eua-propoem-tarifa-de-10-sobre-avioes-brasileiros-e-aumento-de",
+   "titulo": "Tarifaço de Trump: EUA propõem tarifa de 10% sobre aviões brasileiros e aumento de imposto sobre açúcar",
+   "fonte": "G1",
+   "data": "2026-11-25",
+   "hora": "10:16",
+   "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNekRyY283NURvT09uU0F6MjVUa0tIMHdpVXBvcEhCc1FFaTZkODZnMl81Z1lCV3l5djRxZHhDVHJMV1Q0NUFaSU1WVFN4eHhLZWlGQkFwQXpQV29kMk0tejV5WFRxaDZUa0tjdnV4TTBMXy1wY05NSFZNU1Y1eFlRcGN1NkhPMW9YNDZ5RmRBSlhzWlVZVFhITnlVVnB2RWtib1JsZ3NxOXdjblBvSnpyNWN4c9IBwgFBVV95cUxNcElmc3U4Nm9wZ0ZYbTBYT1FVVnRRdzFfSVBzSXA2YjRQUGRDUGRhVU5Vd2N4OWNMQ21PRkliRUNLNkdpMzRBY3dmQzFYM2Q3YW16Z2FhN0pnMWdkSmJKbmtzVnZjRnpBMzZTeDRtZlZhX0tMMGJEOEQycElaaU9KejRqbmpKQlZmaERiQVdFY1BBc0pEODlWX3huTlpEX2lZYWpmUjRJTy1jcThIQUhxRDZsY0xLcDQ1QWVmTDM4a2FWQQ?oc=5",
+   "visto_em": "2026-11-25"
+  },
+  {
+   "id": "n-reforma-tributaria-e-fim-da-escala-6x1-podem-pressionar-inflacao-em-2027-bc-e-eq",
+   "titulo": "Reforma tributária e fim da escala 6x1 podem pressionar inflação em 2027; BC e equipe econômica monitoram impactos",
+   "fonte": "G1",
+   "data": "2026-11-25",
+   "hora": "00:00",
+   "link": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNcm1sbW9WblN0RzlWZDc3SElhZXNCc29UZWZQZG1kYUZfT0txbUQ2Uk1ycWVWdjRKczN2S3R5NUNqenhXa0ZVYjlQUk13d2QwTWkwTHdSYm5fbVU1VFBoUUZub3VIQm1heWJwQW5DXzNWUlF0a1FqdmVMRXRJYjEyb3lWcGlWS3REaERKUDJpemtnb2VZYU0teGg1cjVhVGd6N0RrZlNmQ1NQQkR3NTBaLVFkc3dReGo1ZGVhdzVYQWJ1WXctQlhpLUVVRjhjWFVLamU4aWxMQ3JkUUppOUZvakhkNi1ESll0MmMtZDlvc0V6ZjByWktrNW9ySlfSAYsCQVVfeXFMUHdWSl9mcXY3WjJZQzZlRVJrNE1QT3V1bWVDVDlnVDdaMF9iR3dGcjBWbHhpbmx6NURtUUpyeHVOdm42WnFfWXI5bUZqeFRSQWY3WUxNNURXWXNWWTB2UXZRSTl4dEZtVzZHSmwxMUNSd2lCWF9NbU1PTm9FNmpUa2t3VXdEWk9XaGhleDVTZlNPaXdVVXBOcXJibnlhc3VKNXZZNDdOWUlqOGkzaGpNUlVsMXhYMllkaEp3TmNJRHdFRTVjVWRzVURUcGJFNm5TdllGMzFBdl9ITHI5QVkwWU1TVmdBblY4aUN6R2VTWUdwU1JWa0phYlpHSU9FZHZUdUxNd1FpU2l3MUxR?oc=5",
+   "visto_em": "2026-11-25"
+  },
+  {
+   "id": "n-cobranca-de-imposto-sobre-exportacao-de-combustiveis-responde-por-r-2-91-bi-da-a",
+   "titulo": "Cobrança de imposto sobre exportação de combustíveis responde por R$ 2,91 bi da arrecadação de outubro",
+   "fonte": "Valor Econômico",
+   "data": "2026-11-24",
+   "hora": "11:08",
+   "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNRWJpNHBvM1V6MmVSMEVrNUtrcXJJdFVkeE80TXFMaWFEc1QxYWI0WHpQd0psdmNBUWJ6UGhCSXltRnRXOElYNUxfSlhJNzFqaVNyMFptMjZTd2ZtOEtiM1l5UldMV0h4N2w5QlQtdl82bUI0clkzWDB4bVM4cXl1aUJvSERRdDVEZTRia0toemhOaXdJRlJxVks4VjJuYS1QcFA4NG5NNWNfN3VmRzdyQ1RSSW9leDN5el91Q1psWnZBdkJfdHhwV2JPdUxsYXNiUHhKVdIB4wFBVV95cUxNT2tTSTBmREt5SkJ4ZFR3TlMzTXVBeEx1MFhnaDd0OGUxVUl3Q0ZCaVZzZmh1MzZZRlFaQ01DUHdqWkV5akQxSUNHNHd3QzdmUWZJdE5wWXk3WmNhYkY3dWNRTWxUem1MZWxieXhlVDd4MjlNOVJRVXBlY3FUMXFoZllETXFGN0FTeTZBZ1g2eV9KTGt3UE5kU1ZFLW02aG9NUFR5TzROSHNYckxnUU51Ylc3cXdnbDVobWQzeEh1RXQwbFNQZ1NPamVnZ2N1RjhfOGtWMGdfQW1HbTNBeFgydHkzUQ?oc=5",
+   "visto_em": "2026-11-25"
+  },
+  {
    "id": "n-ajuste-fiscal-de-lula-vai-de-supersalarios-a-incentivos-tributarios-entenda-o-pl",
    "titulo": "Ajuste fiscal de Lula vai de supersalários a incentivos tributários: entenda o plano de R$ 56 bi aprovado na Câmara",
    "fonte": "O GLOBO",
@@ -232,33 +270,6 @@
    "data": "2026-11-18",
    "hora": "17:58",
    "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVF9rekRpelBLQVRzVlI2a1N6V0EzZV9iSWRIczlUc0picEJucTVGdjlJZFNGTjFCMmtSa0JKMzVlSWx0YlJTdlphVVk2ZG0weEpsWHpudmZTbjZPN051ZG80ejBidlVpSEJIWEhtanZUMGpMcVNrTC1SUkg5OV9ZWWhmNGpzUmFqRVVZNUdHczBfMHN6R3dWMnVSOFRrR3NIb2V0LXVQN3ppWXhWSzVRcG9xTExXcUZWTlQtNg?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-lider-do-governo-quer-taxar-servicos-digitais-para-financiar-renda-basica",
-   "titulo": "Líder do governo quer taxar serviços digitais para financiar renda básica",
-   "fonte": "Metrópoles",
-   "data": "2026-11-18",
-   "hora": "16:14",
-   "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQM0pWMlpCQVI4VWg2S0tLZUVCMDc3QVJ2MjBvRkdyRUJiYy1sZzV3MldmUjRIeTBRX0dNMzBuU0Y5R3VQbDFFRU0tTzJYOW1PamJvU1dXU3poTzl2ZVZfazlIckZRRk1nSmFoSDllOFlyTDVYNG9fNWM1MU1DdmloYUVOQVJEbm5sRkM5NVBoWEprVEJnUUZTRllYT1BhR1FMbkFfcDZOcGJDaHZSeE1OU0J4UzJlUkE2YUUtN0VyeFk?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-reforma-tributaria-aliquota-de-11-3-da-cbs-pode-valer-so-em-2027-e-mudar-depois-",
-   "titulo": "Reforma tributária: alíquota de 11,3% da CBS pode valer só em 2027 e mudar depois; entenda",
-   "fonte": "G1",
-   "data": "2026-11-18",
-   "hora": "15:28",
-   "link": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOMGdBTTB5Qkdsc01sRlFqV09KNWo3QTlVeUJST21iSHA0TE5MU25ZRF91clk2cV8yWkxsdnp0YnRKam1xdjg1Y3pPaTJEWGJianJXSWtDazJMcktxSi1xYTFRZ25ZLVhBVDRMNExBUmFhZ0xiVXY1RENmUER1OEV1cGR6R3ZqcXVvRG1qdWFuUHA4OFRKbmFtRWxHTmFNTDUtYVdfM0pUS0dFWWM4Wk84TlpkbEVOVWN5SGxUTTJFQkoyQ3VKcDNYNnZlZ25RamxIWEcwNEZWZ3ZTYk90QVVhMS1GYXhxRHJvVWVYSWNfVHZzYzc5bThmRXcxaDVwNEdXYXdZcmd2cVVDdElDbGfSAZwCQVVfeXFMTl9CUGM1cmRGRWw3bDJsTkVsME96dHA5Qmw0Mzk3Y0N1WjduRUpHYjZPQUNGcXNaMG1mTEZUWW9HaTY0UUdQU2tlbEctZUV4dzdoakRpVzNjMVFfZ3FPLWFIdVd4TVRtaFZha3NFSU9ET1dfcVctZEIwQVo0T2JPTzBfbG42WEVSeG4wRGJVN2Y3MUNzMmJQYTFSOGUyRGZvcE9UdTdxbHg2LW9ZaTJPdTI2WDU4dzBtemUyalhaZXRnd3ZkbExmOWFSaC1DQVJaYTAza3ViZ1VsWGpFT1JnNG1XMHluOHlPV050VmF2Rk5hTDVVeGQzWVM4VGpQeWtGUVJnNXl0eGhvLURfLTlLck5IbmFvRXNTbXZ3RVk?oc=5",
-   "visto_em": "2026-11-18"
-  },
-  {
-   "id": "n-lider-do-governo-no-congresso-apresenta-projeto-para-taxar-big-techs",
-   "titulo": "Líder do governo no Congresso apresenta projeto para taxar big techs",
-   "fonte": "InfoMoney",
-   "data": "2026-11-18",
-   "hora": "11:05",
-   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNc2xzYV82cy01bG5zYzJpYUFFVzdaMUpRbFBiTlQ2Z2NOMTNmcXd3U2VncE5DMzVPeEJKVGhmNVZjMW9xY3hmbHBCUHA1YWZXbDh6RVNJMkNmX0RBbWtrWGpkMW1DT1VTbng3Q3ZIZjAtR3lva1JGUVdyT1YzRHNwclJ3R1kxY2h2anR6M2pUQXZZWnBpOWpGUmlQUF9SOTdVSmNXd09zYVdLSVHSAbABQVVfeXFMTzBDVEpweFUzb1RpQUczQUV1c1pJYkxwNzlCWHo0akR0SXB5aXF0M2R4cGZiV2hkMFE0dEU0OWtTYTlOSTNfV0Z1Y1pObkdqVVZUbnpYeC1Na1hCVVlNaUZ3NklkSUpkTTUtUU1rbmh2bUZIYWF3WHRjZk8wdDBWVUt6VjdtVzBvM1AtdGpBX2F3dGRnRnNYWE1lWTZqdGk1WEdCVmpsQU9Gay00UHRsRC0?oc=5",
    "visto_em": "2026-11-18"
   }
  ]
