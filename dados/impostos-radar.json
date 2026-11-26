@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-26T02:49Z",
+ "atualizado": "2026-11-26T18:24Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -138,6 +138,24 @@
  ],
  "noticias": [
   {
+   "id": "n-orgao-do-senado-atribui-alta-de-novo-imposto-ao-congresso",
+   "titulo": "Órgão do Senado atribui alta de novo imposto ao Congresso",
+   "fonte": "SBT News",
+   "data": "2026-11-26",
+   "hora": "14:08",
+   "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPZEVVYXByUjFEZDBmWTBIOTFhQVItbWdtcE8tRlRmU2hCd2lkOWZ3UFlxMFBFdDZQVXZjUmxfanJrU19NQk8tdjh6MkFIY09qUmtyZVNrS1ZJcjBycFBLc1hsSlZEU19vMkR0RVcwTDMzbW5sUE5fNF9LQmJnWFpJOWxkZ3o3Z3d4UWlDNko4czUxSnl5QnZGdkw4U2dkMjI4UFFB?oc=5",
+   "visto_em": "2026-11-26"
+  },
+  {
+   "id": "n-post-enganoso-diz-que-pt-apresentou-projeto-para-taxar-meis-em-15-",
+   "titulo": "Post enganoso diz que PT apresentou projeto para taxar MEIs em 15%",
+   "fonte": "Terra",
+   "data": "2026-11-26",
+   "hora": "13:35",
+   "link": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPS0ljZTVGUDcxNUJoT24xdVF0Zjl5MkRJR21peFBWam1XU3ktTEI3NzFJZmRRa2xsclMzMzNXS2F4UlRNMS15elNYYy1IVmxhcWJSMFpDbUFOZ3J5M01EZ3RlQXB1TF9rRlJwczR5RjRpR0k5akJlX2NWcDZIQnF0M08zQjBvcF8tS1lSRnBXOHg0aEtkTm9jaFFheVIwcU5CamltcG41bTR5YWxXc2ZSRzZqTkZkZ1B5alVHbmVaa3JjMnY2alc2QS14Zld6Qk1wTlhFajd2eHFFdDNSZFFjbndDdGhSYXR1dkZIdHRXNXdHSDA?oc=5",
+   "visto_em": "2026-11-26"
+  },
+  {
    "id": "n-governo-lula-diz-que-proposta-de-trump-de-nova-taxacao-e-inaceitavel-e-que-o-bra",
    "titulo": "Governo Lula diz que proposta de Trump de nova taxação é ‘inaceitável’ e que o Brasil não cederá às ameaças",
    "fonte": "Jovem Pan",
@@ -192,6 +210,15 @@
    "visto_em": "2026-11-24"
   },
   {
+   "id": "n-13o-salario-2026-novo-imposto-de-renda-pode-aumentar-valor-liquido",
+   "titulo": "13º salário 2026: novo Imposto de Renda pode aumentar valor líquido",
+   "fonte": "ISTOÉ DINHEIRO",
+   "data": "2026-11-23",
+   "hora": "12:18",
+   "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBNZ0hnZE9LWUpZdTBEY0twUGVfR3NIamJqaWJXcldESC1HbVp3bHAwWG5sdGFQQm9TTENIdzVaa043MWd5T0RVR0p3eGFRcGhTWEJQdm1HYWVDd3JDc2c?oc=5",
+   "visto_em": "2026-11-23"
+  },
+  {
    "id": "n-previsto-para-2027-novo-imposto-sobre-a-chuva-pode-custar-ate-r-1-000-por-ano-pa",
    "titulo": "Previsto para 2027, novo \"imposto sobre a chuva\" pode custar até R$ 1.000 por ano para donos de casas nesse país",
    "fonte": "Terra",
@@ -219,15 +246,6 @@
    "visto_em": "2026-11-23"
   },
   {
-   "id": "n-13o-salario-2026-novo-imposto-de-renda-pode-aumentar-valor-liquido",
-   "titulo": "13º salário 2026: novo Imposto de Renda pode aumentar valor líquido",
-   "fonte": "ISTOÉ DINHEIRO",
-   "data": "2026-11-23",
-   "hora": "07:50",
-   "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE51cnlfY0haVURFeFJMRGtGQUFubGZqWG51Ri1kWDB3VzRKcEp1RktyN09CMUd5aGRkZkU2R3NrTXlyT25oT212eFJIUEVJSjFQbzAwTmxXOWYzYjJtZU5rZ2REWGlSWmVIdHVRejRRQWRndDlG?oc=5",
-   "visto_em": "2026-11-23"
-  },
-  {
    "id": "n-tributar-mais-fortunas-e-investimentos-nao-significa-combater-a-pobreza",
    "titulo": "Tributar mais fortunas e investimentos não significa combater a pobreza",
    "fonte": "Estadão",
@@ -252,24 +270,6 @@
    "data": "2026-11-19",
    "hora": "17:20",
    "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9xQ3pUV25ONFgydFBZWEJ0amh3cFJrVWVxUHo3WEp4alpjQnBhczA1NUxJMW54Wlo3WGhMZWJHRmsybUs2WUlMT2JRMnB0cC1JSFU0bkg5MnVPd0hPeHEzaG1mdXAtMGw0YTBYcUFwZWRWVkN4eGJycGgtUmVndFU?oc=5",
-   "visto_em": "2026-11-19"
-  },
-  {
-   "id": "n-pt-recua-e-retira-projeto-que-poderia-taxar-lucros-de-meis-em-ate-25-",
-   "titulo": "PT recua e retira projeto que poderia taxar lucros de MEIs em até 25%",
-   "fonte": "InfoMoney",
-   "data": "2026-11-19",
-   "hora": "15:16",
-   "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxORTNlSUVGdFlmZUZPVk5QenV5cVFldUdpVlJhUE8zckE4X3NQZElHQThUdFdhRnUtWElUZXdmRkt1Q01MWUxPOGxaV2xDMmtCSkhySDUyZlhwSi04dnhWUnZDOTE4X040dG9RR1dJbW81UmZrb0ZKMHJnc3ppZkRLQV95R2JvNmRzUktmT3pOWU45aGJpcExCQVV0X2huUUh1SEhYdnJNRnN0MW_SAbABQVVfeXFMUGxvRER6M29tOWFJTjdEQXo1UU8yYnJ0c0hMeGFuTV9NLVJ5WXRsS25BLWM5bkpYM2tSZzRSMWIxazBlcllWYVpocllvODZ2dTRrVkg0ejNWQ3doZHRVZk5CYlBIRGYwQUdTUWtkdnJWaVZCRTlLc1lxb3VxRTF6enoyZG91WEYtT1pVOWdwY0V4VlpCMWM5QWpBUV9xbWJPWEEwd3hwZ19LRzZLNllmMzc?oc=5",
-   "visto_em": "2026-11-19"
-  },
-  {
-   "id": "n-lider-do-pt-retira-projeto-para-tributar-lucros-que-poderia-atingir-meis",
-   "titulo": "Líder do PT retira projeto para tributar lucros que poderia atingir MEIs",
-   "fonte": "Metrópoles",
-   "data": "2026-11-19",
-   "hora": "14:54",
-   "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPTEZkdURhTzUtbEFGNFg0U05QM0k2SlB0R3Y3UXlFT2UwQS1Jc0hCSlBpdDN2bk9GSEZuZHllVm1IVzNXaGEyUFRSODkxUEl6dzN4RkxFTXdybTlpeGlrS0pzOE5fX0hXejZwbWxlLTl6U0ZKcGhEempRdjJZNkJRd1ZCU0FSSlNBRF8wRGUyZnhSNnRnOVAtaEdJbkFJY0lqN3dkX2ZFMjJPcEhfVWM0TzJ1WEFobF9TLVc1YXVJSQ?oc=5",
    "visto_em": "2026-11-19"
   }
  ]
