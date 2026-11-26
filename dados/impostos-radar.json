@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-25T18:39Z",
+ "atualizado": "2026-11-26T02:49Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -138,12 +138,21 @@
  ],
  "noticias": [
   {
-   "id": "n-tarifaco-de-trump-eua-propoem-tarifa-de-10-sobre-avioes-brasileiros-e-aumento-de",
-   "titulo": "Tarifaço de Trump: EUA propõem tarifa de 10% sobre aviões brasileiros e aumento de imposto sobre açúcar",
-   "fonte": "G1",
+   "id": "n-governo-lula-diz-que-proposta-de-trump-de-nova-taxacao-e-inaceitavel-e-que-o-bra",
+   "titulo": "Governo Lula diz que proposta de Trump de nova taxação é ‘inaceitável’ e que o Brasil não cederá às ameaças",
+   "fonte": "Jovem Pan",
    "data": "2026-11-25",
-   "hora": "10:16",
-   "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNekRyY283NURvT09uU0F6MjVUa0tIMHdpVXBvcEhCc1FFaTZkODZnMl81Z1lCV3l5djRxZHhDVHJMV1Q0NUFaSU1WVFN4eHhLZWlGQkFwQXpQV29kMk0tejV5WFRxaDZUa0tjdnV4TTBMXy1wY05NSFZNU1Y1eFlRcGN1NkhPMW9YNDZ5RmRBSlhzWlVZVFhITnlVVnB2RWtib1JsZ3NxOXdjblBvSnpyNWN4c9IBwgFBVV95cUxNcElmc3U4Nm9wZ0ZYbTBYT1FVVnRRdzFfSVBzSXA2YjRQUGRDUGRhVU5Vd2N4OWNMQ21PRkliRUNLNkdpMzRBY3dmQzFYM2Q3YW16Z2FhN0pnMWdkSmJKbmtzVnZjRnpBMzZTeDRtZlZhX0tMMGJEOEQycElaaU9KejRqbmpKQlZmaERiQVdFY1BBc0pEODlWX3huTlpEX2lZYWpmUjRJTy1jcThIQUhxRDZsY0xLcDQ1QWVmTDM4a2FWQQ?oc=5",
+   "hora": "18:50",
+   "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPVjZYZDVNYW1TM1pkWXFMV0w3OU5QaDZ3WHY3ODdkUjNmTHFBWUdydlZmSlJjQmVEN2oyaC1uMGF3d3BkOTVjMkZPTjYza1BxWHl3UTdVUGZfNnVSY29xbnFqb2k2elFKWGROeFZaY1ZPQzYzRlgxSWdYVFpJSVhvV3lVSFhMRjl1TmtFQVR1MjhPa2ktT1dnR2t6QTI1T2ZrRjNxdWxJMWRCMjV5aDhmNDlFN1BoQlg1VXctLWpicTBkbTl1MzNPNGUxZDk5NFU0NGc2TDZ3?oc=5",
+   "visto_em": "2026-11-25"
+  },
+  {
+   "id": "n-tarifaco-de-trump-eua-propoem-tarifa-de-10-sobre-avioes-brasileiros-e-aumento-de",
+   "titulo": "Tarifaço de Trump: EUA propõem tarifa de 10% sobre aviões brasileiros e aumento de imposto sobre o açúcar",
+   "fonte": "Terra",
+   "data": "2026-11-25",
+   "hora": "16:39",
+   "link": "https://news.google.com/rss/articles/CBMimAJBVV95cUxOZ3ROZTBmXzJQNXJUS0JDU0l1N0x6WjVUQnNOUkFQcXZOR29KRXhLdXpzOUxGdGtILWEtN2RaTjhUZEU3Rk1JOGJyalpzX2ZLeU9pMFB4TmJNQ3N6TXpUaGFBSFQzTGJxejg3ZWlqcjlHYjhqTnB0ZEtEZ2JjUDlSSG1hLW4yNDFqWDhnM2tqR3l2OXU1dmpBMHFXaElhano0QTNhLTlNMGpDZ2dEcGVIeHlrV1pYU3VzcG5mT0F3NFVJM2c0MVBHWTRHSHpsNVM0ekdJcjRjeUMtSXUwN3lrNHltaWZWdTROZTV2bnVkdFljY3pmTjd6MHV2Y0V2OVFHQzhOcHUwUUpjcHNwZjJLaURNaTBfZERj?oc=5",
    "visto_em": "2026-11-25"
   },
   {
@@ -262,15 +271,6 @@
    "hora": "14:54",
    "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPTEZkdURhTzUtbEFGNFg0U05QM0k2SlB0R3Y3UXlFT2UwQS1Jc0hCSlBpdDN2bk9GSEZuZHllVm1IVzNXaGEyUFRSODkxUEl6dzN4RkxFTXdybTlpeGlrS0pzOE5fX0hXejZwbWxlLTl6U0ZKcGhEempRdjJZNkJRd1ZCU0FSSlNBRF8wRGUyZnhSNnRnOVAtaEdJbkFJY0lqN3dkX2ZFMjJPcEhfVWM0TzJ1WEFobF9TLVc1YXVJSQ?oc=5",
    "visto_em": "2026-11-19"
-  },
-  {
-   "id": "n-senado-pede-explicacoes-ao-tcu-sobre-calculo-de-taxa-de-11-3-para-novo-imposto",
-   "titulo": "Senado pede explicações ao TCU sobre cálculo de taxa de 11,3% para novo imposto",
-   "fonte": "R7",
-   "data": "2026-11-18",
-   "hora": "17:58",
-   "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVF9rekRpelBLQVRzVlI2a1N6V0EzZV9iSWRIczlUc0picEJucTVGdjlJZFNGTjFCMmtSa0JKMzVlSWx0YlJTdlphVVk2ZG0weEpsWHpudmZTbjZPN051ZG80ejBidlVpSEJIWEhtanZUMGpMcVNrTC1SUkg5OV9ZWWhmNGpzUmFqRVVZNUdHczBfMHN6R3dWMnVSOFRrR3NIb2V0LXVQN3ppWXhWSzVRcG9xTExXcUZWTlQtNg?oc=5",
-   "visto_em": "2026-11-18"
   }
  ]
 }

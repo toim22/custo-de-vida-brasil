@@ -1,6 +1,6 @@
-OK   anp_serie: 300647 bytes, 616 links
-OK   anp_semanas: 472696 bytes, 1039 links
-OK   anp_dados_abertos: 353251 bytes, 818 links
+ERRO anp_serie: falha ao baixar https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/precos-revenda-e-de-distribuicao-combustiveis/serie-historica-do-levantamento-de-precos: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+ERRO anp_semanas: falha ao baixar https://www.gov.br/anp/pt-br/assuntos/precos-e-defesa-da-concorrencia/precos/levantamento-de-precos-de-combustiveis-ultimas-semanas-pesquisadas: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+ERRO anp_dados_abertos: falha ao baixar https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/serie-historica-de-precos-de-combustiveis: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
 OK   dieese_cesta: 15152 bytes, 17 links
 OK   dieese_salario: 53263 bytes, 91 links
 OK   sidra 7060: IPCA - Variação mensal, acumulada no ano, acumulada em 12 meses e peso mensal, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (a partir de janeiro/2020)
