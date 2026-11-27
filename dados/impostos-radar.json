@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-26T18:24Z",
+ "atualizado": "2026-11-27T02:50Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -138,6 +138,24 @@
  ],
  "noticias": [
   {
+   "id": "n-sem-excecoes-previstas-aliquota-de-novo-imposto-cairia-para-7-diz-ifi",
+   "titulo": "Sem exceções previstas, alíquota de novo imposto cairia para 7%, diz IFI",
+   "fonte": "Metrópoles",
+   "data": "2026-11-26",
+   "hora": "16:13",
+   "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSWg5aDkydGdOSHRvd2dFTFpHY1BlUDhWTnNXN09KSmpYc0gzNFNPdjczN2ppQ2xqSkZJLW1FM0Qzd0h1RVZmRDhDTXdZbVgwc0dWRGc3S0FaZkR6aTNpR3YxbW5VYjZxdzlWeURkVDBldWxrZUs0YkxIbVpmRl95NllYVUFNSVlXcWNDaHlaMGFUQ3FBUUJTUWtzVkQ?oc=5",
+   "visto_em": "2026-11-26"
+  },
+  {
+   "id": "n-sem-excecoes-da-reforma-tributaria-aliquota-da-cbs-poderia-ser-de-7-calcula-ifi",
+   "titulo": "Sem exceções da reforma tributária, alíquota da CBS poderia ser de 7%, calcula IFI",
+   "fonte": "Valor Econômico",
+   "data": "2026-11-26",
+   "hora": "14:13",
+   "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSjZsOXd3amVpempVMnRUanpDangwNDdRMDNFZmJqeVdkZ0d1dVdwV0RiRXd4enEzM2FZN3Y3SldqUWM4RHNRN0VKS2xDWFg4T2tCZHBEMXgyNDhOSGo3Q25DdFBWRTlyWmtiVWhOT0oyLVJrZW5zNnkzeGNydlVVeWFzNGxWOXlLSG02bGVORm5NckhMV3hsRVdJQ3VGeUtVREp0NVdzWlAxT0FfdXNwcC1yU2J1NUFYMFNqX2k3WDdIMnBaaFJ1b3A2eFZvYXpPdjNxYTNEbjlWYi1VTUptNjlVdlDSAfMBQVVfeXFMT1lPeVpPVjhTbHRMQlZoM3ZSczY0OUN5ZHBreGVjZ3FfRDdxOGthTTlHY0xKeHV1dm92bUE4YngyU01WdDVRQ1UxSlJGSXp1cll6YktwOWN6aG43THo3SXFlWWFsRS1JV04yTWs5MURtRWhHRTduYk1Zc2FKM3RnZVRmVHhENm9udHhlSTlHLWlWMXFXVmhPaGdrRGctRHhkaF9iODh5THozbkRHdVRPREZKMFp2Zm1SNWNXRk9JUl9ZVjlpSnBYZnhVRnRhYXpWWWJsTFVadjBHY0Ywa2VkSHJ1cGV4eGNDSEJjVU9YMWdMc2Rn?oc=5",
+   "visto_em": "2026-11-26"
+  },
+  {
    "id": "n-orgao-do-senado-atribui-alta-de-novo-imposto-ao-congresso",
    "titulo": "Órgão do Senado atribui alta de novo imposto ao Congresso",
    "fonte": "SBT News",
@@ -253,24 +271,6 @@
    "hora": "07:30",
    "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQVlFJemhuSUxnY2pjOV9fNTdUYzZTMDF3enJXbUhLbkdPUUZTMUNremtCN0ZjbjV6Mnp5cDEtRUNhRVh5NGhWWmZqaUpQRDBHMHRocmpsRWtvM25rYmdWMjQ5S1IwRnVhalFZOUJwX3M5aExrUmV2eDZwYVdFbFVfcXZYRUNNRzMzdEltVktqamt3WWhXNmFwbXllb3ZuMmFYS2czdnF2UUZtaFZFTzRzWnNpaUJ3N0pNZDk3VlA3cEhYUdIBxwFBVV95cUxPbDZ1djBsTUh6TWtSejk0QmJCNXJnbzFyRjR4VVZ5TERIdFduel8zSmdZSUU0b09IRVJpbmE1cGVwM0NZdEsyRUxSNzE0YmVxUzdyNnhNMlVoaFZZTXJONkpHTzZpamh2bm1GQmNfcll1X2d4UVRDcDNXaEhhSzE0eGNKcE9vU1FJVlZBSHVOOG1sbWVPR05UTVU0c1V4bGxXeWlmWHVrMFVMNDVhQWlET3J5VmMxVDZfb0NZWUl0TUZnYXJpWFdB?oc=5",
    "visto_em": "2026-11-24"
-  },
-  {
-   "id": "n-pt-propoe-taxar-lcas-e-titulos-do-agro-veja-os-impactos-no-credito-rural",
-   "titulo": "PT propõe taxar LCAs e títulos do agro: veja os impactos no crédito rural",
-   "fonte": "Gazeta do Povo",
-   "data": "2026-11-19",
-   "hora": "21:21",
-   "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQcFJZbF9sWndRdjlzUVE5OUxuRWhrYzRKc2Y0VWhVcHZpa1FRVnFhYXZ2ZXdRUVFLekN6OVdWUmlSbE1JR0tSZ1RTbl9zUzZVSG1XeU5iNzBJenoxRGxBRTFxNnF1a2pheG5iS0tJOWQ2VlNlOXJpVEg1RGh6T0hfUzFhTk8xZzlwQklGa2MwTnFKUkY4VjdkaWRwZUQyVGFjR2kyUnM4RUlVR3pFTXZzNzhaUU5UWHA2bHlz?oc=5",
-   "visto_em": "2026-11-19"
-  },
-  {
-   "id": "n-em-nova-investida-prejudicial-ao-agro-pt-quer-taxar-titulos-que-financiam-o-seto",
-   "titulo": "Em nova investida prejudicial ao agro, PT quer taxar títulos que financiam o setor",
-   "fonte": "Gazeta do Povo",
-   "data": "2026-11-19",
-   "hora": "17:20",
-   "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9xQ3pUV25ONFgydFBZWEJ0amh3cFJrVWVxUHo3WEp4alpjQnBhczA1NUxJMW54Wlo3WGhMZWJHRmsybUs2WUlMT2JRMnB0cC1JSFU0bkg5MnVPd0hPeHEzaG1mdXAtMGw0YTBYcUFwZWRWVkN4eGJycGgtUmVndFU?oc=5",
-   "visto_em": "2026-11-19"
   }
  ]
 }
