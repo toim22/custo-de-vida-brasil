@@ -45,7 +45,7 @@ JavaScript:busca(\''+'TIPO|' + data[i].id + '\');
 http://escola.dieese.org.br/escola
 http://memoria.dieese.org.br/museu
 https://api.whatsapp.com/send?phone=5511976397047
-https://news.google.com/search?q=dieese&hl=pt-BR&gl=BR
+https://news.google.com/search?q=dieese&amp;hl=pt-BR&amp;gl=BR
 https://open.spotify.com/show/7njn3EMkzMleijfU7G7XoT
 https://plus.google.com/113098011521971538128/about
 https://soundcloud.com/dieese
