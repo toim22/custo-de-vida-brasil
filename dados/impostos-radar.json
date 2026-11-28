@@ -1,5 +1,5 @@
 {
- "atualizado": "2026-11-27T18:07Z",
+ "atualizado": "2026-11-28T02:41Z",
  "nota": "Achados automáticos, ainda não conferidos. Projetos vêm das APIs da Câmara e do Senado (filtro pelo resumo oficial). Notícias vêm do Google Notícias, só de veículos conhecidos. Um item só vira cartão depois de conferido.",
  "falhas": [],
  "projetos": [
@@ -138,6 +138,24 @@
  ],
  "noticias": [
   {
+   "id": "n-governo-deve-editar-mp-para-manter-em-3-imposto-sobre-leasing-de-avioes-em-2027",
+   "titulo": "Governo deve editar MP para manter em 3% imposto sobre leasing de aviões em 2027",
+   "fonte": "Valor Econômico",
+   "data": "2026-11-27",
+   "hora": "15:35",
+   "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPZTRETzZTTW4zZWNDQUJfaXl5V1hscGduV3VkcXhDZFVNZF9vOGFxb3V5bkxMajBSaXFoQ20tbVRya0VSanJIQVRIUktBWGRjUkJvV05XUS1fbmQwZXRJaF9lam9MTmJjYjBBNU51bUxRRmptS1AxV2pXcG1Mc2g3bzVMd0MzWWJJSGpxdTlRMkdZdXJzNVZUQzVWRkdHTUlIem9WMWRueXJqMFA4U1lLSzhRZDc4VzJKZHNhY0tNU2tldUhSLXQtQ2V3dV9LZUxISE1JR3U4b0RXUdIB6AFBVV95cUxQZGZPMjc2S21XSXd0QWpsVkRxTHpQZzktQzFhTVJDWkZDOW1vaVZfOFZSZEV1a2d3Nl9HUVN2SmFNNVM4bnpoQmwtaVVqZTN1SV9qeUlFUGJ6REtCYW9tMllJS0laWFlNdTJEdF9ZYjV6MVF6OUVkWllmMi1NZlVHWGVZZ3VFLUdFVXdkTFZ6UFhJS1hERHVtSkQxc2g5TzRUX1RPRElhUTNfLXFaeXg5bExlN1VtTk5zbjhfZHFPUC1mNDBwUnpDMVR3Z3NGeEM4eUJ2Q29yR0FlczJtdUs5VnNFd0llSUdF?oc=5",
+   "visto_em": "2026-11-27"
+  },
+  {
+   "id": "n-estados-unidos-propoem-aumento-de-imposto-sobre-acucar-brasileiro",
+   "titulo": "Estados Unidos propõem aumento de imposto sobre açúcar brasileiro",
+   "fonte": "R7",
+   "data": "2026-11-27",
+   "hora": "15:09",
+   "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNRGJGRDFuRUlCalBWLS0zcHRYLUZiUmw3NlVYSURSdE5hQlRJNW54ZnlNNEhWdUZNVU9wRmpQUGI1bV9DemhMQ2JVbEpWQkZSV1I0cUFwRThGX2ZwY3NuYXRxR0pKbGN1X2NwMlp4SlpHY210SXZyb1hxbUo4ZlEyb29WQlV6YTdrNEhFbHJvZ1UxYWtaQjV6NjlhYUxDWFBIVmlxUFdYdk5HU0xHbnh4UTN2VVQwRWNhNkl1WGNpVDRRR05Ccm5ZM0hR?oc=5",
+   "visto_em": "2026-11-27"
+  },
+  {
    "id": "n-sem-excecoes-previstas-aliquota-de-novo-imposto-cairia-para-7-diz-ifi",
    "titulo": "Sem exceções previstas, alíquota de novo imposto cairia para 7%, diz IFI",
    "fonte": "Metrópoles",
@@ -253,24 +271,6 @@
    "hora": "11:46",
    "link": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNbFhmYmxPcllJUnp1N2Z6QjllSTFERzhnLVF4MXV3blFQdUVfNllBaDNUQjhXaTF4TVpzMHpFYS1jblUzWmxMbDhxNmdhc1l2bUxJQ1JzZE9DeU1MUmo2UnlUN3pWeEdycmJON3dGdFRSTDh2ZmZIT3FKY01Ob0tVMlhFenBuV0dhV0w3MU15Y3JWZi1TRGd4VXBvYTdhY2I1bVZTbmYybXp0TnN0dnNmbUNyYTdCY21Ob0hGMUJZTl94VXJ5OExQMjVGbVc0b1gzMDh6YU13aDc0T0h5cVhfajNaSWNIVk1Md0w5bnNZc2lQUlZGb3pRMldwT1FVMUlpVE9hMmliV2k0REdhUEdLcw?oc=5",
    "visto_em": "2026-11-22"
-  },
-  {
-   "id": "n--imposto-do-pecado-pode-ser-o-mais-inteligente-da-reforma-tributaria",
-   "titulo": "\"Imposto do pecado\" pode ser o mais inteligente da reforma tributária",
-   "fonte": "CNN Brasil",
-   "data": "2026-11-23",
-   "hora": "10:30",
-   "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNTRTamNLemR6OFg4MFVlX0Y4M29ZUlJqejdXTERLekJFcV9XYW1oaVFLczRTNHNRcVY4VjJPZnhaclZJdXpTV3hVZGhBbGdGeTBMTWx0Nnc1RUJpaUNJaUxqa2RSTXQ4ODlBcWlTUUc2MnRGV1lfcmk5MVprRmk2WTJ4cTA3VzdDUWIwblpNVEdwOWlNcy1uMkFubnNtM2lybDd1WjNTUmF5U2xnLUxKaC02cDJucG9XWEZmRkN6V3Zua3BfR21JTk9ndGViR3dFZHVZZ3RvdlBzNHYxWFE?oc=5",
-   "visto_em": "2026-11-23"
-  },
-  {
-   "id": "n-receita-expande-piloto-da-cbs-novo-imposto-da-reforma-tributaria-para-todas-as-e",
-   "titulo": "Receita expande piloto da CBS, novo imposto da Reforma Tributária, para todas as empresas",
-   "fonte": "O Tempo",
-   "data": "2026-11-23",
-   "hora": "09:45",
-   "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNbHZIeXR4NW90TDNNVklqb0R4Z0xSX1N3R2pPeElWdi1Hektvd29CT2EwME9pY3JlZ280S3RzY1p0NTFpaWQtWGx5cDFtcnFfWTlXZDJjeml3RVJub2RGUWdDaWJpRmxHUllMeUVyakd2bEpZdUZ1RFdNTm1tZEFndXZKaEthd21ySk00Mng1SHY4bXpSa0p5VDNOV3VNTnk5ZFdfODlhWDBuX3Z4dm5idTRGVkxFRUo0VUJIaDJhUkhLVWNVNmhOTnN4TWMwdw?oc=5",
-   "visto_em": "2026-11-23"
   }
  ]
 }

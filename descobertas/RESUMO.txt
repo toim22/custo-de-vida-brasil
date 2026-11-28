@@ -23,4 +23,4 @@ OK   teste sidra_site: 91307 bytes
 ERRO teste ftp_ibge: falha ao baixar https://ftp.ibge.gov.br/Precos_Indices_de_Precos_ao_Consumidor/IPCA/Series_Historicas/: 404 Client Error: Not Found for url: https://f
 ERRO teste ibge_www: falha ao baixar https://www.ibge.gov.br/: 403 Client Error: Forbidden for url: https://www.ibge.gov.br/
 OK   teste bcb_sgs: 6254 bytes
-OK   teste ipeadata: 2304 bytes
+OK   teste ipeadata: 2308 bytes
